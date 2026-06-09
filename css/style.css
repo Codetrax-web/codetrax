@@ -1,0 +1,16 @@
+/* Paleta: Negro (fondo), Azul (acento) */
+body { background: #0a0a0a; color: #fff; font-family: sans-serif; }
+
+/* Loader: Pantalla completa */
+#loader { position: fixed; inset: 0; display: grid; place-items: center; background: #000; }
+
+/* Estructura responsiva: Cambia de 1 a 3 columnas según el tamaño */
+#portfolio {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Tipografía fluida: Se ajusta sola */
+h1 { font-size: clamp(1.5rem, 5vw, 3rem); }
