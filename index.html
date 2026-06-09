@@ -3,41 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codetrax | Hub Digital</title>
+    <title>CodeTrax</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="with-banner">
-    <div id="loader"><div class="spinner"></div></div>
+<body>
 
-    <nav class="top-menu">
-        <a href="#" class="active">Home</a>
-        <a href="#">Que es</a>
-        <a href="#">Porta</a>
-        <a href="#">Recurs</a>
-        <a href="#">contacto</a>
-    </nav>
+    <header class="main-header">
+        <img src="assets/ima/log_codetrax.png" alt="Logo CodeTrax" class="logo">
+        <h1>CODETRAX</h1>
+    </header>
 
-    <main id="content" style="display: none;">
-        <div class="main-container">
-            <header class="brand-block">
-                <img src="assets/ima/log_codetrax.png" alt="Logo" class="main-logo-xl">
-                <h1 class="brand-name-display">CODETRAX</h1>
-            </header>
-
-            <section class="action-block">
-                <div class="card terminal-card" id="search-terminal">
-                    <div class="head">
-                        <img src="assets/ima/log_codetrax.png" alt="Icon" class="terminal-icon">
-                        <p class="title">Terminal: buscar proyectos...</p>
-                    </div>
-                    <div class="body">
-                        <pre class="pre"><code>- </code><code>npx </code><code class="cmd"></code></pre>
-                    </div>
-                </div>
-            </section>
-        </div>
+    <main>
+        <label class="gt-field" for="gt-input-target">
+          <span class="gt-field__label">Compile Target</span>
+          <span class="gt-input">
+            <span class="gt-input__prompt" aria-hidden="true">&gt;</span>
+            <input id="gt-input-target" class="gt-input__control" type="text" placeholder="./build/main" />
+            <span class="gt-input__caret" aria-hidden="true"></span>
+          </span>
+          <span class="gt-field__hint">Press <kbd class="gt-kbd">/</kbd> to focus · <kbd class="gt-kbd">Tab</kbd> to complete</span>
+        </label>
     </main>
 
-    <script src="js/main.js"></script>
+    <nav class="menu">
+        <a href="#" class="active"><span>Home</span></a>
+        <a href="#"><span>Files</span></a>
+        <a href="#"><span>Plans</span></a>
+        <a href="#"><span>Settings</span></a>
+    </nav>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
