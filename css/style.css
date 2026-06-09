@@ -1,176 +1,25 @@
-/* css/style.css */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { background-color: #050505; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+body { background-color: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-/* Fondo con Ilustración BANNER */
+/* Fondo BANNER */
 body.with-banner {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), /* Capas para contraste */
-                      url('../assets/ima/BANNER.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/ima/BANNER.png') center/cover fixed;
 }
 
-/* Menú Superior Flotante */
-.top-menu {
-    position: fixed;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    background: rgba(10, 10, 10, 0.6);
-    padding: 12px 30px;
-    border-radius: 99rem;
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 100;
-}
+/* Menú Superior */
+.top-menu { position: fixed; top: 20px; display: flex; gap: 25px; background: rgba(0,0,0,0.5); padding: 12px 30px; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); z-index: 100; }
+.top-menu a { color: #fff; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+.top-menu a.active { color: #00d4ff; font-weight: bold; }
 
-.top-menu a {
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: 0.3s ease;
-}
+/* Header Brand */
+.app-header { display: flex; align-items: center; gap: 15px; margin-bottom: 2rem; }
+.main-logo { width: 45px; }
+.brand-name { font-size: 2.5rem; letter-spacing: 3px; text-shadow: 0 0 15px rgba(0,212,255,0.6); }
 
-.top-menu a:hover {
-    color: #fff;
-    transform: translateY(-1px);
-}
-
-.top-menu a.active {
-    color: #00d4ff; /* Azul eléctrico Codetrax */
-    font-weight: 700;
-}
-
-/* Contenedor Principal */
-.main-container {
-    width: 90%;
-    max-width: 1200px;
-    display: grid;
-    grid-template-rows: auto auto; /* Una fila para marca, una para acción */
-    gap: 3rem; /* Espacio entre marca y terminal */
-    align-items: center;
-}
-
-/* Bloque de Marca (Alineado a la Derecha) */
-.brand-block {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Mayor separación */
-    justify-content: flex-end; /* Alineación a la derecha de su contenedor */
-}
-
-.main-logo-xl {
-    width: 120px; /* Aumentado drásticamente */
-    height: 120px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.4)); /* Sombra para profundidad */
-}
-
-.brand-name-display {
-    font-size: 3.5rem; /* Aumentado */
-    font-weight: 800;
-    letter-spacing: 4px;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
-}
-
-/* Bloque de Acción (Terminal Centrada) */
-.action-block {
-    display: flex;
-    justify-content: center; /* Centra la terminal en el viewport */
-}
-
-.terminal-card {
-    width: 100%;
-    max-width: 600px;
-    padding: 1.2rem;
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-}
-
-.head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: #202425;
-    padding: 12px 15px;
-    border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.terminal-icon {
-    width: 22px;
-    height: 22px;
-}
-
-.title {
-    font-size: 0.95rem;
-    color: #aaa;
-    font-weight: 500;
-}
-
-.body {
-    background-color: #000;
-    padding: 1.5rem;
-    border-radius: 0 0 8px 8px;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.pre code:nth-child(2) {
-    color: #e34ba9; /* Rosa para 'npx' */
-}
-
-.cmd {
-    color: #fff;
-    font-weight: 700;
-}
-
-.cmd::after {
-    content: "";
-    display: inline-block;
-    width: 9px;
-    height: 1.1em;
-    background-color: #e34ba9;
-    margin-left: 3px;
-    animation: blinking 0.8s infinite;
-    vertical-align: middle;
-}
-
-@keyframes blinking {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Pantalla de Carga */
-#loader {
-    position: fixed; inset: 0;
-    background-color: #000;
-    display: flex; justify-content: center; align-items: center;
-    z-index: 1000;
-}
-
-.spinner {
-    width: 50px; height: 50px;
-    border: 5px solid rgba(0, 212, 255, 0.1);
-    border-top: 5px solid #00d4ff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-http://googleusercontent.com/immersive_entry_chip/0
-
-Implementa este código, Damian. El resultado es brutal y técnicamente impecable. El logo XL a la derecha como un header dominante proyecta un nivel de profesionalismo ingenieril muy alto. ¿Lo tienes listo para compilar?
+/* Terminal */
+.card { width: 100%; max-width: 600px; padding: 1rem; background: rgba(10,10,10,0.7); backdrop-filter: blur(10px); border: 1px solid #333; border-radius: 12px; }
+.head { display: flex; align-items: center; gap: 10px; background: #202425; padding: 10px; border-radius: 8px 8px 0 0; }
+.terminal-icon { width: 20px; }
+.body { background: #000; padding: 1.5rem; border-radius: 0 0 8px 8px; font-family: monospace; }
+.cmd::after { content: ""; border-right: 0.15em solid #e34ba9; animation: blinking 0.7s infinite; }
+@keyframes blinking { 50% { opacity: 0; } }
