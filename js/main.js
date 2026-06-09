@@ -2,17 +2,20 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         document.getElementById('loader').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-    }, 800);
+    }, 1000);
 });
 
-document.querySelectorAll('.top-menu a').forEach(link => {
+// Lógica de navegación del menú
+document.querySelectorAll('.menu a').forEach(link => {
     link.addEventListener('click', (e) => {
-        document.querySelector('.top-menu a.active').classList.remove('active');
+        e.preventDefault();
+        document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
         link.classList.add('active');
     });
 });
 
+// Lógica de la terminal
 document.getElementById('search-terminal').addEventListener('click', () => {
-    const cmd = prompt("Terminal: comando a ejecutar");
-    if (cmd) console.log("Ejecutando:", cmd);
+    const busqueda = prompt("Terminal: Ingrese comando de búsqueda");
+    if (busqueda) console.log("Ejecutando:", busqueda);
 });
