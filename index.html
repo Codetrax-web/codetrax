@@ -6,37 +6,31 @@
     <title>Codetrax | Hub Digital</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="with-banner">
+<body>
     <div id="loader"><div class="spinner"></div></div>
 
-    <nav class="top-menu">
-        <a href="#" class="active">Home</a>
-        <a href="#">Que es</a>
-        <a href="#">Porta</a>
-        <a href="#">Recurs</a>
-        <a href="#">contacto</a>
-    </nav>
-
     <main id="content" style="display: none;">
-        <header class="app-header">
-            <img src="assets/ima/log_codetrax.png" alt="Logo" class="main-logo">
-            <h1 class="brand-name">CODETRAX</h1>
-        </header>
-
         <div class="card" id="search-terminal">
             <div class="wrap">
                 <div class="terminal">
-                    <hgroup class="head">
-                        <img src="assets/ima/log_codetrax.png" alt="Icon" class="terminal-icon">
-                        <p class="title">Terminal: buscar proyectos...</p>
-                    </hgroup>
+                    <hgroup class="head"><p class="title">BUSCADOR</p></hgroup>
                     <div class="body">
-                        <pre class="pre"><code>- </code><code>npx </code><code class="cmd" data-cmd="listar-repos"></code></pre>
+                        <pre class="pre"><code>- </code><code>Que busca </code><code class="cmd" data-cmd="buscar-proyectos"></code></pre>
                     </div>
                 </div>
             </div>
         </div>
+
+        <section id="portfolio"></section>
     </main>
+
+    <div class="menu">
+        <a href="#" class="active"><span>Home</span></a>
+        <a href="#"><span>Quienes somos</span></a>
+        <a href="#"><span>Portafolio</span></a>
+        <a href="#"><span>Recursos</span></a>
+        <a href="#"><span>Contacto</span></a>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
