@@ -13,23 +13,16 @@
         <h1>CODETRAX</h1>
     </header>
 
-    <main>
-        <label class="gt-field" for="gt-input-target">
-          <span class="gt-field__label">Compile Target</span>
-          <span class="gt-input">
-            <span class="gt-input__prompt" aria-hidden="true">&gt;</span>
-            <input id="gt-input-target" class="gt-input__control" type="text" placeholder="./build/main" />
-            <span class="gt-input__caret" aria-hidden="true"></span>
-          </span>
-          <span class="gt-field__hint">Press <kbd class="gt-kbd">/</kbd> to focus · <kbd class="gt-kbd">Tab</kbd> to complete</span>
-        </label>
+    <main id="content">
+        <h1>Bienvenido a CodeTrax</h1>
+        <p>Selecciona una opción del menú para comenzar.</p>
     </main>
 
     <nav class="menu">
-        <a href="#" class="active"><span>Home</span></a>
-        <a href="#"><span>Files</span></a>
-        <a href="#"><span>Plans</span></a>
-        <a href="#"><span>Settings</span></a>
+        <a href="#" class="active" data-section="home"><span>Home</span></a>
+        <a href="#" data-section="files"><span>Files</span></a>
+        <a href="#" data-section="plans"><span>Plans</span></a>
+        <a href="#" data-section="settings"><span>Settings</span></a>
     </nav>
 
     <script src="js/script.js"></script>
