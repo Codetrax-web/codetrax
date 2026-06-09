@@ -1,16 +1,47 @@
-/* Paleta: Negro (fondo), Azul (acento) */
-body { background: #0a0a0a; color: #fff; font-family: sans-serif; }
+/* Reset básico para eliminar márgenes extraños */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Loader: Pantalla completa */
-#loader { position: fixed; inset: 0; display: grid; place-items: center; background: #000; }
+/* Paleta de colores base */
+body {
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
 
-/* Estructura responsiva: Cambia de 1 a 3 columnas según el tamaño */
+/* Pantalla de carga (Overlay) */
+#loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    z-index: 1000;
+}
+
+/* Estructura de terminal */
+header {
+    padding: 2rem;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: #00d4ff; /* Azul eléctrico */
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    width: 300px;
+}
+
+/* Grid para el portafolio (Responsivo) */
 #portfolio {
     display: grid;
     gap: 20px;
-    padding: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    padding: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-
-/* Tipografía fluida: Se ajusta sola */
-h1 { font-size: clamp(1.5rem, 5vw, 3rem); }
