@@ -1,3 +1,4 @@
+console.log("El script main.js está vivo, Damian.");
 async function cargarProyectos() {
     try {
         // Debes apuntar a la ruta exacta donde vive tu JSON
