@@ -1,9 +1,10 @@
+/* Variables de diseño */
 :root {
     --gt-ink: #ffffff;
     --gt-surface: #1e1e2e;
-    --gt-voltage-deep: #d9c400;
 }
 
+/* Fondo desvanecido con la imagen de banner */
 body {
     margin: 0;
     height: 100vh;
@@ -11,22 +12,24 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: ui-monospace, monospace;
-    background: url('../assets/ima/BANNER.png') no-repeat center center fixed;
+    font-family: monospace;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/ima/BANNER.png');
     background-size: cover;
     color: var(--gt-ink);
 }
 
 .main-header { display: flex; align-items: center; gap: 15px; margin-bottom: 2rem; }
-.logo { width: 60px; }
+.logo { width: 80px; }
 
-/* Integración del componente Compile Target */
-.gt-field { width: min(360px, 90%); display: flex; flex-direction: column; gap: 0.5rem; }
-.gt-input { position: relative; display: flex; align-items: center; padding: 10px 13px; background-color: var(--gt-surface); border: 1px solid var(--gt-ink); border-radius: 15px; }
-.gt-input__control { flex: 1; border: 0; outline: 0; background: transparent; color: var(--gt-ink); font-family: inherit; }
-.gt-kbd { padding: 1px 5px; background: var(--gt-surface); border: 1px solid var(--gt-ink); border-radius: 4px; font-size: 0.6rem; }
+/* Estilo del contenedor dinámico */
+#content { text-align: center; padding: 20px; }
 
-/* Menú */
-.menu { width: calc(100% - 20px); max-width: 520px; backdrop-filter: blur(12px); background: rgba(0, 122, 255, 0.4); border-radius: 99rem; display: flex; justify-content: center; padding: 8px; margin-top: 2rem; }
-.menu a { padding: 10px; text-decoration: none; color: white; transition: 0.3s; }
+/* Estilo del menú flotante estilo cristal */
+.menu { 
+    position: fixed; bottom: 30px;
+    width: calc(100% - 20px); max-width: 520px; 
+    backdrop-filter: blur(12px); background: rgba(0, 122, 255, 0.4); 
+    border-radius: 99rem; display: flex; justify-content: center; padding: 8px; 
+}
+.menu a { padding: 10px 20px; text-decoration: none; color: white; transition: 0.3s; }
 .menu a.active { background: rgba(237, 237, 237, 0.9); color: #007aff; border-radius: 99rem; }
