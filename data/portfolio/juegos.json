@@ -1,9 +1,0 @@
-[
-  {
-    "id": "p001",
-    "titulo": "Proyecto Alpha",
-    "descripcion": "Descripción técnica del proyecto.",
-    "tecnologias": ["HTML", "CSS", "JS"],
-    "link": "https://github.com/tu-usuario/proyecto"
-  }
-]
