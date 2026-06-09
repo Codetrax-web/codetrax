@@ -110,4 +110,29 @@ body {
     text-align: center;
     border: 1px solid #3a4b8a;
 }
+.notification{
+    margin:20px auto;
+    max-width:600px;
+}
+
+.notibody{
+    line-height:1.5;
+}
+
+.files-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.team-title{
+    text-align:center;
+    margin-top:40px;
+    margin-bottom:20px;
+}
+.team-grid{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
 .card-team img { width: 80px; border-radius: 50%; margin-bottom: 10px; }
