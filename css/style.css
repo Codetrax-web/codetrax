@@ -1,29 +1,32 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background-color: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center; }
-
-body.with-banner {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../assets/ima/BANNER.png');
-    background-size: cover; background-position: center;
+:root {
+    --gt-ink: #ffffff;
+    --gt-surface: #1e1e2e;
+    --gt-voltage-deep: #d9c400;
 }
 
-.top-menu {
-    position: fixed; top: 25px; display: flex; gap: 20px; background: rgba(10, 10, 10, 0.6);
-    padding: 12px 30px; border-radius: 99rem; backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); z-index: 100;
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: ui-monospace, monospace;
+    background: url('../assets/ima/BANNER.png') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--gt-ink);
 }
-.top-menu a { color: rgba(255, 255, 255, 0.7); text-decoration: none; font-weight: 500; transition: 0.3s; }
-.top-menu a.active { color: #00d4ff; font-weight: 700; }
 
-.main-container { display: grid; gap: 3rem; text-align: center; }
-.brand-block { display: flex; align-items: center; justify-content: center; gap: 20px; }
-.main-logo-xl { width: 100px; }
-.brand-name-display { font-size: 3rem; }
+.main-header { display: flex; align-items: center; gap: 15px; margin-bottom: 2rem; }
+.logo { width: 60px; }
 
-.terminal-card { width: 500px; background: rgba(10, 10, 10, 0.75); border: 1px solid #333; border-radius: 8px; }
-.head { display: flex; align-items: center; gap: 10px; background: #202425; padding: 10px; border-radius: 8px 8px 0 0; }
-.body { padding: 20px; font-family: monospace; text-align: left; }
-.cmd::after { content: "_"; animation: blink 1s infinite; }
-@keyframes blink { 50% { opacity: 0; } }
+/* Integración del componente Compile Target */
+.gt-field { width: min(360px, 90%); display: flex; flex-direction: column; gap: 0.5rem; }
+.gt-input { position: relative; display: flex; align-items: center; padding: 10px 13px; background-color: var(--gt-surface); border: 1px solid var(--gt-ink); border-radius: 15px; }
+.gt-input__control { flex: 1; border: 0; outline: 0; background: transparent; color: var(--gt-ink); font-family: inherit; }
+.gt-kbd { padding: 1px 5px; background: var(--gt-surface); border: 1px solid var(--gt-ink); border-radius: 4px; font-size: 0.6rem; }
 
-#loader { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; z-index: 1000; }
-.spinner { width: 50px; height: 50px; border: 5px solid #00d4ff; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
+/* Menú */
+.menu { width: calc(100% - 20px); max-width: 520px; backdrop-filter: blur(12px); background: rgba(0, 122, 255, 0.4); border-radius: 99rem; display: flex; justify-content: center; padding: 8px; margin-top: 2rem; }
+.menu a { padding: 10px; text-decoration: none; color: white; transition: 0.3s; }
+.menu a.active { background: rgba(237, 237, 237, 0.9); color: #007aff; border-radius: 99rem; }
