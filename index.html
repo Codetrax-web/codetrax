@@ -6,16 +6,20 @@
     <title>Codetrax | Hub Digital</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <div id="loader"><div class="spinner"></div></div>
+<body class="with-banner"> <div id="loader"><div class="spinner"></div></div>
 
     <main id="content" style="display: none;">
         <div class="card" id="search-terminal">
             <div class="wrap">
                 <div class="terminal">
-                    <hgroup class="head"><p class="title">BUSCADOR</p></hgroup>
+                    <hgroup class="head">
+                        <div class="logo-container">
+                            <img src="assets/ima/log_codetrax.png" alt="Logo Codetrax" class="terminal-logo">
+                        </div>
+                        <p class="title">Codetrax Terminal</p>
+                    </hgroup>
                     <div class="body">
-                        <pre class="pre"><code>- </code><code>Que busca </code><code class="cmd" data-cmd="buscar-proyectos"></code></pre>
+                        <pre class="pre"><code>- </code><code>npx </code><code class="cmd" data-cmd="buscar-proyectos"></code></pre>
                     </div>
                 </div>
             </div>
@@ -26,10 +30,9 @@
 
     <div class="menu">
         <a href="#" class="active"><span>Home</span></a>
-        <a href="#"><span>Quienes somos</span></a>
-        <a href="#"><span>Portafolio</span></a>
-        <a href="#"><span>Recursos</span></a>
-        <a href="#"><span>Contacto</span></a>
+        <a href="#"><span>Files</span></a>
+        <a href="#"><span>Plans</span></a>
+        <a href="#"><span>Settings</span></a>
     </div>
 
     <script src="js/main.js"></script>
