@@ -1,18 +1,10 @@
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('loader').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    }, 1000);
+// Lógica básica para el enfoque del teclado
+document.addEventListener('keydown', (e) => {
+    const input = document.getElementById('gt-input-target');
+    if (e.key === '/') {
+        e.preventDefault();
+        input.focus();
+    }
 });
 
-document.querySelectorAll('.top-menu a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        document.querySelectorAll('.top-menu a').forEach(a => a.classList.remove('active'));
-        e.target.classList.add('active');
-    });
-});
-
-document.getElementById('search-terminal').addEventListener('click', () => {
-    const cmd = prompt("Ingrese comando:");
-    if (cmd) document.querySelector('.cmd').innerText = cmd;
-});
+console.log("CodeTrax inicializado, Damian. No rompas nada.");
