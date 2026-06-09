@@ -1,41 +1,25 @@
-/* Nuevo menú superior */
-.top-menu {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 10px 30px;
-    border-radius: 99rem;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    z-index: 100;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #050505; color: #fff; font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+/* Fondo BANNER */
+body.with-banner {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../assets/ima/BANNER.png') center/cover fixed;
 }
 
-/* Header de marca */
-.app-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 2rem;
-}
+/* Menú Superior */
+.top-menu { position: fixed; top: 20px; display: flex; gap: 25px; background: rgba(0,0,0,0.5); padding: 12px 30px; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); z-index: 100; }
+.top-menu a { color: #fff; text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
+.top-menu a.active { color: #00d4ff; font-weight: bold; }
 
-.main-logo {
-    width: 40px;
-    height: 40px;
-}
+/* Header Brand */
+.app-header { display: flex; align-items: center; gap: 15px; margin-bottom: 2rem; }
+.main-logo { width: 45px; }
+.brand-name { font-size: 2.5rem; letter-spacing: 3px; text-shadow: 0 0 15px rgba(0,212,255,0.6); }
 
-.brand-name {
-    font-size: 2rem;
-    letter-spacing: 2px;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-}
-
-/* Ajuste de la terminal */
-#search-terminal {
-    width: 100%;
-    max-width: 600px;
-}
+/* Terminal */
+.card { width: 100%; max-width: 600px; padding: 1rem; background: rgba(10,10,10,0.7); backdrop-filter: blur(10px); border: 1px solid #333; border-radius: 12px; }
+.head { display: flex; align-items: center; gap: 10px; background: #202425; padding: 10px; border-radius: 8px 8px 0 0; }
+.terminal-icon { width: 20px; }
+.body { background: #000; padding: 1.5rem; border-radius: 0 0 8px 8px; font-family: monospace; }
+.cmd::after { content: ""; border-right: 0.15em solid #e34ba9; animation: blinking 0.7s infinite; }
+@keyframes blinking { 50% { opacity: 0; } }
