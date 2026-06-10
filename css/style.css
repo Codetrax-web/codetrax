@@ -1,321 +1,600 @@
-/* ==========================
+/* =================================
    VARIABLES GLOBALES
-   ========================== */
+   ================================= */
 
 :root {
 
-    /* Color principal del texto */
     --gt-ink: #ffffff;
-
-    /* Color de superficies y contenedores */
     --gt-surface: #1e1e2e;
-
-    /* Color decorativo (voltaje/dorado) */
-    --gt-voltage-deep: #d9c400;
+    --gt-blue: #007bff;
+    --gt-red: #ff2d55;
 
 }
 
-/* ==========================
-   ESTILOS GENERALES DEL BODY
-   ========================== */
+/* =================================
+   CONFIGURACIÓN GENERAL
+   ================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body {
 
-    /* Elimina márgenes predeterminados */
-    margin: 0;
+    min-height:100vh;
 
-    /* Ocupa toda la altura de la ventana */
-    height: 100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 
-    /* Activa Flexbox */
-    display: flex;
+    font-family:ui-monospace, monospace;
 
-    /* Organiza elementos en columna */
-    flex-direction: column;
+    background:url('../assets/ima/BANNER.png')
+    no-repeat center center fixed;
 
-    /* Centra horizontalmente */
-    align-items: center;
+    background-size:cover;
 
-    /* Centra verticalmente */
-    justify-content: center;
+    color:var(--gt-ink);
 
-    /* Fuente monoespaciada */
-    font-family: ui-monospace, monospace;
-
-    /* Imagen de fondo */
-    background: url('../assets/ima/BANNER.png') no-repeat center center fixed;
-
-    /* Ajusta la imagen para cubrir toda la pantalla */
-    background-size: cover;
-
-    /* Color del texto */
-    color: var(--gt-ink);
+    padding:20px;
 
 }
 
-/* ==========================
-   ENCABEZADO PRINCIPAL
-   ========================== */
+/* =================================
+   HEADER
+   ================================= */
 
 .main-header {
 
-    /* Alinea logo y texto horizontalmente */
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    /* Espacio entre elementos */
-    gap: 15px;
+    gap:15px;
 
-    /* Separación inferior */
-    margin-bottom: 2rem;
+    margin-bottom:30px;
 
 }
 
-/* Tamaño del logo */
 .logo {
 
-    width: 60px;
+    width:60px;
 
 }
 
-/* ==========================
-   COMPONENTE COMPILE TARGET
-   ========================== */
+.main-header h1 {
 
-/* Contenedor principal del campo */
+    font-size:2rem;
+
+}
+
+/* =================================
+   CONTENIDO PRINCIPAL
+   ================================= */
+
+main {
+
+    width:100%;
+    max-width:1200px;
+
+}
+
+/* =================================
+   CAMPO DE BÚSQUEDA
+   ================================= */
+
 .gt-field {
 
-    width: min(360px, 90%);
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 0.5rem;
+    width:min(500px,100%);
+    display:flex;
+    flex-direction:column;
 
 }
 
-/* Caja visual del input */
 .gt-input {
 
-    position: relative;
+    position:relative;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    padding: 10px 13px;
+    gap:10px;
 
-    background-color: var(--gt-surface);
+    padding:12px 15px;
 
-    border: 1px solid var(--gt-ink);
+    border-radius:15px;
 
-    border-radius: 15px;
+    background:rgba(30,30,46,.85);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
 
 }
 
-/* Campo de texto */
+.gt-input__prompt {
+
+    color:#00ff88;
+
+}
+
 .gt-input__control {
 
-    flex: 1;
+    width:100%;
 
-    border: 0;
+    border:none;
 
-    outline: 0;
+    outline:none;
 
-    background: transparent;
+    background:transparent;
 
-    color: var(--gt-ink);
+    color:white;
 
-    font-family: inherit;
-
-}
-
-/* Estilo para teclas tipo teclado */
-.gt-kbd {
-
-    padding: 1px 5px;
-
-    background: var(--gt-surface);
-
-    border: 1px solid var(--gt-ink);
-
-    border-radius: 4px;
-
-    font-size: 0.6rem;
+    font-family:inherit;
 
 }
 
-/* ==========================
-   MENÚ DE NAVEGACIÓN
-   ========================== */
+/* =================================
+   MENÚ
+   ================================= */
 
 .menu {
 
-    width: calc(100% - 20px);
+    width:calc(100% - 20px);
 
-    max-width: 520px;
+    max-width:700px;
 
-    /* Efecto cristal */
-    backdrop-filter: blur(12px);
+    margin-top:30px;
 
-    /* Fondo semitransparente azul */
-    background: rgba(0, 122, 255, 0.4);
+    padding:10px;
 
-    border-radius: 99rem;
+    display:flex;
 
-    display: flex;
+    justify-content:center;
 
-    justify-content: center;
+    gap:10px;
 
-    padding: 8px;
+    border-radius:999px;
 
-    margin-top: 2rem;
+    backdrop-filter:blur(15px);
+
+    background:rgba(0,0,0,.35);
 
 }
 
-/* Enlaces del menú */
 .menu a {
 
-    padding: 10px;
+    color:white;
 
-    text-decoration: none;
+    text-decoration:none;
 
-    color: white;
+    padding:12px 18px;
 
-    transition: 0.3s;
+    border-radius:999px;
+
+    transition:.3s;
 
 }
 
-/* Elemento activo del menú */
+.menu a:hover {
+
+    background:rgba(255,255,255,.1);
+
+}
+
 .menu a.active {
 
-    background: rgba(237, 237, 237, 0.9);
+    background:white;
 
-    color: #007aff;
-
-    border-radius: 99rem;
+    color:#000;
 
 }
 
-/* ==========================
-   CONTENEDOR FILES
-   ========================== */
+/* =================================
+   SECCIÓN SOBRE
+   ================================= */
 
-.files-wrapper {
+.about-section {
 
-    /* Fondo con patrón de puntos */
-    background: radial-gradient(circle, #ffffff 1px, #000000 1px);
+    max-width:900px;
 
-    background-size: 50px 50px;
-
-    padding: 2rem;
-
-    border-radius: 20px;
-
-    width: 100%;
-
-}
-
-/* ==========================
-   TARJETA INFORMATIVA
-   ========================== */
-
-.bgblue {
-
-    /* Borde degradado */
-    background: linear-gradient(135deg, #ffffff, #3a4b8a, #ffffff);
-
-    padding: 2px;
-
-    border-radius: 1.2rem;
-
-    max-width: 400px;
-
-    margin: 0 auto;
-
-}
-
-.card-info {
-
-    /* Fondo interior */
-    background: #0d1120;
-
-    padding: 1.5rem;
-
-    border-radius: 1.1rem;
-
-    color: #bec4cf;
-
-}
-
-/* ==========================
-   TARJETAS DEL EQUIPO
-   ========================== */
-
-.team-grid {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 20px;
-
-    flex-wrap: wrap;
-
-}
-
-.card-team {
-
-    width: 200px;
-
-    background: #1e1e2e;
-
-    padding: 20px;
-
-    border-radius: 15px;
-
-    text-align: center;
-
-    border: 1px solid #3a4b8a;
-
-}
-
-/* Imagen circular del integrante */
-.card-team img {
-
-    width: 80px;
-
-    border-radius: 50%;
-
-    margin-bottom: 10px;
-
-}
-.about-section{
-    max-width:800px;
     margin:auto;
-    padding:20px;
+
 }
 
-.about-title{
+.about-title {
+
     text-align:center;
+
     margin-bottom:30px;
+
 }
 
-.about-card{
-    background:rgba(0,0,0,.75);
-    border:1px solid rgba(255,255,255,.15);
+.about-card {
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.12);
+
     border-radius:20px;
-    padding:20px;
+
+    padding:25px;
+
     margin-bottom:20px;
+
+}
+
+.about-card h2 {
+
+    margin-bottom:10px;
+
+}
+
+.about-card p {
+
+    line-height:1.8;
+
+    color:#ddd;
+
+}
+
+/* =================================
+   PORTAFOLIO
+   ================================= */
+
+.portfolio-page {
+
+    width:100%;
+
+}
+
+.portfolio-page h1 {
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+/* =================================
+   FILTROS
+   ================================= */
+
+.portfolio-filters {
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:30px;
+
+}
+
+.filter-btn {
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
     backdrop-filter:blur(10px);
+
 }
 
-.about-card h2{
-    margin-top:0;
+.filter-btn:hover {
+
+    transform:translateY(-3px);
+
 }
 
-.about-card p{
-    line-height:1.7;
+.filter-btn.active {
+
+    background:linear-gradient(
+        135deg,
+        var(--gt-blue),
+        var(--gt-red)
+    );
+
+    border:none;
+
+}
+
+/* =================================
+   GRID DE PROYECTOS
+   ================================= */
+
+#portfolio-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+/* =================================
+   TARJETA GLASS
+   ================================= */
+
+.project-card {
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(15,15,25,.55);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:24px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    padding:20px;
+
+    transition:.35s;
+
+    box-shadow:
+        0 0 25px rgba(0,120,255,.15),
+        0 0 35px rgba(255,0,0,.08);
+
+}
+
+/* BRILLO AZUL */
+
+.project-card::before {
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    top:-80px;
+
+    left:-80px;
+
+    border-radius:50%;
+
+    background:rgba(0,120,255,.25);
+
+    filter:blur(60px);
+
+}
+
+/* BRILLO ROJO */
+
+.project-card::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    bottom:-80px;
+
+    right:-80px;
+
+    border-radius:50%;
+
+    background:rgba(255,0,50,.20);
+
+    filter:blur(60px);
+
+}
+
+.project-card:hover {
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 0 35px rgba(0,120,255,.35),
+        0 0 45px rgba(255,0,50,.20);
+
+}
+
+/* =================================
+   IMAGEN DEL PROYECTO
+   ================================= */
+
+.project-card img {
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    margin-bottom:15px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* =================================
+   TEXTO DEL PROYECTO
+   ================================= */
+
+.project-card h3 {
+
+    position:relative;
+
+    z-index:2;
+
+    margin-bottom:10px;
+
+}
+
+.project-card p {
+
+    position:relative;
+
+    z-index:2;
+
+    color:#d6d6d6;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+
+}
+
+/* =================================
+   ENLACE DEL BOTÓN
+   ================================= */
+
+.project-link {
+
+    text-decoration:none;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* =================================
+   BOTÓN REALISM
+   ================================= */
+
+.button {
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    border-radius:16px;
+
+    border:none;
+
+    padding:2px;
+
+    background:
+    radial-gradient(
+        circle 80px at 80% -10%,
+        #ffffff,
+        #181b1b
+    );
+
+    position:relative;
+
+}
+
+.button::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:65%;
+
+    height:60%;
+
+    border-radius:120px;
+
+    top:0;
+
+    right:0;
+
+    box-shadow:0 0 20px #ffffff38;
+
+    z-index:-1;
+
+}
+
+.blob1 {
+
+    position:absolute;
+
+    width:70px;
+
+    height:100%;
+
+    border-radius:16px;
+
+    bottom:0;
+
+    left:0;
+
+    background:
+    radial-gradient(
+        circle 60px at 0% 100%,
+        #3fe9ff,
+        #0000ff80,
+        transparent
+    );
+
+}
+
+.blob2 {
+
+    position:absolute;
+
+    width:80px;
+
+    height:80px;
+
+    top:-10px;
+
+    right:-10px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.6),
+        transparent 70%
+    );
+
+    filter:blur(12px);
+
+}
+
+.inner {
+
+    padding:14px 25px;
+
+    border-radius:14px;
+
+    color:white;
+
+    position:relative;
+
+    background:
+    radial-gradient(
+        circle 80px at 80% -50%,
+        #777777,
+        #0f1111
+    );
+
 }
