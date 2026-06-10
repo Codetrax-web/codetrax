@@ -292,3 +292,30 @@ body {
     margin-bottom: 10px;
 
 }
+.about-section{
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+}
+
+.about-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.about-card{
+    background:rgba(0,0,0,.75);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:20px;
+    backdrop-filter:blur(10px);
+}
+
+.about-card h2{
+    margin-top:0;
+}
+
+.about-card p{
+    line-height:1.7;
+}
