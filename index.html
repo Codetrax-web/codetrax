@@ -1,48 +1,100 @@
 <!DOCTYPE html>
+<!-- Indica que el documento utiliza HTML5 -->
+
 <html lang="es">
+<!-- Inicio del documento HTML y establece el idioma en español -->
+
 <head>
+<!-- Configuración y metadatos de la página -->
+
     <meta charset="UTF-8">
+<!-- Permite el uso de caracteres especiales como ñ, tildes, etc. -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Hace que la página sea adaptable a dispositivos móviles -->
+
     <title>CodeTrax</title>
+<!-- Título que aparece en la pestaña del navegador -->
+
     <link rel="stylesheet" href="css/style.css">
+<!-- Vincula la hoja de estilos CSS externa -->
 </head>
+
 <body>
+<!-- Contenido visible de la página -->
 
     <header class="main-header">
+<!-- Encabezado principal del sitio -->
+
         <img src="assets/ima/log_codetrax.png" alt="Logo CodeTrax" class="logo">
+<!-- Logo de CodeTrax -->
+
         <h1>CODETRAX</h1>
+<!-- Título principal mostrado en la cabecera -->
     </header>
 
     <main>
+<!-- Contenido principal de la página -->
+
         <label class="gt-field" for="gt-input-target">
+<!-- Contenedor del campo de entrada -->
+
           <span class="gt-field__label">Compile Target</span>
+<!-- Etiqueta descriptiva del campo -->
+
           <span class="gt-input">
+<!-- Contenedor visual del input -->
+
             <span class="gt-input__prompt" aria-hidden="true">&gt;</span>
+<!-- Símbolo ">" simulando una terminal -->
+
             <input id="gt-input-target" class="gt-input__control" type="text" placeholder="./build/main" />
+<!-- Campo de texto donde el usuario puede escribir -->
+
             <span class="gt-input__caret" aria-hidden="true"></span>
+<!-- Cursor decorativo personalizado -->
           </span>
+
           <span class="gt-field__hint">
             Press <kbd>/</kbd> to focus · <kbd>Tab</kbd> to complete
           </span>
+<!-- Mensaje de ayuda para el usuario -->
         </label>
+
         <div id="content"></div>
+<!-- Contenedor vacío que será llenado dinámicamente con JavaScript -->
     </main>
 
     <nav class="menu" aria-label="Main navigation">
+<!-- Menú principal de navegación -->
+
         <a href="/" class="active" data-section="home">
+<!-- Enlace a la sección Home -->
+
             <span>Home</span>
         </a>
+
         <a href="/files" data-section="files">
+<!-- Enlace a la sección Files -->
+
             <span>Files</span>
         </a>
+
         <a href="/plans" data-section="plans">
+<!-- Enlace a la sección Plans -->
+
             <span>Plans</span>
         </a>
+
         <a href="/settings" data-section="settings">
+<!-- Enlace a la sección Settings -->
+
             <span>Settings</span>
         </a>
     </nav>
 
     <script src="js/main.js"></script>
+<!-- Vincula el archivo JavaScript principal del proyecto -->
+
 </body>
 </html>
