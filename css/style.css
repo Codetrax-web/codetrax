@@ -1,73 +1,211 @@
+/* ==========================
+   VARIABLES GLOBALES
+   ========================== */
+
 :root {
 
+    /* Color principal del texto */
     --gt-ink: #ffffff;
 
+    /* Color de superficies y contenedores */
     --gt-surface: #1e1e2e;
 
+    /* Color decorativo (voltaje/dorado) */
     --gt-voltage-deep: #d9c400;
 
 }
 
-
+/* ==========================
+   ESTILOS GENERALES DEL BODY
+   ========================== */
 
 body {
 
+    /* Elimina márgenes predeterminados */
     margin: 0;
 
+    /* Ocupa toda la altura de la ventana */
     height: 100vh;
+
+    /* Activa Flexbox */
+    display: flex;
+
+    /* Organiza elementos en columna */
+    flex-direction: column;
+
+    /* Centra horizontalmente */
+    align-items: center;
+
+    /* Centra verticalmente */
+    justify-content: center;
+
+    /* Fuente monoespaciada */
+    font-family: ui-monospace, monospace;
+
+    /* Imagen de fondo */
+    background: url('../assets/ima/BANNER.png') no-repeat center center fixed;
+
+    /* Ajusta la imagen para cubrir toda la pantalla */
+    background-size: cover;
+
+    /* Color del texto */
+    color: var(--gt-ink);
+
+}
+
+/* ==========================
+   ENCABEZADO PRINCIPAL
+   ========================== */
+
+.main-header {
+
+    /* Alinea logo y texto horizontalmente */
+    display: flex;
+
+    align-items: center;
+
+    /* Espacio entre elementos */
+    gap: 15px;
+
+    /* Separación inferior */
+    margin-bottom: 2rem;
+
+}
+
+/* Tamaño del logo */
+.logo {
+
+    width: 60px;
+
+}
+
+/* ==========================
+   COMPONENTE COMPILE TARGET
+   ========================== */
+
+/* Contenedor principal del campo */
+.gt-field {
+
+    width: min(360px, 90%);
 
     display: flex;
 
     flex-direction: column;
 
+    gap: 0.5rem;
+
+}
+
+/* Caja visual del input */
+.gt-input {
+
+    position: relative;
+
+    display: flex;
+
     align-items: center;
 
-    justify-content: center;
+    padding: 10px 13px;
 
-    font-family: ui-monospace, monospace;
+    background-color: var(--gt-surface);
 
-    background: url('../assets/ima/BANNER.png') no-repeat center center fixed;
+    border: 1px solid var(--gt-ink);
 
-    background-size: cover;
+    border-radius: 15px;
+
+}
+
+/* Campo de texto */
+.gt-input__control {
+
+    flex: 1;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
 
     color: var(--gt-ink);
 
+    font-family: inherit;
+
 }
 
+/* Estilo para teclas tipo teclado */
+.gt-kbd {
 
+    padding: 1px 5px;
 
-.main-header { display: flex; align-items: center; gap: 15px; margin-bottom: 2rem; }
+    background: var(--gt-surface);
 
-.logo { width: 60px; }
+    border: 1px solid var(--gt-ink);
 
+    border-radius: 4px;
 
+    font-size: 0.6rem;
 
-/* Integración del componente Compile Target */
+}
 
-.gt-field { width: min(360px, 90%); display: flex; flex-direction: column; gap: 0.5rem; }
+/* ==========================
+   MENÚ DE NAVEGACIÓN
+   ========================== */
 
-.gt-input { position: relative; display: flex; align-items: center; padding: 10px 13px; background-color: var(--gt-surface); border: 1px solid var(--gt-ink); border-radius: 15px; }
+.menu {
 
-.gt-input__control { flex: 1; border: 0; outline: 0; background: transparent; color: var(--gt-ink); font-family: inherit; }
+    width: calc(100% - 20px);
 
-.gt-kbd { padding: 1px 5px; background: var(--gt-surface); border: 1px solid var(--gt-ink); border-radius: 4px; font-size: 0.6rem; }
+    max-width: 520px;
 
+    /* Efecto cristal */
+    backdrop-filter: blur(12px);
 
+    /* Fondo semitransparente azul */
+    background: rgba(0, 122, 255, 0.4);
 
-/* Menú */
+    border-radius: 99rem;
 
-.menu { width: calc(100% - 20px); max-width: 520px; backdrop-filter: blur(12px); background: rgba(0, 122, 255, 0.4); border-radius: 99rem; display: flex; justify-content: center; padding: 8px; margin-top: 2rem; }
+    display: flex;
 
-.menu a { padding: 10px; text-decoration: none; color: white; transition: 0.3s; }
+    justify-content: center;
 
-.menu a.active { background: rgba(237, 237, 237, 0.9); color: #007aff; border-radius: 99rem; }
+    padding: 8px;
 
+    margin-top: 2rem;
 
+}
 
-/* Fondo para el apartado Files */
+/* Enlaces del menú */
+.menu a {
+
+    padding: 10px;
+
+    text-decoration: none;
+
+    color: white;
+
+    transition: 0.3s;
+
+}
+
+/* Elemento activo del menú */
+.menu a.active {
+
+    background: rgba(237, 237, 237, 0.9);
+
+    color: #007aff;
+
+    border-radius: 99rem;
+
+}
+
+/* ==========================
+   CONTENEDOR FILES
+   ========================== */
 
 .files-wrapper {
 
+    /* Fondo con patrón de puntos */
     background: radial-gradient(circle, #ffffff 1px, #000000 1px);
 
     background-size: 50px 50px;
@@ -80,12 +218,13 @@ body {
 
 }
 
-
-
-/* Estilo Tarjeta Información */
+/* ==========================
+   TARJETA INFORMATIVA
+   ========================== */
 
 .bgblue {
 
+    /* Borde degradado */
     background: linear-gradient(135deg, #ffffff, #3a4b8a, #ffffff);
 
     padding: 2px;
@@ -100,6 +239,7 @@ body {
 
 .card-info {
 
+    /* Fondo interior */
     background: #0d1120;
 
     padding: 1.5rem;
@@ -110,9 +250,9 @@ body {
 
 }
 
-
-
-/* Estilo Tarjetas Equipo (sin neón) */
+/* ==========================
+   TARJETAS DEL EQUIPO
+   ========================== */
 
 .team-grid {
 
@@ -142,10 +282,23 @@ body {
 
 }
 
-.card-team img { width: 80px; border-radius: 50%; margin-bottom: 10px; }
+/* Imagen circular del integrante */
+.card-team img {
+
+    width: 80px;
+
+    border-radius: 50%;
+
+    margin-bottom: 10px;
+
+}
+
+/* ==========================
+   BLOQUE DUPLICADO
+   (Se repiten estilos ya definidos)
+   ========================== */
 
 /* Fondo para el apartado Files */
-
 .files-wrapper {
 
     background: radial-gradient(circle, #ffffff 1px, #000000 1px);
@@ -160,10 +313,7 @@ body {
 
 }
 
-
-
-/* Estilo Tarjeta Información */
-
+/* Tarjeta informativa */
 .bgblue {
 
     background: linear-gradient(135deg, #ffffff, #3a4b8a, #ffffff);
@@ -190,10 +340,7 @@ body {
 
 }
 
-
-
-/* Estilo Tarjetas Equipo (sin neón) */
-
+/* Tarjetas del equipo */
 .team-grid {
 
     display: flex;
@@ -222,55 +369,72 @@ body {
 
 }
 
-.notification{
+/* ==========================
+   NOTIFICACIONES
+   ========================== */
 
-    margin:20px auto;
+.notification {
 
-    max-width:600px;
+    margin: 20px auto;
 
-}
-
-
-
-.notibody{
-
-    line-height:1.5;
+    max-width: 600px;
 
 }
 
+/* Texto interno de las notificaciones */
+.notibody {
 
-
-.files-title{
-
-    text-align:center;
-
-    margin-bottom:30px;
+    line-height: 1.5;
 
 }
 
+/* ==========================
+   TÍTULOS
+   ========================== */
 
+/* Título principal de Files */
+.files-title {
 
-.team-title{
+    text-align: center;
 
-    text-align:center;
-
-    margin-top:40px;
-
-    margin-bottom:20px;
-
-}
-
-.team-grid{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:30px;
-
-    flex-wrap:wrap;
+    margin-bottom: 30px;
 
 }
 
-.card-team img { width: 80px; border-radius: 50%; margin-bottom: 10px; } 
+/* Título de la sección Equipo */
+.team-title {
 
+    text-align: center;
+
+    margin-top: 40px;
+
+    margin-bottom: 20px;
+
+}
+
+/* ==========================
+   GRID DEL EQUIPO
+   ========================== */
+
+.team-grid {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+
+}
+
+/* Imagen de perfil del equipo */
+.card-team img {
+
+    width: 80px;
+
+    border-radius: 50%;
+
+    margin-bottom: 10px;
+
+}
