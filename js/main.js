@@ -13,24 +13,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const views = {
         'home': '<h1>Dashboard</h1>' + renderSearch(),
         'files': `
-            <div class="files-wrapper">
-                <h1>Directorio</h1>
-                <div class="bgblue">
-                    <div class="card-info">
-                        <h2>¿Qué es CodeTrax?</h2>
-                        <p>En Codetrax ayudamos a que tus ideas digitales dejen de ser solo eso: ideas. Transformamos tu visión en proyectos reales, desde la planificación hasta la ejecución.</p>
-                    </div>
-                </div>
-                <h2 style="margin-top: 40px;">Team Members</h2>
-                <div class="team-grid">
-                    <div class="card-team">
-                        <img src="assets/ima/damian.png" alt="Damian">
-                        <p class="title">Damian CV<br><span>Fundador/Desa.</span></p>
-                    </div>
-                </div>
-            </div>`,
-        'plans': '<h1>Hoja de Ruta</h1><p>Objetivos activos.</p>',
-        'settings': '<h1>Sistema</h1><p>Configuración general.</p>'
+<div class="files-wrapper">
+
+    <h1 class="files-title">CodeTrax</h1>
+
+    <div class="notification">
+        <div class="notiglow"></div>
+        <div class="notiborderglow"></div>
+
+        <div class="notititle">
+            ¿Qué es CodeTrax?
+        </div>
+
+        <div class="notibody">
+            CodeTrax es una iniciativa enfocada en el desarrollo de proyectos digitales, herramientas tecnológicas y recursos para la comunidad.
+        </div>
+    </div>
+
+    <div class="notification">
+        <div class="notiglow"></div>
+        <div class="notiborderglow"></div>
+
+        <div class="notititle">
+            Nuestra Misión
+        </div>
+
+        <div class="notibody">
+            Transformar ideas en soluciones reales mediante programación, diseño e innovación.
+        </div>
+    </div>
+
+    <h2 class="team-title">Equipo</h2>
+
+    <div class="team-grid">
+
+        <div class="card">
+
+            <b></b>
+
+            <img src="assets/ima/damian.png" alt="Damian CV">
+
+            <div class="content">
+
+                <p class="title">
+                    Damian CV
+                    <br>
+                    <span>Fundador y Desarrollador</span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="notification">
+        <div class="notiglow"></div>
+        <div class="notiborderglow"></div>
+
+        <div class="notititle">
+            Nuestros Valores
+        </div>
+
+        <div class="notibody">
+            Innovación • Creatividad • Trabajo en equipo • Compromiso • Aprendizaje continuo
+        </div>
+    </div>
+
+</div>
+`,
     };
 
     // Navegación dinámica
