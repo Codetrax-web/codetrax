@@ -21,25 +21,27 @@
             <input id="gt-input-target" class="gt-input__control" type="text" placeholder="./build/main" />
             <span class="gt-input__caret" aria-hidden="true"></span>
           </span>
-          <span class="gt-field__hint">Press <kbd class="gt-kbd">/</kbd> to focus · <kbd class="gt-kbd">Tab</kbd> to complete</span>
+          <span class="gt-field__hint">
+            Press <kbd>/</kbd> to focus · <kbd>Tab</kbd> to complete
+          </span>
         </label>
+        <div id="content"></div>
     </main>
-    <div id="content"></div>
-    <nav class="menu">
-    <a href="#" class="active" data-section="home">
-        <span>Home</span>
-    </a>
-    <a href="#" data-section="files">
-        <span>Files</span>
-    </a>
-    <a href="#" data-section="plans">
-        <span>Plans</span>
-    </a>
-    <a href="#" data-section="settings">
-        <span>Settings</span>
-    </a>
-    
-</nav>
+
+    <nav class="menu" aria-label="Main navigation">
+        <a href="/" class="active" data-section="home">
+            <span>Home</span>
+        </a>
+        <a href="/files" data-section="files">
+            <span>Files</span>
+        </a>
+        <a href="/plans" data-section="plans">
+            <span>Plans</span>
+        </a>
+        <a href="/settings" data-section="settings">
+            <span>Settings</span>
+        </a>
+    </nav>
 
     <script src="js/main.js"></script>
 </body>
