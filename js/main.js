@@ -27,94 +27,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Vista de información sobre CodeTrax
         'files': `
-<div class="files-wrapper">
+<section class="about-section">
 
-    <!-- Título principal -->
-    <h1 class="files-title">CodeTrax</h1>
+    <h1 class="about-title">Sobre CodeTrax</h1>
 
-    <!-- Tarjeta informativa -->
-    <div class="notification">
+    <div class="about-card">
 
-        <!-- Efecto de brillo interno -->
-        <div class="notiglow"></div>
+        <h2>¿Qué es CodeTrax?</h2>
 
-        <!-- Efecto de borde brillante -->
-        <div class="notiborderglow"></div>
-
-        <!-- Título de la notificación -->
-        <div class="notititle">
-            ¿Qué es CodeTrax?
-        </div>
-
-        <!-- Descripción -->
-        <div class="notibody">
-            CodeTrax es una iniciativa enfocada en el desarrollo de proyectos digitales, herramientas tecnológicas y recursos para la comunidad.
-        </div>
+        <p>
+            CodeTrax es un estudio digital enfocado en el desarrollo de soluciones tecnológicas,
+            diseño web, automatización y proyectos innovadores. Nuestro objetivo es transformar
+            ideas en herramientas funcionales que impulsen el crecimiento de personas, creadores
+            y organizaciones.
+        </p>
 
     </div>
 
-    <!-- Segunda tarjeta informativa -->
-    <div class="notification">
+    <div class="about-card">
 
-        <div class="notiglow"></div>
-        <div class="notiborderglow"></div>
+        <h2>Nuestra Misión</h2>
 
-        <div class="notititle">
-            Nuestra Misión
-        </div>
-
-        <div class="notibody">
-            Transformar ideas en soluciones reales mediante programación, diseño e innovación.
-        </div>
+        <p>
+            Crear experiencias digitales modernas mediante programación, creatividad e innovación,
+            ofreciendo productos y servicios que generen valor real para la comunidad.
+        </p>
 
     </div>
 
-    <!-- Sección del equipo -->
-    <h2 class="team-title">Equipo</h2>
+    <div class="about-card">
 
-    <div class="team-grid">
+        <h2>Nuestra Visión</h2>
 
-        <!-- Tarjeta de integrante -->
-        <div class="card">
-
-            <!-- Elemento decorativo -->
-            <b></b>
-
-            <!-- Imagen del integrante -->
-            <img src="assets/ima/damian.png" alt="Damian CV">
-
-            <div class="content">
-
-                <!-- Nombre y cargo -->
-                <p class="title">
-                    Damian CV
-                    <br>
-                    <span>Fundador y Desarrollador</span>
-                </p>
-
-            </div>
-
-        </div>
+        <p>
+            Convertirnos en una referencia en el desarrollo tecnológico independiente,
+            fomentando el aprendizaje continuo y la creación de proyectos que inspiren
+            a futuras generaciones.
+        </p>
 
     </div>
 
-    <!-- Tarjeta de valores -->
-    <div class="notification">
+    <div class="about-card">
 
-        <div class="notiglow"></div>
-        <div class="notiborderglow"></div>
+        <h2>Nuestros Valores</h2>
 
-        <div class="notititle">
-            Nuestros Valores
-        </div>
-
-        <div class="notibody">
-            Innovación • Creatividad • Trabajo en equipo • Compromiso • Aprendizaje continuo
-        </div>
+        <p>
+            Innovación • Creatividad • Compromiso • Trabajo en equipo • Aprendizaje continuo
+        </p>
 
     </div>
 
-</div>
+</section>
 `,
     };
 
