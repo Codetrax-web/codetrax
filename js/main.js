@@ -4,135 +4,396 @@ document.addEventListener('DOMContentLoaded', () => {
     // Obtiene el contenedor principal donde se mostrará el contenido dinámico
     const mainContent = document.getElementById('content');
 
-    // Definición de la función que genera el campo de búsqueda
+    // =====================================
+    // CAMPO DE BÚSQUEDA
+    // =====================================
+
     const renderSearch = () => `
         <label class="gt-field">
-            <!-- Contenedor del campo -->
+
             <span class="gt-input">
 
-                <!-- Símbolo tipo terminal -->
                 <span class="gt-input__prompt">&gt;</span>
 
-                <!-- Campo de entrada de texto -->
-                <input type="text" id="gt-input-target" class="gt-input__control" placeholder="./build/main">
+                <input
+                    type="text"
+                    id="gt-input-target"
+                    class="gt-input__control"
+                    placeholder="./build/main"
+                >
 
             </span>
-        </label>`;
 
-    // Objeto que almacena las diferentes vistas o páginas internas
+        </label>
+    `;
+
+    // =====================================
+    // PROYECTOS DEL PORTAFOLIO
+    // =====================================
+
+    let portfolioProjects = [];
+
+    // =====================================
+    // CARGAR PORTAFOLIO
+    // =====================================
+
+    async function loadPortfolio() {
+
+        const grid = document.getElementById('portfolio-grid');
+
+        if (!grid) return;
+
+        try {
+
+            const response = await fetch(
+                'data/portafolio/index.json'
+            );
+
+            portfolioProjects = await response.json();
+
+            renderPortfolio('Todos');
+
+            initializeFilters();
+
+        } catch (error) {
+
+            console.error(
+                'Error cargando portafolio:',
+                error
+            );
+
+            grid.innerHTML = `
+                <p>No se pudieron cargar los proyectos.</p>
+            `;
+        }
+    }
+
+    // =====================================
+    // MOSTRAR PROYECTOS
+    // =====================================
+
+    function renderPortfolio(category) {
+
+        const grid = document.getElementById(
+            'portfolio-grid'
+        );
+
+        if (!grid) return;
+
+        let filteredProjects = portfolioProjects;
+
+        if (category !== 'Todos') {
+
+            filteredProjects =
+                portfolioProjects.filter(
+                    project =>
+                        project.categoria === category
+                );
+        }
+
+        if (filteredProjects.length === 0) {
+
+            grid.innerHTML =
+                '<p>No hay proyectos disponibles.</p>';
+
+            return;
+        }
+
+        grid.innerHTML = filteredProjects.map(project => `
+
+            <div class="project-card">
+
+                <img
+                    src="${project.imagen}"
+                    alt="${project.titulo}"
+                >
+
+                <h3>${project.titulo}</h3>
+
+                <p>${project.descripcion}</p>
+
+                <a
+                    href="${project.url}"
+                    target="_blank"
+                    class="project-link"
+                >
+
+                    <button class="button">
+
+                        <div class="blob1"></div>
+
+                        <div class="blob2"></div>
+
+                        <div class="inner">
+                            Ver Proyecto
+                        </div>
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        `).join('');
+    }
+
+    // =====================================
+    // FILTROS
+    // =====================================
+
+    function initializeFilters() {
+
+        document
+            .querySelectorAll('.filter-btn')
+            .forEach(button => {
+
+                button.addEventListener(
+                    'click',
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                '.filter-btn'
+                            )
+                            .forEach(btn =>
+                                btn.classList.remove(
+                                    'active'
+                                )
+                            );
+
+                        button.classList.add(
+                            'active'
+                        );
+
+                        renderPortfolio(
+                            button.dataset.filter
+                        );
+                    }
+                );
+            });
+    }
+
+    // =====================================
+    // VISTAS
+    // =====================================
+
     const views = {
 
-        // Vista principal (Dashboard)
-        'home': '<h1>Dashboard</h1>' + renderSearch(),
+        // Dashboard
+        home: `
+            <h1>Dashboard</h1>
+            ${renderSearch()}
+        `,
 
-        // Vista de información sobre CodeTrax
-        'files': `
-<section class="about-section">
+        // Sobre CodeTrax
+        files: `
 
-    <h1 class="about-title">Sobre CodeTrax</h1>
+            <section class="about-section">
 
-    <div class="about-card">
+                <h1 class="about-title">
+                    Sobre CodeTrax
+                </h1>
 
-        <h2>¿Qué es CodeTrax?</h2>
+                <div class="about-card">
 
-        <p>
-            CodeTrax es un estudio digital enfocado en el desarrollo de soluciones tecnológicas,
-            diseño web, automatización y proyectos innovadores. Nuestro objetivo es transformar
-            ideas en herramientas funcionales que impulsen el crecimiento de personas, creadores
-            y organizaciones.
-        </p>
+                    <h2>
+                        ¿Qué es CodeTrax?
+                    </h2>
 
-    </div>
+                    <p>
+                        CodeTrax es un estudio digital
+                        enfocado en el desarrollo de
+                        soluciones tecnológicas,
+                        diseño web, automatización
+                        y proyectos innovadores.
+                    </p>
 
-    <div class="about-card">
+                </div>
 
-        <h2>Nuestra Misión</h2>
+                <div class="about-card">
 
-        <p>
-            Crear experiencias digitales modernas mediante programación, creatividad e innovación,
-            ofreciendo productos y servicios que generen valor real para la comunidad.
-        </p>
+                    <h2>
+                        Nuestra Misión
+                    </h2>
 
-    </div>
+                    <p>
+                        Crear experiencias digitales
+                        modernas mediante programación,
+                        creatividad e innovación.
+                    </p>
 
-    <div class="about-card">
+                </div>
 
-        <h2>Nuestra Visión</h2>
+                <div class="about-card">
 
-        <p>
-            Convertirnos en una referencia en el desarrollo tecnológico independiente,
-            fomentando el aprendizaje continuo y la creación de proyectos que inspiren
-            a futuras generaciones.
-        </p>
+                    <h2>
+                        Nuestra Visión
+                    </h2>
 
-    </div>
+                    <p>
+                        Convertirnos en una referencia
+                        tecnológica independiente.
+                    </p>
 
-    <div class="about-card">
+                </div>
 
-        <h2>Nuestros Valores</h2>
+                <div class="about-card">
 
-        <p>
-            Innovación • Creatividad • Compromiso • Trabajo en equipo • Aprendizaje continuo
-        </p>
+                    <h2>
+                        Nuestros Valores
+                    </h2>
 
-    </div>
+                    <p>
+                        Innovación • Creatividad •
+                        Compromiso • Trabajo en equipo •
+                        Aprendizaje continuo
+                    </p>
 
-</section>
-`,
+                </div>
+
+            </section>
+
+        `,
+
+        // Portafolio
+        plans: `
+
+            <div class="portfolio-page">
+
+                <h1>
+                    Portafolio
+                </h1>
+
+                <div class="portfolio-filters">
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="Todos"
+                    >
+                        Todos
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="Juegos"
+                    >
+                        Juegos
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="Office"
+                    >
+                        Office
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="Codigo"
+                    >
+                        Código
+                    </button>
+
+                </div>
+
+                <div id="portfolio-grid"></div>
+
+            </div>
+
+        `,
+
+        // Configuración
+        settings: `
+
+            <section class="about-section">
+
+                <h1 class="about-title">
+                    Configuración
+                </h1>
+
+                <div class="about-card">
+
+                    <p>
+                        Próximamente podrás
+                        personalizar CodeTrax.
+                    </p>
+
+                </div>
+
+            </section>
+
+        `
     };
 
-    // Carga la vista Home por defecto al iniciar la página
-    mainContent.innerHTML = views.home;
-    
-    // =========================
-    // NAVEGACIÓN DINÁMICA
-    // =========================
+    // =====================================
+    // HOME POR DEFECTO
+    // =====================================
 
-    // Busca todos los enlaces del menú
+    mainContent.innerHTML = views.home;
+
+    // =====================================
+    // NAVEGACIÓN DINÁMICA
+    // =====================================
+
     document.querySelectorAll('.menu a').forEach(link => {
 
-        // Agrega un evento de clic a cada enlace
         link.addEventListener('click', (e) => {
 
-            // Evita que el navegador cambie de página
             e.preventDefault();
 
-            // Quita la clase active del enlace actualmente seleccionado
-            document.querySelector('.menu a.active').classList.remove('active');
+            document
+                .querySelector('.menu a.active')
+                ?.classList.remove('active');
 
-            // Activa visualmente el enlace seleccionado
             link.classList.add('active');
 
-            // Cambia el contenido principal según la sección elegida
-            mainContent.innerHTML = views[link.getAttribute('data-section')];
+            const section =
+                link.getAttribute(
+                    'data-section'
+                );
+
+            mainContent.innerHTML =
+                views[section];
+
+            if (section === 'plans') {
+
+                loadPortfolio();
+
+            }
+
         });
+
     });
 
-    // =========================
+    // =====================================
     // ATAJO DE TECLADO
-    // =========================
+    // =====================================
 
-    // Escucha las teclas presionadas
     document.addEventListener('keydown', (e) => {
 
-        // Si se presiona la tecla "/"
         if (e.key === '/') {
 
-            // Busca el input de búsqueda
-            const input = document.getElementById('gt-input-target');
+            const input =
+                document.getElementById(
+                    'gt-input-target'
+                );
 
-            // Si existe el input
             if (input) {
 
-                // Evita que aparezca "/" dentro del campo
                 e.preventDefault();
 
-                // Coloca el cursor automáticamente en el input
                 input.focus();
+
             }
         }
     });
 
-    // Mensaje mostrado en la consola al iniciar correctamente
-    console.log("CodeTrax inicializado, Damian. No rompas nada.");
+    // =====================================
+    // INICIO
+    // =====================================
+
+    console.log(
+        "CodeTrax inicializado correctamente."
+    );
+
 });
