@@ -84,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
 `,
     };
 
+    mainContent.innerHTML = views.home;
+    
     // Navegación dinámica
     document.querySelectorAll('.menu a').forEach(link => {
         link.addEventListener('click', (e) => {
