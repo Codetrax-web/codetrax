@@ -1,524 +1,463 @@
-// ======================================================
-// CODETRAX - SCRIPT PRINCIPAL
-// ======================================================
-// Este archivo controla:
-// - Navegación dinámica entre secciones
-// - Carga del portafolio
-// - Filtros de proyectos
-// - Atajos de teclado
-// - Renderizado de vistas
-// ======================================================
-
 // Espera a que todo el contenido HTML haya cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', () => {
 
-// Obtiene el contenedor principal donde se mostrará el contenido dinámico
-const mainContent = document.getElementById('content');
+    // Obtiene el contenedor principal donde se mostrará el contenido dinámico
+    const mainContent = document.getElementById('content');
 
-// =====================================
-// CAMPO DE BÚSQUEDA
-// =====================================
-// Genera el HTML del buscador mostrado en el Dashboard
-const renderSearch = () => ` <label class="gt-field"> <span class="gt-input"> <span class="gt-input__prompt">></span>
+    // =====================================
+    // CAMPO DE BÚSQUEDA
+    // =====================================
 
-```
-<input
-    type="text"
-    id="gt-input-target"
-    class="gt-input__control"
-    placeholder="./build/main"
->
+    const renderSearch = () => `
+        <label class="gt-field">
 
-</span>
+            <span class="gt-input">
 
-</label>
-`;
-```
+                <span class="gt-input__prompt">&gt;</span>
 
-// =====================================
-// PROYECTOS DEL PORTAFOLIO
-// =====================================
-// Variable global donde se almacenan los proyectos
-// obtenidos desde el archivo JSON
-let portfolioProjects = [];
+                <input
+                    type="text"
+                    id="gt-input-target"
+                    class="gt-input__control"
+                    placeholder="./build/main"
+                >
 
-// =====================================
-// CARGAR PORTAFOLIO
-// =====================================
-// Obtiene los proyectos desde:
-// data/portafolio/index.json
-// y los muestra en pantalla
-async function loadPortfolio() {
+            </span>
 
-```
-const grid = document.getElementById('portfolio-grid');
-
-// Si no existe el contenedor se cancela la ejecución
-if (!grid) return;
-
-try {
-
-    const response = await fetch(
-        'data/portafolio/index.json'
-    );
-
-    portfolioProjects = await response.json();
-
-    // Muestra todos los proyectos
-    renderPortfolio('Todos');
-
-    // Activa los filtros
-    initializeFilters();
-
-} catch (error) {
-
-    console.error(
-        'Error cargando portafolio:',
-        error
-    );
-
-    grid.innerHTML = `
-    <p>No se pudieron cargar los proyectos.</p>
+        </label>
     `;
-}
-```
 
-}
+    // =====================================
+    // PROYECTOS DEL PORTAFOLIO
+    // =====================================
 
-// =====================================
-// MOSTRAR PROYECTOS
-// =====================================
-// Renderiza los proyectos dependiendo
-// de la categoría seleccionada
-function renderPortfolio(category) {
+    let portfolioProjects = [];
 
-```
-const grid = document.getElementById(
-    'portfolio-grid'
-);
+    // =====================================
+    // CARGAR PORTAFOLIO
+    // =====================================
 
-if (!grid) return;
+    async function loadPortfolio() {
 
-let filteredProjects = portfolioProjects;
+        const grid = document.getElementById('portfolio-grid');
 
-// Filtrado por categoría
-if (category !== 'Todos') {
+        if (!grid) return;
 
-    filteredProjects =
-        portfolioProjects.filter(
-            project =>
-                project.categoria === category
+        try {
+
+            const response = await fetch(
+                'data/portafolio/index.json'
+            );
+
+            portfolioProjects = await response.json();
+
+            renderPortfolio('Todos');
+
+            initializeFilters();
+
+        } catch (error) {
+
+            console.error(
+                'Error cargando portafolio:',
+                error
+            );
+
+            grid.innerHTML = `
+                <p>No se pudieron cargar los proyectos.</p>
+            `;
+        }
+    }
+
+    // =====================================
+    // MOSTRAR PROYECTOS
+    // =====================================
+
+    function renderPortfolio(category) {
+
+        const grid = document.getElementById(
+            'portfolio-grid'
         );
-}
 
-// Si no existen proyectos
-if (filteredProjects.length === 0) {
+        if (!grid) return;
 
-    grid.innerHTML =
-        '<p>No hay proyectos disponibles.</p>';
+        let filteredProjects = portfolioProjects;
 
-    return;
-}
+        if (category !== 'Todos') {
 
-// Construcción dinámica de tarjetas
-grid.innerHTML = filteredProjects.map(project => `
+            filteredProjects =
+                portfolioProjects.filter(
+                    project =>
+                        project.categoria === category
+                );
+        }
 
-    <div class="project-card">
+        if (filteredProjects.length === 0) {
 
-        <img
-            src="${project.imagen}"
-            alt="${project.titulo}"
-        >
+            grid.innerHTML =
+                '<p>No hay proyectos disponibles.</p>';
 
-        <h3>${project.titulo}</h3>
+            return;
+        }
 
-        <p>${project.descripcion}</p>
+        grid.innerHTML = filteredProjects.map(project => `
 
-        <a
-            href="${project.url}"
-            target="_blank"
-            class="project-link"
-        >
+            <div class="project-card">
 
-            <button class="button">
+                <img
+                    src="${project.imagen}"
+                    alt="${project.titulo}"
+                >
 
-                <div class="blob1"></div>
+                <h3>${project.titulo}</h3>
 
-                <div class="blob2"></div>
+                <p>${project.descripcion}</p>
 
-                <div class="inner">
-                    Ver Proyecto
+                <a
+                    href="${project.url}"
+                    target="_blank"
+                    class="project-link"
+                >
+
+                    <button class="button">
+
+                        <div class="blob1"></div>
+
+                        <div class="blob2"></div>
+
+                        <div class="inner">
+                            Ver Proyecto
+                        </div>
+
+                    </button>
+
+                </a>
+
+            </div>
+
+        `).join('');
+    }
+
+    // =====================================
+    // FILTROS
+    // =====================================
+
+    function initializeFilters() {
+
+        document
+            .querySelectorAll('.filter-btn')
+            .forEach(button => {
+
+                button.addEventListener(
+                    'click',
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                '.filter-btn'
+                            )
+                            .forEach(btn =>
+                                btn.classList.remove(
+                                    'active'
+                                )
+                            );
+
+                        button.classList.add(
+                            'active'
+                        );
+
+                        renderPortfolio(
+                            button.dataset.filter
+                        );
+                    }
+                );
+            });
+    }
+
+    // =====================================
+    // VISTAS
+    // =====================================
+
+    const views = {
+
+        // Dashboard
+        home: `
+            <h1>Dashboard</h1>
+            ${renderSearch()}
+        `,
+
+        // Sobre CodeTrax
+        files: `
+
+            <section class="about-section">
+
+                <h1 class="about-title">
+                    Sobre CodeTrax
+                </h1>
+
+                <div class="about-card">
+
+                    <h2>
+                        ¿Qué es CodeTrax?
+                    </h2>
+
+                    <p>
+                        CodeTrax es un estudio digital
+                        enfocado en el desarrollo de
+                        soluciones tecnológicas,
+                        diseño web, automatización
+                        y proyectos innovadores.
+                    </p>
+
                 </div>
 
-            </button>
+                <div class="about-card">
 
+                    <h2>
+                        Nuestra Misión
+                    </h2>
+
+                    <p>
+                        Crear experiencias digitales
+                        modernas mediante programación,
+                        creatividad e innovación.
+                    </p>
+
+                </div>
+
+                <div class="about-card">
+
+                    <h2>
+                        Nuestra Visión
+                    </h2>
+
+                    <p>
+                        Convertirnos en una referencia
+                        tecnológica independiente.
+                    </p>
+
+                </div>
+
+                <div class="about-card">
+
+                    <h2>
+                        Nuestros Valores
+                    </h2>
+
+                    <p>
+                        Innovación • Creatividad •
+                        Compromiso • Trabajo en equipo •
+                        Aprendizaje continuo
+                    </p>
+
+                </div>
+<div class="about-card">
+
+    <h2>Nuestro Equipo</h2>
+
+    <div class="team-grid">
+
+        <div class="container">
+
+            <div class="card">
+
+                <div class="front">
+
+                    <div class="card-top">
+                        <p class="card-top-para">
+                            Fundador
+                        </p>
+                    </div>
+
+                    <img
+                        src="assets/team/damian.jpg"
+                        alt="Damian CV"
+                        class="team-photo"
+                    >
+
+                    <p class="heading">
+                        Damian CV
+                    </p>
+
+                    <p class="follow">
+                        Desarrollador Principal
+                    </p>
+
+                </div>
+
+                <div class="back">
+
+    <p class="heading">
+        Redes
+    </p>
+
+    <div class="icons">
+
+        <a href="https://www.youtube.com/@DAMIANCV8" target="_blank">
+            YouTube
+        </a>
+
+        <a href="https://github.com/TU-USUARIO" target="_blank">
+            GitHub
+        </a>
+
+        <a href="https://instagram.com/TU-USUARIO" target="_blank">
+            Instagram
         </a>
 
     </div>
 
-`).join('');
-```
-
-}
-
-// =====================================
-// FILTROS
-// =====================================
-// Activa los botones de filtro del portafolio
-function initializeFilters() {
-
-```
-document
-    .querySelectorAll('.filter-btn')
-    .forEach(button => {
-
-        button.addEventListener(
-            'click',
-            () => {
-
-                // Quita la clase active
-                // de todos los botones
-                document
-                    .querySelectorAll(
-                        '.filter-btn'
-                    )
-                    .forEach(btn =>
-                        btn.classList.remove(
-                            'active'
-                        )
-                    );
-
-                // Activa el botón actual
-                button.classList.add(
-                    'active'
-                );
-
-                // Muestra la categoría seleccionada
-                renderPortfolio(
-                    button.dataset.filter
-                );
-            }
-        );
-    });
-```
-
-}
-
-// =====================================
-// VISTAS
-// =====================================
-// Cada propiedad representa una página
-// que será cargada dinámicamente
-const views = {
-
-```
-// =====================================
-// DASHBOARD
-// =====================================
-home: `
-    <h1>Dashboard</h1>
-    ${renderSearch()}
-`,
-
-// =====================================
-// SOBRE CODETRAX
-// =====================================
-files: `
-
-    <section class="about-section">
-
-        <h1 class="about-title">
-            Sobre CodeTrax
-        </h1>
-
-        <!-- Información principal -->
-        <div class="about-card">
-
-            <h2>
-                ¿Qué es CodeTrax?
-            </h2>
-
-            <p>
-                CodeTrax es un estudio digital
-                enfocado en el desarrollo de
-                soluciones tecnológicas,
-                diseño web, automatización
-                y proyectos innovadores.
-            </p>
-
-        </div>
-
-        <!-- Misión -->
-        <div class="about-card">
-
-            <h2>
-                Nuestra Misión
-            </h2>
-
-            <p>
-                Crear experiencias digitales
-                modernas mediante programación,
-                creatividad e innovación.
-            </p>
-
-        </div>
-
-        <!-- Visión -->
-        <div class="about-card">
-
-            <h2>
-                Nuestra Visión
-            </h2>
-
-            <p>
-                Convertirnos en una referencia
-                tecnológica independiente.
-            </p>
-
-        </div>
-
-        <!-- Valores -->
-        <div class="about-card">
-
-            <h2>
-                Nuestros Valores
-            </h2>
-
-            <p>
-                Innovación • Creatividad •
-                Compromiso • Trabajo en equipo •
-                Aprendizaje continuo
-            </p>
-
-        </div>
-
-        <!-- Equipo -->
-        <div class="about-card">
-
-            <h2>Nuestro Equipo</h2>
-
-            <div class="team-grid">
-
-                <div class="container">
-
-                    <div class="card">
-
-                        <!-- Frente de la tarjeta -->
-                        <div class="front">
-
-                            <div class="card-top">
-                                <p class="card-top-para">
-                                    Fundador
-                                </p>
-                            </div>
-
-                            <img
-                                src="assets/team/damian.jpg"
-                                alt="Damian CV"
-                                class="team-photo"
-                            >
-
-                            <p class="heading">
-                                Damian CV
-                            </p>
-
-                            <p class="follow">
-                                Desarrollador Principal
-                            </p>
-
-                        </div>
-
-                        <!-- Parte trasera -->
-                        <div class="back">
-
-                            <p class="heading">
-                                Redes
-                            </p>
-
-                            <div class="icons">
-
-                                <a href="https://www.youtube.com/@DAMIANCV8" target="_blank">
-                                    YouTube
-                                </a>
-
-                                <a href="https://github.com/TU-USUARIO" target="_blank">
-                                    GitHub
-                                </a>
-
-                                <a href="https://instagram.com/TU-USUARIO" target="_blank">
-                                    Instagram
-                                </a>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+</div>
 
             </div>
 
         </div>
 
-    </section>
-
-`,
-
-// =====================================
-// PORTAFOLIO
-// =====================================
-plans: `
-
-    <div class="portfolio-page">
-
-        <h1>
-            Portafolio
-        </h1>
-
-        <!-- Botones de filtrado -->
-        <div class="portfolio-filters">
-
-            <button
-                class="filter-btn active"
-                data-filter="Todos"
-            >
-                Todos
-            </button>
-
-            <button
-                class="filter-btn"
-                data-filter="Juegos"
-            >
-                Juegos
-            </button>
-
-            <button
-                class="filter-btn"
-                data-filter="Office"
-            >
-                Office
-            </button>
-
-            <button
-                class="filter-btn"
-                data-filter="Codigo"
-            >
-                Código
-            </button>
-
-        </div>
-
-        <!-- Aquí se insertan los proyectos -->
-        <div id="portfolio-grid"></div>
-
     </div>
 
-`,
+</div>
+            </section>
 
-// =====================================
-// CONFIGURACIÓN
-// =====================================
-settings: `
+        `,
 
-    <section class="about-section">
+        // Portafolio
+        plans: `
 
-        <h1 class="about-title">
-            Configuración
-        </h1>
+            <div class="portfolio-page">
 
-        <div class="about-card">
+                <h1>
+                    Portafolio
+                </h1>
 
-            <p>
-                Próximamente podrás
-                personalizar CodeTrax.
-            </p>
+                <div class="portfolio-filters">
 
-        </div>
+                    <button
+                        class="filter-btn active"
+                        data-filter="Todos"
+                    >
+                        Todos
+                    </button>
 
-    </section>
+                    <button
+                        class="filter-btn"
+                        data-filter="Juegos"
+                    >
+                        Juegos
+                    </button>
 
-`
-```
+                    <button
+                        class="filter-btn"
+                        data-filter="Office"
+                    >
+                        Office
+                    </button>
 
-};
+                    <button
+                        class="filter-btn"
+                        data-filter="Codigo"
+                    >
+                        Código
+                    </button>
 
-// =====================================
-// HOME POR DEFECTO
-// =====================================
-// Se muestra Dashboard al iniciar
-mainContent.innerHTML = views.home;
+                </div>
 
-// =====================================
-// NAVEGACIÓN DINÁMICA
-// =====================================
-// Cambia entre vistas sin recargar la página
-document.querySelectorAll('.menu a').forEach(link => {
+                <div id="portfolio-grid"></div>
 
-```
-link.addEventListener('click', (e) => {
+            </div>
 
-    e.preventDefault();
+        `,
 
-    document
-        .querySelector('.menu a.active')
-        ?.classList.remove('active');
+        // Configuración
+        settings: `
 
-    link.classList.add('active');
+            <section class="about-section">
 
-    const section =
-        link.getAttribute(
-            'data-section'
-        );
+                <h1 class="about-title">
+                    Configuración
+                </h1>
 
-    mainContent.innerHTML =
-        views[section];
+                <div class="about-card">
 
-    // Si entra al portafolio
-    // se cargan los proyectos
-    if (section === 'plans') {
+                    <p>
+                        Próximamente podrás
+                        personalizar CodeTrax.
+                    </p>
 
-        loadPortfolio();
+                </div>
 
-    }
+            </section>
 
-});
-```
+        `
+    };
 
-});
+    // =====================================
+    // HOME POR DEFECTO
+    // =====================================
 
-// =====================================
-// ATAJO DE TECLADO
-// =====================================
-// Al presionar "/" se enfoca el buscador
-document.addEventListener('keydown', (e) => {
+    mainContent.innerHTML = views.home;
 
-```
-if (e.key === '/') {
+    // =====================================
+    // NAVEGACIÓN DINÁMICA
+    // =====================================
 
-    const input =
-        document.getElementById(
-            'gt-input-target'
-        );
+    document.querySelectorAll('.menu a').forEach(link => {
 
-    if (input) {
+        link.addEventListener('click', (e) => {
 
-        e.preventDefault();
+            e.preventDefault();
 
-        input.focus();
+            document
+                .querySelector('.menu a.active')
+                ?.classList.remove('active');
 
-    }
-}
-```
+            link.classList.add('active');
 
-});
+            const section =
+                link.getAttribute(
+                    'data-section'
+                );
 
-// =====================================
-// INICIO
-// =====================================
-// Mensaje mostrado en la consola al iniciar
-console.log(
-"CodeTrax inicializado correctamente."
-);
+            mainContent.innerHTML =
+                views[section];
+
+            if (section === 'plans') {
+
+                loadPortfolio();
+
+            }
+
+        });
+
+    });
+
+    // =====================================
+    // ATAJO DE TECLADO
+    // =====================================
+
+    document.addEventListener('keydown', (e) => {
+
+        if (e.key === '/') {
+
+            const input =
+                document.getElementById(
+                    'gt-input-target'
+                );
+
+            if (input) {
+
+                e.preventDefault();
+
+                input.focus();
+
+            }
+        }
+    });
+
+    // =====================================
+    // INICIO
+    // =====================================
+
+    console.log(
+        "CodeTrax inicializado correctamente."
+    );
 
 });
