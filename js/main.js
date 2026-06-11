@@ -87,37 +87,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const views = {
         home: `<h1>Dashboard</h1>${renderSearch()}`,
         files: `
-            <section class="about-section">
-                <h1 class="about-title">Sobre CodeTrax</h1>
-                <div class="about-card"><h2>¿Qué es CodeTrax?</h2><p>CodeTrax es un estudio digital...</p></div>
-                <div class="about-card"><h2>Nuestra Misión</h2><p>Crear experiencias...</p></div>
-                <div class="about-card"><h2>Nuestra Visión</h2><p>Convertirnos en una referencia...</p></div>
-                <div class="about-card"><h2>Nuestros Valores</h2><p>Innovación • Creatividad...</p></div>
-                <div class="about-card">
-                    <h2>Nuestro Equipo</h2>
-                    <div class="team-grid">
-                        <div class="container">
-                            <div class="card">
-                                <div class="front">
-                                    <div class="card-top"><p class="card-top-para">Fundador</p></div>
-                                    <img src="assets/team/damian.jpg" alt="Damian CV" class="team-photo">
-                                    <p class="heading">Damian CV</p>
-                                    <p class="follow">Desarrollador Principal</p>
-                                </div>
-                                <div class="back">
-                                    <p class="heading">Redes</p>
-                                    <div class="icons">
-                                        <a href="https://www.youtube.com/@DAMIANCV8" target="_blank">YouTube</a>
-                                        <a href="https://github.com/TU-USUARIO" target="_blank">GitHub</a>
-                                        <a href="https://instagram.com/TU-USUARIO" target="_blank">Instagram</a>
-                                    </div>
-                                </div>
-                            </div>
+    <section class="about-section">
+        <h1 class="about-title">Sobre CodeTrax</h1>
+        <div class="about-card"><h2>¿Qué es CodeTrax?</h2><p>CodeTrax es un estudio digital...</p></div>
+        <div class="about-card"><h2>Nuestra Misión</h2><p>Crear experiencias...</p></div>
+        <div class="about-card">
+            <h2>Nuestro Equipo</h2>
+            <div class="team-grid">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-top"><p class="card-top-para">Fundador</p></div>
+                        <img src="assets/team/damian.jpg" alt="Damian CV" class="team-photo">
+                        <p class="heading">Damian CV</p>
+                        <p class="follow">Desarrollador Principal</p>
+                        <div class="icons">
+                            <a href="https://www.youtube.com/@DAMIANCV8" target="_blank">YouTube</a>
+                            <a href="https://github.com/TU-USUARIO" target="_blank">GitHub</a>
+                            <a href="https://instagram.com/TU-USUARIO" target="_blank">Instagram</a>
                         </div>
                     </div>
                 </div>
-            </section>
-        `,
+            </div>
+        </div>
+    </section>
+`,
         plans: `
             <div class="portfolio-page">
                 <h1>Portafolio</h1>
