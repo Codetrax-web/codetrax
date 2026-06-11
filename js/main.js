@@ -95,16 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2>Nuestro Equipo</h2>
             <div class="team-grid">
                 <div class="container">
+                    // Dentro de views.files:
                     <div class="card">
-                        <div class="card-top"><p class="card-top-para">Fundador</p></div>
-                        <img src="assets/team/damian.jpg" alt="Damian CV" class="team-photo">
-                        <p class="heading">Damian CV</p>
-                        <p class="follow">Desarrollador Principal</p>
-                        <div class="icons">
-                            <a href="https://www.youtube.com/@DAMIANCV8" target="_blank">YouTube</a>
-                            <a href="https://github.com/TU-USUARIO" target="_blank">GitHub</a>
-                            <a href="https://instagram.com/TU-USUARIO" target="_blank">Instagram</a>
-                        </div>
+                    <div class="profile-tag">Profile</div>
+                    <img src="assets/team/damian.jpg" alt="Foto" class="team-photo">
+                    <h2>Front Card</h2>
+                    <p>Follow me for more...</p>
+                    </div>
                     </div>
                 </div>
             </div>
