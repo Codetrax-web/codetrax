@@ -1,74 +1,116 @@
 <!DOCTYPE html>
-<!-- Indica que el documento utiliza HTML5 -->
+<!-- =====================================================
+     DECLARACIÓN DEL DOCUMENTO
+     Indica que el archivo utiliza HTML5
+===================================================== -->
 
 <html lang="es">
-<!-- Inicio del documento HTML y establece el idioma en español -->
+<!-- Idioma principal de la página: Español -->
 
 <head>
-<!-- Configuración y metadatos de la página -->
+
+    <!-- =====================================================
+         CONFIGURACIÓN GENERAL Y METADATOS
+    ===================================================== -->
 
     <meta charset="UTF-8">
-<!-- Permite el uso de caracteres especiales como ñ, tildes, etc. -->
+    <!-- Permite utilizar caracteres especiales:
+         ñ, á, é, í, ó, ú, etc. -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Hace que la página sea adaptable a dispositivos móviles -->
+    <!-- Hace que la página sea adaptable a dispositivos móviles -->
 
     <title>CodeTrax | WEB</title>
-<!-- Título que aparece en la pestaña del navegador -->
+    <!-- Título que aparece en la pestaña del navegador -->
 
     <link rel="stylesheet" href="css/style.css">
-<!-- Vincula la hoja de estilos CSS externa -->
+    <!-- Conecta la hoja de estilos CSS principal -->
+
 </head>
 
 <body>
-<!-- Contenido visible de la página -->
+
+    <!-- =====================================================
+         CABECERA PRINCIPAL
+    ===================================================== -->
 
     <header class="main-header">
-<!-- Encabezado principal del sitio -->
 
-        <img src="assets/ima/log_codetrax.png" alt="Logo CodeTrax" class="logo">
-<!-- Logo de CodeTrax -->
+        <img src="assets/ima/log_codetrax.png"
+             alt="Logo CodeTrax"
+             class="logo">
+        <!-- Logo de la página -->
 
         <h1>CODETRAX</h1>
-<!-- Título principal mostrado en la cabecera -->
+        <!-- Nombre principal del sitio -->
+
     </header>
 
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ===================================================== -->
+
     <main>
-<!-- Contenido principal de la página -->
+
         <div id="content"></div>
-<!-- Contenedor vacío que será llenado dinámicamente con JavaScript -->
+        <!-- Contenedor vacío.
+             JavaScript insertará aquí el contenido dinámicamente. -->
+
     </main>
 
-    <nav class="menu" aria-label="Main navigation">
-<!-- Menú principal de navegación -->
+    <!-- =====================================================
+         MENÚ DE NAVEGACIÓN
+    ===================================================== -->
 
-        <a href="/" class="active" data-section="home">
-<!-- Enlace a la sección Home -->
+    <nav class="menu" aria-label="Main navigation">
+
+        <!-- ================= HOME ================= -->
+
+        <a href="/"
+           class="active"
+           data-section="home">
 
             <span>Home</span>
+
         </a>
 
-        <a href="/files" data-section="files">
-<!-- Enlace a la sección Files -->
+        <!-- ================= ACERCA ================= -->
+
+        <a href="/files"
+           data-section="files">
 
             <span>Acerca</span>
+
         </a>
 
-        <a href="/plans" data-section="plans">
-<!-- Enlace a la sección Plans -->
+        <!-- ================= PROYECTOS ================= -->
+
+        <a href="/plans"
+           data-section="plans">
 
             <span>Proyectos</span>
+
         </a>
 
-        <a href="/settings" data-section="settings">
-<!-- Enlace a la sección Settings -->
+        <!-- ================= RECURSOS ================= -->
+
+        <a href="/settings"
+           data-section="settings">
 
             <span>Recursos</span>
+
         </a>
+
     </nav>
 
+    <!-- =====================================================
+         ARCHIVOS JAVASCRIPT
+    ===================================================== -->
+
     <script src="js/main.js"></script>
-<!-- Vincula el archivo JavaScript principal del proyecto -->
+    <!-- Archivo JavaScript principal.
+         Controla la interacción y carga dinámica del contenido. -->
 
 </body>
+
 </html>
