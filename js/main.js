@@ -250,7 +250,59 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
 
                 </div>
+<div class="about-card">
 
+    <h2>Nuestro Equipo</h2>
+
+    <div class="team-grid">
+
+        <div class="container">
+
+            <div class="card">
+
+                <div class="front">
+
+                    <div class="card-top">
+                        <p class="card-top-para">
+                            Fundador
+                        </p>
+                    </div>
+
+                    <img
+                        src="assets/team/damian.jpg"
+                        alt="Damian CV"
+                        class="team-photo"
+                    >
+
+                    <p class="heading">
+                        Damian CV
+                    </p>
+
+                    <p class="follow">
+                        Desarrollador Principal
+                    </p>
+
+                </div>
+
+                <div class="back">
+
+                    <p class="heading">
+                        Redes
+                    </p>
+
+                    <div class="icons">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
             </section>
 
         `,
