@@ -677,7 +677,7 @@ main{
 }
 
 /* =====================================================
-   TARJETA GIRATORIA
+   TARJETA ESTÁTICA
 ===================================================== */
 
 .card {
@@ -685,152 +685,48 @@ main{
   width: 100%;
   height: 100%;
 
-  background:
-  rgba(15,15,25,.65);
+  background: rgba(15,15,25,.65);
 
   backdrop-filter: blur(15px);
 
-  border: 1px solid
-  rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.12);
 
   border-radius: 2rem;
 
   position: relative;
 
-  transition: transform 1500ms;
+  /* ELIMINADO EL 3D Y LAS TRANSICIONES DE GIRO */
 
-  transform-style: preserve-3d;
-
-}
-
-/* =====================================================
-   CARA FRONTAL Y TRASERA
-===================================================== */
-
-.front,
-.back {
-
-  height: 100%;
-  width: 100%;
-
-  border-radius: 2rem;
-
-  position: absolute;
-
-  backface-visibility: hidden;
-
+  /* NUEVO: Lógica de centrado interno con Flexbox */
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 20px;
-
-}
-
-/* Cara posterior */
-
-.back {
-
-    transform: rotateY(180deg);
+  padding: 40px 20px; /* Espaciado extra arriba y abajo */
 
 }
 
 /* =====================================================
-   FOTO DEL INTEGRANTE
+   CARAS SIMPLIFICADAS (Elimina front, back, backface)
 ===================================================== */
 
-.team-photo {
+/* ELIMINA ESTAS SECCIONES: .front, .back, .back: */
 
-  width: 100px;
-  height: 100px;
-
-  border-radius: 50%;
-
-  object-fit: cover;
-
-  border: 3px solid white;
-
-}
-
-/* =====================================================
-   CABECERA DE LA TARJETA
-===================================================== */
-
-.card-top {
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  height: 40px;
-  width: 140px;
-
-  position: absolute;
-
-  top: 0;
-
-  background: rgba(255,255,255,.1);
-
-  border-radius: 0 0 15px 15px;
-
-}
-
-/* Nombre del integrante */
-
-.heading {
-
-  font-size: 22px;
-
-  font-weight: bold;
-
-}
-
-/* Descripción */
-
-.follow {
-
-  font-size: 14px;
-
-  text-align: center;
-
-  padding: 0 15px;
-
-}
-
-/* =====================================================
-   ICONOS DE REDES SOCIALES
-===================================================== */
-
+/* Solo dejamos el estilo de los iconos para usarlos en el nuevo JS */
 .icons {
-
   display: flex;
-
   gap: 15px;
-
 }
 
 .icons svg {
-
   width: 28px;
   height: 28px;
-
   cursor: pointer;
-
   transition: .3s;
-
 }
 
-/* Efecto hover sobre iconos */
-
 .icons svg:hover {
-
   transform: scale(1.2);
-
   color: var(--gt-blue);
-
 }
