@@ -690,20 +690,13 @@ main{
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); /* El resplandor */
   color: white;
 }
-.project-card img {
-
-    width:100%;
-    height:220px;
-
-    object-fit:cover;
-
-    border-radius:18px;
-
-    margin-bottom:15px;
-
-    position:relative;
-    z-index:2;
-
+.team-photo {
+    width: 150px;      /* Define un tamaño adecuado */
+    height: 150px;     /* Mantenla cuadrada */
+    object-fit: cover; /* Recorta la imagen para que no se deforme */
+    border-radius: 50%;/* Hazla circular */
+    display: block;
+    margin: 0 auto 15px auto;
 }
 /* =====================================================
    CARAS SIMPLIFICADAS (Elimina front, back, backface)
