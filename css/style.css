@@ -682,10 +682,10 @@ main {
   color: white;
 }
 .team-photo {
-    width: 150px;      /* Define un tamaño adecuado */
-    height: 150px;     /* Mantenla cuadrada */
-    object-fit: cover; /* Recorta la imagen para que no se deforme */
-    border-radius: 50%;/* Hazla circular */
+    width: 120px;       /* Tamaño fijo */
+    height: 120px;      /* Tamaño fijo para que sea cuadrada */
+    object-fit: cover;  /* Corta la imagen para que encaje sin deformarse */
+    border-radius: 50%; /* La hace circular */
     display: block;
     margin: 0 auto 15px auto;
 }
