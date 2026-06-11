@@ -681,32 +681,30 @@ main{
 ===================================================== */
 
 .card {
+  width: 240px;
+  background: #000;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  border-top: 4px solid #ff0000; /* Ese borde superior rojo */
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); /* El resplandor */
+  color: white;
+}
+.project-card img {
 
-  width: 100%;
-  height: 100%;
+    width:100%;
+    height:220px;
 
-  background: rgba(15,15,25,.65);
+    object-fit:cover;
 
-  backdrop-filter: blur(15px);
+    border-radius:18px;
 
-  border: 1px solid rgba(255,255,255,.12);
+    margin-bottom:15px;
 
-  border-radius: 2rem;
-
-  position: relative;
-
-  /* ELIMINADO EL 3D Y LAS TRANSICIONES DE GIRO */
-
-  /* NUEVO: Lógica de centrado interno con Flexbox */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px 20px; /* Espaciado extra arriba y abajo */
+    position:relative;
+    z-index:2;
 
 }
-
 /* =====================================================
    CARAS SIMPLIFICADAS (Elimina front, back, backface)
 ===================================================== */
