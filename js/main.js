@@ -286,15 +286,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <div class="back">
 
-                    <p class="heading">
-                        Redes
-                    </p>
+    <p class="heading">
+        Redes
+    </p>
 
-                    <div class="icons">
+    <div class="icons">
 
-                    </div>
+        <a href="https://www.youtube.com/@DAMIANCV8" target="_blank">
+            YouTube
+        </a>
 
-                </div>
+        <a href="https://github.com/TU-USUARIO" target="_blank">
+            GitHub
+        </a>
+
+        <a href="https://instagram.com/TU-USUARIO" target="_blank">
+            Instagram
+        </a>
+
+    </div>
+
+</div>
 
             </div>
 
