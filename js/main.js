@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =====================================
 
     const views = {
-        home: `<h1>CODETRAX</h1>${renderSearch()}`,
+        home: `<h1>Dashboard</h1>${renderSearch()}`,
         files: `
     <section class="about-section">
         <h1 class="about-title">Sobre CodeTrax</h1>
