@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="container">
                     <div class="card">
                     <div class="profile-tag">Fundador</div>
-                    <img src="/assets/team/Damian.jpg" alt="Foto" class="team-photo">
+                    <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                     <h2>Damian cruz</h2>
                     <p>Desarrollador prinsipal</p>
                     </div>
