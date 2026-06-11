@@ -95,12 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2>Nuestro Equipo</h2>
             <div class="team-grid">
                 <div class="container">
-                    // Dentro de views.files:
                     <div class="card">
-                    <div class="profile-tag">Profile</div>
-                    <img src="assets/team/damian.jpg" alt="Foto" class="team-photo">
-                    <h2>Front Card</h2>
-                    <p>Follow me for more...</p>
+                    <div class="profile-tag">Fundador</div>
+                    <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
+                    <h2>Damian cruz</h2>
+                    <p>Desarrollador prinsipal</p>
                     </div>
                     </div>
                 </div>
