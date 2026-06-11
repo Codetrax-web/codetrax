@@ -703,14 +703,6 @@ main{
 
 }
 
-/* Rotación al pasar el mouse */
-
-.container:hover > .card {
-
-    transform: rotateY(180deg);
-
-}
-
 /* =====================================================
    CARA FRONTAL Y TRASERA
 ===================================================== */
