@@ -1,25 +1,32 @@
-/* =================================
+/* =====================================================
    VARIABLES GLOBALES
-   ================================= */
+   Colores principales utilizados en todo el sitio
+===================================================== */
 
 :root {
 
-    --gt-ink: #ffffff;
-    --gt-surface: #1e1e2e;
-    --gt-blue: #007bff;
-    --gt-red: #ff2d55;
+    --gt-ink: #ffffff;      /* Color principal del texto */
+    --gt-surface: #1e1e2e; /* Color base para superficies */
+    --gt-blue: #007bff;    /* Azul corporativo */
+    --gt-red: #ff2d55;     /* Rojo corporativo */
 
 }
 
-/* =================================
-   CONFIGURACIÓN GENERAL
-   ================================= */
+/* =====================================================
+   RESETEO GENERAL
+   Elimina márgenes y paddings por defecto
+===================================================== */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
+
+/* =====================================================
+   CONFIGURACIÓN DEL BODY
+   Contenedor principal de toda la página
+===================================================== */
 
 body {
 
@@ -42,25 +49,24 @@ body {
 
 }
 
-/* =================================
-   HEADER
-   ================================= */
+/* =====================================================
+   HEADER / CABECERA
+===================================================== */
 
 .main-header{
 
     width:100%;
-
     max-width:1200px;
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
 
     padding:20px 0;
 
 }
+
+/* Logo principal */
 
 .logo {
 
@@ -68,15 +74,17 @@ body {
 
 }
 
+/* Título principal */
+
 .main-header h1 {
 
     font-size:2rem;
 
 }
 
-/* =================================
-   CONTENIDO PRINCIPAL
-   ================================= */
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
 
 main {
 
@@ -85,9 +93,9 @@ main {
 
 }
 
-/* =================================
-   CAMPO DE BÚSQUEDA
-   ================================= */
+/* =====================================================
+   BARRA DE BÚSQUEDA ESTILO TERMINAL
+===================================================== */
 
 .gt-field {
 
@@ -102,9 +110,7 @@ main {
     position:relative;
 
     display:flex;
-
     align-items:center;
-
     gap:10px;
 
     padding:12px 15px;
@@ -119,18 +125,21 @@ main {
 
 }
 
+/* Símbolo o prompt de terminal */
+
 .gt-input__prompt {
 
     color:#00ff88;
 
 }
 
+/* Campo donde escribe el usuario */
+
 .gt-input__control {
 
     width:100%;
 
     border:none;
-
     outline:none;
 
     background:transparent;
@@ -141,26 +150,23 @@ main {
 
 }
 
-/* =================================
-   MENÚ
-   ================================= */
+/* =====================================================
+   MENÚ DE NAVEGACIÓN SUPERIOR
+===================================================== */
 
 .menu{
 
     position:absolute;
 
     top:30px;
-
     right:40px;
 
     width:auto;
 
     margin:0;
-
     padding:8px;
 
     display:flex;
-
     gap:10px;
 
     border-radius:999px;
@@ -173,10 +179,11 @@ main {
 
 }
 
+/* Enlaces del menú */
+
 .menu a {
 
     color:white;
-
     text-decoration:none;
 
     padding:12px 18px;
@@ -187,39 +194,44 @@ main {
 
 }
 
+/* Efecto hover */
+
 .menu a:hover {
 
     background:rgba(255,255,255,.1);
 
 }
 
+/* Página activa */
+
 .menu a.active {
 
     background:white;
-
     color:#000;
 
 }
 
-/* =================================
-   SECCIÓN SOBRE
-   ================================= */
+/* =====================================================
+   SECCIÓN ACERCA DE
+===================================================== */
 
 .about-section {
 
     max-width:900px;
-
     margin:auto;
 
 }
 
+/* Título principal */
+
 .about-title {
 
     text-align:center;
-
     margin-bottom:30px;
 
 }
+
+/* Tarjetas informativas */
 
 .about-card {
 
@@ -237,23 +249,26 @@ main {
 
 }
 
+/* Subtítulos */
+
 .about-card h2 {
 
     margin-bottom:10px;
 
 }
 
+/* Texto */
+
 .about-card p {
 
     line-height:1.8;
-
     color:#ddd;
 
 }
 
-/* =================================
+/* =====================================================
    PORTAFOLIO
-   ================================= */
+===================================================== */
 
 .portfolio-page {
 
@@ -264,21 +279,18 @@ main {
 .portfolio-page h1 {
 
     text-align:center;
-
     margin-bottom:25px;
 
 }
 
-/* =================================
-   FILTROS
-   ================================= */
+/* =====================================================
+   FILTROS DEL PORTAFOLIO
+===================================================== */
 
 .portfolio-filters {
 
     display:flex;
-
     justify-content:center;
-
     flex-wrap:wrap;
 
     gap:12px;
@@ -286,6 +298,8 @@ main {
     margin-bottom:30px;
 
 }
+
+/* Botones de filtro */
 
 .filter-btn {
 
@@ -325,9 +339,9 @@ main {
 
 }
 
-/* =================================
+/* =====================================================
    GRID DE PROYECTOS
-   ================================= */
+===================================================== */
 
 #portfolio-grid {
 
@@ -340,14 +354,13 @@ main {
 
 }
 
-/* =================================
-   TARJETA GLASS
-   ================================= */
+/* =====================================================
+   TARJETAS GLASSMORPHISM
+===================================================== */
 
 .project-card {
 
     position:relative;
-
     overflow:hidden;
 
     background:rgba(15,15,25,.55);
@@ -368,7 +381,7 @@ main {
 
 }
 
-/* BRILLO AZUL */
+/* Brillo decorativo azul */
 
 .project-card::before {
 
@@ -377,11 +390,9 @@ main {
     position:absolute;
 
     width:180px;
-
     height:180px;
 
     top:-80px;
-
     left:-80px;
 
     border-radius:50%;
@@ -392,7 +403,7 @@ main {
 
 }
 
-/* BRILLO ROJO */
+/* Brillo decorativo rojo */
 
 .project-card::after {
 
@@ -401,11 +412,9 @@ main {
     position:absolute;
 
     width:180px;
-
     height:180px;
 
     bottom:-80px;
-
     right:-80px;
 
     border-radius:50%;
@@ -415,6 +424,8 @@ main {
     filter:blur(60px);
 
 }
+
+/* Animación al pasar el mouse */
 
 .project-card:hover {
 
@@ -426,14 +437,13 @@ main {
 
 }
 
-/* =================================
+/* =====================================================
    IMAGEN DEL PROYECTO
-   ================================= */
+===================================================== */
 
 .project-card img {
 
     width:100%;
-
     height:220px;
 
     object-fit:cover;
@@ -443,19 +453,17 @@ main {
     margin-bottom:15px;
 
     position:relative;
-
     z-index:2;
 
 }
 
-/* =================================
-   TEXTO DEL PROYECTO
-   ================================= */
+/* =====================================================
+   INFORMACIÓN DEL PROYECTO
+===================================================== */
 
 .project-card h3 {
 
     position:relative;
-
     z-index:2;
 
     margin-bottom:10px;
@@ -465,7 +473,6 @@ main {
 .project-card p {
 
     position:relative;
-
     z-index:2;
 
     color:#d6d6d6;
@@ -476,23 +483,22 @@ main {
 
 }
 
-/* =================================
-   ENLACE DEL BOTÓN
-   ================================= */
+/* =====================================================
+   ENLACES DE PROYECTO
+===================================================== */
 
 .project-link {
 
     text-decoration:none;
 
     position:relative;
-
     z-index:2;
 
 }
 
-/* =================================
-   BOTÓN REALISM
-   ================================= */
+/* =====================================================
+   BOTÓN GLASS REALISM
+===================================================== */
 
 .button {
 
@@ -517,6 +523,8 @@ main {
 
 }
 
+/* Brillo del botón */
+
 .button::after {
 
     content:"";
@@ -524,13 +532,11 @@ main {
     position:absolute;
 
     width:65%;
-
     height:60%;
 
     border-radius:120px;
 
     top:0;
-
     right:0;
 
     box-shadow:0 0 20px #ffffff38;
@@ -539,18 +545,18 @@ main {
 
 }
 
+/* Efecto luminoso izquierdo */
+
 .blob1 {
 
     position:absolute;
 
     width:70px;
-
     height:100%;
 
     border-radius:16px;
 
     bottom:0;
-
     left:0;
 
     background:
@@ -563,16 +569,16 @@ main {
 
 }
 
+/* Efecto luminoso derecho */
+
 .blob2 {
 
     position:absolute;
 
     width:80px;
-
     height:80px;
 
     top:-10px;
-
     right:-10px;
 
     border-radius:50%;
@@ -587,6 +593,8 @@ main {
     filter:blur(12px);
 
 }
+
+/* Interior del botón */
 
 .inner {
 
@@ -606,6 +614,11 @@ main {
     );
 
 }
+
+/* =====================================================
+   CONTENIDO DINÁMICO
+===================================================== */
+
 main{
 
     width:100%;
@@ -614,6 +627,7 @@ main{
     margin-top:40px;
 
 }
+
 #content{
 
     margin-top:30px;
@@ -627,9 +641,10 @@ main{
     border-radius:20px;
 
 }
-/* =================================
+
+/* =====================================================
    EQUIPO
-   ================================= */
+===================================================== */
 
 .team-grid{
 
@@ -646,14 +661,24 @@ main{
 
 }
 
+/* =====================================================
+   CONTENEDOR DE TARJETA 3D
+===================================================== */
+
 .container {
 
   height: 294px;
   width: 240px;
+
   color: white;
+
   perspective: 800px;
 
 }
+
+/* =====================================================
+   TARJETA GIRATORIA
+===================================================== */
 
 .card {
 
@@ -678,9 +703,17 @@ main{
 
 }
 
+/* Rotación al pasar el mouse */
+
 .container:hover > .card {
+
     transform: rotateY(180deg);
+
 }
+
+/* =====================================================
+   CARA FRONTAL Y TRASERA
+===================================================== */
 
 .front,
 .back {
@@ -706,14 +739,21 @@ main{
 
 }
 
+/* Cara posterior */
+
 .back {
+
     transform: rotateY(180deg);
+
 }
+
+/* =====================================================
+   FOTO DEL INTEGRANTE
+===================================================== */
 
 .team-photo {
 
   width: 100px;
-
   height: 100px;
 
   border-radius: 50%;
@@ -724,16 +764,18 @@ main{
 
 }
 
+/* =====================================================
+   CABECERA DE LA TARJETA
+===================================================== */
+
 .card-top {
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   height: 40px;
-
   width: 140px;
 
   position: absolute;
@@ -746,6 +788,8 @@ main{
 
 }
 
+/* Nombre del integrante */
+
 .heading {
 
   font-size: 22px;
@@ -753,6 +797,8 @@ main{
   font-weight: bold;
 
 }
+
+/* Descripción */
 
 .follow {
 
@@ -763,6 +809,10 @@ main{
   padding: 0 15px;
 
 }
+
+/* =====================================================
+   ICONOS DE REDES SOCIALES
+===================================================== */
 
 .icons {
 
@@ -775,7 +825,6 @@ main{
 .icons svg {
 
   width: 28px;
-
   height: 28px;
 
   cursor: pointer;
@@ -783,6 +832,8 @@ main{
   transition: .3s;
 
 }
+
+/* Efecto hover sobre iconos */
 
 .icons svg:hover {
 
