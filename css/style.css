@@ -211,16 +211,6 @@ main {
 
 }
 
-@media (max-width: 600px) {
-    .menu {
-        position: relative;
-        top: auto;
-        right: auto;
-        justify-content: center;
-        margin: 20px auto;
-        width: 90%; /* Ajuste al ancho del dispositivo */
-    }
-}
 
 /* =====================================================
    SECCIÓN ACERCA DE
