@@ -149,6 +149,19 @@ main {
     font-family:inherit;
 
 }
+.social-container {
+    display: flex;
+    flex-wrap: wrap; /* Para que bajen si la pantalla es pequeña */
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.light-button button.bt {
+    height: 100px; /* Tamaño reducido */
+    transform: scale(0.8); /* Escala más pequeña para que no saturen */
+}
+
 
 /* =====================================================
    MENÚ DE NAVEGACIÓN SUPERIOR
