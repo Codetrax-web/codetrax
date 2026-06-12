@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('portfolio-grid');
         if (!grid) return;
 
-        let filteredProjects = category !== 'Todos' 
-            ? portfolioProjects.filter(project => project.categoria === category)
-            : portfolioProjects;
+       let filteredProjects = category !== 'Todos' 
+    ? portfolioProjects.filter(project => project.categoria.toLowerCase() === category.toLowerCase())
+    : portfolioProjects;
 
         if (filteredProjects.length === 0) {
             grid.innerHTML = '<p>No hay proyectos disponibles.</p>';
