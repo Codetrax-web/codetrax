@@ -6,4 +6,11 @@
     "url": "https://electrumcdmx.es/",
     "categoria": "web"
   }
+    {
+    "titulo": "Furisticsl",
+    "descripcion": "Descripción...",
+    "imagen": "data/recursos/música/ima.png",
+    "url": "https://electrumcdmx.es/",
+    "categoria": "canal"
+  }
 ]
