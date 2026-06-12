@@ -1,228 +1,113 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <!-- =====================================================
-<!-- =====================================================
-     DECLARACIÓN DEL DOCUMENTO
-     DECLARACIÓN DEL DOCUMENTO
-     Indica que el archivo utiliza HTML5
-     Indica que el archivo utiliza HTML5
-===================================================== -->
+     DECLARACIÓN DEL DOCUMENTO
+     Indica que el archivo utiliza HTML5
 ===================================================== -->
 
-
-<html lang="es">
 <html lang="es">
 <!-- Idioma principal de la página: Español -->
-<!-- Idioma principal de la página: Español -->
-
 
 <head>
-<head>
 
+    <!-- =====================================================
+         CONFIGURACIÓN GENERAL Y METADATOS
+    ===================================================== -->
 
-    <!-- =====================================================
-    <!-- =====================================================
-         CONFIGURACIÓN GENERAL Y METADATOS
-         CONFIGURACIÓN GENERAL Y METADATOS
-    ===================================================== -->
-    ===================================================== -->
+    <meta charset="UTF-8">
+    <!-- Permite utilizar caracteres especiales:
+         ñ, á, é, í, ó, ú, etc. -->
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Hace que la página sea adaptable a dispositivos móviles -->
 
-    <meta charset="UTF-8">
-    <meta charset="UTF-8">
-    <!-- Permite utilizar caracteres especiales:
-    <!-- Permite utilizar caracteres especiales:
-         ñ, á, é, í, ó, ú, etc. -->
-         ñ, á, é, í, ó, ú, etc. -->
+    <title>CodeTrax | WEB</title>
+    <!-- Título que aparece en la pestaña del navegador -->
 
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Hace que la página sea adaptable a dispositivos móviles -->
-    <!-- Hace que la página sea adaptable a dispositivos móviles -->
-
-
-    <title>CodeTrax | WEB</title>
-    <title>CodeTrax | WEB</title>
-    <!-- Título que aparece en la pestaña del navegador -->
-    <!-- Título que aparece en la pestaña del navegador -->
-
-
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Conecta la hoja de estilos CSS principal -->
-    <!-- Conecta la hoja de estilos CSS principal -->
-
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Conecta la hoja de estilos CSS principal -->
 
 </head>
-</head>
-
 
 <body>
-<body>
 
+    <!-- =====================================================
+         CABECERA PRINCIPAL
+    ===================================================== -->
 
-    <!-- =====================================================
-    <!-- =====================================================
-         CABECERA PRINCIPAL
-         CABECERA PRINCIPAL
-    ===================================================== -->
-    ===================================================== -->
+    <header class="main-header">
 
+        <img src="assets/ima/log_codetrax.png"
+             alt="Logo CodeTrax"
+             class="logo">
+        <!-- Logo de la página -->
 
-    <header class="main-header">
-    <header class="main-header">
+    </header>
 
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ===================================================== -->
 
-        <img src="assets/ima/log_codetrax.png"
-        <img src="assets/ima/log_codetrax.png"
-             alt="Logo CodeTrax"
-             alt="Logo CodeTrax"
-             class="logo">
-             class="logo">
-        <!-- Logo de la página -->
-        <!-- Logo de la página -->
+    <main>
 
+        <div id="content"></div>
+        <!-- Contenedor vacío.
+             JavaScript insertará aquí el contenido dinámicamente. -->
 
-        <h1>CODETRAX</h1>
-        <!-- Nombre principal del sitio -->
-    </header>
-    </header>
+    </main>
 
+    <!-- =====================================================
+         MENÚ DE NAVEGACIÓN
+    ===================================================== -->
 
-    <!-- =====================================================
-    <!-- =====================================================
-         CONTENIDO PRINCIPAL
-         CONTENIDO PRINCIPAL
-    ===================================================== -->
-    ===================================================== -->
+    <nav class="menu" aria-label="Main navigation">
 
+        <!-- ================= HOME ================= -->
 
-    <main>
-    <main>
+        <a href="/"
+           class="active"
+           data-section="home">
 
+            <span>Home</span>
 
-        <div id="content"></div>
-        <div id="content"></div>
-        <!-- Contenedor vacío.
-        <!-- Contenedor vacío.
-             JavaScript insertará aquí el contenido dinámicamente. -->
-             JavaScript insertará aquí el contenido dinámicamente. -->
+        </a>
 
+        <!-- ================= ACERCA ================= -->
 
-    </main>
-    </main>
+        <a href="/files"
+           data-section="files">
 
+            <span>Acerca</span>
 
-    <!-- =====================================================
-    <!-- =====================================================
-         MENÚ DE NAVEGACIÓN
-         MENÚ DE NAVEGACIÓN
-    ===================================================== -->
-    ===================================================== -->
+        </a>
 
+        <!-- ================= PROYECTOS ================= -->
 
-    <nav class="menu" aria-label="Main navigation">
-    <nav class="menu" aria-label="Main navigation">
+        <a href="/plans"
+           data-section="plans">
 
+            <span>Proyectos</span>
 
-        <!-- ================= HOME ================= -->
-        <!-- ================= HOME ================= -->
+        </a>
 
+        <!-- ================= RECURSOS ================= -->
 
-        <a href="/"
-        <a href="/"
-           class="active"
-           class="active"
-           data-section="home">
-           data-section="home">
+        <a href="/settings"
+           data-section="settings">
 
+            <span>Recursos</span>
 
-            <span>Home</span>
-            <span>Home</span>
+        </a>
 
+    </nav>
 
-        </a>
-        </a>
+    <!-- =====================================================
+         ARCHIVOS JAVASCRIPT
+    ===================================================== -->
 
-
-        <!-- ================= ACERCA ================= -->
-        <!-- ================= ACERCA ================= -->
-
-
-        <a href="/files"
-        <a href="/files"
-           data-section="files">
-           data-section="files">
-
-
-            <span>Acerca</span>
-            <span>Acerca</span>
-
-
-        </a>
-        </a>
-
-
-        <!-- ================= PROYECTOS ================= -->
-        <!-- ================= PROYECTOS ================= -->
-
-
-        <a href="/plans"
-        <a href="/plans"
-           data-section="plans">
-           data-section="plans">
-
-
-            <span>Proyectos</span>
-            <span>Proyectos</span>
-
-
-        </a>
-        </a>
-
-
-        <!-- ================= RECURSOS ================= -->
-        <!-- ================= RECURSOS ================= -->
-
-
-        <a href="/settings"
-        <a href="/settings"
-           data-section="settings">
-           data-section="settings">
-
-
-            <span>Recursos</span>
-            <span>Recursos</span>
-
-
-        </a>
-        </a>
-
-
-    </nav>
-    </nav>
-
-
-    <!-- =====================================================
-    <!-- =====================================================
-         ARCHIVOS JAVASCRIPT
-         ARCHIVOS JAVASCRIPT
-    ===================================================== -->
-    ===================================================== -->
-
-
-    <script src="js/main.js"></script>
-    <script src="js/main.js"></script>
-    <!-- Archivo JavaScript principal.
-    <!-- Archivo JavaScript principal.
-         Controla la interacción y carga dinámica del contenido. -->
-         Controla la interacción y carga dinámica del contenido. -->
-
+    <script src="js/main.js"></script>
+    <!-- Archivo JavaScript principal.
+         Controla la interacción y carga dinámica del contenido. -->
 
 </body>
-</body>
 
-
-</html>
 </html>
