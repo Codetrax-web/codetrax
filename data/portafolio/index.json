@@ -1,16 +1,16 @@
 [
   {
-    "titulo": "Copa Pistón",
+    "titulo": "Copa_Pistón",
     "descripcion": "Proyecto inspirado en Cars.",
     "imagen": "data/portafolio/juegos/copa/copa.png",
-    "url": "https://tusitio.com/copa-piston",
-    "categoria": "Juegos"
+    "url": "https://codetrax-web.github.io/Copa-piston/",
+    "categoria": "codigo"
   },
   {
-    "titulo": "Otro Proyecto",
+    "titulo": "Orquidea_Azul",
     "descripcion": "Descripción del segundo proyecto.",
     "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
-    "url": "https://tusitio.com/otro-proyecto",
+    "url": "https://codetrax-web.github.io/Orquidea-Azul/",
     "categoria": "codigo"
   },
   {
@@ -18,6 +18,6 @@
     "descripcion": "Descripción...",
     "imagen": "data/portafolio/office/Neon/estrella.jpg",
     "url": "https://tusitio.com/otro-proyecto",
-    "categoria": "Office"
+    "categoria": "codigo"
   }
 ]
