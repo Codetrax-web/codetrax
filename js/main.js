@@ -109,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
 `,
         plans: `
             <div class="portfolio-page">
-                <h1>Portafolio</h1>
+                <h1>Recursos</h1>
+                <p>Descripción de mis recursos aquí.</p>
                 <div class="portfolio-filters">
                     <button class="filter-btn active" data-filter="Todos">Todos</button>
                     <button class="filter-btn" data-filter="Juegos">Juegos</button>
@@ -121,7 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `,
                 settings: `
             <section class="about-section">
-                <h1 class="about-title">Recursos</h1>
+                <h1 class="about-title">Portafolio</h1>
+                <p>Descripción de mis recursos aquí.</p>
                 <div id="recursos-container"></div>
             </section>
         `
