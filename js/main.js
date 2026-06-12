@@ -108,23 +108,26 @@ document.addEventListener('DOMContentLoaded', () => {
     </section>
 `,
         plans: `
-            <div class="portfolio-page">
-                <h1>Portafolio</h1>
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="Todos">Todos</button>
-                    <button class="filter-btn" data-filter="Juegos">Juegos</button>
-                    <button class="filter-btn" data-filter="Office">Office</button>
-                    <button class="filter-btn" data-filter="Codigo">Código</button>
-                </div>
-                <div id="portfolio-grid"></div>
-            </div>
-        `,
+    <div class="portfolio-page">
+        <h1>Recursos</h1>
+        <p>Aquí podrás conseguir algunos recursos que hemos diseñado y que puedes usar.</p>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="Todos">Todos</button>
+            <button class="filter-btn" data-filter="Juegos">Juegos</button>
+            <button class="filter-btn" data-filter="Office">Office</button>
+            <button class="filter-btn" data-filter="Codigo">Código</button>
+        </div>
+        <div id="portfolio-grid"></div>
+    </div>
+`
+
                 settings: `
-            <section class="about-section">
-                <h1 class="about-title">Recursos</h1>
-                <div id="recursos-container"></div>
-            </section>
-        `
+    <section class="about-section">
+        <h1 class="about-title">Portafolio</h1>
+        <p>Aquí te muestro algunos de los proyectos que ha desarrollado CodeTrax</p>
+        <div id="recursos-container"></div>
+    </section>
+`
 
     };
     async function loadRecursos() {
