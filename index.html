@@ -1,113 +1,28 @@
 <!DOCTYPE html>
-<!-- =====================================================
-     DECLARACIÓN DEL DOCUMENTO
-     Indica que el archivo utiliza HTML5
-===================================================== -->
-
 <html lang="es">
-<!-- Idioma principal de la página: Español -->
-
 <head>
-
-    <!-- =====================================================
-         CONFIGURACIÓN GENERAL Y METADATOS
-    ===================================================== -->
-
-    <meta charset="UTF-8">
-    <!-- Permite utilizar caracteres especiales:
-         ñ, á, é, í, ó, ú, etc. -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Hace que la página sea adaptable a dispositivos móviles -->
-
-    <title>CodeTrax | WEB</title>
-    <!-- Título que aparece en la pestaña del navegador -->
-
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Conecta la hoja de estilos CSS principal -->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeTrax | WEB</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-    <!-- =====================================================
-         CABECERA PRINCIPAL
-    ===================================================== -->
+    <header class="main-header">
+        <img src="assets/ima/log_codetrax.png" alt="Logo CodeTrax" class="logo">
+    </header>
 
-    <header class="main-header">
+    <main>
+        <div id="content"></div>
+    </main>
 
-        <img src="assets/ima/log_codetrax.png"
-             alt="Logo CodeTrax"
-             class="logo">
-        <!-- Logo de la página -->
+    <nav class="menu" aria-label="Main navigation">
+        <a href="/" class="active" data-section="home"><span>Home</span></a>
+        <a href="/files" data-section="files"><span>Acerca</span></a>
+        <a href="/plans" data-section="plans"><span>Recursos</span></a>
+        <a href="/settings" data-section="settings"><span>Proyecto</span></a>
+    </nav>
 
-    </header>
-
-    <!-- =====================================================
-         CONTENIDO PRINCIPAL
-    ===================================================== -->
-
-    <main>
-
-        <div id="content"></div>
-        <!-- Contenedor vacío.
-             JavaScript insertará aquí el contenido dinámicamente. -->
-
-    </main>
-
-    <!-- =====================================================
-         MENÚ DE NAVEGACIÓN
-    ===================================================== -->
-
-    <nav class="menu" aria-label="Main navigation">
-
-        <!-- ================= HOME ================= -->
-
-        <a href="/"
-           class="active"
-           data-section="home">
-
-            <span>Home</span>
-
-        </a>
-
-        <!-- ================= ACERCA ================= -->
-
-        <a href="/files"
-           data-section="files">
-
-            <span>Acerca</span>
-
-        </a>
-
-        <!-- ================= PROYECTOS ================= -->
-
-        <a href="/plans"
-           data-section="plans">
-
-            <span>Proyectos</span>
-
-        </a>
-
-        <!-- ================= RECURSOS ================= -->
-
-        <a href="/settings"
-           data-section="settings">
-
-            <span>Recursos</span>
-
-        </a>
-
-    </nav>
-
-    <!-- =====================================================
-         ARCHIVOS JAVASCRIPT
-    ===================================================== -->
-
-    <script src="js/main.js"></script>
-    <!-- Archivo JavaScript principal.
-         Controla la interacción y carga dinámica del contenido. -->
-
+    <script src="js/main.js"></script>
 </body>
-
 </html>
