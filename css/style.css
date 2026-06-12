@@ -193,51 +193,45 @@ main {
 /* ... (continúa el resto) ... */
 
 /* =====================================================
-   MENÚ DE NAVEGACIÓN SUPERIOR
+   MENÚ DE NAVEGACIÓN INTEGRADO
 ===================================================== */
 
-/* Borra el absolute, usa flexbox en el header */
 .menu {
-    position: relative; 
     display: flex;
-    flex-wrap: wrap; /* Esto baja los botones a la siguiente línea en móviles */
-    justify-content: center;
+    flex-wrap: nowrap; 
+    align-items: center;
     gap: 10px;
-    margin-top: 20px;
-    width: 100%;
+    background: rgba(0,0,0,.35);
+    padding: 8px;
+    border-radius: 999px;
+    backdrop-filter: blur(15px);
 }
-
-
-/* Enlaces del menú */
 
 .menu a {
-
-    color:white;
-    text-decoration:none;
-
-    padding:12px 18px;
-
-    border-radius:999px;
-
-    transition:.3s;
-
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 999px;
+    transition: .3s;
 }
-
-/* Efecto hover */
 
 .menu a:hover {
-
-    background:rgba(255,255,255,.1);
-
+    background: rgba(255,255,255,.1);
 }
 
-/* Página activa */
-
 .menu a.active {
+    background: white;
+    color: #000;
+}
 
-    background:white;
-    color:#000;
-
+/* Responsividad: Se ajusta cuando el espacio es poco */
+@media (max-width: 768px) {
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin-top: 15px;
+    }
 }
 
 /* =====================================================
