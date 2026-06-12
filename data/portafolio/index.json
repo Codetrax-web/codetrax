@@ -14,10 +14,10 @@
     "categoria": "codigo"
   },
   {
-    "titulo": "Proyecto de Office",
+    "titulo": "Flor_Amarilla",
     "descripcion": "Descripción...",
-    "imagen": "data/portafolio/office/Neon/estrella.jpg",
-    "url": "https://tusitio.com/otro-proyecto",
+    "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
+    "url": "https://codetrax-web.github.io/Flores-Amarillas/",
     "categoria": "codigo"
   }
 ]
