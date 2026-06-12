@@ -1,0 +1,23 @@
+[
+  {
+    "titulo": "Copa Pistón",
+    "descripcion": "Proyecto inspirado en Cars.",
+    "imagen": "data/portafolio/juegos/copa/copa.png",
+    "url": "https://tusitio.com/copa-piston",
+    "categoria": "Juegos"
+  },
+  {
+    "titulo": "Otro Proyecto",
+    "descripcion": "Descripción del segundo proyecto.",
+    "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
+    "url": "https://tusitio.com/otro-proyecto",
+    "categoria": "codigo"
+  },
+  {
+    "titulo": "Proyecto de Office",
+    "descripcion": "Descripción...",
+    "imagen": "data/portafolio/office/Neon/estrella.jpg",
+    "url": "https://tusitio.com/otro-proyecto",
+    "categoria": "Office"
+  }
+]
