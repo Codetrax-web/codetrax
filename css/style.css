@@ -200,31 +200,31 @@ main {
     display: flex;
     flex-wrap: nowrap; 
     align-items: center;
-    gap: 10px;
-    background: rgba(0,0,0,.35);
-    padding: 8px;
-    border-radius: 999px;
+    gap: 4px; /* Reducido para mejor ajuste */
+    background: rgba(0, 0, 0, 0.4); /* Negro semitransparente */
     backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    padding: 6px;
+    border-radius: 14px; /* Forma más moderna que el 999px */
 }
 
 .menu a {
     color: white;
     text-decoration: none;
-    padding: 12px 18px;
-    border-radius: 999px;
-    transition: .3s;
+    padding: 8px 20px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
 }
 
-.menu a:hover {
-    background: rgba(255,255,255,.1);
+.menu a:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .menu a.active {
-    background: white;
-    color: #000;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsividad: Se ajusta cuando el espacio es poco */
 @media (max-width: 768px) {
     .menu {
         flex-wrap: wrap;
