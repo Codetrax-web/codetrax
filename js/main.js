@@ -85,7 +85,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // =====================================
 
     const views = {
-        home: `<h1>Dashboard</h1>${renderSearch()}`,
+        home: `
+    <h1>Dashboard</h1>
+    ${renderSearch()}
+    <div class="social-container">
+        <a href="URL_GITHUB" target="_blank" class="light-button"><button class="bt">...HTML GITHUB...</button></a>
+        <a href="URL_YOUTUBE" target="_blank" class="light-button"><button class="bt">...HTML YOUTUBE...</button></a>
+        <a href="URL_INSTAGRAM" target="_blank" class="light-button"><button class="bt">...HTML INSTAGRAM...</button></a>
+        <a href="URL_TIKTOK" target="_blank" class="light-button"><button class="bt">...HTML TIKTOK...</button></a>
+        <a href="URL_DISCORD" target="_blank" class="light-button"><button class="bt">...HTML DISCORD...</button></a>
+        <a href="URL_WHATSAPP" target="_blank" class="light-button"><button class="bt">...HTML WHATSAPP...</button></a>
+    </div>
+`,
         files: `
     <section class="about-section">
         <h1 class="about-title">Sobre CodeTrax</h1>
