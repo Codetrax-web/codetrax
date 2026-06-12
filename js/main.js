@@ -119,13 +119,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div id="portfolio-grid"></div>
             </div>
         `,
-        settings: `
+                settings: `
             <section class="about-section">
                 <h1 class="about-title">Recursos</h1>
-                <div class="about-card"><p>Próximamente podrás personalizar CodeTrax.</p></div>
+                <div id="recursos-container"></div>
             </section>
         `
+
     };
+    async function loadRecursos() {
+        const container = document.getElementById('recursos-container');
+        if (!container) return;
+
+        try {
+            const response = await fetch('./data/recursos/recursos.json');
+            const recursos = await response.json();
+            
+            container.innerHTML = recursos.map(item => `
+                <div class="about-card">
+                    <h3>${item.titulo}</h3>
+                    <p>${item.descripcion}</p>
+                    <a href="${item.url}" target="_blank">Acceder</a>
+                </div>
+            `).join('');
+        } catch (error) {
+            console.error('Error cargando recursos:', error);
+            container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
+        }
+    }
 
     // =====================================
     // INICIALIZACIÓN Y EVENTOS GLOBALES
@@ -140,9 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.menu a.active')?.classList.remove('active');
             link.classList.add('active');
             
-            const section = link.getAttribute('data-section');
+                        const section = link.getAttribute('data-section');
             mainContent.innerHTML = views[section];
+            
             if (section === 'plans') loadPortfolio();
+            if (section === 'settings') loadRecursos(); // Esta línea es la que falta
+
         });
     });
 
