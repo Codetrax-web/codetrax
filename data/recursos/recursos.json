@@ -1,8 +1,9 @@
 [
-  {
+    {
     "titulo": "Electrum",
     "descripcion": "Descripción...",
-    "url": "https://ejemplo.com",
-    "imagen": "data/recursos/Electrum/ima.png"
+    "imagen": "data/recursos/electrum/ima.png",
+    "url": "https://codetrax-web.github.io/Flores-Amarillas/",
+    "categoria": "web"
   }
 ]
