@@ -1,2 +1,6 @@
-# codetrax-hub
-la casa de codetrax
+# 🧑‍💻 Codetrax hub
+
+La casa de codetrax
+
+## 💎 Creado por
+Damian CV - Codetrax.
