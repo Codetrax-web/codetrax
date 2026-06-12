@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!grid) return;
 
         try {
-            const response = await fetch('data/portafolio/index.json');
+           const response = await fetch('/codetrax-hub/data/portafolio/index.json');
             portfolioProjects = await response.json();
             renderPortfolio('Todos');
             initializeFilters();
