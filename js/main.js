@@ -1,196 +1,138 @@
+// Espera a que todo el contenido HTML haya cargado antes de ejecutar el código
 document.addEventListener('DOMContentLoaded', () => {
-    // Referencia al contenedor principal para inyección de vistas
+
+    // Obtiene el contenedor principal donde se mostrará el contenido dinámico
     const mainContent = document.getElementById('content');
 
-    // =====================================
-    // ESTRUCTURAS DE DATOS Y RENDERIZADO
-    // =====================================
-
-    // Generador de plantilla para el buscador
+    // Definición de la función que genera el campo de búsqueda
     const renderSearch = () => `
         <label class="gt-field">
+            <!-- Contenedor del campo -->
             <span class="gt-input">
+
+                <!-- Símbolo tipo terminal -->
                 <span class="gt-input__prompt">&gt;</span>
+
+                <!-- Campo de entrada de texto -->
                 <input type="text" id="gt-input-target" class="gt-input__control" placeholder="./build/main">
+
             </span>
-        </label>
-    `;
+        </label>`;
 
-    // Almacenamiento local de proyectos
-    let portfolioProjects = [];
-
-    // =====================================
-    // LÓGICA DEL PORTAFOLIO
-    // =====================================
-
-    // Obtiene datos del servidor y renderiza inicialmente
-    async function loadPortfolio() {
-        const grid = document.getElementById('portfolio-grid');
-        if (!grid) return;
-
-        try {
-           const response = await fetch('./data/portafolio/index.json');
-            portfolioProjects = await response.json();
-            renderPortfolio('Todos');
-            initializeFilters();
-        } catch (error) {
-            console.error('Error cargando portafolio:', error);
-            grid.innerHTML = '<p>No se pudieron cargar los proyectos.</p>';
-        }
-    }
-
-    // Filtra y actualiza el DOM de la cuadrícula de proyectos
-    function renderPortfolio(category) {
-        const grid = document.getElementById('portfolio-grid');
-        if (!grid) return;
-
-       let filteredProjects = category !== 'Todos' 
-    ? portfolioProjects.filter(project => project.categoria.toLowerCase() === category.toLowerCase())
-    : portfolioProjects;
-
-        if (filteredProjects.length === 0) {
-            grid.innerHTML = '<p>No hay proyectos disponibles.</p>';
-            return;
-        }
-
-        grid.innerHTML = filteredProjects.map(project => `
-            <div class="project-card">
-                <img src="${project.imagen}" alt="${project.titulo}">
-                <h3>${project.titulo}</h3>
-                <p>${project.descripcion}</p>
-                <a href="${project.url}" target="_blank" class="project-link">
-                    <button class="button">
-                        <div class="blob1"></div>
-                        <div class="blob2"></div>
-                        <div class="inner">Ver Proyecto</div>
-                    </button>
-                </a>
-            </div>
-        `).join('');
-    }
-
-    // Configura listeners para los botones de filtrado
-    function initializeFilters() {
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                renderPortfolio(button.dataset.filter);
-            });
-        });
-    }
-
-    // =====================================
-    // GESTIÓN DE VISTAS (PÁGINAS)
-    // =====================================
-
+    // Objeto que almacena las diferentes vistas o páginas internas
     const views = {
-        home: `<h1>Dashboard</h1>${renderSearch()}`,
-        files: `
-    <section class="about-section">
-        <h1 class="about-title">Sobre CodeTrax</h1>
-        <div class="about-card"><h2>¿Qué es CodeTrax?</h2><p>Crear experiencias...</p></div>
-        <div class="about-card"><h2>Nuestra Misión</h2><p>Crear experiencias...</p></div>
-        <div class="about-card">
-            <h2>Nuestro Equipo</h2>
-            <div class="team-grid">
-                <div class="container">
-                    <div class="card">
-                    <div class="profile-tag">Fundador</div>
-                    <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
-                    <h2>Damian cruz</h2>
-                    <p>Desarrollador prinsipal</p>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-`,
-        plans: `
-    <div class="portfolio-page">
-        <h1>Recursos</h1>
-        <p>Aquí podrás conseguir algunos recursos que hemos diseñado y que puedes usar.</p>
-        <div class="portfolio-filters">
-            <button class="filter-btn active" data-filter="Todos">Todos</button>
-            <button class="filter-btn" data-filter="Juegos">Juegos</button>
-            <button class="filter-btn" data-filter="Office">Office</button>
-            <button class="filter-btn" data-filter="Codigo">Código</button>
-        </div>
-        <div id="portfolio-grid"></div>
-    </div>
-`
 
-                settings: `
-    <section class="about-section">
-        <h1 class="about-title">Portafolio</h1>
-        <p>Aquí te muestro algunos de los proyectos que ha desarrollado CodeTrax</p>
-        <div id="recursos-container"></div>
-    </section>
-`
+        // Vista principal (Dashboard)
+        'home': '<h1>Dashboard</h1>' + renderSearch(),
 
-    };
-    async function loadRecursos() {
-        const container = document.getElementById('recursos-container');
-        if (!container) return;
+        // Vista de información sobre CodeTrax
+        'files': `
+<section class="about-section">
 
-        try {
-            const response = await fetch('./data/recursos/recursos.json');
-            const recursos = await response.json();
-            
-            container.innerHTML = recursos.map(item => `
+    <h1 class="about-title">Sobre CodeTrax</h1>
+
     <div class="about-card">
-        <img src="${item.imagen}" alt="${item.titulo}">
-        <h3>${item.titulo}</h3>
-        <p>${item.descripcion}</p>
-        <a href="${item.url}" target="_blank">
-            <button class="button">
-                <div class="blob1"></div>
-                <div class="blob2"></div>
-                <div class="inner">Visita</div>
-            </button>
-        </a>
+
+        <h2>¿Qué es CodeTrax?</h2>
+
+        <p>
+            CodeTrax es un estudio digital enfocado en el desarrollo de soluciones tecnológicas,
+            diseño web, automatización y proyectos innovadores. Nuestro objetivo es transformar
+            ideas en herramientas funcionales que impulsen el crecimiento de personas, creadores
+            y organizaciones.
+        </p>
+
     </div>
-`).join('');
 
-        } catch (error) {
-            console.error('Error cargando recursos:', error);
-            container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
-        }
-    }
+    <div class="about-card">
 
-    // =====================================
-    // INICIALIZACIÓN Y EVENTOS GLOBALES
-    // =====================================
+        <h2>Nuestra Misión</h2>
 
+        <p>
+            Crear experiencias digitales modernas mediante programación, creatividad e innovación,
+            ofreciendo productos y servicios que generen valor real para la comunidad.
+        </p>
+
+    </div>
+
+    <div class="about-card">
+
+        <h2>Nuestra Visión</h2>
+
+        <p>
+            Convertirnos en una referencia en el desarrollo tecnológico independiente,
+            fomentando el aprendizaje continuo y la creación de proyectos que inspiren
+            a futuras generaciones.
+        </p>
+
+    </div>
+
+    <div class="about-card">
+
+        <h2>Nuestros Valores</h2>
+
+        <p>
+            Innovación • Creatividad • Compromiso • Trabajo en equipo • Aprendizaje continuo
+        </p>
+
+    </div>
+
+</section>
+`,
+    };
+
+    // Carga la vista Home por defecto al iniciar la página
     mainContent.innerHTML = views.home;
+    
+    // =========================
+    // NAVEGACIÓN DINÁMICA
+    // =========================
 
-    // Navegación: cambio de contenido dinámico
+    // Busca todos los enlaces del menú
     document.querySelectorAll('.menu a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.menu a.active')?.classList.remove('active');
-            link.classList.add('active');
-            
-                        const section = link.getAttribute('data-section');
-            mainContent.innerHTML = views[section];
-            
-            if (section === 'plans') loadPortfolio();
-            if (section === 'settings') loadRecursos(); // Esta línea es la que falta
 
+        // Agrega un evento de clic a cada enlace
+        link.addEventListener('click', (e) => {
+
+            // Evita que el navegador cambie de página
+            e.preventDefault();
+
+            // Quita la clase active del enlace actualmente seleccionado
+            document.querySelector('.menu a.active').classList.remove('active');
+
+            // Activa visualmente el enlace seleccionado
+            link.classList.add('active');
+
+            // Cambia el contenido principal según la sección elegida
+            mainContent.innerHTML = views[link.getAttribute('data-section')];
         });
     });
 
-    // Atajo: enfoque rápido al buscador con '/'
+    // =========================
+    // ATAJO DE TECLADO
+    // =========================
+
+    // Escucha las teclas presionadas
     document.addEventListener('keydown', (e) => {
+
+        // Si se presiona la tecla "/"
         if (e.key === '/') {
+
+            // Busca el input de búsqueda
             const input = document.getElementById('gt-input-target');
+
+            // Si existe el input
             if (input) {
+
+                // Evita que aparezca "/" dentro del campo
                 e.preventDefault();
+
+                // Coloca el cursor automáticamente en el input
                 input.focus();
             }
         }
     });
 
-    console.log("CodeTrax inicializado correctamente.");
+    // Mensaje mostrado en la consola al iniciar correctamente
+    console.log("CodeTrax inicializado, Damian. No rompas nada.");
 });
