@@ -134,13 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('./data/recursos/recursos.json');
             const recursos = await response.json();
-            
-            container.innerHTML = recursos.map(item => `
-    <div class="about-card">
+            // Dentro de loadRecursos, cambia tu .map a esto:
+container.innerHTML = recursos.map(item => `
+    <div class="project-card">
         <img src="${item.imagen}" alt="${item.titulo}">
         <h3>${item.titulo}</h3>
         <p>${item.descripcion}</p>
-        <a href="${item.url}" target="_blank">
+        <a href="${item.url}" target="_blank" class="project-link">
             <button class="button">
                 <div class="blob1"></div>
                 <div class="blob2"></div>
@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
     </div>
 `).join('');
+
 
         } catch (error) {
             console.error('Error cargando recursos:', error);
