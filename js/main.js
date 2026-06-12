@@ -89,12 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <h1>Dashboard</h1>
     ${renderSearch()}
     <div class="social-container">
-    <a href="URL_GITHUB" target="_blank" class="neon-button">GitHub</a>
-    <a href="URL_YOUTUBE" target="_blank" class="neon-button">YouTube</a>
-    <a href="URL_INSTAGRAM" target="_blank" class="neon-button">Instagram</a>
+    <a href="https://github.com/Codetrax-web" target="_blank" class="neon-button">GitHub</a>
+    <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="neon-button">YouTube</a>
+    <a href="https://www.instagram.com/damia_ncv" target="_blank" class="neon-button">Instagram</a>
     <a href="URL_TIKTOK" target="_blank" class="neon-button">TikTok</a>
-    <a href="URL_DISCORD" target="_blank" class="neon-button">Discord</a>
-    <a href="URL_WHATSAPP" target="_blank" class="neon-button">WhatsApp</a>
+    <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="neon-button">Discord</a>
+    <a href="https://wa.me/5578526705" target="_blank" class="neon-button">WhatsApp</a>
 </div>
 
 `
