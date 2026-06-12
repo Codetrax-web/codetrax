@@ -203,6 +203,20 @@ container.innerHTML = recursos.map(item => `
             }
         }
     });
+   document.addEventListener('input', (e) => {
+    if (e.target.id === 'gt-input-target') {
+        const searchTerm = e.target.value.toLowerCase();
+        const cards = document.querySelectorAll('.project-card'); 
+
+        // Verificamos si hay tarjetas antes de intentar ocultarlas
+        if (cards.length > 0) {
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                card.style.display = title.includes(searchTerm) ? 'block' : 'none';
+            });
+        }
+    }
+});
 
     console.log("CodeTrax inicializado correctamente.");
 });
