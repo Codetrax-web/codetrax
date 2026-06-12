@@ -85,17 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // =====================================
 
     const views = {
-        home: `
+      home: `
     <h1>Dashboard</h1>
     ${renderSearch()}
     <div class="social-container">
-        <a href="URL_GITHUB" target="_blank" class="light-button"><button class="bt">...HTML GITHUB...</button></a>
-        <a href="URL_YOUTUBE" target="_blank" class="light-button"><button class="bt">...HTML YOUTUBE...</button></a>
-        <a href="URL_INSTAGRAM" target="_blank" class="light-button"><button class="bt">...HTML INSTAGRAM...</button></a>
-        <a href="URL_TIKTOK" target="_blank" class="light-button"><button class="bt">...HTML TIKTOK...</button></a>
-        <a href="URL_DISCORD" target="_blank" class="light-button"><button class="bt">...HTML DISCORD...</button></a>
-        <a href="URL_WHATSAPP" target="_blank" class="light-button"><button class="bt">...HTML WHATSAPP...</button></a>
-    </div>
+        <a href="URL_GITHUB" target="_blank" class="light-button">
+            <button class="bt">
+                <div class="light-holder"><div class="dot"></div><div class="light"></div></div>
+                <div class="button-holder">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.44 9.8 8.21 11.39.6.11.82-.26.82-.57v-2.04c-3.33.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.54-1.52.11-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.76.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.42.36.81 1.09.81 2.22v3.29c0 .32.22.69.82.57C20.57 21.8 24 17.31 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    <p>GitHub</p>
+                </div>
+            </button>
+        </a>
+        </div>
 `,
         files: `
     <section class="about-section">
