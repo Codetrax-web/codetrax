@@ -689,3 +689,22 @@ main {
     display: block;
     margin: 0 auto 15px auto;
 }
+/* =====================================================
+   recursos 
+===================================================== */
+
+#recursos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#recursos-container .about-card {
+    transition: transform 0.3s ease;
+}
+
+#recursos-container .about-card:hover {
+    transform: translateY(-5px);
+}
+
