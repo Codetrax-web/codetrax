@@ -156,7 +156,7 @@ main {
 
 .menu{
 
-    position:flex;
+    position:absolute;
 
     top:30px;
     right:40px;
