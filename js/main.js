@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="button">
                 <div class="blob1"></div>
                 <div class="blob2"></div>
-                <div class="inner">Acceder</div>
+                <div class="inner">Visita</div>
             </button>
         </a>
     </div>
