@@ -136,12 +136,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const recursos = await response.json();
             
             container.innerHTML = recursos.map(item => `
-                <div class="about-card">
-                    <h3>${item.titulo}</h3>
-                    <p>${item.descripcion}</p>
-                    <a href="${item.url}" target="_blank">Acceder</a>
-                </div>
-            `).join('');
+    <div class="about-card">
+        <img src="${item.imagen}" alt="${item.titulo}">
+        <h3>${item.titulo}</h3>
+        <p>${item.descripcion}</p>
+        <a href="${item.url}" target="_blank">
+            <button class="button">
+                <div class="blob1"></div>
+                <div class="blob2"></div>
+                <div class="inner">Acceder</div>
+            </button>
+        </a>
+    </div>
+`).join('');
+
         } catch (error) {
             console.error('Error cargando recursos:', error);
             container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
