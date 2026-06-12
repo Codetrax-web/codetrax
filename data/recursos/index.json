@@ -1,1 +1,8 @@
-z
+[
+  {
+    "titulo": "Electrum",
+    "descripcion": "Descripción...",
+    "url": "https://ejemplo.com",
+    "imagen": "assets/recursos/imagen1.jpg"
+  }
+]
