@@ -196,30 +196,17 @@ main {
    MENÚ DE NAVEGACIÓN SUPERIOR
 ===================================================== */
 
-.menu{
-
-    position:absolute;
-
-    top:30px;
-    right:40px;
-
-    width:auto;
-
-    margin:0;
-    padding:8px;
-
-    display:flex;
-    gap:10px;
-
-    border-radius:999px;
-
-    backdrop-filter:blur(15px);
-
-    background:rgba(0,0,0,.35);
-
-    z-index:1000;
-
+/* Borra el absolute, usa flexbox en el header */
+.menu {
+    position: relative; 
+    display: flex;
+    flex-wrap: wrap; /* Esto baja los botones a la siguiente línea en móviles */
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
 }
+
 
 /* Enlaces del menú */
 
