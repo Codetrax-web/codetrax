@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `,
         settings: `
             <section class="about-section">
-                <h1 class="about-title">Configuración</h1>
+                <h1 class="about-title">Recursos</h1>
                 <div class="about-card"><p>Próximamente podrás personalizar CodeTrax.</p></div>
             </section>
         `
