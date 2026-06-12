@@ -161,6 +161,14 @@ main {
     height: 100px; /* Tamaño reducido */
     transform: scale(0.8); /* Escala más pequeña para que no saturen */
 }
+/* Añade esto a tu CSS para asegurar que el contenedor se expanda */
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
 
 
 /* =====================================================
