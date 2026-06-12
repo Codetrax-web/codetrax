@@ -1,692 +1,84 @@
-/* =====================================================
-   VARIABLES GLOBALES
-   Colores principales utilizados en todo el sitio
-===================================================== */
-
 :root {
-
-    --gt-ink: #ffffff;      /* Color principal del texto */
-    --gt-surface: #1e1e2e; /* Color base para superficies */
-    --gt-blue: #007bff;    /* Azul corporativo */
-    --gt-red: #ff2d55;     /* Rojo corporativo */
-
+    --gt-ink: #ffffff;
+    --gt-surface: #1e1e2e;
+    --gt-blue: #007bff;
+    --gt-red: #ff2d55;
 }
 
-/* =====================================================
-   RESETEO GENERAL
-   Elimina márgenes y paddings por defecto
-===================================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-/* =====================================================
-   CONFIGURACIÓN DEL BODY
-   Contenedor principal de toda la página
-===================================================== */
 
 body {
-
-    min-height:100vh;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    font-family:ui-monospace, monospace;
-
-    background:url('../assets/ima/BANNER.png')
-    no-repeat center center fixed;
-
-    background-size:cover;
-
-    color:var(--gt-ink);
-
-    padding:20px;
-
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: ui-monospace, monospace;
+    background: url('../assets/ima/BANNER.png') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--gt-ink);
+    padding: 20px;
 }
 
-/* =====================================================
-   HEADER / CABECERA
-===================================================== */
-
-.main-header{
-
-    width:100%;
-    max-width:1200px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:20px 0;
-
+.main-header {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
 }
-
-/* Logo principal */
 
 .logo {
-
-    width:90px;
-
+    width: 90px;
 }
-
-/* Título principal */
-
-.main-header h1 {
-
-    font-size:2rem;
-
-}
-
-/* =====================================================
-   CONTENEDOR PRINCIPAL
-===================================================== */
 
 main {
-
-    width:100%;
-    max-width:1200px;
-
+    width: 100%;
+    max-width: 1200px;
 }
 
-/* =====================================================
-   BARRA DE BÚSQUEDA ESTILO TERMINAL
-===================================================== */
-
-.gt-field {
-
-    width:min(500px,100%);
-    display:flex;
-    flex-direction:column;
-
+.menu {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: auto;
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    gap: 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(15px);
+    background: rgba(0,0,0,.35);
+    z-index: 1000;
 }
-
-.gt-input {
-
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    padding:12px 15px;
-
-    border-radius:15px;
-
-    background:rgba(30,30,46,.85);
-
-    border:1px solid rgba(255,255,255,.15);
-
-    backdrop-filter:blur(10px);
-
-}
-
-/* Símbolo o prompt de terminal */
-
-.gt-input__prompt {
-
-    color:#00ff88;
-
-}
-
-/* Campo donde escribe el usuario */
-
-.gt-input__control {
-
-    width:100%;
-
-    border:none;
-    outline:none;
-
-    background:transparent;
-
-    color:white;
-
-    font-family:inherit;
-
-}
-
-/* =====================================================
-   MENÚ DE NAVEGACIÓN SUPERIOR
-===================================================== */
-
-.menu{
-
-    position:absolute;
-
-    top:30px;
-    right:40px;
-
-    width:auto;
-
-    margin:0;
-    padding:8px;
-
-    display:flex;
-    gap:10px;
-
-    border-radius:999px;
-
-    backdrop-filter:blur(15px);
-
-    background:rgba(0,0,0,.35);
-
-    z-index:1000;
-
-}
-
-/* Enlaces del menú */
 
 .menu a {
-
-    color:white;
-    text-decoration:none;
-
-    padding:12px 18px;
-
-    border-radius:999px;
-
-    transition:.3s;
-
+    color: white;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 999px;
+    transition: .3s;
 }
-
-/* Efecto hover */
 
 .menu a:hover {
-
-    background:rgba(255,255,255,.1);
-
+    background: rgba(255,255,255,.1);
 }
-
-/* Página activa */
 
 .menu a.active {
-
-    background:white;
-    color:#000;
-
+    background: white;
+    color: #000;
 }
 
-/* =====================================================
-   SECCIÓN ACERCA DE
-===================================================== */
-
-.about-section {
-
-    max-width:900px;
-    margin:auto;
-
-}
-
-/* Título principal */
-
-.about-title {
-
-    text-align:center;
-    margin-bottom:30px;
-
-}
-
-/* Tarjetas informativas */
-
-.about-card {
-
-    background:rgba(0,0,0,.65);
-
-    backdrop-filter:blur(12px);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    border-radius:20px;
-
-    padding:25px;
-
-    margin-bottom:20px;
-
-}
-
-/* Subtítulos */
-
-.about-card h2 {
-
-    margin-bottom:10px;
-
-}
-
-/* Texto */
-
-.about-card p {
-
-    line-height:1.8;
-    color:#ddd;
-
-}
-
-/* =====================================================
-   PORTAFOLIO
-===================================================== */
-
-.portfolio-page {
-
-    width:100%;
-
-}
-
-.portfolio-page h1 {
-
-    text-align:center;
-    margin-bottom:25px;
-
-}
-
-/* =====================================================
-   FILTROS DEL PORTAFOLIO
-===================================================== */
-
-.portfolio-filters {
-
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-
-    gap:12px;
-
-    margin-bottom:30px;
-
-}
-
-/* Botones de filtro */
-
-.filter-btn {
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.15);
-
-    color:white;
-
-    padding:10px 18px;
-
-    border-radius:999px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    backdrop-filter:blur(10px);
-
-}
-
-.filter-btn:hover {
-
-    transform:translateY(-3px);
-
-}
-
-.filter-btn.active {
-
-    background:linear-gradient(
-        135deg,
-        var(--gt-blue),
-        var(--gt-red)
-    );
-
-    border:none;
-
-}
-
-/* =====================================================
-   GRID DE PROYECTOS
-===================================================== */
-
-#portfolio-grid {
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(320px,1fr));
-
-    gap:25px;
-
-}
-
-/* =====================================================
-   TARJETAS GLASSMORPHISM
-===================================================== */
-
-.project-card {
-
-    position:relative;
-    overflow:hidden;
-
-    background:rgba(15,15,25,.55);
-
-    backdrop-filter:blur(15px);
-
-    border-radius:24px;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    padding:20px;
-
-    transition:.35s;
-
-    box-shadow:
-        0 0 25px rgba(0,120,255,.15),
-        0 0 35px rgba(255,0,0,.08);
-
-}
-
-/* Brillo decorativo azul */
-
-.project-card::before {
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    top:-80px;
-    left:-80px;
-
-    border-radius:50%;
-
-    background:rgba(0,120,255,.25);
-
-    filter:blur(60px);
-
-}
-
-/* Brillo decorativo rojo */
-
-.project-card::after {
-
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    bottom:-80px;
-    right:-80px;
-
-    border-radius:50%;
-
-    background:rgba(255,0,50,.20);
-
-    filter:blur(60px);
-
-}
-
-/* Animación al pasar el mouse */
-
-.project-card:hover {
-
-    transform:translateY(-8px);
-
-    box-shadow:
-        0 0 35px rgba(0,120,255,.35),
-        0 0 45px rgba(255,0,50,.20);
-
-}
-
-/* =====================================================
-   IMAGEN DEL PROYECTO
-===================================================== */
-
-.project-card img {
-
-    width:100%;
-    height:220px;
-
-    object-fit:cover;
-
-    border-radius:18px;
-
-    margin-bottom:15px;
-
-    position:relative;
-    z-index:2;
-
-}
-
-/* =====================================================
-   INFORMACIÓN DEL PROYECTO
-===================================================== */
-
-.project-card h3 {
-
-    position:relative;
-    z-index:2;
-
-    margin-bottom:10px;
-
-}
-
-.project-card p {
-
-    position:relative;
-    z-index:2;
-
-    color:#d6d6d6;
-
-    line-height:1.6;
-
-    margin-bottom:20px;
-
-}
-
-/* =====================================================
-   ENLACES DE PROYECTO
-===================================================== */
-
-.project-link {
-
-    text-decoration:none;
-
-    position:relative;
-    z-index:2;
-
-}
-
-/* =====================================================
-   BOTÓN GLASS REALISM
-===================================================== */
-
-.button {
-
-    cursor:pointer;
-
-    font-size:1rem;
-
-    border-radius:16px;
-
-    border:none;
-
-    padding:2px;
-
-    background:
-    radial-gradient(
-        circle 80px at 80% -10%,
-        #ffffff,
-        #181b1b
-    );
-
-    position:relative;
-
-}
-
-/* Brillo del botón */
-
-.button::after {
-
-    content:"";
-
-    position:absolute;
-
-    width:65%;
-    height:60%;
-
-    border-radius:120px;
-
-    top:0;
-    right:0;
-
-    box-shadow:0 0 20px #ffffff38;
-
-    z-index:-1;
-
-}
-
-/* Efecto luminoso izquierdo */
-
-.blob1 {
-
-    position:absolute;
-
-    width:70px;
-    height:100%;
-
-    border-radius:16px;
-
-    bottom:0;
-    left:0;
-
-    background:
-    radial-gradient(
-        circle 60px at 0% 100%,
-        #3fe9ff,
-        #0000ff80,
-        transparent
-    );
-
-}
-
-/* Efecto luminoso derecho */
-
-.blob2 {
-
-    position:absolute;
-
-    width:80px;
-    height:80px;
-
-    top:-10px;
-    right:-10px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        circle,
-        rgba(255,255,255,.6),
-        transparent 70%
-    );
-
-    filter:blur(12px);
-
-}
-
-/* Interior del botón */
-
-.inner {
-
-    padding:14px 25px;
-
-    border-radius:14px;
-
-    color:white;
-
-    position:relative;
-
-    background:
-    radial-gradient(
-        circle 80px at 80% -50%,
-        #777777,
-        #0f1111
-    );
-
-}
-
-/* =====================================================
-   CONTENIDO DINÁMICO
-===================================================== */
-
-#content{
-
-    margin-top:30px;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.35);
-
-    backdrop-filter:blur(12px);
-
-    border-radius:20px;
-
-}
-
-/* =====================================================
-   EQUIPO
-===================================================== */
-
-.team-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
-    gap:30px;
-
-    justify-items:center;
-
-    margin-top:30px;
-
-}
-
-/* =====================================================
-   CONTENEDOR DE TARJETA 3D
-===================================================== */
-
-.container {
-
-  height: 294px;
-  width: 240px;
-
-  color: white;
-
-  perspective: 800px;
-
-}
-
-/* =====================================================
-   TARJETA ESTÁTICA
-===================================================== */
-
-.card {
-  width: 240px;
-  background: #000;
-  border-radius: 20px;
-  padding: 20px;
-  text-align: center;
-  border-top: 4px solid #ff0000; /* Ese borde superior rojo */
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); /* El resplandor */
-  color: white;
-}
-.team-photo {
-    width: 120px;       /* Tamaño fijo */
-    height: 120px;      /* Tamaño fijo para que sea cuadrada */
-    object-fit: cover;  /* Corta la imagen para que encaje sin deformarse */
-    border-radius: 50%; 
-/* La hace circular */
-    display: block;
-    margin: 0 auto 15px auto;
-}
+.about-section { max-width: 900px; margin: auto; }
+.about-title { text-align: center; margin-bottom: 30px; }
+.about-card { background: rgba(0,0,0,.65); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; padding: 25px; margin-bottom: 20px; }
+.portfolio-page { width: 100%; }
+#portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+.project-card { position: relative; overflow: hidden; background: rgba(15,15,25,.55); backdrop-filter: blur(15px); border-radius: 24px; border: 1px solid rgba(255,255,255,.12); padding: 20px; }
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; justify-items: center; margin-top: 30px; }
+.card { width: 240px; background: #000; border-radius: 20px; padding: 20px; text-align: center; border-top: 4px solid #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); color: white; }
+#recursos-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
