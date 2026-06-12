@@ -149,15 +149,18 @@ main {
     font-family:inherit;
 
 }
-.social-container {
-    display: flex;
-    flex-wrap: wrap; /* Para que bajen si la pantalla es pequeña */
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
+/* ... (código previo) ... */
+
+.gt-input__control {
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:white;
+    font-family:inherit;
 }
 
-/* Colócalo justo debajo de tu barra de búsqueda y antes del menú */
+/* Contenedor de redes sociales */
 .social-container {
     display: flex;
     flex-wrap: wrap;
@@ -186,6 +189,9 @@ main {
     color: #000;
     box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
 }
+
+/* ... (continúa el resto) ... */
+
 /* Añade esto a tu CSS para asegurar que el contenedor se expanda */
 #content {
     display: flex;
