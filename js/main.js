@@ -133,8 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const response = await fetch('./data/recursos/recursos.json');
-            const recursos = await response.json();
-            // Dentro de loadRecursos, cambia tu .map a esto:
+            const recursos = await response.json()
 container.innerHTML = recursos.map(item => `
     <div class="project-card">
         <img src="${item.imagen}" alt="${item.titulo}">
