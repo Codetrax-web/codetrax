@@ -1,21 +1,21 @@
 [
   {
     "titulo": "Copa_Pistón",
-    "descripcion": "Proyecto inspirado en Cars.",
+    "descripcion": "Una edición especial para alguien especial.",
     "imagen": "data/portafolio/juegos/copa/copa.png",
     "url": "https://codetrax-web.github.io/Copa-piston/",
     "categoria": "codigo"
   },
   {
     "titulo": "Orquidea_Azul",
-    "descripcion": "Descripción del segundo proyecto.",
+    "descripcion": "Una hermosa orquídea azul para alguien tan especial como tú. Un detalle único para una persona excepcional.",
     "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
     "url": "https://codetrax-web.github.io/Orquidea-Azul/",
     "categoria": "codigo"
   },
   {
     "titulo": "Flor_Amarilla",
-    "descripcion": "Descripción...",
+    "descripcion": "Un detalle brillante para alguien que ilumina el entorno. Tan especial como quien las recibe.",
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
     "url": "https://codetrax-web.github.io/Flores-Amarillas/",
     "categoria": "codigo"
