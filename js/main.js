@@ -127,7 +127,7 @@ Colaboración</p></div>
         plans: `
             <div class="portfolio-page">
                 <h1>Recursos</h1>
-                <p>Descripción de mis recursos aquí.</p>
+                <p>Un compendio de herramientas, utilidades de oficina y recursos para el desarrollo, junto con el toque divertido necesario para que la tecnología no sea aburrida.</p>
                 <div class="portfolio-filters">
                     <button class="filter-btn active" data-filter="Todos">Todos</button>
                     <button class="filter-btn" data-filter="Juegos">Juegos</button>
@@ -140,7 +140,7 @@ Colaboración</p></div>
                 settings: `
             <section class="about-section">
                 <h1 class="about-title">Portafolio</h1>
-                <p>Descripción de mis recursos aquí.</p>
+                <p>Aquí verás cómo transformo conceptos en código funcional, priorizando siempre la arquitectura y la eficiencia sobre lo superficial.</p>
                 <div id="recursos-container"></div>
             </section>
         `
