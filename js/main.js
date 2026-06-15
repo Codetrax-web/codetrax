@@ -103,7 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
     <section class="about-section">
         <h1 class="about-title">Sobre CodeTrax</h1>
         <div class="about-card"><h2>¿Qué es CodeTrax?</h2><p>En Codetrax ayudamos a que tus ideas digitales dejen de ser solo eso: ideas. Transformamos tu visión en proyectos reales, desde la planificación hasta la ejecución, con soluciones creativas y tecnológicas que funcionan. Nuestro objetivo es que cada proyecto no solo exista, sino que destaque en el mundo digital.</p></div>
-        <div class="about-card"><h2>Nuestra Misión</h2><p>Crear experiencias...</p></div>
+        <div class="about-card"><h2>Nuestra Misión</h2><p>Es simple: que la tecnología trabaje para ti, no al revés.
+Innovación
+Compromiso
+Resultados unicos
+Colaboración</p></div>
         <div class="about-card">
             <h2>Nuestro Equipo</h2>
             <div class="team-grid">
