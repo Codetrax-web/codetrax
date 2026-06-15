@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <a href="https://github.com/Codetrax-web" target="_blank" class="neon-button">GitHub</a>
     <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="neon-button">YouTube</a>
     <a href="https://www.instagram.com/damia_ncv" target="_blank" class="neon-button">Instagram</a>
-    <a href="URL_TIKTOK" target="_blank" class="neon-button">TikTok</a>
+    <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" class="neon-button">TikTok</a>
     <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="neon-button">Discord</a>
     <a href="https://wa.me/5578526705" target="_blank" class="neon-button">WhatsApp</a>
 </div>
