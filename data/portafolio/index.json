@@ -19,5 +19,12 @@
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
     "url": "https://codetrax-web.github.io/Flores-Amarillas/",
     "categoria": "codigo"
-  }
+  },
+  {
+    "titulo": "Certificado_VIP",
+    "descripcion": "Para ese amig@ que le gusta la fiesta.",
+    "imagen": "data/portafolio/codigo/fiesta/vip.png",
+    "url": "https://codetrax-web.github.io/Certificado-fiestero/",
+    "categoria": "codigo"
+  },
 ]
