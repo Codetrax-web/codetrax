@@ -119,6 +119,15 @@ Colaboración</p></div>
                 <p>Desarrollador principal | Codetrax</p>
             </div>
         </div>
+        <div class="team-grid">
+        <div class="container">
+            <div class="card blue">
+                <div class="profile-tag">Socio</div>
+                <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
+                <h2>Tecno 730</h2>
+                <p>Disellador | tecno730</p>
+            </div>
+        </div>
         <div class="container">
             <div class="card green">
                 <div class="profile-tag">Socio</div>
