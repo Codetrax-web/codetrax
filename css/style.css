@@ -69,7 +69,7 @@ body {
 /* Logo principal */
 
 .logo {
-    width: 10px; /* Aumenta el tamaño */
+    width: 500px; /* Aumenta el tamaño */
     height: auto; /* Mantiene la proporción */
     display: block;
 }
