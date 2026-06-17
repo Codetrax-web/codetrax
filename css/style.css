@@ -700,9 +700,12 @@ main {
   border-top: 4px solid #ff0000;
   box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
 }
-
 .card.green {
   border-top: 4px solid #00ff00;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+.card.blue {
+  border-top: 4px solid #7DF9FF;
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
 }
 .team-photo {
