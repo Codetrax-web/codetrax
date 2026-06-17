@@ -112,7 +112,7 @@ Colaboración</p></div>
     <h2>Nuestro Equipo</h2>
     <div class="team-grid">
         <div class="container">
-            <div class="card">
+            <div class="card red">
                 <div class="profile-tag">Fundador</div>
                 <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                 <h2>Damian cruz</h2>
@@ -120,7 +120,7 @@ Colaboración</p></div>
             </div>
         </div>
         <div class="container">
-            <div class="card">
+            <div class="card green">
                 <div class="profile-tag">Socio</div>
                 <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
                 <h2>Miguel Pandares</h2>
