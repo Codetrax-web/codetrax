@@ -69,17 +69,14 @@ body {
 /* Logo principal */
 
 .logo {
-
-    width:200px;
-
+    width: 150px; /* Aumenta el tamaño */
+    height: auto; /* Mantiene la proporción */
+    display: block;
 }
 
-/* Título principal */
-
-.main-header h1 {
-
-    font-size:2rem;
-
+.main-header {
+    /* Asegúrate de que el logo no esté siendo aplastado por el header */
+    flex-shrink: 0; 
 }
 
 /* =====================================================
