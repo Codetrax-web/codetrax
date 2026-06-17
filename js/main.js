@@ -109,25 +109,26 @@ Compromiso
 Resultados unicos
 Colaboración</p></div>
         <div class="about-card">
-            <h2>Nuestro Equipo</h2>
-            <div class="team-grid">
-                <div class="container">
-                    <div class="card">
-                    <div class="profile-tag">Fundador</div>
-                    <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
-                    <h2>Damian cruz</h2>
-                    <p>Desarrollador prinsipal</p>
-                    </div>
-                    <div class="card">
-                    <div class="profile-tag">Socio</div>
-                    <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
-                    <h2>Miguel Pandares</h2>
-                    <p>Desarrollador | Axira studios</p>
-                    </div>
-                    </div>
-                </div>
+    <h2>Nuestro Equipo</h2>
+    <div class="team-grid">
+        <div class="container">
+            <div class="card">
+                <div class="profile-tag">Fundador</div>
+                <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
+                <h2>Damian cruz</h2>
+                <p>Desarrollador principal | Codetrax</p>
             </div>
         </div>
+        <div class="container">
+            <div class="card">
+                <div class="profile-tag">Socio</div>
+                <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
+                <h2>Miguel Pandares</h2>
+                <p>Desarrollador | Axira studios</p>
+            </div>
+        </div>
+    </div>
+</div>
     </section>
 `,
         plans: `
