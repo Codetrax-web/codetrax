@@ -118,6 +118,12 @@ Colaboración</p></div>
                     <h2>Damian cruz</h2>
                     <p>Desarrollador prinsipal</p>
                     </div>
+                    <div class="card">
+                    <div class="profile-tag">Socio</div>
+                    <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
+                    <h2>Miguel Pandares</h2>
+                    <p>Desarrollador | Axira studios</p>
+                    </div>
                     </div>
                 </div>
             </div>
