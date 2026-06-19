@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 contacto: `
     <section class="about-section">
         <h1>Contacto</h1>
-        <div class="about-card">
+        <div class="iframe-container" style="position: relative; width: 100%; overflow: hidden; padding-top: 150%;">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf14qf8De2A7mz5ainwmCZJ6DZXK3BTT4-RPn0YCfWVdZD2yg/viewform?embedded=true" 
                 width="640" height="993" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
         </div>
