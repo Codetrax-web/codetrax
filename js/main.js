@@ -157,7 +157,25 @@ document.addEventListener('DOMContentLoaded', () => {
             <p>Aquí verás cómo transformo conceptos en código funcional, priorizando siempre la arquitectura y la eficiencia sobre lo superficial.</p>
             <div id="recursos-container"></div>
         </section>
-      `
+      `,
+       contacto: `
+        <section class="about-section">
+            <h1>Contacto.</h1>
+            <form id="contact-form" class="about-card">
+                <label>Nombre *</label>
+                <input type="text" name="nombre" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">                
+                <label>Apellido *</label>
+                <input type="text" name="apellido" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">               
+                <label>Email *</label>
+                <input type="email" name="email" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+                
+                <label>Mensaje</label>
+                <textarea name="mensaje" rows="4" style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;"></textarea>
+                
+                <button type="submit" class="button" style="width:100%;">Enviar</button>
+            </form>
+        </section>
+    `
     };
     /* FIN GESTIÓN DE VISTAS */
 
