@@ -158,26 +158,26 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id="recursos-container"></div>
         </section>
       `,
-      contacto: `
+        contacto: `
     <section class="about-section">
         <h1>Contacto.</h1>
-        <form action="https://formspree.io/f/xeewykke" class="about-card" style="display: flex; flex-direction: column; gap: 10px;">
+        <form action="https://formspree.io/f/xeewykke" method="POST" class="about-card">
             <label>Nombre *</label>
-            <input type="text" name="nombre" required style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            <input type="text" name="nombre" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
             
             <label>Apellido *</label>
-            <input type="text" name="apellido" required style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            <input type="text" name="apellido" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
             
             <label>Teléfono</label>
-            <input type="tel" name="telefono" style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            <input type="tel" name="telefono" style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
             
             <label>Email *</label>
-            <input type="email" name="email" required style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            <input type="email" name="email" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
             
             <label>Mensaje</label>
-            <textarea name="mensaje" rows="4" style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;"></textarea>
+            <textarea name="mensaje" rows="4" style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;"></textarea>
             
-            <button type="submit" class="button" style="cursor: pointer; padding: 10px; border-radius: 8px;">Enviar</button>
+            <button type="submit" class="button" style="width:100%;">Enviar</button>
         </form>
     </section>
 `
