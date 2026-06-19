@@ -340,3 +340,8 @@ main {
 #recursos-container .about-card { transition: transform 0.3s ease; }
 #recursos-container .about-card:hover { transform: translateY(-5px); }
 /* FIN RECURSOS */
+.about-section {
+    max-width: 800px; /* O el ancho que prefieras */
+    margin: 0 auto;
+    padding: 20px;
+}
