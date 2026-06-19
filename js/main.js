@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
       contacto: `
     <section class="about-section">
         <h1>Contacto.</h1>
-        <form action="https://formspree.io/f/xeeavyko" method="POST" class="about-card" style="display: flex; flex-direction: column; gap: 10px;">
+        <form action="https://formspree.io/f/xeewykke" class="about-card" style="display: flex; flex-direction: column; gap: 10px;">
             <label>Nombre *</label>
             <input type="text" name="nombre" required style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
             
