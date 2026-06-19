@@ -158,12 +158,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id="recursos-container"></div>
         </section>
       `,
-      contacto: `
+     // Dentro de tu objeto 'views' en main.js:
+contacto: `
     <section class="about-section">
         <h1>Contacto.</h1>
-        <form action="TU_ENDPOINT_AQUI" method="POST" class="about-card">
+        <form action="https://formspree.io/f/xeeavyko" method="POST" class="about-card">
             <label>Nombre *</label>
             <input type="text" name="nombre" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            
             <label>Apellido *</label>
             <input type="text" name="apellido" required style="width:100%; margin-bottom:10px; background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
             
