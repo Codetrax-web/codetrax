@@ -223,18 +223,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.addEventListener('input', (e) => {
-        if (e.target.id === 'gt-input-target') {
-            const searchTerm = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.project-card'); 
+   // Delegación de eventos para el buscador (Reemplazo optimizado)
+document.addEventListener('input', (e) => {
+    if (e.target.id === 'gt-input-target') {
+        const searchTerm = e.target.value.toLowerCase();
+        // Limitamos la búsqueda al contenedor dinámico para evitar conflictos globales
+        const content = document.getElementById('content');
+        const cards = content.querySelectorAll('.project-card'); 
 
-            cards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const desc = card.querySelector('p').textContent.toLowerCase();
-                card.style.display = (title.includes(searchTerm) || desc.includes(searchTerm)) ? 'flex' : 'none';
-            });
-        }
-    });
+        cards.forEach(card => {
+            // Usamos encadenamiento opcional para evitar errores si no encuentra texto
+            const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+            const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+            
+            // Aplicamos el filtrado visual
+            card.style.display = (title.includes(searchTerm) || desc.includes(searchTerm)) 
+                ? 'flex' 
+                : 'none';
+        });
+    }
+});
 
     console.log("CodeTrax inicializado correctamente.");
     /* FIN INICIALIZACIÓN Y EVENTOS GLOBALES */
