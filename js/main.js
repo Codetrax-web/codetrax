@@ -158,13 +158,27 @@ document.addEventListener('DOMContentLoaded', () => {
             <div id="recursos-container"></div>
         </section>
       `,
-contacto: `
+      contacto: `
     <section class="about-section">
-        <h1>Contacto</h1>
-        <div class="iframe-container" style="position: relative; width: 100%; overflow: hidden; padding-top: 150%;">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf14qf8De2A7mz5ainwmCZJ6DZXK3BTT4-RPn0YCfWVdZD2yg/viewform?embedded=true" 
-                width="640" height="993" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-        </div>
+        <h1>Contacto.</h1>
+        <form action="https://formspree.io/f/xeeavyko" method="POST" class="about-card" style="display: flex; flex-direction: column; gap: 10px;">
+            <label>Nombre *</label>
+            <input type="text" name="nombre" required style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            
+            <label>Apellido *</label>
+            <input type="text" name="apellido" required style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            
+            <label>Teléfono</label>
+            <input type="tel" name="telefono" style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            
+            <label>Email *</label>
+            <input type="email" name="email" required style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;">
+            
+            <label>Mensaje</label>
+            <textarea name="mensaje" rows="4" style="background:rgba(0,0,0,0.3); border:1px solid #555; color:white; padding:8px; border-radius:8px;"></textarea>
+            
+            <button type="submit" class="button" style="cursor: pointer; padding: 10px; border-radius: 8px;">Enviar</button>
+        </form>
     </section>
 `
     };
