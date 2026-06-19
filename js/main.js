@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 Contacto.
             </h1>        
             <!-- Formulario conectado a Formspree -->
-            <form action="https://formspree.io/f/xeewykke" style="display: flex; flex-direction: column; gap: 18px;">
+            <form action="https://formspree.io/f/xeewykke" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
                 <div style="display: flex; flex-direction: column; gap: 8px;">
                     <label style="color: rgba(255,255,255,0.8); font-family: sans-serif; font-weight: 600; font-size: 0.95rem;">Nombre</label>
                     <input type="text" name="nombre" required style="width: 100%; background: rgba(51, 65, 85, 0.6); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 12px; border-radius: 10px; font-family: sans-serif; font-size: 1rem; box-sizing: border-box;">
