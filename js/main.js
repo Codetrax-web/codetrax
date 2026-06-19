@@ -223,18 +223,19 @@ container.innerHTML = recursos.map(item => `
             }
         }
     });
-   document.addEventListener('input', (e) => {
+// Delegación de eventos para el buscador
+document.addEventListener('input', (e) => {
     if (e.target.id === 'gt-input-target') {
         const searchTerm = e.target.value.toLowerCase();
+        // Busca en el contexto actual, no asumas que están en el DOM global
         const cards = document.querySelectorAll('.project-card'); 
 
-        // Verificamos si hay tarjetas antes de intentar ocultarlas
-        if (cards.length > 0) {
-            cards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                card.style.display = title.includes(searchTerm) ? 'block' : 'none';
-            });
-        }
+        cards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const desc = card.querySelector('p').textContent.toLowerCase();
+            // Filtrado semántico básico: título o descripción
+            card.style.display = (title.includes(searchTerm) || desc.includes(searchTerm)) ? 'flex' : 'none';
+        });
     }
 });
 
