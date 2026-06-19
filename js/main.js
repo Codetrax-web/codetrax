@@ -160,54 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
       `,
      contacto: `
     <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
-        <div class="glass-container" style="
-            position: relative;
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
-            overflow: hidden;
-        ">
-            <!-- Efectos de brillo de fondo -->
-            <div style="position: absolute; width: 150px; height: 150px; background: rgba(88, 28, 135, 0.5); filter: blur(70px); top: 10%; left: -20px; border-radius: 50%; z-index: -1;"></div>
-            <div style="position: absolute; width: 180px; height: 180px; background: rgba(14, 165, 233, 0.4); filter: blur(70px); top: 30%; right: -30px; border-radius: 50%; z-index: -1;"></div>
-            <h1 style="color: #ffffff; font-family: sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 25px; text-align: left;">
-                Contacto.
-            </h1>        
-            <!-- Formulario conectado a Formspree -->
-            <form action="https://formspree.io/f/xeewykke" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="color: rgba(255,255,255,0.8); font-family: sans-serif; font-weight: 600; font-size: 0.95rem;">Nombre</label>
-                    <input type="text" name="nombre" required style="width: 100%; background: rgba(51, 65, 85, 0.6); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 12px; border-radius: 10px; font-family: sans-serif; font-size: 1rem; box-sizing: border-box;">
+        <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; border: 1px solid rgba(255,255,255,0.1);">
+            <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 20px;">Contacto.</h1>
+            <form action="https://formspree.io/f/xeewykke" method="POST" target="_blank" style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" name="nombre" placeholder="Nombre" required style="flex:1; padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
+                    <input type="text" name="apellido" placeholder="Apellido" required style="flex:1; padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="color: rgba(255,255,255,0.8); font-family: sans-serif; font-weight: 600; font-size: 0.95rem;">Email</label>
-                    <input type="email" name="email" required style="width: 100%; background: rgba(51, 65, 85, 0.6); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 12px; border-radius: 10px; font-family: sans-serif; font-size: 1rem; box-sizing: border-box;">
-                </div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label style="color: rgba(255,255,255,0.8); font-family: sans-serif; font-weight: 600; font-size: 0.95rem;">Mensaje</label>
-                    <textarea name="mensaje" rows="5" required style="width: 100%; background: rgba(51, 65, 85, 0.6); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 12px; border-radius: 10px; font-family: sans-serif; font-size: 1rem; box-sizing: border-box; resize: vertical;"></textarea>
-                </div>
-                <button type="submit" style="
-                    background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
-                    color: white;
-                    border: none;
-                    padding: 14px 20px;
-                    border-radius: 12px;
-                    font-family: sans-serif;
-                    font-size: 1rem;
-                    font-weight: 700;
-                    cursor: pointer;
-                    width: 100%;
-                    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4);
-                    transition: transform 0.2s ease;
-                ">
-                    Enviar
-                </button>
+                <input type="tel" name="telefono" placeholder="Teléfono" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
+                <input type="email" name="email" placeholder="Email" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
+                <textarea name="mensaje" placeholder="Mensaje" rows="4" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;"></textarea>
+                <button type="submit" style="background:linear-gradient(135deg, #a855f7, #3b82f6); color:white; border:none; padding:14px; border-radius:12px; font-weight:bold; cursor:pointer;">Enviar</button>
             </form>
         </div>
     </section>
