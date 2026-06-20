@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </section>
 `,
-         plans: `
+      plans: `
         <div class="portfolio-page">
             <h1>Recursos</h1>
             <p>Un compendio de herramientas, utilidades de oficina y recursos para el desarrollo, junto con el toque divertido necesario para que la tecnología no sea aburrida.</p>
@@ -167,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="filter-btn" data-filter="Codigo">Código</button>
             </div>
             <div id="portfolio-grid"></div>
-        </div> 
-`,
+        </div>
+      `,
       settings: `
         <section class="about-section">
             <h1 class="about-title">Portafolio</h1>
