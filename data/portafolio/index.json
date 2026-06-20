@@ -1,7 +1,7 @@
 [
   {
     "titulo": "Copa_Pistón",
-    "creador": "Damian Cruz"
+    "creador": "Damian Cruz",
     "descripcion": "Una edición especial para alguien especial.",
     "imagen": "data/portafolio/codigo/copa/copa.png",
     "url": "https://codetrax-web.github.io/Copa-piston/",
@@ -9,7 +9,7 @@
   },
   {
     "titulo": "Orquidea_Azul",
-    "creador": "Damian Cruz"
+    "creador": "Damian Cruz",
     "descripcion": "Una hermosa orquídea azul para alguien tan especial como tú. Un detalle único para una persona excepcional.",
     "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
     "url": "https://codetrax-web.github.io/Orquidea-Azul/",
