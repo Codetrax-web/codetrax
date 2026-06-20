@@ -1,6 +1,7 @@
 [
   {
     "titulo": "Copa_Pistón",
+    "creador": "Damian Cruz"
     "descripcion": "Una edición especial para alguien especial.",
     "imagen": "data/portafolio/codigo/copa/copa.png",
     "url": "https://codetrax-web.github.io/Copa-piston/",
@@ -8,6 +9,7 @@
   },
   {
     "titulo": "Orquidea_Azul",
+    "creador": "Damian Cruz"
     "descripcion": "Una hermosa orquídea azul para alguien tan especial como tú. Un detalle único para una persona excepcional.",
     "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
     "url": "https://codetrax-web.github.io/Orquidea-Azul/",
@@ -15,6 +17,7 @@
   },
   {
     "titulo": "Flor_Amarilla",
+    "creador": "Damian Cruz"
     "descripcion": "Un detalle brillante para alguien que ilumina el entorno. Tan especial como quien las recibe.",
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
     "url": "https://codetrax-web.github.io/Flores-Amarillas/",
@@ -22,6 +25,7 @@
   },
   {
     "titulo": "Certificado_VIP",
+    "creador": "Damian Cruz"
     "descripcion": "Para ese amig@ que le gusta la fiesta.",
     "imagen": "data/portafolio/codigo/fiesta/vip.png",
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
