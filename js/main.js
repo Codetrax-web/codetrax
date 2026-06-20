@@ -144,12 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h2>Miguel Pandares</h2>
                     <p>Desarrollador | Axira studios</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://github.com/" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
-                     <a href="https://www.tiktok.com/" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://discord.com/" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                     <a href="https://www.twitch.tv/" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
-                     <a href="https://www.youtube.com/" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+                     <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+                     <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+                     <a href="hatgpt.com" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                     <a href="https://discord.com/invite/SFffG38VFb" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+                     <a href="https://www.twitch.tv/migueltime" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
+                     <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                   </div>
                 </div>
             </div>
