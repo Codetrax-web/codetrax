@@ -117,9 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                     <h2>Damian cruz</h2>
                     <p>Desarrollador principal | Codetrax</p>
-                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
-                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+                       <div class="social-container">
+                        <a href="https://github.com/Codetrax-web" target="_blank" class="neon-button">GitHub</a>
+                        <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="neon-button">YouTube</a>
+                        <a href="https://www.instagram.com/damia_ncv" target="_blank" class="neon-button">Instagram</a>
+                        <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" class="neon-button">TikTok</a>
+                        <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="neon-button">Discord</a>
                     </div>
                 </div>
                 
