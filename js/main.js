@@ -103,12 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <h2>¿Qué es CodeTrax?</h2>
             <p>En Codetrax ayudamos a que tus ideas digitales dejen de ser solo eso: ideas. Transformamos tu visión en proyectos reales, desde la planificación hasta la ejecución, con soluciones creativas y tecnológicas que funcionan.</p>
         </div>
-        
         <div class="about-card">
             <h2>Nuestra Misión</h2>
             <p>Es simple: que la tecnología trabaje para ti. Innovación, Compromiso, Resultados únicos y Colaboración.</p>
         </div>
-
         <div class="about-card">
             <h2>Nuestro Equipo</h2>
             <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
@@ -140,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
                      <a href="https://www.youtube.com/" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                </div>
                 </div>
-
                 <div class="card green">
                     <div class="profile-tag">Socio</div>
                     <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
@@ -158,6 +155,19 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </section>
+`,
+         plans: `
+        <div class="portfolio-page">
+            <h1>Recursos</h1>
+            <p>Un compendio de herramientas, utilidades de oficina y recursos para el desarrollo, junto con el toque divertido necesario para que la tecnología no sea aburrida.</p>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="Todos">Todos</button>
+                <button class="filter-btn" data-filter="Juegos">Juegos</button>
+                <button class="filter-btn" data-filter="Office">Office</button>
+                <button class="filter-btn" data-filter="Codigo">Código</button>
+            </div>
+            <div id="portfolio-grid"></div>
+        </div> 
 `,
       settings: `
         <section class="about-section">
