@@ -17,7 +17,7 @@
   },
   {
     "titulo": "Flor_Amarilla",
-    "creador": "Damian Cruz"
+    "creador": "Damian Cruz",
     "descripcion": "Un detalle brillante para alguien que ilumina el entorno. Tan especial como quien las recibe.",
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
     "url": "https://codetrax-web.github.io/Flores-Amarillas/",
@@ -25,7 +25,7 @@
   },
   {
     "titulo": "Certificado_VIP",
-    "creador": "Damian Cruz"
+    "creador": "Damian Cruz",
     "descripcion": "Para ese amig@ que le gusta la fiesta.",
     "imagen": "data/portafolio/codigo/fiesta/vip.png",
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
