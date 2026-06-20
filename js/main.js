@@ -131,12 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h2>Tecno 730</h2>
                     <p>Diseñador | tecno730</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://github.com/" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
-                     <a href="https://www.tiktok.com/" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://discord.com/" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                     <a href="https://www.twitch.tv/" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
-                     <a href="https://www.youtube.com/" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+                     <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+                     <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                     <a href="https://discord.gg/tbUVxyGU" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+                     <a href="https://www.twitch.tv/tecno730" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
+                     <a href="https://www.youtube.com/@TECNO730" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                </div>
                 </div>
                 <div class="card green">
