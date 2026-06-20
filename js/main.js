@@ -97,60 +97,57 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `,
       files: `
-        <section class="about-section">
-            <h1 class="about-title">Sobre CodeTrax</h1>
-            <div class="about-card"><h2>¿Qué es CodeTrax?</h2><p>En Codetrax ayudamos a que tus ideas digitales dejen de ser solo eso: ideas. Transformamos tu visión en proyectos reales, desde la planificación hasta la ejecución, con soluciones creativas y tecnológicas que funcionan. Nuestro objetivo es que cada proyecto no solo exista, sino que destaque en el mundo digital.</p></div>
-            <div class="about-card"><h2>Nuestra Misión</h2><p>Es simple: que la tecnología trabaje para ti, no al revés.
-            Innovación
-            Compromiso
-            Resultados unicos
-            Colaboración</p></div>
-            <div class="about-card">
-                <h2>Nuestro Equipo</h2>
-                <div class="team-grid">
-                    <div class="container">
-                        <div class="card red">
-                            <div class="profile-tag">Fundador</div>
-                            <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
-                            <h2>Damian cruz</h2>
-                            <p>Desarrollador principal | Codetrax</p>
-                        </div>
+    <section class="about-section">
+        <h1 class="about-title">Sobre CodeTrax</h1>
+        <div class="about-card">
+            <h2>¿Qué es CodeTrax?</h2>
+            <p>En Codetrax ayudamos a que tus ideas digitales dejen de ser solo eso: ideas. Transformamos tu visión en proyectos reales, desde la planificación hasta la ejecución, con soluciones creativas y tecnológicas que funcionan.</p>
+        </div>
+        
+        <div class="about-card">
+            <h2>Nuestra Misión</h2>
+            <p>Es simple: que la tecnología trabaje para ti. Innovación, Compromiso, Resultados únicos y Colaboración.</p>
+        </div>
+
+        <div class="about-card">
+            <h2>Nuestro Equipo</h2>
+            <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="card red">
+                    <div class="profile-tag">Fundador</div>
+                    <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
+                    <h2>Damian cruz</h2>
+                    <p>Desarrollador principal | Codetrax</p>
+                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
+                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
                     </div>
-                    <div class="team-grid">
-                        <div class="container">
-                            <div class="card blue">
-                                <div class="profile-tag">Socio</div>
-                                <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
-                                <h2>Tecno 730</h2>
-                                <p>Disellador | tecno730</p>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="card green">
-                                <div class="profile-tag">Socio</div>
-                                <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
-                                <h2>Miguel Pandares</h2>
-                                <p>Desarrollador | Axira studios</p>
-                            </div>
-                        </div>
+                </div>
+                
+                <div class="card blue">
+                    <div class="profile-tag">Socio</div>
+                    <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
+                    <h2>Tecno 730</h2>
+                    <p>Diseñador | tecno730</p>
+                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
+                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+
+                <div class="card green">
+                    <div class="profile-tag">Socio</div>
+                    <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
+                    <h2>Miguel Pandares</h2>
+                    <p>Desarrollador | Axira studios</p>
+                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
+                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
-        </section>
-      `,
-      plans: `
-        <div class="portfolio-page">
-            <h1>Recursos</h1>
-            <p>Un compendio de herramientas, utilidades de oficina y recursos para el desarrollo, junto con el toque divertido necesario para que la tecnología no sea aburrida.</p>
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="Todos">Todos</button>
-                <button class="filter-btn" data-filter="Juegos">Juegos</button>
-                <button class="filter-btn" data-filter="Office">Office</button>
-                <button class="filter-btn" data-filter="Codigo">Código</button>
-            </div>
-            <div id="portfolio-grid"></div>
         </div>
-      `,
+    </section>
+`,
       settings: `
         <section class="about-section">
             <h1 class="about-title">Portafolio</h1>
