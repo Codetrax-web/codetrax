@@ -16,14 +16,14 @@
     "categoria": "codigo"
   },
   {
-    "titulo": "Flor_Amarilla",
+    "titulo": "Flor_Amarillal",
     "creador": "Damian Cruz",
     "descripcion": "Un detalle brillante para alguien que ilumina el entorno. Tan especial como quien las recibe.",
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
-    "url": "https://codetrax-web.github.io/Flores-Amarillas/",
+    "url": "https://codetrax-web.github.io/Flores-Amarillas",
     "categoria": "codigo"
   },
-  {
+   {
     "titulo": "Certificado_VIP",
     "creador": "Damian Cruz",
     "descripcion": "Para ese amig@ que le gusta la fiesta.",
