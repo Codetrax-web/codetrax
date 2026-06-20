@@ -210,6 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="project-card">
                     <img src="${item.imagen}" alt="${item.titulo}">
                     <h3>${item.titulo}</h3>
+                    <p><strong>Creador:</strong> ${item.creador || 'Desconocido'}</p>
                     <p>${item.descripcion}</p>
                     <a href="${item.url}" target="_blank" class="project-link">
                         <button class="button">
