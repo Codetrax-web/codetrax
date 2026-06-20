@@ -117,13 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                     <h2>Damian cruz</h2>
                     <p>Desarrollador principal | Codetrax</p>
-                       <div class="social-container">
-                        <a href="https://github.com/Codetrax-web" target="_blank" class="neon-button">GitHub</a>
-                        <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="neon-button">YouTube</a>
-                        <a href="https://www.instagram.com/damia_ncv" target="_blank" class="neon-button">Instagram</a>
-                        <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" class="neon-button">TikTok</a>
-                        <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="neon-button">Discord</a>
-                    </div>
+               <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
+                     <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                     <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
+                     <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
+                     <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+               </div>
                 </div>
                 
                 <div class="card blue">
@@ -131,10 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
                     <h2>Tecno 730</h2>
                     <p>Diseñador | tecno730</p>
-                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
-                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                    </div>
+               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+                     <a href="https://github.com/" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+                     <a href="https://www.tiktok.com/" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+                     <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                     <a href="https://discord.com/" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+                     <a href="https://www.twitch.tv/" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
+                     <a href="https://www.youtube.com/" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+               </div>
                 </div>
 
                 <div class="card green">
@@ -142,10 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
                     <h2>Miguel Pandares</h2>
                     <p>Desarrollador | Axira studios</p>
-                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 10px;">
-                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
-                        <a href="#" target="_blank" style="color:white;"><i class="fab fa-linkedin"></i></a>
-                    </div>
+               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+                     <a href="https://github.com/" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+                     <a href="https://www.tiktok.com/" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+                     <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                     <a href="https://discord.com/" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+                     <a href="https://www.twitch.tv/" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
+                     <a href="https://www.youtube.com/" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+                  </div>
                 </div>
             </div>
         </div>
