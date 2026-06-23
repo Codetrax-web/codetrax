@@ -8,15 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =====================================================
        ESTRUCTURAS DE DATOS Y RENDERIZADO
     ===================================================== */
-    const renderSearch = () => `
-        <label class="gt-field">
-            <span class="gt-input">
-                <span class="gt-input__prompt">&gt;</span>
-                <input type="text" id="gt-input-target" class="gt-input__control" placeholder="./build/main">
-            </span>
-        </label>
-    `;
-
+   const renderSearch = () => `
+    <div class="gt-field">
+        <span class="gt-input">
+            <span class="gt-input__prompt">&gt;</span>
+            <input type="text" id="gt-input-target" class="gt-input__control" placeholder="Buscar proyectos...">
+        </span>
+        <div id="search-results-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin-top:20px;"></div>
+    </div>
+`;
     let portfolioProjects = [];
     /* FIN ESTRUCTURAS DE DATOS */
 
@@ -78,6 +78,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+   document.addEventListener('input', (e) => {
+    if (e.target.id === 'gt-input-target') {
+        const term = e.target.value.toLowerCase();
+        const resultsGrid = document.getElementById('search-results-grid');
+        
+        if (!term) { resultsGrid.innerHTML = ''; return; }
+
+        const filtered = portfolioProjects.filter(p => 
+            p.titulo.toLowerCase().includes(term) || p.descripcion.toLowerCase().includes(term)
+        );
+
+        resultsGrid.innerHTML = filtered.map(p => `
+            <div class="project-card">
+                <h3>${p.titulo}</h3>
+                <p>${p.descripcion}</p>
+            </div>
+        `).join('');
+    }
+});
     /* FIN LÓGICA DEL PORTAFOLIO */
 
     /* =====================================================
@@ -88,14 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
       home: `
         <h1>Dashboard</h1>
         ${renderSearch()}
-        <div class="social-container">
-            <a href="https://github.com/Codetrax-web" target="_blank" class="neon-button">GitHub</a>
-            <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="neon-button">YouTube</a>
-            <a href="https://www.instagram.com/damia_ncv" target="_blank" class="neon-button">Instagram</a>
-            <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" class="neon-button">TikTok</a>
-            <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="neon-button">Discord</a>
-            <a href="https://wa.me/5578526705" target="_blank" class="neon-button">WhatsApp</a>
-        </div>
       `,
       files: `
     <section class="about-section">
