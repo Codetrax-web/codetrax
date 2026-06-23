@@ -100,17 +100,12 @@ document.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         const resultsGrid = document.getElementById('search-results-grid');
         
+        // Verifica si los datos ya fueron cargados
+        const data = window.searchableData || [];
+
         if (!term) { resultsGrid.innerHTML = ''; return; }
 
-        // Consolidamos la data al momento de buscar
-        const searchableData = [
-            ...portfolioProjects,
-            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "#" },
-            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
-            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
-        ];
-
-        const filtered = searchableData.filter(p => 
+        const filtered = data.filter(p => 
             p.titulo.toLowerCase().includes(term) || 
             (p.descripcion && p.descripcion.toLowerCase().includes(term))
         );
