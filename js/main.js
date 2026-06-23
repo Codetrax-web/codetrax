@@ -31,19 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
        Carga datos externos y gestiona filtros
     ===================================================== */
     async function loadPortfolio() {
-        const grid = document.getElementById('portfolio-grid');
-        if (!grid) return;
+    const grid = document.getElementById('portfolio-grid');
+    if (!grid) return;
 
-        try {
-           const response = await fetch('./data/portafolio/index.json');
-            portfolioProjects = await response.json();
-            renderPortfolio('Todos');
-            initializeFilters();
-        } catch (error) {
-            console.error('Error cargando portafolio:', error);
-            grid.innerHTML = '<p>No se pudieron cargar los proyectos.</p>';
-        }
+    try {
+        const response = await fetch('./data/portafolio/index.json');
+        portfolioProjects = await response.json();
+        
+        // --- AQUÍ ESTÁ EL CAMBIO ---
+        // Debes refrescar la información que el buscador utiliza
+        window.searchableData = [
+            ...portfolioProjects,
+            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "#" },
+            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
+            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
+        ];
+        // ---------------------------
+
+        renderPortfolio('Todos');
+        initializeFilters();
+    } catch (error) {
+        console.error('Error cargando portafolio:', error);
+        grid.innerHTML = '<p>No se pudieron cargar los proyectos.</p>';
     }
+}
 
     function renderPortfolio(category) {
         const grid = document.getElementById('portfolio-grid');
