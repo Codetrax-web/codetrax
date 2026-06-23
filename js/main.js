@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
 `;
     let portfolioProjects = [];
     /* FIN ESTRUCTURAS DE DATOS */
+   const searchableData = [
+    ...portfolioProjects,
+    { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax" },
+    { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
+    { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" }
+];
 
     /* =====================================================
        LÓGICA DEL PORTAFOLIO
@@ -78,18 +84,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-  // Este bloque debe quedar fuera de las funciones, directo en el evento principal
 document.addEventListener('input', (e) => {
     if (e.target.id === 'gt-input-target') {
         const term = e.target.value.toLowerCase();
         const resultsGrid = document.getElementById('search-results-grid');
         
-        if (!term) { 
-            resultsGrid.innerHTML = ''; 
-            return; 
-        }
+        if (!term) { resultsGrid.innerHTML = ''; return; }
 
-        const filtered = portfolioProjects.filter(p => 
+        // Consolidamos la data al momento de buscar
+        const searchableData = [
+            ...portfolioProjects,
+            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "#" },
+            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
+            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
+        ];
+
+        const filtered = searchableData.filter(p => 
             p.titulo.toLowerCase().includes(term) || 
             (p.descripcion && p.descripcion.toLowerCase().includes(term))
         );
@@ -101,9 +111,7 @@ document.addEventListener('input', (e) => {
                 <p>${p.descripcion}</p>
                 <a href="${p.url}" target="_blank" class="project-link">
                     <button class="button">
-                        <div class="blob1"></div>
-                        <div class="blob2"></div>
-                        <div class="inner">Ver Proyecto</div>
+                        <div class="inner">Ver Perfil/Proyecto</div>
                     </button>
                 </a>
             </div>
@@ -283,28 +291,7 @@ document.addEventListener('input', (e) => {
             }
         }
     });
-
-   // Delegación de eventos para el buscador (Reemplazo optimizado)
-document.addEventListener('input', (e) => {
-    if (e.target.id === 'gt-input-target') {
-        const searchTerm = e.target.value.toLowerCase();
-        // Limitamos la búsqueda al contenedor dinámico para evitar conflictos globales
-        const content = document.getElementById('content');
-        const cards = content.querySelectorAll('.project-card'); 
-
-        cards.forEach(card => {
-            // Usamos encadenamiento opcional para evitar errores si no encuentra texto
-            const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
-            const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
-            
-            // Aplicamos el filtrado visual
-            card.style.display = (title.includes(searchTerm) || desc.includes(searchTerm)) 
-                ? 'flex' 
-                : 'none';
-        });
-    }
-});
-
+   
     console.log("CodeTrax inicializado correctamente.");
     /* FIN INICIALIZACIÓN Y EVENTOS GLOBALES */
 });
