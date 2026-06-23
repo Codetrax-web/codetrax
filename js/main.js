@@ -97,25 +97,23 @@ document.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
         const resultsGrid = document.getElementById('search-results-grid');
         
-        // Verifica si los datos ya fueron cargados
-        const data = window.searchableData || [];
+        if (!term || !window.searchableData) { 
+            if (resultsGrid) resultsGrid.innerHTML = ''; 
+            return; 
+        }
 
-        if (!term) { resultsGrid.innerHTML = ''; return; }
-
-        const filtered = data.filter(p => 
-            p.titulo.toLowerCase().includes(term) || 
+        const filtered = window.searchableData.filter(p => 
+            p.titulo?.toLowerCase().includes(term) || 
             (p.descripcion && p.descripcion.toLowerCase().includes(term))
         );
 
         resultsGrid.innerHTML = filtered.map(p => `
             <div class="project-card">
-                <img src="${p.imagen}" alt="${p.titulo}">
+                <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
                 <h3>${p.titulo}</h3>
                 <p>${p.descripcion}</p>
                 <a href="${p.url}" target="_blank" class="project-link">
-                    <button class="button">
-                        <div class="inner">Ver Perfil/Proyecto</div>
-                    </button>
+                    <button class="button"><div class="inner">Ver</div></button>
                 </a>
             </div>
         `).join('');
