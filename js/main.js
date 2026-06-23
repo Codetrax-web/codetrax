@@ -38,15 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch('./data/portafolio/index.json');
         portfolioProjects = await response.json();
         
-        // --- AQUÍ ESTÁ EL CAMBIO ---
-        // Debes refrescar la información que el buscador utiliza
+        // Refrescamos la fuente de datos global
         window.searchableData = [
             ...portfolioProjects,
-            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "#" },
-            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
-            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
+            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://www.instagram.com/damia_ncv" },
+            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://www.youtube.com/@TECNO730" },
+            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://www.twitch.tv/migueltime" }
         ];
-        // ---------------------------
 
         renderPortfolio('Todos');
         initializeFilters();
@@ -55,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = '<p>No se pudieron cargar los proyectos.</p>';
     }
 }
-
     function renderPortfolio(category) {
         const grid = document.getElementById('portfolio-grid');
         if (!grid) return;
