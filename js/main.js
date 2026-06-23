@@ -78,31 +78,36 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-   document.addEventListener('input', (e) => {
+  // Este bloque debe quedar fuera de las funciones, directo en el evento principal
+document.addEventListener('input', (e) => {
     if (e.target.id === 'gt-input-target') {
         const term = e.target.value.toLowerCase();
         const resultsGrid = document.getElementById('search-results-grid');
         
-        if (!term) { resultsGrid.innerHTML = ''; return; }
+        if (!term) { 
+            resultsGrid.innerHTML = ''; 
+            return; 
+        }
 
         const filtered = portfolioProjects.filter(p => 
-            p.titulo.toLowerCase().includes(term) || p.descripcion.toLowerCase().includes(term)
+            p.titulo.toLowerCase().includes(term) || 
+            (p.descripcion && p.descripcion.toLowerCase().includes(term))
         );
 
         resultsGrid.innerHTML = filtered.map(p => `
-    <div class="project-card">
-        <img src="${p.imagen}" alt="${p.titulo}">
-        <h3>${p.titulo}</h3>
-        <p>${p.descripcion}</p>
-        <a href="${p.url}" target="_blank" class="project-link">
-            <button class="button">
-                <div class="blob1"></div>
-                <div class="blob2"></div>
-                <div class="inner">Ver Proyecto</div>
-            </button>
-        </a>
-    </div>
-`).join('');
+            <div class="project-card">
+                <img src="${p.imagen}" alt="${p.titulo}">
+                <h3>${p.titulo}</h3>
+                <p>${p.descripcion}</p>
+                <a href="${p.url}" target="_blank" class="project-link">
+                    <button class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">Ver Proyecto</div>
+                    </button>
+                </a>
+            </div>
+        `).join('');
     }
 });
     /* FIN LÓGICA DEL PORTAFOLIO */
