@@ -32,27 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
        LÓGICA DEL PORTAFOLIO
        Carga datos externos y gestiona filtros
     ===================================================== */
-    async function loadPortfolio() {
-    const grid = document.getElementById('portfolio-grid');
-    if (!grid) return;
-
+   async function loadPortfolio() {
     try {
-        const response = await fetch('./data/portafolio/index.json');
-        portfolioProjects = await response.json();
+        // Carga ambos archivos en paralelo para optimizar
+        const [portafolioRes, recursosRes] = await Promise.all([
+            fetch('./data/portafolio/index.json'),
+            fetch('./data/recursos/recursos.json')
+        ]);
         
-        // Refrescamos la fuente de datos global
+        const portafolioData = await portafolioRes.json();
+        const recursosData = await recursosRes.json();
+        
+        portfolioProjects = portafolioData; // Para el renderizado normal
+
+        // Fusiona ambos para el buscador, incluyendo al equipo
         window.searchableData = [
-            ...portfolioProjects,
-            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://www.instagram.com/damia_ncv" },
-            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://www.youtube.com/@TECNO730" },
-            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://www.twitch.tv/migueltime" }
+            ...portafolioData,
+            ...recursosData,
+            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "#" },
+            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
+            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
         ];
 
         renderPortfolio('Todos');
         initializeFilters();
     } catch (error) {
-        console.error('Error cargando portafolio:', error);
-        grid.innerHTML = '<p>No se pudieron cargar los proyectos.</p>';
+        console.error('Error cargando datos:', error);
     }
 }
     function renderPortfolio(category) {
