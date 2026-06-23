@@ -90,11 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         resultsGrid.innerHTML = filtered.map(p => `
-            <div class="project-card">
-                <h3>${p.titulo}</h3>
-                <p>${p.descripcion}</p>
-            </div>
-        `).join('');
+    <div class="project-card">
+        <img src="${p.imagen}" alt="${p.titulo}">
+        <h3>${p.titulo}</h3>
+        <p>${p.descripcion}</p>
+        <a href="${p.url}" target="_blank" class="project-link">
+            <button class="button">
+                <div class="blob1"></div>
+                <div class="blob2"></div>
+                <div class="inner">Ver Proyecto</div>
+            </button>
+        </a>
+    </div>
+`).join('');
     }
 });
     /* FIN LÓGICA DEL PORTAFOLIO */
