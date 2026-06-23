@@ -3,6 +3,8 @@
    Espera a que el HTML cargue para ejecutar la lógica
 ===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
+   loadPortfolio().catch(err => console.error("Datos iniciales no disponibles:", err));
+   console.log("CodeTrax inicializado correctamente.");
     const mainContent = document.getElementById('content');
 
     /* =====================================================
@@ -92,11 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-document.addEventListener('input', (e) => {
-    if (e.target.id === 'gt-input-target') {
-        const term = e.target.value.toLowerCase();
-        const resultsGrid = document.getElementById('search-results-grid');
+      document.addEventListener('input', (e) => {
+          if (e.target.id === 'gt-input-target') {
+           const term = e.target.value.toLowerCase();
+           const resultsGrid = document.getElementById('search-results-grid');
         
+        // Si no hay datos, no hace nada
         if (!term || !window.searchableData) { 
             if (resultsGrid) resultsGrid.innerHTML = ''; 
             return; 
