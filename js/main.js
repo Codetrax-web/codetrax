@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.searchableData = [
             ...portafolioData,
             ...recursosData,
-            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "#" },
+            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
             { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
             { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
         ];
