@@ -38,5 +38,13 @@
     "imagen": "data/portafolio/codigo/riego/riego.png",
     "url": "https://www.mediafire.com/file/dgoz0tdo7boirw8/Sistema_de_Riego.ino/file",
     "categoria": "codigo"
+  },
+  {
+    "titulo": "Grua_con_Joystic",
+    "creador": "Damian Cruz",
+    "descripcion": "grua simple construido con arduino uno.",
+    "imagen": "data/portafolio/codigo/GRUAPRUEVA1/grua.png",
+    "url": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file",
+    "categoria": "codigo"
   }
 ]
