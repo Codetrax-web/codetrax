@@ -2,7 +2,7 @@
   {
     "titulo": "Copa_Pistón",
     "creador": "Damian Cruz",
-    "descripcion": "Una edición especial para alguien especial.",
+    "descripcion": "Algunos trofeos representan más que una victoria.Este proyecto fue creado como una experiencia visual inspirada en la legendaria Copa Pistón, símbolo de esfuerzo, perseverancia y pasión por alcanzar los sueños. Cada detalle, animación y efecto busca transmitir la emoción de cruzar la meta después de una gran carrera, celebrando el valor de nunca rendirse y seguir acelerando hacia nuevas metas.",
     "imagen": "data/portafolio/codigo/copa/copa.png",
     "url": "https://codetrax-web.github.io/Copa-piston/",
     "categoria": "codigo"
@@ -10,7 +10,7 @@
   {
     "titulo": "Orquidea_Azul",
     "creador": "Damian Cruz",
-    "descripcion": "Una hermosa orquídea azul para alguien tan especial como tú. Un detalle único para una persona excepcional.",
+    "descripcion": "La belleza de lo imposible. Las orquídeas azules son una rareza de la naturaleza y simbolizan exclusividad, admiración y misterio. Este proyecto busca capturar esa esencia mediante una experiencia visual envolvente. Cada elemento fue diseñado para transmitir elegancia y serenidad a través de tonos azules y animaciones delicadas.",
     "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
     "url": "https://codetrax-web.github.io/Orquidea-Azul/",
     "categoria": "codigo"
@@ -18,7 +18,7 @@
   {
     "titulo": "Flor_Amarillal",
     "creador": "Damian Cruz",
-    "descripcion": "Un detalle brillante para alguien que ilumina el entorno. Tan especial como quien las recibe.",
+    "descripcion": "Algunas flores no necesitan palabras. Este proyecto fue creado como una experiencia visual inspirada en el simbolismo de las flores amarillas: amistad, alegría, esperanza y momentos especiales compartidos. Cada animación busca transmitir la sensación de recibir un ramo de flores que nunca se marchita.",
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
     "url": "https://codetrax-web.github.io/Flores-Amarillas",
     "categoria": "codigo"
@@ -43,7 +43,7 @@
     "titulo": "Grua_con_Joystic",
     "creador": "Damian Cruz",
     "descripcion": "grua simple construido con arduino uno.",
-    "imagen": "data/portafolio/codigo/grua/grua.png",
+    "imagen": "data/portafolio/codigo/grua/pro.png",
     "url": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file",
     "categoria": "codigo"
   }
