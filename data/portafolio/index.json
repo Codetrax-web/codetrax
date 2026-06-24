@@ -30,5 +30,13 @@
     "imagen": "data/portafolio/codigo/fiesta/vip.png",
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
     "categoria": "codigo"
+  },
+   {
+    "titulo": "Sistema_de_Riego",
+    "creador": "Damian Cruz",
+    "descripcion": "sistema de riego construido con arduino uno.",
+    "imagen": "data/portafolio/codigo/riego/riego.png",
+    "url": "https://codetrax-web.github.io/Certificado-fiestero/",
+    "categoria": "codigo"
   }
 ]
