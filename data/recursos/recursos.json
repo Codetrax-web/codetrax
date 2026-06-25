@@ -19,7 +19,7 @@
     "titulo": "Wall-e",
     "creador": "Damian Cruz",
     "descripcion": "Desde la planificasion, disello y creacion de este robot.",
-    "imagen": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
+    "imagen": "data/recursos/wall/wal.png",
     "url": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
     "categoria": "Mecatronica"
   }
