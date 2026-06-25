@@ -14,5 +14,13 @@
     "imagen": "data/recursos/fuc/ima.png",
     "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
     "categoria": "canal"
+  },
+  {
+    "titulo": "Wall-e",
+    "creador": "Damian Cruz",
+    "descripcion": "Desde la planificasion, disello y creacion de este robot.",
+    "imagen": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
+    "url": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
+    "categoria": "Mecatronica"
   }
 ]
