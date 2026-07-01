@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
                </div>
                 </div>
 
-                <div class="card yellou">
+                <div class="card yellow">
                     <div class="profile-tag">Socio: Mexico</div>
                     <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
                     <h2>Ricardo</h2>
