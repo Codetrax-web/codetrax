@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.searchableData = [
             ...portafolioData,
             ...recursosData,
-            { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
+            { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
             { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
-            { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
-            { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
+            { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
+            { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
         ];
 
         renderPortfolio('Todos');
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
 
                 <div class="card blue">
-                    <div class="profile-tag">Socio</div>
+                    <div class="profile-tag">Socio: Venezuela</div>
                     <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
                     <h2>Tecno 730</h2>
                     <p>Diseñador | tecno730</p>
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 
                 <div class="card green">
-                    <div class="profile-tag">Socio</div>
+                    <div class="profile-tag">Socio: Venezuela</div>
                     <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
                     <h2>Miguel Pandares</h2>
                     <p>Desarrollador | Axira studios</p>
@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="filter-btn" data-filter="Juegos">Juegos</button>
                 <button class="filter-btn" data-filter="Office">Office</button>
                 <button class="filter-btn" data-filter="Codigo">Código</button>
+                <button class="filter-btn" data-filter="Robotica">Robotica</button>
             </div>
             <div id="portfolio-grid"></div>
         </div>
