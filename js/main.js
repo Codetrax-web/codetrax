@@ -144,12 +144,30 @@ document.addEventListener('DOMContentLoaded', () => {
     <section class="about-section">
         <h1 class="about-title">Sobre CodeTrax</h1>
         <div class="about-card">
-            <h2>¿Qué es CodeTrax?</h2>
-            <p>En Codetrax ayudamos a que tus ideas digitales dejen de ser solo eso: ideas. Transformamos tu visión en proyectos reales, desde la planificación hasta la ejecución, con soluciones creativas y tecnológicas que funcionan.</p>
+            <h2>01 // ¿Qué es CodeTrax?</h2>
+            <p>En CodeTrax transformamos conceptos abstractos en infraestructura digital de alto rendimiento. Somos una agencia de desarrollo especializada en materializar ideas complejas mediante código limpio, interfaces avanzadas y soluciones tecnológicas reales que garantizan un despliegue impecable en el mercado.</p>
         </div>
         <div class="about-card">
-            <h2>Nuestra Misión</h2>
-            <p>Es simple: que la tecnología trabaje para ti. Innovación, Compromiso, Resultados únicos y Colaboración.</p>
+            <h2>02 // Servicios / Qué ofrecemos:</h2>
+            <p>Nuestra metodología se ejecuta en un ciclo cerrado de cuatro fases:</p>
+            <p>1° [ANÁLISIS] Evaluamos los requerimientos técnicos y estructuramos la lógica del proyecto.</p>
+            <p>2° [DESARROLLO] Traducimos la arquitectura planificada en código limpio y funcional.</p>
+            <p>3° [OPTIMIZACIÓN] Sometemos el sistema a pruebas rigurosas de rendimiento y diseño responsivo.</p>
+            <p>4° [DESPLIEGUE] Lanzamos la plataforma oficialmente al entorno de producción, lista para operar.</p>
+        </div>
+        <div class="about-card">
+            <h2>04 // Filosofía [Misión y Valores]:</h2>
+            <p>Misión: Desarrollar ingeniería digital que trabaje para ti. Elevamos el estándar técnico para que la tecnología no sea un obstáculo, sino tu mayor ventaja competitiva.</p>
+            <p>Valores:</p>
+            <p>+ Precisión</p>
+            <p>+ Innovación</p>
+            <p>+ Compromiso</p>
+        </div>
+        <div class="about-card">
+            <h2>03 // Metodología / Cómo trabajamos:</h2>
+            <p> Desarrollo Digital: Apps, plataformas y herramientas funcionales</p>
+            <p> Consultoría de Proyectos: Planificamos y estructuramos tu proyecto para que sea viable, escalable y efectivo.</p>
+            <p> Diseño y Experiencia: Cada proyecto se entrega con estética, usabilidad y funcionalidad optimizadas.</p>
         </div>
         <div class="about-card">
             <h2>Nuestro Equipo</h2>
