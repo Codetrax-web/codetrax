@@ -37,7 +37,7 @@
     "descripcion": "Domótica básica. Automatización eficiente controlada por Arduino.",
     "imagen": "data/portafolio/codigo/riego/riego.png",
     "url": "https://www.mediafire.com/file/dgoz0tdo7boirw8/Sistema_de_Riego.ino/file",
-    "categoria": "codigo"
+    "categoria": "robotica"
   },
   {
     "titulo": "Grua_con_Joystic",
@@ -45,6 +45,6 @@
     "descripcion": "Ingeniería al mando. Control preciso mediante hardware simplificado.",
     "imagen": "data/portafolio/codigo/grua/pro.png",
     "url": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file",
-    "categoria": "codigo"
+    "categoria": "robotica"
   }
 ]
