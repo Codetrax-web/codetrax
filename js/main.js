@@ -172,8 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="about-card">
             <h2>05 // Infraestructura [Equipo]:</h2>
             <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            
                 <div class="card red">
-                    <div class="profile-tag">Fundador</div>
+                    <div class="profile-tag">Fundador: Mexico</div>
                     <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                     <h2>Damian cruz</h2>
                     <p>Desarrollador principal | Codetrax</p>
@@ -185,7 +186,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                </div>
                 </div>
-                
+
+                <div class="card yellou">
+                    <div class="profile-tag">Socio: Mexico</div>
+                    <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
+                    <h2>Ricardo</h2>
+                    <p>Desarrollador | Codetrax</p>
+               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+
+               
+               </div>
+                </div>
+
                 <div class="card blue">
                     <div class="profile-tag">Socio</div>
                     <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
@@ -199,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                      <a href="https://www.youtube.com/@TECNO730" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                </div>
                 </div>
+                
                 <div class="card green">
                     <div class="profile-tag">Socio</div>
                     <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
