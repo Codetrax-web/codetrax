@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       plans: `
         <div class="portfolio-page">
             <h1>Recursos</h1>
-            <p>Un compendio de herramientas, utilidades de oficina y recursos para el desarrollo, junto con el toque divertido necesario para que la tecnología no sea aburrida.</p>
+            <p>Un ecosistema integral de herramientas avanzadas, utilidades de optimización y recursos de desarrollo de alto rendimiento. Si los sistemas base no se adaptan por completo a la arquitectura de tu proyecto, puedes solicitar una personalización exclusiva a la medida de tus necesidades técnicas.</p>
             <div class="portfolio-filters">
                 <button class="filter-btn active" data-filter="Todos">Todos</button>
                 <button class="filter-btn" data-filter="Juegos">Juegos</button>
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
       settings: `
         <section class="about-section">
             <h1 class="about-title">Portafolio</h1>
-            <p>Aquí verás cómo transformo conceptos en código funcional, priorizando siempre la arquitectura y la eficiencia sobre lo superficial.</p>
+            <p>Aquí se despliega la evidencia de nuestra capacidad técnica. Descubre cómo transformamos conceptos complejos en infraestructura digital funcional, priorizando la arquitectura limpia, la velocidad de respuesta y la eficiencia del sistema sobre lo superficial.</p>
             <div id="recursos-container"></div>
         </section>
       `,
