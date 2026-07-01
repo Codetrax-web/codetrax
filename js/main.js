@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
    const searchableData = [
     ...portfolioProjects,
     { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax" },
+    { titulo: "Ricardo", descripcion: "Socio, Desarrollador | Codetrax" },
     { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
     { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" }
 ];
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ...portafolioData,
             ...recursosData,
             { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
+            { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
             { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "#" },
             { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "#" }
         ];
