@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <h1>Dashboard</h1>
           ${renderSearch()}
           <div id="search-results-grid"></div> 
-          <div class="social-container">...</div>
+          <div class="social-container">Buscando...</div>
          `,
       files: `
     <section class="about-section">
