@@ -81,6 +81,12 @@ body {
     height: auto;
     display: block;
 }
+.logo-header {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
 /* FIN HEADER */
 
