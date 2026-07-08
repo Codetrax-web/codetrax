@@ -261,7 +261,7 @@ const renderSearch = () => `
                 <button class="filter-btn" data-filter="Codigo">Código</button>
                 <button class="filter-btn" data-filter="Robotica">Robotica</button>
             </div>
-            <div id="recursos-container".></div>
+            <div id="portfolio-grid".></div>
         </div>
       `,
        settings: `
@@ -276,7 +276,7 @@ const renderSearch = () => `
             <button class="filter-btn" data-filter="Tecno">Tecno</button>
             <button class="filter-btn" data-filter="Miguel">Miguel</button>
         </div>
-        <div id="portfolio-grid"></div>
+        <div id="recursos-containe"></div>
     </section>
 `,
     contacto: `
