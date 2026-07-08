@@ -258,13 +258,21 @@ const renderSearch = () => `
             <div id="portfolio-grid"></div>
         </div>
       `,
-      settings: `
-        <section class="about-section">
-            <h1 class="about-title">Portafolio</h1>
-            <p>Aquí se despliega la evidencia de nuestra capacidad técnica. Descubre cómo transformamos conceptos complejos en infraestructura digital funcional, priorizando la arquitectura limpia, la velocidad de respuesta y la eficiencia del sistema sobre lo superficial.</p>
-            <div id="recursos-container"></div>
-        </section>
-      `,
+       settings: `
+    <section class="about-section">
+        <h1 class="about-title">Portafolio</h1>
+        <p>Aquí se despliega la evidencia de nuestra capacidad técnica. Descubre cómo transformamos conceptos complejos en infraestructura digital funcional, priorizando la arquitectura limpia, la velocidad de respuesta y la eficiencia del sistema sobre lo superficial.</p>
+        
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="Damian">Todos</button>
+            <button class="filter-btn" data-filter="Ricardo">Ricardo</button>
+            <button class="filter-btn" data-filter="DynsG">DynsG</button>
+            <button class="filter-btn" data-filter="Tecno">Tecno</button>
+            <button class="filter-btn" data-filter="Miguel">Miguel</button>
+        </div>
+        <div id="recursos-container"></div>
+    </section>
+   `,
     contacto: `
     <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
         <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; border: 1px solid rgba(255,255,255,0.1);">
@@ -323,19 +331,27 @@ const renderSearch = () => `
     ===================================================== */
     mainContent.innerHTML = views.home;
 
-    document.querySelectorAll('.menu a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.menu a.active')?.classList.remove('active');
-            link.classList.add('active');
-            
-            const section = link.getAttribute('data-section');
-            mainContent.innerHTML = views[section];
-            
-            if (section === 'plans') loadPortfolio();
-            if (section === 'settings') loadRecursos();
-        });
+   document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.menu a.active')?.classList.remove('active');
+        link.classList.add('active');
+        
+        const section = link.getAttribute('data-section');
+        mainContent.innerHTML = views[section];
+        
+        // Lógica de carga unificada
+        if (section === 'plans') {
+            loadPortfolio('Todos'); // Carga inicial
+            initializeFilters();
+        } 
+        if (section === 'settings') {
+            loadRecursos();
+            renderPortfolio('Todos'); // Renderiza el portafolio en la vista de settings
+            initializeFilters();
+        }
     });
+});
 
     document.addEventListener('keydown', (e) => {
         if (e.key === '/') {
