@@ -58,12 +58,10 @@ body {
 }
 /* FIN HEADER */
 #search-results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px; /* Limita el estiramiento */
-    margin: 20px auto 0 auto; /* Centrado */
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
 }
 
 /* =====================================================
