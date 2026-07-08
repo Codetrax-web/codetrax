@@ -1,102 +1,63 @@
 /* =====================================================
    INICIALIZACIÓN DEL DOM
-   Espera a que el HTML cargue para ejecutar la lógica
 ===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    loadPortfolio().catch(err => console.error("Datos iniciales no disponibles:", err));
-    console.log("CodeTrax inicializado correctamente.");
     const mainContent = document.getElementById('content');
-
-    /* =====================================================
-       ESTRUCTURAS DE DATOS Y RENDERIZADO INICIAL
-    ===================================================== */
-    const renderSearch = () => `
-        <div class="gt-field">
-            <span class="gt-input">
-                <span class="gt-input__prompt">&gt;</span>
-                <input type="text" id="gt-input-target" class="gt-input__control" placeholder="Buscar proyectos...">
-            </span>
-            <div id="search-results-grid"></div> 
-        </div>
-    `;
-
     let portfolioProjects = [];
-  /* =====================================================
-   CARGA DE DATOS: Asegúrate de guardar los datos en la variable
-===================================================== */
-async function loadPortfolio() {
-    try {
-        const response = await fetch('./data/portafolio/index.json');
-        const data = await response.json();
-        
-        // ¡Aquí estaba el error! Debes asignar los datos a la variable global
-        portfolioProjects = data; 
-        
-        renderPortfolio('Todos');
-    } catch (error) {
-        console.error('Error cargando portafolio:', error);
+
+    // --- CARGA DE DATOS ---
+    async function loadPortfolio() {
+        try {
+            const response = await fetch('./data/portafolio/index.json');
+            portfolioProjects = await response.json();
+            if (document.getElementById('portfolio-grid')) renderPortfolio('Todos');
+        } catch (error) { console.error('Error:', error); }
     }
-}
 
-/* =====================================================
-   DELEGACIÓN DE EVENTOS: Reemplaza tu antigua initializeFilters
-   Esto funciona siempre, sin importar cuándo se inyecte el HTML
-===================================================== */
-/* =====================================================
-   DELEGACIÓN DE EVENTOS: Filtrado inteligente
-===================================================== */
-document.addEventListener('click', (e) => {
-    if (e.target.matches('.filter-btn')) {
-        // Actualizar UI de botones
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        e.target.classList.add('active');
-
-        const categoria = e.target.dataset.filter;
-
-        // Detectar en qué sección estamos y llamar a la función correcta
-        if (document.getElementById('portfolio-grid')) {
-            renderPortfolio(categoria);
-        } else if (document.getElementById('recursos-container')) {
-            renderRecursos(categoria);
-        }
-    }
-});
-
-/* =====================================================
-   RENDERIZADO DE RECURSOS CON FILTRO
-===================================================== */
-async function renderRecursos(category = 'Todos') {
-    const container = document.getElementById('recursos-container');
-    if (!container) return;
-
-    try {
-        const response = await fetch('./data/recursos/recursos.json');
-        const data = await response.json();
-        
-        const filtered = category !== 'Todos' 
-            ? data.filter(item => item.categoria?.toLowerCase() === category.toLowerCase())
-            : data;
-
-        container.innerHTML = filtered.map(item => `
+    // --- RENDERIZADO PORTAFOLIO ---
+    function renderPortfolio(category = 'Todos') {
+        const grid = document.getElementById('portfolio-grid');
+        if (!grid) return;
+        const filtered = category !== 'Todos' ? portfolioProjects.filter(p => p.categoria?.toLowerCase() === category.toLowerCase()) : portfolioProjects;
+        grid.innerHTML = filtered.map(p => `
             <div class="project-card">
-                <img src="${item.imagen}" alt="${item.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                <h3>${item.titulo}</h3>
-                <p><strong>Creador:</strong> ${item.creador || 'Desconocido'}</p>
-                <p>${item.descripcion}</p>
-                <a href="${item.url}" target="_blank" class="project-link">
-                    <button class="button">
-                        <div class="blob1"></div>
-                        <div class="blob2"></div>
-                        <div class="inner">Visita</div>
-                    </button>
-                </a>
+                <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                <h3>${p.titulo}</h3>
+                <p>${p.descripcion}</p>
+                <a href="${p.url}" target="_blank" class="project-link"><button class="button"><div class="inner">Ver</div></button></a>
             </div>
         `).join('');
-    } catch (error) {
-        console.error('Error cargando recursos:', error);
-        container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
     }
-});
+
+    // --- RENDERIZADO RECURSOS ---
+    async function renderRecursos(category = 'Todos') {
+        const container = document.getElementById('recursos-container');
+        if (!container) return;
+        try {
+            const response = await fetch('./data/recursos/recursos.json');
+            const data = await response.json();
+            const filtered = category !== 'Todos' ? data.filter(i => i.categoria?.toLowerCase() === category.toLowerCase()) : data;
+            container.innerHTML = filtered.map(i => `
+                <div class="project-card">
+                    <img src="${i.imagen}" alt="${i.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                    <h3>${i.titulo}</h3>
+                    <p><strong>Creador:</strong> ${i.creador || 'Desconocido'}</p>
+                    <a href="${i.url}" target="_blank" class="project-link"><button class="button"><div class="inner">Visita</div></button></a>
+                </div>
+            `).join('');
+        } catch (e) { container.innerHTML = '<p>Error al cargar recursos.</p>'; }
+    }
+
+    // --- DELEGACIÓN DE EVENTOS (EL CORAZÓN DE LA LÓGICA) ---
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('.filter-btn')) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            const cat = e.target.dataset.filter;
+            if (document.getElementById('portfolio-grid')) renderPortfolio(cat);
+            else if (document.getElementById('recursos-container')) renderRecursos(cat);
+        }
+    });
     /* =====================================================
        GESTIÓN DE VISTAS
        Definición de las plantillas HTML para cada sección
@@ -254,67 +215,17 @@ async function renderRecursos(category = 'Todos') {
 `
     };
     /* FIN GESTIÓN DE VISTAS */
-/* =====================================================
-       LÓGICA DE RECURSOS
-    ===================================================== */
-    async function loadRecursos() {
-        const container = document.getElementById('recursos-container');
-        if (!container) return;
-
-        try {
-            const response = await fetch('./data/recursos/recursos.json');
-            const recursos = await response.json();
-            container.innerHTML = recursos.map(item => `
-                <div class="project-card">
-                    <img src="${item.imagen}" alt="${item.titulo}">
-                    <h3>${item.titulo}</h3>
-                    <p><strong>Creador:</strong> ${item.creador || 'Desconocido'}</p>
-                    <p>${item.descripcion}</p>
-                    <a href="${item.url}" target="_blank" class="project-link">
-                        <button class="button">
-                            <div class="blob1"></div>
-                            <div class="blob2"></div>
-                            <div class="inner">Visita</div>
-                        </button>
-                    </a>
-                </div>
-            `).join('');
-        } catch (error) {
-            console.error('Error cargando recursos:', error);
-            container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
-        }
-    }
-
-    /* =====================================================
-       NAVEGACIÓN Y EVENTOS GLOBALES
-    ===================================================== */
-    mainContent.innerHTML = views.home;
-
-    document.querySelectorAll('.menu a').forEach(link => {
+document.querySelectorAll('.menu a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             document.querySelector('.menu a.active')?.classList.remove('active');
             link.classList.add('active');
-            
             const section = link.getAttribute('data-section');
-            mainContent.innerHTML = views[section];
-            
-           if (section === 'plans') {
-             renderRecursos('Todos'); // Llama a la nueva función
-            }
-           if (section === 'settings') {
-             renderPortfolio('Todos'); // Sigue igual
-            } 
+            mainContent.innerHTML = views[section] || '';
+            if (section === 'plans') renderRecursos('Todos');
+            if (section === 'settings') loadPortfolio();
         });
     });
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === '/') {
-            const input = document.getElementById('gt-input-target');
-            if (input) {
-                e.preventDefault();
-                input.focus();
-            }
-        }
-    });
+    mainContent.innerHTML = views.home;
 });
