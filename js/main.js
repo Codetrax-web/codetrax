@@ -37,8 +37,10 @@ const renderSearch = () => `
     try {
         // Carga ambos archivos en paralelo para optimizar
         const [portafolioRes, recursosRes] = await Promise.all([
-            fetch('./data/portafolio/index.json'),
-            fetch('./data/recursos/recursos.json')
+            
+fetch('./data/recursos/recursos.json'),
+fetch('./data/portafolio/index.json')
+            
         ]);
         
         const portafolioData = await portafolioRes.json();
