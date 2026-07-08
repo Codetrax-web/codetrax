@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h2>DynsG</h2>
                     <p>Diseñadora | Codetrax</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-x-twitter"></i></a>
+                     <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
                      <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                 </div>
                 </div>
