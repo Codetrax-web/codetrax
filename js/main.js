@@ -21,11 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     let portfolioProjects = [];
-
-    /* =====================================================
-       LÓGICA DEL PORTAFOLIO
-       Carga datos externos y gestiona filtros
-    ===================================================== */
   /* =====================================================
    CARGA DE DATOS: Asegúrate de guardar los datos en la variable
 ===================================================== */
@@ -47,15 +42,59 @@ async function loadPortfolio() {
    DELEGACIÓN DE EVENTOS: Reemplaza tu antigua initializeFilters
    Esto funciona siempre, sin importar cuándo se inyecte el HTML
 ===================================================== */
+/* =====================================================
+   DELEGACIÓN DE EVENTOS: Filtrado inteligente
+===================================================== */
 document.addEventListener('click', (e) => {
     if (e.target.matches('.filter-btn')) {
-        // Quitar clase active
+        // Actualizar UI de botones
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
         e.target.classList.add('active');
 
-        // Filtrar y renderizar
         const categoria = e.target.dataset.filter;
-        renderPortfolio(categoria);
+
+        // Detectar en qué sección estamos y llamar a la función correcta
+        if (document.getElementById('portfolio-grid')) {
+            renderPortfolio(categoria);
+        } else if (document.getElementById('recursos-container')) {
+            renderRecursos(categoria);
+        }
+    }
+});
+
+/* =====================================================
+   RENDERIZADO DE RECURSOS CON FILTRO
+===================================================== */
+async function renderRecursos(category = 'Todos') {
+    const container = document.getElementById('recursos-container');
+    if (!container) return;
+
+    try {
+        const response = await fetch('./data/recursos/recursos.json');
+        const data = await response.json();
+        
+        const filtered = category !== 'Todos' 
+            ? data.filter(item => item.categoria?.toLowerCase() === category.toLowerCase())
+            : data;
+
+        container.innerHTML = filtered.map(item => `
+            <div class="project-card">
+                <img src="${item.imagen}" alt="${item.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                <h3>${item.titulo}</h3>
+                <p><strong>Creador:</strong> ${item.creador || 'Desconocido'}</p>
+                <p>${item.descripcion}</p>
+                <a href="${item.url}" target="_blank" class="project-link">
+                    <button class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">Visita</div>
+                    </button>
+                </a>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Error cargando recursos:', error);
+        container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
     }
 });
     /* =====================================================
