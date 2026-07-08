@@ -1,231 +1,689 @@
-/* =====================================================
-   INICIALIZACIÓN DEL DOM
+=====================================================
+
+   VARIABLES GLOBALES
+
+   Colores principales utilizados en todo el sitio
+
 ===================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    const mainContent = document.getElementById('content');
-    let portfolioProjects = [];
 
-    // --- CARGA DE DATOS ---
-    async function loadPortfolio() {
-        try {
-            const response = await fetch('./data/portafolio/index.json');
-            portfolioProjects = await response.json();
-            if (document.getElementById('portfolio-grid')) renderPortfolio('Todos');
-        } catch (error) { console.error('Error:', error); }
-    }
+:root {
 
-    // --- RENDERIZADO PORTAFOLIO ---
-    function renderPortfolio(category = 'Todos') {
-        const grid = document.getElementById('portfolio-grid');
-        if (!grid) return;
-        const filtered = category !== 'Todos' ? portfolioProjects.filter(p => p.categoria?.toLowerCase() === category.toLowerCase()) : portfolioProjects;
-        grid.innerHTML = filtered.map(p => `
-            <div class="project-card">
-                <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                <h3>${p.titulo}</h3>
-                <p>${p.descripcion}</p>
-                <a href="${p.url}" target="_blank" class="project-link"><button class="button"><div class="inner">Ver</div></button></a>
-            </div>
-        `).join('');
-    }
+    --gt-ink: #ffffff;
 
-    // --- RENDERIZADO RECURSOS ---
-    async function renderRecursos(category = 'Todos') {
-        const container = document.getElementById('recursos-container');
-        if (!container) return;
-        try {
-            const response = await fetch('./data/recursos/recursos.json');
-            const data = await response.json();
-            const filtered = category !== 'Todos' ? data.filter(i => i.categoria?.toLowerCase() === category.toLowerCase()) : data;
-            container.innerHTML = filtered.map(i => `
-                <div class="project-card">
-                    <img src="${i.imagen}" alt="${i.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                    <h3>${i.titulo}</h3>
-                    <p><strong>Creador:</strong> ${i.creador || 'Desconocido'}</p>
-                    <a href="${i.url}" target="_blank" class="project-link"><button class="button"><div class="inner">Visita</div></button></a>
-                </div>
-            `).join('');
-        } catch (e) { container.innerHTML = '<p>Error al cargar recursos.</p>'; }
-    }
+    --gt-surface: #1e1e2e;
 
-    // --- DELEGACIÓN DE EVENTOS (EL CORAZÓN DE LA LÓGICA) ---
-    document.addEventListener('click', (e) => {
-        if (e.target.matches('.filter-btn')) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
-            const cat = e.target.dataset.filter;
-            if (document.getElementById('portfolio-grid')) renderPortfolio(cat);
-            else if (document.getElementById('recursos-container')) renderRecursos(cat);
-        }
-    });
-    /* =====================================================
-       GESTIÓN DE VISTAS
-       Definición de las plantillas HTML para cada sección
-    ===================================================== */
-    const views = {
-     home: `
-     <h1>Dashboard</h1>
-     ${renderSearch()}
-     <div id="search-results-grid"></div> 
-     <div class="social-container">Buscando...</div>
-      `,
-      files: `
-    <section class="about-section">
-        <h1 class="about-title">Sobre CodeTrax</h1>
-        <div class="about-card">
-            <h2>01 // ¿Qué es CodeTrax?</h2>
-            <p>En CodeTrax transformamos conceptos abstractos en infraestructura digital de alto rendimiento. Somos una agencia de desarrollo especializada en materializar ideas complejas mediante código limpio, interfaces avanzadas y soluciones tecnológicas reales que garantizan un despliegue impecable en el mercado.</p>
-        </div>
-        <div class="about-card">
-            <h2>02 // Servicios / Qué ofrecemos:</h2>
-            <p> Desarrollo Digital: Apps, plataformas y herramientas funcionales</p>
-            <p> Consultoría de Proyectos: Planificamos y estructuramos tu proyecto para que sea viable, escalable y efectivo.</p>
-            <p> Diseño y Experiencia: Cada proyecto se entrega con estética, usabilidad y funcionalidad optimizadas.</p>
-        </div>
-        <div class="about-card">
-            <h2>03 // Filosofía [Misión y Valores]:</h2>
-            <p>Misión: Desarrollar ingeniería digital que trabaje para ti. Elevamos el estándar técnico para que la tecnología no sea un obstáculo, sino tu mayor ventaja competitiva.</p>
-            <p>Valores:</p>
-            <p>+ Precisión</p>
-            <p>+ Innovación</p>
-            <p>+ Compromiso</p>
-        </div>
-        <div class="about-card">
-            <h2>04 // Metodología / Cómo trabajamos:</h2>
-            <p>Nuestra metodología se ejecuta en un ciclo cerrado de cuatro fases:</p>
-            <p>1° [ANÁLISIS] Evaluamos los requerimientos técnicos y estructuramos la lógica del proyecto.</p>
-            <p>2° [DESARROLLO] Traducimos la arquitectura planificada en código limpio y funcional.</p>
-            <p>3° [OPTIMIZACIÓN] Sometemos el sistema a pruebas rigurosas de rendimiento y diseño responsivo.</p>
-            <p>4° [DESPLIEGUE] Lanzamos la plataforma oficialmente al entorno de producción, lista para operar.</p>
-        </div>
-        <div class="about-card">
-            <h2>05 // Infraestructura [Equipo]:</h2>
-            <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            
-                <div class="card red">
-                    <div class="profile-tag">Fundador: Mexico</div>
-                    <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
-                    <h2>Damian cruz</h2>
-                    <p>Desarrollador principal | Codetrax</p>
-               <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
-                     <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
-                     <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-discord"></i></a>
-                    <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-               </div>
-                </div>
+    --gt-blue: #007bff;
 
-                <div class="card yellow">
-                    <div class="profile-tag">Socio: Mexico</div>
-                    <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
-                    <h2>Ricardo</h2>
-                    <p>Desarrollador | Codetrax</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+    --gt-red: #ff2d55;
 
-               
-               </div>
-                </div>
+}
 
-               <div class="card purple">
-                    <div class="profile-tag">Socia: Colombia</div>
-                    <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
-                    <h2>DynsG</h2>
-                    <p>Diseñadora | Codetrax</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
-                     <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-                </div>
-                </div>
-                
-                <div class="card blue">
-                    <div class="profile-tag">Socio: Venezuela</div>
-                    <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
-                    <h2>Tecno 730</h2>
-                    <p>Diseñador | tecno730</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://discord.gg/tbUVxyGU" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                     <a href="https://www.twitch.tv/tecno730" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
-                     <a href="https://www.youtube.com/@TECNO730" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-               </div>
-                </div>
-                
-                <div class="card green">
-                    <div class="profile-tag">Socio: Venezuela</div>
-                    <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
-                    <h2>Miguel Pandares</h2>
-                    <p>Desarrollador | Axira studios</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
-                     <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="hatgpt.com" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://discord.com/invite/SFffG38VFb" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                     <a href="https://www.twitch.tv/migueltime" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
-                     <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </section>
-`,
-      plans: `
-            <div class="portfolio-page">
-                <h1>Recursos</h1>
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="Todos">Todos</button>
-                    <button class="filter-btn" data-filter="Juegos">Juegos</button>
-                    <button class="filter-btn" data-filter="Office">Office</button>
-                    <button class="filter-btn" data-filter="Codigo">Código</button>
-                    <button class="filter-btn" data-filter="Robotica">Robotica</button>
-                </div>
-                <div id="recursos-container"></div>
-            </div>
-        `,
-       settings: `
-            <section class="about-section">
-                <h1 class="about-title">Portafolio</h1>
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="Todos">Todos</button>
-                    <button class="filter-btn" data-filter="Damian">Damian</button>
-                    <button class="filter-btn" data-filter="Ricardo">Ricardo</button>
-                    <button class="filter-btn" data-filter="DynsG">DynsG</button>
-                    <button class="filter-btn" data-filter="Tecno">Tecno</button>
-                    <button class="filter-btn" data-filter="Miguel">Miguel</button>
-                </div>
-                <div id="portfolio-grid"></div>
-            </section>
-        `,
-    contacto: `
-    <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
-        <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; border: 1px solid rgba(255,255,255,0.1);">
-            <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 20px;">Contacto.</h1>
-            <form action="https://formspree.io/f/xeewykke" method="POST" target="_blank" style="display: flex; flex-direction: column; gap: 15px;">
-                <!-- Campos reorganizados en columna -->
-                <input type="text" name="nombre" placeholder="Nombre" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <input type="text" name="apellido" placeholder="Apellido" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <input type="tel" name="telefono" placeholder="Teléfono" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <input type="email" name="email" placeholder="Email" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <textarea name="mensaje" placeholder="Mensaje" rows="4" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;"></textarea>
-                <button type="submit" style="background:linear-gradient(135deg, #a855f7, #3b82f6); color:white; border:none; padding:14px; border-radius:12px; font-weight:bold; cursor:pointer;">Enviar</button>
-            </form>
-        </div>
-    </section>
-`
-    };
-    /* FIN GESTIÓN DE VISTAS */
-document.querySelectorAll('.menu a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.menu a.active')?.classList.remove('active');
-            link.classList.add('active');
-            const section = link.getAttribute('data-section');
-            mainContent.innerHTML = views[section] || '';
-            if (section === 'plans') renderRecursos('Todos');
-            if (section === 'settings') loadPortfolio();
-        });
-    });
+/* FIN VARIABLES GLOBALES */
 
-    mainContent.innerHTML = views.home;
-});
+
+
+/* =====================================================
+
+   RESETEO GENERAL
+
+   Elimina márgenes y paddings por defecto
+
+===================================================== */
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+/* FIN RESETEO GENERAL */
+
+/* --- INICIO REJILLAS GLOBALES --- */
+
+/* USA ESTO EN LUGAR DE REPETIR REGLAS */
+
+#portfolio-grid, 
+
+#recursos-container, 
+
+#search-results-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 20px;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+}
+
+/* --- FIN REJILLAS GLOBALES --- */
+
+/* =====================================================
+
+   CONFIGURACIÓN DEL BODY
+
+   Contenedor principal de toda la página
+
+===================================================== */
+
+body {
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    font-family:ui-monospace, monospace;
+
+    background:url('../assets/ima/BANNER.png') no-repeat center center fixed;
+
+    background-size:cover;
+
+    color:var(--gt-ink);
+
+    padding:20px;
+
+}
+
+/* FIN CONFIGURACIÓN DEL BODY */
+
+
+
+/* =====================================================
+
+   HEADER / CABECERA
+
+   Navegación y logo principal
+
+===================================================== */
+
+.main-header{
+
+    width:100%;
+
+    max-width:1200px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 0;
+
+    flex-shrink: 0;
+
+}
+
+.logo {
+
+    width: 150px;
+
+    height: auto;
+
+    display: block;
+
+}
+
+/* FIN HEADER */
+
+#search-results-grid {
+
+    display: grid !important;
+
+    grid-template-columns: repeat(3, 1fr) !important;
+
+    gap: 20px !important;
+
+    width: 100% !important;
+
+}
+
+
+
+/* =====================================================
+
+   CONTENEDOR PRINCIPAL Y BÚSQUEDA
+
+   Layout y barra estilo terminal
+
+===================================================== */
+
+main {
+
+    width:100%;
+
+    max-width:1200px;
+
+}
+
+.gt-field {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr); /* Esto fuerza las 3 columnas */
+
+    gap: 20px;
+
+    width: 100%;
+
+}
+
+.gt-input {
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 15px;
+
+    border-radius:15px;
+
+    background:rgba(30,30,46,.85);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(10px);
+
+}
+
+.gt-input__prompt { color:#00ff88; }
+
+.gt-input__control {
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:white;
+
+    font-family:inherit;
+
+}
+
+/* FIN CONTENEDOR PRINCIPAL Y BÚSQUEDA */
+
+
+
+/* =====================================================
+
+   COMPONENTES DE UI (Redes, Menú, Botones)
+
+===================================================== */
+
+.social-container {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    margin-top: 40px;
+
+    width: 100%;
+
+}
+
+.neon-button {
+
+    position: relative;
+
+    padding: 12px 24px;
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    border: 2px solid #fff;
+
+    border-radius: 8px;
+
+    transition: 0.3s;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    background: transparent;
+
+}
+
+.neon-button:hover {
+
+    background: #fff;
+
+    color: #000;
+
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+
+}
+
+.menu {
+
+    display: flex;
+
+    flex-wrap: nowrap; 
+
+    align-items: center;
+
+    gap: 4px;
+
+    background: rgba(0, 0, 0, 0.4);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    padding: 6px;
+
+    border-radius: 14px;
+
+}
+
+.menu a {
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 8px 20px;
+
+    border-radius: 10px;
+
+    transition: all 0.4s ease;
+
+}
+
+.menu a:hover:not(.active) { background: rgba(255, 255, 255, 0.05); }
+
+.menu a.active {
+
+    background: rgba(255, 255, 255, 0.15);
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+@media (max-width: 768px) {
+
+    .menu { flex-wrap: wrap; justify-content: center; width: 100%; margin-top: 15px; }
+
+}
+
+/* FIN COMPONENTES DE UI */
+
+
+
+/* =====================================================
+
+   SECCIONES DE CONTENIDO (Acerca, Portfolio)
+
+===================================================== */
+
+.about-section { max-width:1200px; margin:auto; }
+
+.about-title { text-align:center; margin-bottom:30px; }
+
+.about-card {
+
+    background:rgba(0,0,0,.65);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+}
+
+.about-card h2 { margin-bottom:10px; }
+
+.about-card p { line-height:1.8; color:#ddd; }
+
+.portfolio-page { width:100%; }
+
+.portfolio-page h1 { text-align:center; margin-bottom:25px; }
+
+.portfolio-filters {
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-bottom:30px;
+
+}
+
+.filter-btn {
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.filter-btn:hover { transform:translateY(-3px); }
+
+.filter-btn.active {
+
+    background:linear-gradient(135deg, var(--gt-blue), var(--gt-red));
+
+    border:none;
+
+}
+
+.project-card {
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(15,15,25,.55);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:24px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    padding:20px;
+
+    transition:.35s;
+
+    box-shadow:0 0 25px rgba(0,120,255,.15), 0 0 35px rgba(255,0,0,.08);
+
+}
+
+.project-card::before, .project-card::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    filter:blur(60px);
+
+}
+
+.project-card::before { top:-80px; left:-80px; background:rgba(0,120,255,.25); }
+
+.project-card::after { bottom:-80px; right:-80px; background:rgba(255,0,50,.20); }
+
+.project-card:hover {
+
+    transform:translateY(-8px);
+
+    box-shadow:0 0 35px rgba(0,120,255,.35), 0 0 45px rgba(255,0,50,.20);
+
+}
+
+.project-card img {
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    margin-bottom:15px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.project-card h3, .project-card p, .project-link { position:relative; z-index:2; }
+
+.project-card p { color:#d6d6d6; line-height:1.6; margin-bottom:20px; }
+
+.project-link { text-decoration:none; }
+
+/* FIN SECCIONES DE CONTENIDO */
+
+/* =====================================================
+
+   BOTÓN GLASS REALISM
+
+===================================================== */
+
+.button {
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    border-radius:16px;
+
+    border:none;
+
+    padding:2px;
+
+    background:radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
+
+    position:relative;
+
+}
+
+.button::after {
+
+    content:"";
+
+    position:absolute;
+
+    width:65%;
+
+    height:60%;
+
+    border-radius:120px;
+
+    top:0;
+
+    right:0;
+
+    box-shadow:0 0 20px #ffffff38;
+
+    z-index:-1;
+
+}
+
+.blob1 {
+
+    position:absolute;
+
+    width:70px;
+
+    height:100%;
+
+    border-radius:16px;
+
+    bottom:0;
+
+    left:0;
+
+    background:radial-gradient(circle 60px at 0% 100%, #3fe9ff, #0000ff80, transparent);
+
+}
+
+.blob2 {
+
+    position:absolute;
+
+    width:80px;
+
+    height:80px;
+
+    top:-10px;
+
+    right:-10px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle, rgba(255,255,255,.6), transparent 70%);
+
+    filter:blur(12px);
+
+}
+
+.inner {
+
+    padding:14px 25px;
+
+    border-radius:14px;
+
+    color:white;
+
+    position:relative;
+
+    background:radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+
+}
+
+/* FIN BOTÓN GLASS REALISM */
+
+
+
+/* =====================================================
+
+   CONTENIDO DINÁMICO Y EQUIPO
+
+===================================================== */
+
+#content{
+
+    margin-top:30px;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.35);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:20px;
+
+}
+
+.team-grid {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    width: 100%;
+
+}
+
+.container {
+
+    flex: 0 0 240px; /* Asegura que no se encojan */
+
+    height: 294px;
+
+    perspective: 800px;
+
+}
+
+.card {
+
+    width: 240px;
+
+    background: #000;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    color: white;
+
+}
+
+.card.red { border-top: 4px solid #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
+
+.card.yellow { border-top: 4px solid #ffff00; box-shadow: 0 0 15px rgba(255, 255, 0, 0.3); }
+
+.card.green { border-top: 4px solid #00ff00; box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); }
+
+.card.purple { border-top: 4px solid #800080; box-shadow: 0 0 15px rgba(128, 0, 128, 0.3); }
+
+.card.blue { border-top: 4px solid #7DF9FF; box-shadow: 0 0 15px rgba(125, 249, 255, 0.3); }
+
+.team-photo {
+
+    width: 120px;
+
+    height: 120px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    display: block;
+
+    margin: 0 auto 15px auto;
+
+}
+
+/* FIN CONTENIDO DINÁMICO Y EQUIPO */
+
+#recursos-container .about-card { transition: transform 0.3s ease; }
+
+#recursos-container .about-card:hover { transform: translateY(-5px); }
+
+/* FIN RECURSOS */
