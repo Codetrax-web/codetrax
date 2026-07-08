@@ -165,7 +165,8 @@ const renderSearch = () => `
     ===================================================== */
     const views = {
      home: `
-     <h1>Dashboard</h1>
+     <section class="about-section">
+           <h1 class="about-title">╔══════ ∘◦ ℂ𝕆𝔻𝔼𝕋ℝ𝔸𝕏 ◦∘ ══════╗</h1>
      ${renderSearch()}
      <div id="search-results-grid"></div> 
      <div class="social-container">Buscando...</div>
