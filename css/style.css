@@ -57,6 +57,12 @@ body {
     display: block;
 }
 /* FIN HEADER */
+#search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
 
 /* =====================================================
    CONTENEDOR PRINCIPAL Y BÚSQUEDA
