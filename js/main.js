@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
     { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax" },
     { titulo: "Ricardo", descripcion: "Socio, Desarrollador | Codetrax" },
     { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
-    { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" }
+    { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" },
+    { titulo: "DynsG", descripcion: "Socia, Diseñadora | Codetrax" }
 ];
 
     /* =====================================================
