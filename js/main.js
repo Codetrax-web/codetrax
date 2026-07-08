@@ -166,7 +166,7 @@ const renderSearch = () => `
     const views = {
      home: `
      <section class="about-section">
-           <h1 class="about-title">╔══════ ∘◦ ℂ𝕆𝔻𝔼𝕋ℝ𝔸𝕏 ◦∘ ══════╗</h1>
+           background-image: url('assets/ima/code.png');
      ${renderSearch()}
      <div id="search-results-grid"></div> 
      <div class="social-container">Buscando...</div>
