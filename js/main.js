@@ -261,7 +261,7 @@ const renderSearch = () => `
                 <button class="filter-btn" data-filter="Codigo">Código</button>
                 <button class="filter-btn" data-filter="Robotica">Robotica</button>
             </div>
-            <div id="portfolio-grid"></div>
+            <div id="recursos-container".></div>
         </div>
       `,
        settings: `
