@@ -64,34 +64,40 @@ const renderSearch = () => `
     }
 }
     function renderPortfolio(category) {
-        const grid = document.getElementById('portfolio-grid');
-        if (!grid) return;
+    const grid = document.getElementById('portfolio-grid');
+    if (!grid) return;
 
-       let filteredProjects = category !== 'Todos' 
-    ? portfolioProjects.filter(project => project.categoria.toLowerCase() === category.toLowerCase())
-    : portfolioProjects;
+    // Lógica de filtrado
+    let filteredProjects = category !== 'Todos' 
+        ? portfolioProjects.filter(project => project.categoria?.toLowerCase() === category.toLowerCase())
+        : portfolioProjects;
 
-        if (filteredProjects.length === 0) {
-            grid.innerHTML = '<p>No hay proyectos disponibles.</p>';
-            return;
-        }
-
-        grid.innerHTML = filteredProjects.map(project => `
-            <div class="project-card">
-                <img src="${project.imagen}" alt="${project.titulo}">
-                <h3>${project.titulo}</h3>
-                <p style="font-size: 0.85rem; color: #a1a1aa;">Creador: ${project.creador || 'Desconocido'}</p>
-                <p>${project.descripcion}</p>
-                <a href="${project.url}" target="_blank" class="project-link">
-                    <button class="button">
-                        <div class="blob1"></div>
-                        <div class="blob2"></div>
-                        <div class="inner">Ver Proyecto</div>
-                    </button>
-                </a>
-            </div>
-        `).join('');
+    // Validación de estado vacío con estilo consistente
+    if (filteredProjects.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px);">
+                <p style="color: #fff; font-size: 1.2rem;">No hay proyectos disponibles.</p>
+            </div>`;
+        return;
     }
+
+    // Renderizado de tarjetas
+    grid.innerHTML = filteredProjects.map(project => `
+        <div class="project-card">
+            <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.jpg'">
+            <h3>${project.titulo}</h3>
+            <p style="font-size: 0.85rem; color: #a1a1aa;">Creador: ${project.creador || 'Desconocido'}</p>
+            <p>${project.descripcion}</p>
+            <a href="${project.url}" target="_blank" class="project-link">
+                <button class="button">
+                    <div class="blob1"></div>
+                    <div class="blob2"></div>
+                    <div class="inner">Ver Proyecto</div>
+                </button>
+            </a>
+        </div>
+    `).join('');
+}
 
     function initializeFilters() {
         document.querySelectorAll('.filter-btn').forEach(button => {
