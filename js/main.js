@@ -346,16 +346,18 @@ const renderSearch = () => `
         const section = link.getAttribute('data-section');
         mainContent.innerHTML = views[section];
         
-        // Lógica de carga unificada
-        if (section === 'plans') {
-            loadPortfolio('Todos'); // Carga inicial
-            initializeFilters();
-        } 
-        if (section === 'settings') {
-            loadRecursos();
-            renderPortfolio('Todos'); // Renderiza el portafolio en la vista de settings
-            initializeFilters();
-        }
+        // Lógica de carga limpia: Cada sección hace exactamente lo que debe
+if (section === 'plans') {
+    // Solo carga Recursos en el contenedor de recursos
+    loadRecursos();
+} 
+
+if (section === 'settings') {
+    // Solo carga Portafolio en el contenedor de portafolio
+    renderPortfolio('Todos'); 
+    initializeFilters();
+}
+
     });
 });
 
