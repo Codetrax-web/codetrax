@@ -234,6 +234,15 @@ main {
 .project-card p { color:#d6d6d6; line-height:1.6; margin-bottom:20px; }
 .project-link { text-decoration:none; }
 /* FIN SECCIONES DE CONTENIDO */
+/* NUEVA UTILIDAD DE GRID */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+/* FIN NUEVA UTILIDAD */
 
 /* =====================================================
    BOTÓN GLASS REALISM
