@@ -330,11 +330,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const section = link.getAttribute('data-section');
             mainContent.innerHTML = views[section];
             
-            if (section === 'plans') loadRecursos();
-            if (section === 'settings') {
-                renderPortfolio('Todos');
-                initializeFilters();
+           if (section === 'plans') {
+             renderRecursos('Todos'); // Llama a la nueva función
             }
+           if (section === 'settings') {
+             renderPortfolio('Todos'); // Sigue igual
+            } 
         });
     });
 
