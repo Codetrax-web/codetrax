@@ -200,6 +200,17 @@ document.addEventListener('DOMContentLoaded', () => {
                </div>
                 </div>
 
+               <div class="card purple">
+                    <div class="profile-tag">Socia: Colombia</div>
+                    <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
+                    <h2>Tecno 730</h2>
+                    <p>Diseñadora | DynsG</p>
+               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+                     <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-X"></i></a>
+                     <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+                </div>
+                </div>
+                
                 <div class="card blue">
                     <div class="profile-tag">Socio: Venezuela</div>
                     <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
