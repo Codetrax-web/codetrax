@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =====================================================
        ESTRUCTURAS DE DATOS Y RENDERIZADO
     ===================================================== */
-   const renderSearch = () => `
+  const renderSearch = () => `
     <div class="gt-field">
         <span class="gt-input">
             <span class="gt-input__prompt">&gt;</span>
             <input type="text" id="gt-input-target" class="gt-input__control" placeholder="Buscar proyectos...">
         </span>
-        <div id="search-results-grid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; margin-top:20px;"></div>
+        <div id="search-results-grid" class="results-grid"></div>
     </div>
 `;
     let portfolioProjects = [];
