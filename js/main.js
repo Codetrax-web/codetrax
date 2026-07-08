@@ -347,12 +347,12 @@ const renderSearch = () => `
         mainContent.innerHTML = views[section];
         
         // Lógica de carga limpia: Cada sección hace exactamente lo que debe
-if (section === 'settings') {
+if (section === 'plans') {
     // Solo carga Recursos en el contenedor de recursos
     loadRecursos();
 } 
 
-if (section === 'plans') {
+if (section === 'settings') {
     // Solo carga Portafolio en el contenedor de portafolio
     renderPortfolio('Todos'); 
     initializeFilters();
