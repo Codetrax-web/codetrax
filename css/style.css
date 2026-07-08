@@ -303,9 +303,8 @@ main {
     width: 100%;
 }
 .container {
+    flex: 0 0 240px; /* Asegura que no se encojan */
     height: 294px;
-    width: 240px;
-    color: white;
     perspective: 800px;
 }
 .card {
