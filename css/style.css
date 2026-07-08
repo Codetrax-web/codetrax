@@ -21,15 +21,15 @@
 }
 /* FIN RESETEO GENERAL */
 /* --- INICIO REJILLAS GLOBALES --- */
+/* USA ESTO EN LUGAR DE REPETIR REGLAS */
 #portfolio-grid, 
 #recursos-container, 
-#search-results-grid, 
-.results-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-    gap: 20px !important;
-    width: 100% !important;
-    margin-top: 20px !important;
+#search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
 }
 /* --- FIN REJILLAS GLOBALES --- */
 /* =====================================================
