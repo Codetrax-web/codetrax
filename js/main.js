@@ -264,7 +264,8 @@ const renderSearch = () => `
         <p>Aquí se despliega la evidencia de nuestra capacidad técnica. Descubre cómo transformamos conceptos complejos en infraestructura digital funcional, priorizando la arquitectura limpia, la velocidad de respuesta y la eficiencia del sistema sobre lo superficial.</p>
         
         <div class="portfolio-filters">
-            <button class="filter-btn active" data-filter="Damian">Todos</button>
+            <button class="filter-btn active" data-filter="Todos">Todos</button>
+            <button class="filter-btn" data-filter="Damian">Damian</button>
             <button class="filter-btn" data-filter="Ricardo">Ricardo</button>
             <button class="filter-btn" data-filter="DynsG">DynsG</button>
             <button class="filter-btn" data-filter="Tecno">Tecno</button>
