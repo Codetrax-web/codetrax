@@ -22,6 +22,7 @@ const renderSearch = () => `
 `;
 
     let portfolioProjects = [];
+    let recursosProjects = []; // Almacenar recursos para filtrar
     /* FIN ESTRUCTURAS DE DATOS */
    const searchableData = [
     ...portfolioProjects,
@@ -50,6 +51,7 @@ const renderSearch = () => `
         const recursosData = await recursosRes.json();
 
         portfolioProjects = portafolioData; // Para el renderizado normal
+        recursosProjects = recursosData; // Almacenar para filtrar en Recursos
 
         // Fusiona ambos para el buscador, incluyendo al equipo
 
@@ -115,7 +117,13 @@ const renderSearch = () => `
             button.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                renderPortfolio(button.dataset.filter);
+                
+                const section = document.querySelector('.about-section, .portfolio-page');
+                if (section && section.querySelector('#portfolio-grid')) {
+                    renderPortfolio(button.dataset.filter);
+                } else if (section && section.querySelector('#recursos-container')) {
+                    renderRecursos(button.dataset.filter);
+                }
             });
         });
     }
@@ -168,7 +176,7 @@ const renderSearch = () => `
            <h1 class="about-title">Sobre CodeTrax</h1>
            <div class="about-card">
             <h2>01 // ¿Qué es CodeTrax?</h2>
-            <p>En CodeTrax transformamos conceptos abstractos en infraestructura digital de alto rendimiento. Somos una agencia de desarrollo especializada en materializar ideas complejas mediante código limpio, interfaces avanzadas y soluciones tecnológicas reales que garantizan un despliegue impecable en el mercado.</p>
+            <p>En CodeTrax transformamos conceptos abstractos en infraestructura digital de alto rendimiento. Somos una agencia de desarrollo especializada en materializar ideas complejas mediante herramientas y procesos de ingeniería avanzada. Nuestra meta es simple: haz que tu tecnología trabaje para ti.</p>
         </div>
         <div class="about-card">
             <h2>02 // Servicios / Qué ofrecemos:</h2>
@@ -269,10 +277,10 @@ const renderSearch = () => `
             <p>Un ecosistema integral de herramientas avanzadas, utilidades de optimización y recursos de desarrollo de alto rendimiento. Si los sistemas base no se adaptan por completo a la arquitectura de tu proyecto, puedes solicitar una personalización exclusiva a la medida de tus necesidades técnicas.</p>
             <div class="portfolio-filters">
                 <button class="filter-btn active" data-filter="Todos">Todos</button>
-                <button class="filter-btn" data-filter="Juegos">Juegos</button>
-                <button class="filter-btn" data-filter="Office">Office</button>
-                <button class="filter-btn" data-filter="Codigo">Código</button>
-                <button class="filter-btn" data-filter="Robotica">Robotica</button>
+                <button class="filter-btn" data-filter="juegos">Juegos</button>
+                <button class="filter-btn" data-filter="office">Office</button>
+                <button class="filter-btn" data-filter="codigo">Código</button>
+                <button class="filter-btn" data-filter="robotica">Robotica</button>
             </div>
             <div id="recursos-container"></div>
         </div>
@@ -296,17 +304,17 @@ const renderSearch = () => `
 
     contacto: `
     <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
-        <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; border: 1px solid rgba(255,255,255,0.1);">
+        <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
             <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 20px;">Contacto.</h1>
             <form action="https://formspree.io/f/xeewykke" method="POST" target="_blank" style="display: flex; flex-direction: column; gap: 15px;">
                 <!-- Campos reorganizados en columna -->
 
-                <input type="text" name="nombre" placeholder="Nombre" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <input type="text" name="apellido" placeholder="Apellido" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <input type="tel" name="telefono" placeholder="Teléfono" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <input type="email" name="email" placeholder="Email" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;">
-                <textarea name="mensaje" placeholder="Mensaje" rows="4" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white;"></textarea>
-                <button type="submit" style="background:linear-gradient(135deg, #a855f7, #3b82f6); color:white; border:none; padding:14px; border-radius:12px; font-weight:bold; cursor:pointer;">Enviar</button>
+                <input type="text" name="nombre" placeholder="Nombre" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
+                <input type="text" name="apellido" placeholder="Apellido" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
+                <input type="tel" name="telefono" placeholder="Teléfono" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
+                <input type="email" name="email" placeholder="Email" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
+                <textarea name="mensaje" placeholder="Mensaje" rows="4" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem; resize:vertical;"></textarea>
+                <button type="submit" style="background:linear-gradient(135deg, #a855f7, #3b82f6); color:white; border:none; padding:14px; border-radius:12px; font-weight:bold; cursor:pointer;">Enviar Mensaje</button>
             </form>
         </div>
     </section>
@@ -317,34 +325,54 @@ const renderSearch = () => `
 
     /* =====================================================
        LÓGICA DE RECURSOS
-       Carga dinámica de los recursos adicionales
+       Carga dinámica de los recursos adicionales con filtrado
     ===================================================== */
-    async function loadRecursos() {
+    function renderRecursos(category) {
         const container = document.getElementById('recursos-container');
         if (!container) return;
+
+        let filteredRecursos = category !== 'Todos' 
+            ? recursosProjects.filter(item => item.categoria?.toLowerCase() === category.toLowerCase())
+            : recursosProjects;
+
+        // Validación de estado vacío
+        if (filteredRecursos.length === 0) {
+            container.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px);">
+                    <p style="color: #fff; font-size: 1.2rem;">No hay recursos disponibles.</p>
+                </div>`;
+            return;
+        }
+
+        container.innerHTML = filteredRecursos.map(item => `
+            <div class="project-card">
+                <img src="${item.imagen}" alt="${item.titulo}">
+                <h3>${item.titulo}</h3>
+                <p><strong>Creador:</strong> ${item.creador || 'Desconocido'}</p>
+                <p>${item.descripcion}</p>
+                <a href="${item.url}" target="_blank" class="project-link">
+                    <button class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">Visita</div>
+                    </button>
+                </a>
+            </div>
+        `).join('');
+    }
+
+    async function loadRecursos() {
         try {
-
-            const response = await fetch('./data/recursos/recursos.json');
-            const recursos = await response.json()
-            container.innerHTML = recursos.map(item => `
-
-                <div class="project-card">
-                    <img src="${item.imagen}" alt="${item.titulo}">
-                    <h3>${item.titulo}</h3>
-                    <p><strong>Creador:</strong> ${item.creador || 'Desconocido'}</p>
-                    <p>${item.descripcion}</p>
-                    <a href="${item.url}" target="_blank" class="project-link">
-                        <button class="button">
-                            <div class="blob1"></div>
-                            <div class="blob2"></div>
-                            <div class="inner">Visita</div>
-                        </button>
-                    </a>
-                </div>
-            `).join('');
+            if (recursosProjects.length === 0) {
+                const response = await fetch('./data/recursos/recursos.json');
+                recursosProjects = await response.json();
+            }
+            renderRecursos('Todos');
+            initializeFilters();
         } catch (error) {
             console.error('Error cargando recursos:', error);
-            container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
+            const container = document.getElementById('recursos-container');
+            if (container) container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
         }
     }
     /* FIN LÓGICA DE RECURSOS */
@@ -366,12 +394,12 @@ const renderSearch = () => `
 
         // Lógica de carga limpia: Cada sección hace exactamente lo que debe
 if (section === 'plans') {
-    // Solo carga Recursos en el contenedor de recursos
+    // Carga Recursos con filtros funcionales
     loadRecursos();
 } 
 
 if (section === 'settings') {
-    // Solo carga Portafolio en el contenedor de portafolio
+    // Carga Portafolio con filtros funcionales
     renderPortfolio('Todos'); 
     initializeFilters();
 }
@@ -391,4 +419,3 @@ if (section === 'settings') {
     console.log("CodeTrax inicializado correctamente.");
     /* FIN INICIALIZACIÓN Y EVENTOS GLOBALES */
 }); 
-
