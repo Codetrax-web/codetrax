@@ -39,6 +39,7 @@ const renderSearch = () => `
 `;
 
     let portfolioProjects = [];
+    let filtersInitialized = false; // evita ligaduras múltiples de eventos
 
     /* FIN ESTRUCTURAS DE DATOS */
 
@@ -201,28 +202,26 @@ const renderSearch = () => `
 
 
     function initializeFilters() {
+        // Usar delegación de eventos y evitar múltiples ligaduras
+        if (filtersInitialized) return;
 
-        document.querySelectorAll('.filter-btn').forEach(button => {
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest && e.target.closest('.filter-btn');
+            if (!btn) return;
 
-            button.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            const filter = btn.dataset.filter || 'Todos';
 
-                button.classList.add('active');
-
-                const filter = button.dataset.filter || 'Todos';
-
-                // Si existe el contenedor de recursos, aplicamos filtro a recursos, si no, al portafolio
-                if (document.getElementById('recursos-container')) {
-                    loadRecursos(filter);
-                } else {
-                    renderPortfolio(filter);
-                }
-
-            });
-
+            if (document.getElementById('recursos-container')) {
+                loadRecursos(filter);
+            } else {
+                renderPortfolio(filter);
+            }
         });
 
+        filtersInitialized = true;
     }
 
       document.addEventListener('input', (e) => {
@@ -300,8 +299,6 @@ const renderSearch = () => `
      <h1>Dashboard</h1>
 
      ${renderSearch()}
-
-     <div id="search-results-grid"></div> 
 
      <div class="social-container">Buscando...</div>
 
