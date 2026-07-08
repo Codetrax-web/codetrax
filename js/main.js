@@ -3,103 +3,90 @@
    Espera a que el HTML cargue para ejecutar la lógica
 ===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-   loadPortfolio().catch(err => console.error("Datos iniciales no disponibles:", err));
-   console.log("CodeTrax inicializado correctamente.");
+    loadPortfolio().catch(err => console.error("Datos iniciales no disponibles:", err));
+    console.log("CodeTrax inicializado correctamente.");
     const mainContent = document.getElementById('content');
 
     /* =====================================================
-       ESTRUCTURAS DE DATOS Y RENDERIZADO
+       ESTRUCTURAS DE DATOS Y RENDERIZADO INICIAL
     ===================================================== */
-const renderSearch = () => `
-    <div class="gt-field">
-        <span class="gt-input">
-            <span class="gt-input__prompt">&gt;</span>
-            <input type="text" id="gt-input-target" class="gt-input__control" placeholder="Buscar proyectos...">
-        </span>
-        <div id="search-results-grid"></div> </div>
-`;
+    const renderSearch = () => `
+        <div class="gt-field">
+            <span class="gt-input">
+                <span class="gt-input__prompt">&gt;</span>
+                <input type="text" id="gt-input-target" class="gt-input__control" placeholder="Buscar proyectos...">
+            </span>
+            <div id="search-results-grid"></div> 
+        </div>
+    `;
+
     let portfolioProjects = [];
-    /* FIN ESTRUCTURAS DE DATOS */
-   const searchableData = [
-    ...portfolioProjects,
-    { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax" },
-    { titulo: "Ricardo", descripcion: "Socio, Desarrollador | Codetrax" },
-    { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
-    { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" },
-    { titulo: "DynsG", descripcion: "Socia, Diseñadora | Codetrax" }
-];
 
     /* =====================================================
        LÓGICA DEL PORTAFOLIO
        Carga datos externos y gestiona filtros
     ===================================================== */
-   async function loadPortfolio() {
-    try {
-        // Carga ambos archivos en paralelo para optimizar
-        const [portafolioRes, recursosRes] = await Promise.all([
+    async function loadPortfolio() {
+        try {
+            const [portafolioRes, recursosRes] = await Promise.all([
+                fetch('./data/recursos/recursos.json'),
+                fetch('./data/portafolio/index.json')
+            ]);
             
-fetch('./data/recursos/recursos.json'),
-fetch('./data/portafolio/index.json')
+            const portafolioData = await portafolioRes.json();
+            const recursosData = await recursosRes.json();
             
-        ]);
-        
-        const portafolioData = await portafolioRes.json();
-        const recursosData = await recursosRes.json();
-        
-        portfolioProjects = portafolioData; // Para el renderizado normal
+            portfolioProjects = portafolioData;
 
-        // Fusiona ambos para el buscador, incluyendo al equipo
-        window.searchableData = [
-            ...portafolioData,
-            ...recursosData,
-            { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
-            { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
-            { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
-            { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
-            { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" }
-        ];
+            window.searchableData = [
+                ...portafolioData,
+                ...recursosData,
+                { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
+                { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
+                { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
+                { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
+                { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" }
+            ];
 
-        renderPortfolio('Todos');
-        initializeFilters();
-    } catch (error) {
-        console.error('Error cargando datos:', error);
+            renderPortfolio('Todos');
+            initializeFilters();
+        } catch (error) {
+            console.error('Error cargando datos:', error);
+        }
     }
-}
+
     function renderPortfolio(category) {
-    const grid = document.getElementById('portfolio-grid');
-    if (!grid) return;
+        const grid = document.getElementById('portfolio-grid');
+        if (!grid) return;
 
-    // Lógica de filtrado
-    let filteredProjects = category !== 'Todos' 
-        ? portfolioProjects.filter(project => project.categoria?.toLowerCase() === category.toLowerCase())
-        : portfolioProjects;
+        let filteredProjects = category !== 'Todos' 
+            ? portfolioProjects.filter(project => project.categoria?.toLowerCase() === category.toLowerCase())
+            : portfolioProjects;
 
-    // Validación de estado vacío con estilo consistente
-    if (filteredProjects.length === 0) {
-        grid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px);">
-                <p style="color: #fff; font-size: 1.2rem;">No hay proyectos disponibles.</p>
-            </div>`;
-        return;
+        if (filteredProjects.length === 0) {
+            grid.innerHTML = `
+                <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px);">
+                    <p style="color: #fff; font-size: 1.2rem;">No hay proyectos disponibles.</p>
+                </div>`;
+            return;
+        }
+
+        grid.innerHTML = filteredProjects.map(project => `
+            <div class="project-card">
+                <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                <h3>${project.titulo}</h3>
+                <p style="font-size: 0.85rem; color: #a1a1aa;">Creador: ${project.creador || 'Desconocido'}</p>
+                <p>${project.descripcion}</p>
+                <a href="${project.url}" target="_blank" class="project-link">
+                    <button class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">Ver Proyecto</div>
+                    </button>
+                </a>
+            </div>
+        `).join('');
     }
-
-    // Renderizado de tarjetas
-    grid.innerHTML = filteredProjects.map(project => `
-        <div class="project-card">
-            <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.jpg'">
-            <h3>${project.titulo}</h3>
-            <p style="font-size: 0.85rem; color: #a1a1aa;">Creador: ${project.creador || 'Desconocido'}</p>
-            <p>${project.descripcion}</p>
-            <a href="${project.url}" target="_blank" class="project-link">
-                <button class="button">
-                    <div class="blob1"></div>
-                    <div class="blob2"></div>
-                    <div class="inner">Ver Proyecto</div>
-                </button>
-            </a>
-        </div>
-    `).join('');
-}
 
     function initializeFilters() {
         document.querySelectorAll('.filter-btn').forEach(button => {
@@ -110,36 +97,37 @@ fetch('./data/portafolio/index.json')
             });
         });
     }
-      document.addEventListener('input', (e) => {
-          if (e.target.id === 'gt-input-target') {
-           const term = e.target.value.toLowerCase();
-           const resultsGrid = document.getElementById('search-results-grid');
+
+    /* =====================================================
+       BÚSQUEDA EN TIEMPO REAL
+    ===================================================== */
+    document.addEventListener('input', (e) => {
+        if (e.target.id === 'gt-input-target') {
+            const term = e.target.value.toLowerCase();
+            const resultsGrid = document.getElementById('search-results-grid');
         
-        // Si no hay datos, no hace nada
-        if (!term || !window.searchableData) { 
-            if (resultsGrid) resultsGrid.innerHTML = ''; 
-            return; 
+            if (!term || !window.searchableData) { 
+                if (resultsGrid) resultsGrid.innerHTML = ''; 
+                return; 
+            }
+
+            const filtered = window.searchableData.filter(p => 
+                p.titulo?.toLowerCase().includes(term) || 
+                (p.descripcion && p.descripcion.toLowerCase().includes(term))
+            );
+
+            resultsGrid.innerHTML = filtered.map(p => `
+                <div class="project-card">
+                    <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                    <h3>${p.titulo}</h3>
+                    <p>${p.descripcion}</p>
+                    <a href="${p.url}" target="_blank" class="project-link">
+                        <button class="button"><div class="inner">Ver</div></button>
+                    </a>
+                </div>
+            `).join('');
         }
-
-        const filtered = window.searchableData.filter(p => 
-            p.titulo?.toLowerCase().includes(term) || 
-            (p.descripcion && p.descripcion.toLowerCase().includes(term))
-        );
-
-        resultsGrid.innerHTML = filtered.map(p => `
-            <div class="project-card">
-                <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                <h3>${p.titulo}</h3>
-                <p>${p.descripcion}</p>
-                <a href="${p.url}" target="_blank" class="project-link">
-                    <button class="button"><div class="inner">Ver</div></button>
-                </a>
-            </div>
-        `).join('');
-    }
-});
-    /* FIN LÓGICA DEL PORTAFOLIO */
-
+    });
     /* =====================================================
        GESTIÓN DE VISTAS
        Definición de las plantillas HTML para cada sección
@@ -253,34 +241,32 @@ fetch('./data/portafolio/index.json')
     </section>
 `,
       plans: `
-        <div class="portfolio-page">
-            <h1>Recursos</h1>
-            <p>Un ecosistema integral de herramientas avanzadas, utilidades de optimización y recursos de desarrollo de alto rendimiento. Si los sistemas base no se adaptan por completo a la arquitectura de tu proyecto, puedes solicitar una personalización exclusiva a la medida de tus necesidades técnicas.</p>
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="Todos">Todos</button>
-                <button class="filter-btn" data-filter="Juegos">Juegos</button>
-                <button class="filter-btn" data-filter="Office">Office</button>
-                <button class="filter-btn" data-filter="Codigo">Código</button>
-                <button class="filter-btn" data-filter="Robotica">Robotica</button>
+            <div class="portfolio-page">
+                <h1>Recursos</h1>
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="Todos">Todos</button>
+                    <button class="filter-btn" data-filter="Juegos">Juegos</button>
+                    <button class="filter-btn" data-filter="Office">Office</button>
+                    <button class="filter-btn" data-filter="Codigo">Código</button>
+                    <button class="filter-btn" data-filter="Robotica">Robotica</button>
+                </div>
+                <div id="recursos-container"></div>
             </div>
-            <div id="recursos-container"></div>
-        </div>
-      `,
+        `,
        settings: `
-    <section class="about-section">
-        <h1 class="about-title">Portafolio</h1>
-        <p>Aquí se despliega la evidencia de nuestra capacidad técnica...</p>
-        <div class="portfolio-filters">
-            <button class="filter-btn active" data-filter="Todos">Todos</button>
-            <button class="filter-btn" data-filter="Damian">Damian</button>
-            <button class="filter-btn" data-filter="Ricardo">Ricardo</button>
-            <button class="filter-btn" data-filter="DynsG">DynsG</button>
-            <button class="filter-btn" data-filter="Tecno">Tecno</button>
-            <button class="filter-btn" data-filter="Miguel">Miguel</button>
-        </div>
-        <div id="portfolio-grid"></div>
-    </section>
-`,
+            <section class="about-section">
+                <h1 class="about-title">Portafolio</h1>
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="Todos">Todos</button>
+                    <button class="filter-btn" data-filter="Damian">Damian</button>
+                    <button class="filter-btn" data-filter="Ricardo">Ricardo</button>
+                    <button class="filter-btn" data-filter="DynsG">DynsG</button>
+                    <button class="filter-btn" data-filter="Tecno">Tecno</button>
+                    <button class="filter-btn" data-filter="Miguel">Miguel</button>
+                </div>
+                <div id="portfolio-grid"></div>
+            </section>
+        `,
     contacto: `
     <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
         <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; border: 1px solid rgba(255,255,255,0.1);">
@@ -299,10 +285,8 @@ fetch('./data/portafolio/index.json')
 `
     };
     /* FIN GESTIÓN DE VISTAS */
-
-    /* =====================================================
+/* =====================================================
        LÓGICA DE RECURSOS
-       Carga dinámica de los recursos adicionales
     ===================================================== */
     async function loadRecursos() {
         const container = document.getElementById('recursos-container');
@@ -310,7 +294,7 @@ fetch('./data/portafolio/index.json')
 
         try {
             const response = await fetch('./data/recursos/recursos.json');
-            const recursos = await response.json()
+            const recursos = await response.json();
             container.innerHTML = recursos.map(item => `
                 <div class="project-card">
                     <img src="${item.imagen}" alt="${item.titulo}">
@@ -331,37 +315,28 @@ fetch('./data/portafolio/index.json')
             container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
         }
     }
-    /* FIN LÓGICA DE RECURSOS */
 
     /* =====================================================
-       INICIALIZACIÓN Y EVENTOS GLOBALES
-       Controla navegación, atajos de teclado y buscador
+       NAVEGACIÓN Y EVENTOS GLOBALES
     ===================================================== */
     mainContent.innerHTML = views.home;
 
-   document.querySelectorAll('.menu a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.menu a.active')?.classList.remove('active');
-        link.classList.add('active');
-        
-        const section = link.getAttribute('data-section');
-        mainContent.innerHTML = views[section];
-        
-        // Lógica de carga limpia: Cada sección hace exactamente lo que debe
-if (section === 'plans') {
-    // Solo carga Recursos en el contenedor de recursos
-    loadRecursos();
-} 
-
-if (section === 'settings') {
-    // Solo carga Portafolio en el contenedor de portafolio
-    renderPortfolio('Todos'); 
-    initializeFilters();
-}
-
+    document.querySelectorAll('.menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.menu a.active')?.classList.remove('active');
+            link.classList.add('active');
+            
+            const section = link.getAttribute('data-section');
+            mainContent.innerHTML = views[section];
+            
+            if (section === 'plans') loadRecursos();
+            if (section === 'settings') {
+                renderPortfolio('Todos');
+                initializeFilters();
+            }
+        });
     });
-});
 
     document.addEventListener('keydown', (e) => {
         if (e.key === '/') {
@@ -372,8 +347,4 @@ if (section === 'settings') {
             }
         }
     });
-   
-    console.log("CodeTrax inicializado correctamente.");
-    /* FIN INICIALIZACIÓN Y EVENTOS GLOBALES */
 });
-
