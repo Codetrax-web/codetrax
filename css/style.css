@@ -20,7 +20,18 @@
     box-sizing:border-box;
 }
 /* FIN RESETEO GENERAL */
-
+/* --- INICIO REJILLAS GLOBALES --- */
+#portfolio-grid, 
+#recursos-container, 
+#search-results-grid, 
+.results-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+/* --- FIN REJILLAS GLOBALES --- */
 /* =====================================================
    CONFIGURACIÓN DEL BODY
    Contenedor principal de toda la página
@@ -196,12 +207,6 @@ main {
     background:linear-gradient(135deg, var(--gt-blue), var(--gt-red));
     border:none;
 }
-#portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
 .project-card {
     position:relative;
     overflow:hidden;
@@ -240,16 +245,6 @@ main {
 .project-card p { color:#d6d6d6; line-height:1.6; margin-bottom:20px; }
 .project-link { text-decoration:none; }
 /* FIN SECCIONES DE CONTENIDO */
-/* NUEVA UTILIDAD DE GRID */
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    width: 100%;
-    margin-top: 20px;
-}
-/* FIN NUEVA UTILIDAD */
-
 /* =====================================================
    BOTÓN GLASS REALISM
 ===================================================== */
@@ -345,16 +340,6 @@ main {
     margin: 0 auto 15px auto;
 }
 /* FIN CONTENIDO DINÁMICO Y EQUIPO */
-
-/* =====================================================
-   RECURSOS
-===================================================== */
-#recursos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
 #recursos-container .about-card { transition: transform 0.3s ease; }
 #recursos-container .about-card:hover { transform: translateY(-5px); }
 /* FIN RECURSOS */
