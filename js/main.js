@@ -267,7 +267,7 @@ const renderSearch = () => `
        settings: `
     <section class="about-section">
         <h1 class="about-title">Portafolio</h1>
-        <p>Aquí se despliega la evidencia de nuestra capacidad técnica. Descubre cómo transformamos conceptos complejos en infraestructura digital funcional, priorizando la arquitectura limpia, la velocidad de respuesta y la eficiencia del sistema sobre lo superficial.</p>
+        <p>Aquí se despliega la evidencia de nuestra capacidad técnica...</p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
             <button class="filter-btn" data-filter="Damian">Damian</button>
@@ -276,10 +276,9 @@ const renderSearch = () => `
             <button class="filter-btn" data-filter="Tecno">Tecno</button>
             <button class="filter-btn" data-filter="Miguel">Miguel</button>
         </div>
-        <div id="recursos-container">
-        </div>
+        <div id="portfolio-grid"></div>
     </section>
-   `,
+`,
     contacto: `
     <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
         <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; border: 1px solid rgba(255,255,255,0.1);">
