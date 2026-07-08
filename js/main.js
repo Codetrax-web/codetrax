@@ -173,7 +173,7 @@ const renderSearch = () => `
 
       files: `
           <section class="about-section">
-           <h1 class="about-title">Sobre CodeTrax</h1>
+           <h1 class="about-title">『 𝑺𝒐𝒃𝒓𝒆 𝑪𝒐𝒅𝒆𝑻𝒓𝒂𝒙 』</h1>
            <div class="about-card">
             <h2>01 // ¿Qué es CodeTrax?</h2>
             <p>En CodeTrax transformamos conceptos abstractos en infraestructura digital de alto rendimiento. Somos una agencia de desarrollo especializada en materializar ideas complejas mediante herramientas y procesos de ingeniería avanzada. Nuestra meta es simple: haz que tu tecnología trabaje para ti.</p>
@@ -273,7 +273,7 @@ const renderSearch = () => `
 
       plans: `
         <div class="portfolio-page">
-            <h1>Recursos</h1>
+            <h1>『 𝑹𝒆𝒄𝒖𝒓𝒔𝒐𝒔 』</h1>
             <p>Un ecosistema integral de herramientas avanzadas, utilidades de optimización y recursos de desarrollo de alto rendimiento. Si los sistemas base no se adaptan por completo a la arquitectura de tu proyecto, puedes solicitar una personalización exclusiva a la medida de tus necesidades técnicas.</p>
             <div class="portfolio-filters">
                 <button class="filter-btn active" data-filter="Todos">Todos</button>
@@ -288,7 +288,7 @@ const renderSearch = () => `
 
        settings: `
     <section class="about-section">
-        <h1 class="about-title">Portafolio</h1>
+        <h1 class="about-title">『 𝑷𝒐𝒓𝒕𝒂𝒇𝒐𝒍𝒊𝒐 』</h1>
         <p>Aquí se despliega la evidencia de nuestra capacidad técnica...</p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
@@ -303,6 +303,8 @@ const renderSearch = () => `
 `,
 
     contacto: `
+    <section class="about-section">
+        <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
     <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
         <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
             <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 20px;">Contacto.</h1>
