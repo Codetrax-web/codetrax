@@ -262,7 +262,6 @@ const renderSearch = () => `
     <section class="about-section">
         <h1 class="about-title">Portafolio</h1>
         <p>Aquí se despliega la evidencia de nuestra capacidad técnica. Descubre cómo transformamos conceptos complejos en infraestructura digital funcional, priorizando la arquitectura limpia, la velocidad de respuesta y la eficiencia del sistema sobre lo superficial.</p>
-        
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
             <button class="filter-btn" data-filter="Damian">Damian</button>
@@ -271,7 +270,8 @@ const renderSearch = () => `
             <button class="filter-btn" data-filter="Tecno">Tecno</button>
             <button class="filter-btn" data-filter="Miguel">Miguel</button>
         </div>
-        <div id="recursos-container"></div>
+        <div id="recursos-container">
+        </div>
     </section>
    `,
     contacto: `
