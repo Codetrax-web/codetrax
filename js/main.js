@@ -26,108 +26,38 @@ document.addEventListener('DOMContentLoaded', () => {
        LÓGICA DEL PORTAFOLIO
        Carga datos externos y gestiona filtros
     ===================================================== */
-    async function loadPortfolio() {
-        try {
-            const [portafolioRes, recursosRes] = await Promise.all([
-                fetch('./data/recursos/recursos.json'),
-                fetch('./data/portafolio/index.json')
-            ]);
-            
-            const portafolioData = await portafolioRes.json();
-            const recursosData = await recursosRes.json();
-            
-            portfolioProjects = portafolioData;
-
-            window.searchableData = [
-                ...portafolioData,
-                ...recursosData,
-                { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
-                { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
-                { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
-                { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
-                { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" }
-            ];
-
-            renderPortfolio('Todos');
-            initializeFilters();
-        } catch (error) {
-            console.error('Error cargando datos:', error);
-        }
-    }
-
-    function renderPortfolio(category) {
-        const grid = document.getElementById('portfolio-grid');
-        if (!grid) return;
-
-        let filteredProjects = category !== 'Todos' 
-            ? portfolioProjects.filter(project => project.categoria?.toLowerCase() === category.toLowerCase())
-            : portfolioProjects;
-
-        if (filteredProjects.length === 0) {
-            grid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px);">
-                    <p style="color: #fff; font-size: 1.2rem;">No hay proyectos disponibles.</p>
-                </div>`;
-            return;
-        }
-
-        grid.innerHTML = filteredProjects.map(project => `
-            <div class="project-card">
-                <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                <h3>${project.titulo}</h3>
-                <p style="font-size: 0.85rem; color: #a1a1aa;">Creador: ${project.creador || 'Desconocido'}</p>
-                <p>${project.descripcion}</p>
-                <a href="${project.url}" target="_blank" class="project-link">
-                    <button class="button">
-                        <div class="blob1"></div>
-                        <div class="blob2"></div>
-                        <div class="inner">Ver Proyecto</div>
-                    </button>
-                </a>
-            </div>
-        `).join('');
-    }
-
-    function initializeFilters() {
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                renderPortfolio(button.dataset.filter);
-            });
-        });
-    }
-
-    /* =====================================================
-       BÚSQUEDA EN TIEMPO REAL
-    ===================================================== */
-    document.addEventListener('input', (e) => {
-        if (e.target.id === 'gt-input-target') {
-            const term = e.target.value.toLowerCase();
-            const resultsGrid = document.getElementById('search-results-grid');
+  /* =====================================================
+   CARGA DE DATOS: Asegúrate de guardar los datos en la variable
+===================================================== */
+async function loadPortfolio() {
+    try {
+        const response = await fetch('./data/portafolio/index.json');
+        const data = await response.json();
         
-            if (!term || !window.searchableData) { 
-                if (resultsGrid) resultsGrid.innerHTML = ''; 
-                return; 
-            }
+        // ¡Aquí estaba el error! Debes asignar los datos a la variable global
+        portfolioProjects = data; 
+        
+        renderPortfolio('Todos');
+    } catch (error) {
+        console.error('Error cargando portafolio:', error);
+    }
+}
 
-            const filtered = window.searchableData.filter(p => 
-                p.titulo?.toLowerCase().includes(term) || 
-                (p.descripcion && p.descripcion.toLowerCase().includes(term))
-            );
+/* =====================================================
+   DELEGACIÓN DE EVENTOS: Reemplaza tu antigua initializeFilters
+   Esto funciona siempre, sin importar cuándo se inyecte el HTML
+===================================================== */
+document.addEventListener('click', (e) => {
+    if (e.target.matches('.filter-btn')) {
+        // Quitar clase active
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        e.target.classList.add('active');
 
-            resultsGrid.innerHTML = filtered.map(p => `
-                <div class="project-card">
-                    <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                    <h3>${p.titulo}</h3>
-                    <p>${p.descripcion}</p>
-                    <a href="${p.url}" target="_blank" class="project-link">
-                        <button class="button"><div class="inner">Ver</div></button>
-                    </a>
-                </div>
-            `).join('');
-        }
-    });
+        // Filtrar y renderizar
+        const categoria = e.target.dataset.filter;
+        renderPortfolio(categoria);
+    }
+});
     /* =====================================================
        GESTIÓN DE VISTAS
        Definición de las plantillas HTML para cada sección
