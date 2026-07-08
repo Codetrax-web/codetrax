@@ -356,22 +356,34 @@ main {
     border-radius:20px;
 }
 
+/* Team grid: usar CSS Grid y forzar 3 columnas en pantallas grandes */
 .team-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
     gap: 30px;
+    justify-items: center;
     width: 100%;
 }
 
+/* Adaptación responsiva: 2 columns on medium screens, 1 on small */
+@media (max-width: 1000px) {
+    .team-grid { grid-template-columns: repeat(2, minmax(200px, 1fr)); }
+}
+@media (max-width: 600px) {
+    .team-grid { grid-template-columns: 1fr; }
+}
+
 .container {
-    flex: 0 0 240px; /* Asegura que no se encojan */
-    height: 294px;
+    width: 100%;
+    max-width: 260px;
+    height: auto;
     perspective: 800px;
+    margin: 0 auto;
 }
 
 .card {
-    width: 240px;
+    width: 100%;
+    max-width: 260px;
     background: #000;
     border-radius: 20px;
     padding: 20px;
