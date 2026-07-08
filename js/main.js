@@ -138,12 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
        Definición de las plantillas HTML para cada sección
     ===================================================== */
     const views = {
-      home: `
-          <h1>Dashboard</h1>
-          ${renderSearch()}
-          <div id="search-results-grid"></div> 
-          <div class="social-container">Buscando...</div>
-         `,
+     home: `
+     <h1>Dashboard</h1>
+     ${renderSearch()}
+     <div id="search-results-grid"></div> 
+     <div class="social-container">Buscando...</div>
+      `,
       files: `
     <section class="about-section">
         <h1 class="about-title">Sobre CodeTrax</h1>
