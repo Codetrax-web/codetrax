@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ...recursosData,
             { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
             { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
+            { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
             { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
             { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" }
         ];
