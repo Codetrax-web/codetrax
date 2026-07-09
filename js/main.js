@@ -310,6 +310,7 @@ const renderSearch = () => `
             <button class="filter-btn" data-filter="DynsG">DynsG</button>
             <button class="filter-btn" data-filter="Tecno">Tecno</button>
             <button class="filter-btn" data-filter="Miguel">Miguel</button>
+            <button class="filter-btn" data-filter="Tomas">Tomas</button>
         </div>
         <div id="portfolio-grid"></div>
     </section>
