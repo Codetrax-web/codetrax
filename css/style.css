@@ -86,11 +86,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 15px;  /* Reduce padding */
+    padding: 8px 12px;  /* Reduce padding */
     border-radius: 15px;
-    background: rgba(30,30,46,.65);  /* Más transparente (era .85) */
+    background: rgba(30,30,46,.35);  /* Más transparente (era .85) */
     border: 1px solid rgba(255,255,255,.15);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
 }
 
 /* FIN HEADER */
