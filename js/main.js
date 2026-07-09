@@ -290,6 +290,7 @@ const renderSearch = () => `
             <p>En esta sección encontrarás herramientas y activos que hemos desarrollado para libre uso</p>
             <div class="portfolio-filters">
                 <button class="filter-btn active" data-filter="Todos">Todos</button>
+                <button class="filter-btn" data-filter="Apps">Apps</button>
                 <button class="filter-btn" data-filter="juegos">Juegos</button>
                 <button class="filter-btn" data-filter="office">Office</button>
                 <button class="filter-btn" data-filter="codigo">Código</button>
