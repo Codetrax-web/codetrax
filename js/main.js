@@ -287,7 +287,7 @@ const renderSearch = () => `
       plans: `
         <div class="portfolio-page">
             <h1>『 𝑹𝒆𝒄𝒖𝒓𝒔𝒐𝒔 』</h1>
-            <p>Un ecosistema integral de herramientas avanzadas, utilidades de optimización y recursos de desarrollo de alto rendimiento. Si los sistemas base no se adaptan por completo a la arquitectura de tu proyecto, puedes solicitar una personalización exclusiva a la medida de tus necesidades técnicas.</p>
+            <p>En esta sección encontrarás herramientas y activos que hemos desarrollado para libre uso</p>
             <div class="portfolio-filters">
                 <button class="filter-btn active" data-filter="Todos">Todos</button>
                 <button class="filter-btn" data-filter="juegos">Juegos</button>
@@ -302,7 +302,7 @@ const renderSearch = () => `
        settings: `
     <section class="about-section">
         <h1 class="about-title">『 𝑷𝒐𝒓𝒕𝒂𝒇𝒐𝒍𝒊𝒐 』</h1>
-        <p>Aquí se despliega la evidencia de nuestra capacidad técnica...</p>
+        <p>En este espacio compartimos los proyectos, retos y soluciones que definen nuestra trayectoria</p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
             <button class="filter-btn" data-filter="Damian">Damian</button>
@@ -319,6 +319,7 @@ const renderSearch = () => `
     contacto: `
     <section class="about-section">
         <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
+         <p>¿Tienes alguna propuesta o colaboración en mente? Estamos disponibles para conversar y explorar nuevas oportunidades juntos.</p>
     <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
         <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
             <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 20px;">Contacto.</h1>
