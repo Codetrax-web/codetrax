@@ -31,7 +31,8 @@ const renderSearch = () => `
     { titulo: "Ricardo", descripcion: "Socio, Desarrollador | Codetrax" },
     { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
     { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" },
-    { titulo: "DynsG", descripcion: "Socia, Diseñadora | Codetrax" }
+    { titulo: "DynsG", descripcion: "Socia, Diseñadora | Codetrax" },
+    { titulo: "Tomas", descripcion: "Socio, Modelador | Codetrax" }
 ];
 
     /* =====================================================
@@ -63,8 +64,9 @@ const renderSearch = () => `
             { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
             { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
             { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
-            { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" }
-
+            { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" },
+            { titulo: "Tomas", descripcion: "Socio: , Modelador | Tomas", imagen: "assets/team/Tomas.jpg", url: "#" }
+           
         ];
 
         renderPortfolio('Todos');
@@ -267,6 +269,16 @@ const renderSearch = () => `
                      <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                   </div>
                 </div>
+
+                 <div class="card orange">
+                    <div class="profile-tag">Socio: </div>
+                    <img src="assets/team/Tomas.jpg" alt="Foto" class="team-photo">
+                    <h2>Tomas</h2>
+                    <p>Modelador | Codetrax</p>
+               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+                     <a href="https://www.tiktok.com/@el_trolas0?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+                 </div>
+                 </div>
             </div>
         </div>
     </section>
