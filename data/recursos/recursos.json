@@ -40,6 +40,14 @@
     "categoria": "robotica"
   },
   {
+    "titulo": "Carro_arduino",
+    "creador": "Damian Cruz",
+    "descripcion": "Carro controlada por Arduino.",
+    "imagen": "data/portafolio/robotica/car/carro.png",
+    "url": "https://www.mediafire.com/file/mxcaavqjad5vfrg/Carro_bluetooth.ino/file",
+    "categoria": "robotica"
+  },
+  {
     "titulo": "Grua_con_Joystic",
     "creador": "Damian Cruz",
     "descripcion": "Ingeniería al mando. Control preciso mediante hardware simplificado.",
