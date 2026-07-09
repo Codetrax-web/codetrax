@@ -1,9 +1,10 @@
 [
+ //Damian +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   {
     "titulo": "Electrum",
     "creador": "Damian Cruz",
     "descripcion": "Desde el desarrollo de identidad y presencia web hasta la estrategia de impacto en redes.",
-    "imagen": "data/recursos/electrum/ima.png",
+    "imagen": "data/recursos/Damian/electrum/ima.png",
     "url": "https://electrumcdmx.es/",
     "categoria": "Damian"
   },
@@ -19,8 +20,42 @@
     "titulo": "Walli-e",
     "creador": "Damian Cruz",
     "descripcion": "Desde la planificasion, disello y creacion de este robot.",
-    "imagen": "data/recursos/wall/ima.png",
+    "imagen": "data/recursos/Damian/wall/ima.png",
     "url": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
     "categoria": "Damian"
+  },
+  
+  //Dyns +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  {
+    "titulo": "Miniatura",
+    "creador": "DynsG",
+    "descripcion": "d.",
+    "imagen": "data/recursos/Dyns/d4.jpeg",
+    "url": "https://youtu.be/PkSVWkFvYZE?si=KFaH9fA08j8yRA8Y",
+    "categoria": "DynsG"
+  }, 
+  {
+    "titulo": "Baner_juanitoVT",
+    "creador": "DynsG",
+    "descripcion": "d.",
+    "imagen": "data/recursos/Dyns/d6.jpeg",
+    "url": "https://www.youtube.com/@juanitovt7",
+    "categoria": "DynsG"
+  },
+  {
+    "titulo": "Miniatura_EJ_Blox",
+    "creador": "DynsG",
+    "descripcion": "d.",
+    "imagen": "data/recursos/Dyns/d3.jpeg",
+    "url": "https://youtu.be/SJRXAaSaNzY?si=z5j1oVIev3Cpx7p9",
+    "categoria": "DynsG"
+  },
+  {
+    "titulo": "Baner_Coolisa!",
+    "creador": "DynsG",
+    "descripcion": "d.",
+    "imagen": "data/recursos/Dyns/d5.jpeg",
+    "url": "https://www.youtube.com/@soycoolisayt",
+    "categoria": "DynsG"
   }
 ]
