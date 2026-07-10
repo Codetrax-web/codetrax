@@ -1,4 +1,5 @@
 [
+  // ... Código
   {
     "titulo": "Copa_Pistón",
     "creador": "Damian Cruz",
@@ -31,6 +32,7 @@
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
     "categoria": "codigo"
   },
+  // ... Robotica
    {
     "titulo": "Sistema_de_Riego",
     "creador": "Damian Cruz",
@@ -54,5 +56,30 @@
     "imagen": "data/portafolio/robotica/grua/pro.png",
     "url": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file",
     "categoria": "robotica"
+  },
+  // ... Apps
+   {
+    "titulo": "KWGT",
+    "creador": "Play Store",
+    "descripcion": "App pro ",
+    "imagen": "data/portafolio/Apps/Kwgt.png",
+    "url": "https://www.mediafire.com/file/1l9c1fl9ogb4goo/KWGT_Pro.apk/file",
+    "categoria": "Apps"
+  },
+  {
+    "titulo": "DynamicSpot",
+    "creador": "Play Store",
+    "descripcion": "App pro ",
+    "imagen": "data/portafolio/Apps/dyna.png",
+    "url": "https://www.mediafire.com/file/d7afrep1xo2fpee/dynamic_Spot_v2.00_%2528Premium%2529.apk/file",
+    "categoria": "Apps"
+  },
+  {
+    "titulo": "KLCK Pro",
+    "creador": "Play Store",
+    "descripcion": "App pro ",
+    "imagen": "data/portafolio/Apps/Klck.png",
+    "url": "https://www.mediafire.com/file/3jmcppgboiihuj8/Kustom-Lock-v3.76b422110-mod-GameDVA.com.apk/file",
+    "categoria": "Apps"
   }
 ]
