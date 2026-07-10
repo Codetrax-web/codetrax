@@ -1,5 +1,4 @@
 [
-  // ... Código
   {
     "titulo": "Copa_Pistón",
     "creador": "Damian Cruz",
@@ -32,7 +31,8 @@
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
     "categoria": "codigo"
   },
-  // ... Robotica
+
+
    {
     "titulo": "Sistema_de_Riego",
     "creador": "Damian Cruz",
@@ -57,7 +57,8 @@
     "url": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file",
     "categoria": "robotica"
   },
-  // ... Apps
+
+  
    {
     "titulo": "KWGT",
     "creador": "Play Store",
@@ -82,4 +83,6 @@
     "url": "https://www.mediafire.com/file/3jmcppgboiihuj8/Kustom-Lock-v3.76b422110-mod-GameDVA.com.apk/file",
     "categoria": "Apps"
   }
+
+  
 ]
