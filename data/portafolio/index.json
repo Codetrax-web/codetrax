@@ -1,4 +1,5 @@
 [
+  // ... Damian
   {
     "titulo": "Electrum",
     "creador": "Damian Cruz",
@@ -8,14 +9,6 @@
     "categoria": "Damian"
   },
   {
-    "titulo": "Futuristical Beats",
-    "creador": "Damian Cruz | Tecno 730",
-    "descripcion": "Vanguardia en sonidos sintéticos. Un espacio enfocado en la curaduría de música electrónica experimental, potenciado por la sinergia creativa con Tecno-730. Calidad sonora sin concesiones.",
-    "imagen": "data/recursos/fuc/ima.png",
-    "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
-    "categoria": "Tecno"
-  },
-  {
     "titulo": "Walli-e",
     "creador": "Damian Cruz",
     "descripcion": "Desde la planificasion, disello y creacion de este robot.",
@@ -23,7 +16,7 @@
     "url": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
     "categoria": "Damian"
   },
-
+// ... DynsG
   {
     "titulo": "Miniatura",
     "creador": "DynsG",
@@ -55,5 +48,15 @@
     "imagen": "data/recursos/Dyns/d5.jpeg",
     "url": "https://www.youtube.com/@soycoolisayt",
     "categoria": "DynsG"
+  },
+  // ... Tecno
+  {
+    "titulo": "Futuristical Beats",
+    "creador": "Damian Cruz | Tecno 730",
+    "descripcion": "Vanguardia en sonidos sintéticos. Un espacio enfocado en la curaduría de música electrónica experimental, potenciado por la sinergia creativa con Tecno-730. Calidad sonora sin concesiones.",
+    "imagen": "data/recursos/fuc/ima.png",
+    "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
+    "categoria": "Tecno"
   }
+  // ... Miguel
 ]
