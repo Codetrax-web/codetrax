@@ -27,12 +27,32 @@ const renderSearch = () => `
    const searchableData = [
     ...portfolioProjects,
 
-    { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax" },
-    { titulo: "Ricardo", descripcion: "Socio, Desarrollador | Codetrax" },
-    { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
-    { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" },
-    { titulo: "DynsG", descripcion: "Socia, Diseñadora | Codetrax" },
-    { titulo: "Tomas", descripcion: "Socio, Modelador | Codetrax" }
+    [
+    {
+        titulo: "Damian Cruz",
+        descripcion: "CEO & Lead Software Engineer"
+    },
+    {
+        titulo: "Ricardo",
+        descripcion: "Full Stack Developer"
+    },
+    {
+        titulo: "Tecno730",
+        descripcion: "Multimedia Designer"
+    },
+    {
+        titulo: "Miguel Pandares",
+        descripcion: "Software Engineer"
+    },
+    {
+        titulo: "DynsG",
+        descripcion: "Creative Designer & UI/UX"
+    },
+    {
+        titulo: "Tomás",
+        descripcion: "3D Artist & Game Assets"
+    }
+]
 ];
 
     /* =====================================================
@@ -60,13 +80,44 @@ const renderSearch = () => `
             ...portafolioData,
             ...recursosData,
            
-            { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
-            { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
-            { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
-            { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
-            { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" },
-            { titulo: "Tomas", descripcion: "Socio: , Modelador | Tomas", imagen: "assets/team/Tomas.jpg", url: "#" }
-           
+           [
+    {
+        titulo: "Damian Cruz",
+        descripcion: "CEO & Lead Software Engineer",
+        imagen: "assets/team/Damian.jpg",
+        url: "https://codetrax-web.github.io/presentasion/"
+    },
+    {
+        titulo: "Ricardo",
+        descripcion: "Full Stack Developer",
+        imagen: "assets/team/ricardo.jpg",
+        url: "#"
+    },
+    {
+        titulo: "DynsG",
+        descripcion: "Creative Designer & UI/UX",
+        imagen: "assets/team/DynsG.jpg",
+        url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7"
+    },
+    {
+        titulo: "Tecno730",
+        descripcion: "Multimedia Designer",
+        imagen: "assets/team/tecno.jpg",
+        url: "https://linktr.ee/__TECNO730__"
+    },
+    {
+        titulo: "Miguel Pandares",
+        descripcion: "Software Engineer",
+        imagen: "assets/team/Miguel.jpg",
+        url: "https://linktr.ee/migueltime"
+    },
+    {
+        titulo: "Tomás",
+        descripcion: "3D Artist & Game Assets",
+        imagen: "assets/team/Tomas.jpg",
+        url: "#"
+    }
+]
         ];
 
         renderPortfolio('Todos');
@@ -169,6 +220,7 @@ const renderSearch = () => `
      home: `
      <section class="about-section">
         <h1 class="about-title">⚜匚ㄖᗪ乇ㄒ尺卂乂⚜</h1>
+        <p>"CodeTrax desarrolla soluciones digitales para personas, empresas y creadores. Diseñamos, programamos y construimos proyectos tecnológicos, creativos y multimedia, adaptándonos a las necesidades de cada cliente."</p>
      ${renderSearch()}
      <div id="search-results-grid"></div> 
      <div class="social-container">Buscando...</div>
@@ -179,38 +231,45 @@ const renderSearch = () => `
            <h1 class="about-title">『 𝑺𝒐𝒃𝒓𝒆 𝑪𝒐𝒅𝒆𝑻𝒓𝒂𝒙 』</h1>
            <div class="about-card">
             <h2>01 // ¿Qué es CodeTrax?</h2>
-            <p>En CodeTrax transformamos conceptos abstractos en infraestructura digital de alto rendimiento. Somos una agencia de desarrollo especializada en materializar ideas complejas mediante herramientas y procesos de ingeniería avanzada. Nuestra meta es simple: haz que tu tecnología trabaje para ti.</p>
+            <p>CodeTrax es una agencia de desarrollo digital especializada en crear soluciones tecnológicas y creativas. Nuestro trabajo combina programación, diseño, automatización y producción multimedia para desarrollar proyectos personalizados que se adaptan a las necesidades de cada cliente.
+
+            No trabajamos con un único servicio; reunimos distintas disciplinas para construir desde una identidad visual hasta aplicaciones, sitios web, herramientas, contenido multimedia o sistemas automatizados. Cada proyecto es diferente y por eso buscamos la mejor solución para cada caso.</p>
         </div>
         <div class="about-card">
             <h2>02 // Servicios / Qué ofrecemos:</h2>
-            <p> Desarrollo Digital: Apps, plataformas y herramientas funcionales</p>
-            <p> Consultoría de Proyectos: Planificamos y estructuramos tu proyecto para que sea viable, escalable y efectivo.</p>
-            <p> Diseño y Experiencia: Cada proyecto se entrega con estética, usabilidad y funcionalidad optimizadas.</p>
+            <p> [Desarrollo]:Desarrollo de sitios web, aplicaciones, sistemas personalizados, herramientas digitales, automatización, optimización de código e integración de tecnologías.</p>
+            <p> [Diseño]:Diseño de logotipos, banners, miniaturas, interfaces, identidad visual, material gráfico y recursos digitales para marcas y creadores.</p>
+            <p> [Multimedia]:Producción y edición de audio, música, efectos de sonido, contenido visual y recursos multimedia para proyectos digitales.</p>
+            <p> [Videojuegos]:Desarrollo de modificaciones (mods), herramientas, recursos gráficos y soluciones técnicas para videojuegos.</p>
+            <p> [Consultoría]:Asesoramos proyectos desde su planificación hasta su implementación, ayudando a convertir una idea en un producto real.</p>
         </div>
         <div class="about-card">
             <h2>03 // Filosofía [Misión y Valores]:</h2>
-            <p>Misión: Desarrollar ingeniería digital que trabaje para ti. Elevamos el estándar técnico para que la tecnología no sea un obstáculo, sino tu mayor ventaja competitiva.</p>
+            <p>Misión:
+            Nuestra misión es desarrollar soluciones digitales que realmente aporten valor. Combinamos creatividad, tecnología y experiencia para construir proyectos funcionales, estables y preparados para crecer junto con nuestros clientes.</p>
             <p>Valores:</p>
-            <p>+ Precisión</p>
-            <p>+ Innovación</p>
-            <p>+ Compromiso</p>
+            <p> [Innovación]: Siempre buscamos nuevas formas de resolver problemas mediante tecnología y creatividad.</p>
+            <p> [Calidad]: Cuidamos tanto el funcionamiento como la presentación de cada proyecto.</p>
+            <p> [Compromiso]: Trabajamos de manera cercana con cada cliente para entregar resultados que cumplan sus objetivos.</p>
+            <p> [Aprendizaje continuo]: La tecnología evoluciona constantemente y nosotros evolucionamos con ella.</p>
         </div>
         <div class="about-card">
             <h2>04 // Metodología / Cómo trabajamos:</h2>
             <p>Nuestra metodología se ejecuta en un ciclo cerrado de cuatro fases:</p>
-            <p>1° [ANÁLISIS] Evaluamos los requerimientos técnicos y estructuramos la lógica del proyecto.</p>
-            <p>2° [DESARROLLO] Traducimos la arquitectura planificada en código limpio y funcional.</p>
-            <p>3° [OPTIMIZACIÓN] Sometemos el sistema a pruebas rigurosas de rendimiento y diseño responsivo.</p>
-            <p>4° [DESPLIEGUE] Lanzamos la plataforma oficialmente al entorno de producción, lista para operar.</p>
+            <p>1° [Escuchamos tu idea]: Analizamos tus objetivos y entendemos qué necesitas.</p>
+            <p>2° [Diseñamos la solución]: Planificamos la estructura técnica y visual del proyecto.</p>
+            <p>3° [Desarrollamos]: Construimos el proyecto aplicando buenas prácticas y pruebas constantes.</p>
+            <p>4° [Entregamos y mejoramos]: Publicamos el proyecto y brindamos soporte cuando sea necesario.</p>
         </div>
         <div class="about-card">
             <h2>05 // Infraestructura [Equipo]:</h2>
             <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            
                 <div class="card red">
-                    <div class="profile-tag">Fundador: Mexico</div>
+                    <div class="profile-tag">Fundador | CEO</div>
                     <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                     <h2>Damian cruz</h2>
-                    <p>Desarrollador principal | Codetrax</p>
+                    <p>Arquitectura de Software • Automatización • Desarrollo Web • IA</p>
                <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
                      <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
                      <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
@@ -221,45 +280,20 @@ const renderSearch = () => `
                 </div>
 
                 <div class="card yellow">
-                    <div class="profile-tag">Socio: Mexico</div>
+                    <div class="profile-tag">Desarrollador Full Stack</div>
                     <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
                     <h2>Ricardo</h2>
-                    <p>Desarrollador | Codetrax</p>
+                    <p>Backend • APIs • Aplicaciones</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
 
                </div>
                 </div>
 
-               <div class="card purple">
-                    <div class="profile-tag">Socia: Colombia</div>
-                    <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
-                    <h2>DynsG</h2>
-                    <p>Diseñadora | Codetrax</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
-                     <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-                </div>
-                </div>
-
-                <div class="card blue">
-                    <div class="profile-tag">Socio: Venezuela</div>
-                    <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
-                    <h2>Tecno 730</h2>
-                    <p>Diseñador | tecno730</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://discord.gg/tbUVxyGU" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                     <a href="https://www.twitch.tv/tecno730" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
-                     <a href="https://www.youtube.com/@TECNO730" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-               </div>
-                </div>
-
-                <div class="card green">
-                    <div class="profile-tag">Socio: Venezuela</div>
+                 <div class="card green">
+                    <div class="profile-tag">Desarrollador Full Stack</div>
                     <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
                     <h2>Miguel Pandares</h2>
-                    <p>Desarrollador | Axira studios</p>
+                    <p>Desarrollo de Sistemas • Optimización • Automatización</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
                      <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
@@ -268,6 +302,31 @@ const renderSearch = () => `
                      <a href="https://www.twitch.tv/migueltime" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
                      <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                   </div>
+                </div>
+
+               <div class="card purple">
+                    <div class="profile-tag">Diseñadora Gráfica</div>
+                    <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
+                    <h2>DynsG</h2>
+                    <p>Branding • Interfaces • Recursos Visuales</p>
+               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+                     <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
+                     <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+                </div>
+                </div>
+
+                <div class="card blue">
+                    <div class="profile-tag">Diseñador Multimedia/div>
+                    <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
+                    <h2>Tecno 730</h2>
+                    <p>Contenido Digital • Motion Graphics • Recursos Visuales</p>
+               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+                     <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+                     <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                     <a href="https://discord.gg/tbUVxyGU" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+                     <a href="https://www.twitch.tv/tecno730" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
+                     <a href="https://www.youtube.com/@TECNO730" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+               </div>
                 </div>
 
                  <div class="card orange">
@@ -287,7 +346,8 @@ const renderSearch = () => `
       plans: `
         <div class="portfolio-page">
             <h1>『 𝑹𝒆𝒄𝒖𝒓𝒔𝒐𝒔 』</h1>
-            <p>En esta sección encontrarás herramientas y activos que hemos desarrollado para libre uso</p>
+            <p>Compartimos aplicaciones, herramientas, recursos y proyectos desarrollados por CodeTrax para que la comunidad pueda utilizarlos, aprender de ellos o incorporarlos a sus propios proyectos.</p>
+            <p></p>
             <div class="portfolio-filters">
                 <button class="filter-btn active" data-filter="Todos">Todos</button>
                 <button class="filter-btn" data-filter="Apps">Apps</button>
@@ -303,7 +363,8 @@ const renderSearch = () => `
        settings: `
     <section class="about-section">
         <h1 class="about-title">『 𝑷𝒐𝒓𝒕𝒂𝒇𝒐𝒍𝒊𝒐 』</h1>
-        <p>En este espacio compartimos los proyectos, retos y soluciones que definen nuestra trayectoria</p>
+        <p>Aquí encontrarás algunos de los proyectos desarrollados por el equipo de CodeTrax. Cada trabajo refleja nuestra experiencia en programación, diseño, automatización y desarrollo multimedia.</p>
+        <p></p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
             <button class="filter-btn" data-filter="Damian">Damian</button>
