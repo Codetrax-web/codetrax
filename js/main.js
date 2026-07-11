@@ -28,30 +28,12 @@ const renderSearch = () => `
     ...portfolioProjects,
 
     [
-    {
-        titulo: "Damian Cruz",
-        descripcion: "CEO & Lead Software Engineer"
-    },
-    {
-        titulo: "Ricardo",
-        descripcion: "Full Stack Developer"
-    },
-    {
-        titulo: "Tecno730",
-        descripcion: "Multimedia Designer"
-    },
-    {
-        titulo: "Miguel Pandares",
-        descripcion: "Software Engineer"
-    },
-    {
-        titulo: "DynsG",
-        descripcion: "Creative Designer & UI/UX"
-    },
-    {
-        titulo: "Tomás",
-        descripcion: "3D Artist & Game Assets"
-    }
+   { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax" },
+    { titulo: "Ricardo", descripcion: "Socio, Desarrollador | Codetrax" },
+    { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
+    { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" },
+    { titulo: "DynsG", descripcion: "Socia, Diseñadora | Codetrax" },
+    { titulo: "Tomas", descripcion: "Socio, Modelador | Codetrax" }
 ]
 ];
 
@@ -81,42 +63,12 @@ const renderSearch = () => `
             ...recursosData,
            
            [
-    {
-        titulo: "Damian Cruz",
-        descripcion: "CEO & Lead Software Engineer",
-        imagen: "assets/team/Damian.jpg",
-        url: "https://codetrax-web.github.io/presentasion/"
-    },
-    {
-        titulo: "Ricardo",
-        descripcion: "Full Stack Developer",
-        imagen: "assets/team/ricardo.jpg",
-        url: "#"
-    },
-    {
-        titulo: "DynsG",
-        descripcion: "Creative Designer & UI/UX",
-        imagen: "assets/team/DynsG.jpg",
-        url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7"
-    },
-    {
-        titulo: "Tecno730",
-        descripcion: "Multimedia Designer",
-        imagen: "assets/team/tecno.jpg",
-        url: "https://linktr.ee/__TECNO730__"
-    },
-    {
-        titulo: "Miguel Pandares",
-        descripcion: "Software Engineer",
-        imagen: "assets/team/Miguel.jpg",
-        url: "https://linktr.ee/migueltime"
-    },
-    {
-        titulo: "Tomás",
-        descripcion: "3D Artist & Game Assets",
-        imagen: "assets/team/Tomas.jpg",
-        url: "#"
-    }
+            { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
+            { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
+            { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
+            { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
+            { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" },
+            { titulo: "Tomas", descripcion: "Socio: , Modelador | Tomas", imagen: "assets/team/Tomas.jpg", url: "#" }
 ]
         ];
 
@@ -220,7 +172,6 @@ const renderSearch = () => `
      home: `
      <section class="about-section">
         <h1 class="about-title">⚜匚ㄖᗪ乇ㄒ尺卂乂⚜</h1>
-        <p>"CodeTrax desarrolla soluciones digitales para personas, empresas y creadores. Diseñamos, programamos y construimos proyectos tecnológicos, creativos y multimedia, adaptándonos a las necesidades de cada cliente."</p>
      ${renderSearch()}
      <div id="search-results-grid"></div> 
      <div class="social-container">Buscando...</div>
@@ -232,7 +183,6 @@ const renderSearch = () => `
            <div class="about-card">
             <h2>01 // ¿Qué es CodeTrax?</h2>
             <p>CodeTrax es una agencia de desarrollo digital especializada en crear soluciones tecnológicas y creativas. Nuestro trabajo combina programación, diseño, automatización y producción multimedia para desarrollar proyectos personalizados que se adaptan a las necesidades de cada cliente.
-
             No trabajamos con un único servicio; reunimos distintas disciplinas para construir desde una identidad visual hasta aplicaciones, sitios web, herramientas, contenido multimedia o sistemas automatizados. Cada proyecto es diferente y por eso buscamos la mejor solución para cada caso.</p>
         </div>
         <div class="about-card">
@@ -266,10 +216,9 @@ const renderSearch = () => `
             <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
             
                 <div class="card red">
-                    <div class="profile-tag">Fundador | CEO</div>
                     <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                     <h2>Damian cruz</h2>
-                    <p>Arquitectura de Software • Automatización • Desarrollo Web • IA</p>
+                    <div class="profile-tag">Fundador | CEO</div>
                <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
                      <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
                      <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
