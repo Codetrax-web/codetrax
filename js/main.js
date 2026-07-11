@@ -171,10 +171,10 @@ const renderSearch = () => `
     const views = {
      home: `
      <section class="about-section">
-        <h1 class="about-title">⚜匚ㄖᗪ乇ㄒ尺卂乂⚜</h1>
+        <h1 class="about-title">匚ㄖᗪ乇ㄒ尺卂乂</h1>
      ${renderSearch()}
      <div id="search-results-grid"></div> 
-     <div class="social-container">Buscando...</div>
+     <div class="social-container">LETS_GO...</div>
       `,
 
       files: `
