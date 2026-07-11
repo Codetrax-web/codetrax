@@ -219,6 +219,7 @@ const renderSearch = () => `
                     <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
                     <h2>Damian cruz</h2>
                     <div class="profile-tag">Fundador | CEO</div>
+                    <p>· · ────── ·𖥸· ────── · ·</p>
                <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
                      <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
                      <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
@@ -232,6 +233,7 @@ const renderSearch = () => `
                     <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
                     <h2>Ricardo</h2>
                     <div class="profile-tag">Desarrollador Full Stack</div>
+                    <p>· · ────── ·𖥸· ────── · ·</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
 
                </div>
@@ -241,6 +243,7 @@ const renderSearch = () => `
                     <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
                     <h2>Miguel Pandares</h2>
                     <div class="profile-tag">Desarrollador Full Stack</div>
+                    <p>· · ────── ·𖥸· ────── · ·</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
                      <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
@@ -255,6 +258,7 @@ const renderSearch = () => `
                     <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
                     <h2>DynsG</h2>
                     <div class="profile-tag">Diseñadora Gráfica</div>
+                    <p>· · ────── ·𖥸· ────── · ·</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
                      <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
@@ -265,6 +269,7 @@ const renderSearch = () => `
                     <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
                     <h2>Tecno 730</h2>
                     <div class="profile-tag">Diseñador Multimedia</div>
+                    <p>· · ────── ·𖥸· ────── · ·</p>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
                      <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
