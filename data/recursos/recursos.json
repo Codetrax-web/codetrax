@@ -2,7 +2,7 @@
   {
     "titulo": "Copa_Pistón",
     "creador": "Damian Cruz",
-    "descripcion": "Trofeo a la perseverancia. Un diseño que celebra el esfuerzo de cruzar la meta.",
+    "descripcion": "Trofeo digital con temática automotriz, diseñado para reconocer logros, competencias y eventos con un estilo moderno y personalizable.",
     "imagen": "data/portafolio/codigo/copa/copa.png",
     "url": "https://codetrax-web.github.io/Copa-piston/",
     "categoria": "codigo"
@@ -10,59 +10,59 @@
   {
     "titulo": "Orquidea_Azul",
     "creador": "Damian Cruz",
-    "descripcion": "Rareza y exclusividad. Elegancia visual en un despliegue de tonos azules.",
+    "descripcion": "Experiencia web interactiva inspirada en la elegancia de una orquídea azul, creada para transmitir un detalle único mediante diseño y animación.",
     "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
     "url": "https://codetrax-web.github.io/Orquidea-Azul/",
     "categoria": "codigo"
   },
   {
-    "titulo": "Flor_Amarillal",
+    "titulo": "Flor_Amarilla",
     "creador": "Damian Cruz",
-    "descripcion": "Amistad y alegría. Un detalle digital que no necesita palabras para transmitir calidez.",
+    "descripcion": "Proyecto interactivo desarrollado para compartir un detalle especial, combinando animaciones y diseño web en una experiencia sencilla y significativa.",
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
     "url": "https://codetrax-web.github.io/Flores-Amarillas",
     "categoria": "codigo"
   },
-   {
+  {
     "titulo": "Certificado_VIP",
     "creador": "Damian Cruz",
-    "descripcion": "Distinción total. Para los que saben cómo destacar en la fiesta.",
+    "descripcion": "Certificado digital personalizable diseñado para eventos, celebraciones y reconocimientos con una presentación profesional.",
     "imagen": "data/portafolio/codigo/fiesta/vip.png",
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
     "categoria": "codigo"
   },
 
-
-   {
+  
+  {
     "titulo": "Sistema_de_Riego",
     "creador": "Damian Cruz",
-    "descripcion": "Domótica básica. Automatización eficiente controlada por Arduino.",
+    "descripcion": "Sistema de riego automatizado basado en Arduino, desarrollado para optimizar el cuidado de plantas mediante sensores y control automático.",
     "imagen": "data/portafolio/robotica/riego/riego.png",
     "url": "https://www.mediafire.com/file/dgoz0tdo7boirw8/Sistema_de_Riego.ino/file",
     "categoria": "robotica"
   },
   {
-    "titulo": "Carro_arduino",
+    "titulo": "Carro_Arduino",
     "creador": "Damian Cruz",
-    "descripcion": "Carro controlada por Arduino.",
+    "descripcion": "Vehículo robótico controlado por Bluetooth utilizando Arduino, ideal para proyectos educativos y de robótica básica.",
     "imagen": "data/portafolio/robotica/car/carro.png",
     "url": "https://www.mediafire.com/file/mxcaavqjad5vfrg/Carro_bluetooth.ino/file",
     "categoria": "robotica"
   },
   {
-    "titulo": "Grua_con_Joystic",
+    "titulo": "Grua_con_Joystick",
     "creador": "Damian Cruz",
-    "descripcion": "Ingeniería al mando. Control preciso mediante hardware simplificado.",
+    "descripcion": "Grúa robótica controlada mediante joystick y Arduino, diseñada para demostrar precisión en el manejo de servomotores y sistemas mecánicos.",
     "imagen": "data/portafolio/robotica/grua/pro.png",
     "url": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file",
     "categoria": "robotica"
   },
 
   
-   {
+  {
     "titulo": "KWGT",
     "creador": "Play Store",
-    "descripcion": "App pro ",
+    "descripcion": "Aplicación para crear widgets personalizados en Android con amplias opciones de diseño y personalización.",
     "imagen": "data/portafolio/Apps/kwgt.png",
     "url": "https://www.mediafire.com/file/1l9c1fl9ogb4goo/KWGT_Pro.apk/file",
     "categoria": "Apps"
@@ -70,7 +70,7 @@
   {
     "titulo": "DynamicSpot",
     "creador": "Play Store",
-    "descripcion": "App pro ",
+    "descripcion": "Aplicación que incorpora una isla dinámica en Android para mostrar notificaciones y accesos rápidos de forma inteligente.",
     "imagen": "data/portafolio/Apps/dyna.png",
     "url": "https://www.mediafire.com/file/d7afrep1xo2fpee/dynamic_Spot_v2.00_%2528Premium%2529.apk/file",
     "categoria": "Apps"
@@ -78,11 +78,9 @@
   {
     "titulo": "KLCK Pro",
     "creador": "Play Store",
-    "descripcion": "App pro ",
+    "descripcion": "Herramienta para diseñar pantallas de bloqueo totalmente personalizadas mediante widgets, animaciones y automatización visual.",
     "imagen": "data/portafolio/Apps/klck.png",
     "url": "https://www.mediafire.com/file/3jmcppgboiihuj8/Kustom-Lock-v3.76b422110-mod-GameDVA.com.apk/file",
     "categoria": "Apps"
   }
-
-  
 ]
