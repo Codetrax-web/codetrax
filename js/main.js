@@ -187,21 +187,21 @@ const renderSearch = () => `
         </div>
         <div class="about-card">
             <h2>02 // Servicios / Qué ofrecemos:</h2>
-            <p> [Desarrollo]:Desarrollo de sitios web, aplicaciones, sistemas personalizados, herramientas digitales, automatización, optimización de código e integración de tecnologías.</p>
-            <p> [Diseño]:Diseño de logotipos, banners, miniaturas, interfaces, identidad visual, material gráfico y recursos digitales para marcas y creadores.</p>
-            <p> [Multimedia]:Producción y edición de audio, música, efectos de sonido, contenido visual y recursos multimedia para proyectos digitales.</p>
-            <p> [Videojuegos]:Desarrollo de modificaciones (mods), herramientas, recursos gráficos y soluciones técnicas para videojuegos.</p>
-            <p> [Consultoría]:Asesoramos proyectos desde su planificación hasta su implementación, ayudando a convertir una idea en un producto real.</p>
+            <p>✧ [Desarrollo]:Desarrollo de sitios web, aplicaciones, sistemas personalizados, herramientas digitales, automatización, optimización de código e integración de tecnologías.</p>
+            <p>✧ [Diseño]:Diseño de logotipos, banners, miniaturas, interfaces, identidad visual, material gráfico y recursos digitales para marcas y creadores.</p>
+            <p>✧ [Multimedia]:Producción y edición de audio, música, efectos de sonido, contenido visual y recursos multimedia para proyectos digitales.</p>
+            <p>✧ [Videojuegos]:Desarrollo de modificaciones (mods), herramientas, recursos gráficos y soluciones técnicas para videojuegos.</p>
+            <p>✧ [Consultoría]:Asesoramos proyectos desde su planificación hasta su implementación, ayudando a convertir una idea en un producto real.</p>
         </div>
         <div class="about-card">
             <h2>03 // Filosofía [Misión y Valores]:</h2>
             <p>Misión:
             Nuestra misión es desarrollar soluciones digitales que realmente aporten valor. Combinamos creatividad, tecnología y experiencia para construir proyectos funcionales, estables y preparados para crecer junto con nuestros clientes.</p>
             <p>Valores:</p>
-            <p> [Innovación]: Siempre buscamos nuevas formas de resolver problemas mediante tecnología y creatividad.</p>
-            <p> [Calidad]: Cuidamos tanto el funcionamiento como la presentación de cada proyecto.</p>
-            <p> [Compromiso]: Trabajamos de manera cercana con cada cliente para entregar resultados que cumplan sus objetivos.</p>
-            <p> [Aprendizaje continuo]: La tecnología evoluciona constantemente y nosotros evolucionamos con ella.</p>
+            <p>✧ [Innovación]: Siempre buscamos nuevas formas de resolver problemas mediante tecnología y creatividad.</p>
+            <p>✧ [Calidad]: Cuidamos tanto el funcionamiento como la presentación de cada proyecto.</p>
+            <p>✧ [Compromiso]: Trabajamos de manera cercana con cada cliente para entregar resultados que cumplan sus objetivos.</p>
+            <p>✧ [Aprendizaje continuo]: La tecnología evoluciona constantemente y nosotros evolucionamos con ella.</p>
         </div>
         <div class="about-card">
             <h2>04 // Metodología / Cómo trabajamos:</h2>
@@ -264,7 +264,7 @@ const renderSearch = () => `
                 <div class="card blue">
                     <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
                     <h2>Tecno 730</h2>
-                    <div class="profile-tag">Diseñador Multimedia/div>
+                    <div class="profile-tag">Diseñador Multimedia</div>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
                      <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
