@@ -2,7 +2,7 @@
   {
     "titulo": "Electrum",
     "creador": "Damian Cruz",
-    "descripcion": "Desde el desarrollo de identidad y presencia web hasta la estrategia de impacto en redes.",
+    "descripcion": "Desarrollo integral de la identidad digital de Electrum, incluyendo branding, diseño web y estrategias para fortalecer su presencia en línea.",
     "imagen": "data/recursos/Damian/electrum/ima.png",
     "url": "https://electrumcdmx.es/",
     "categoria": "Damian"
@@ -10,25 +10,24 @@
   {
     "titulo": "Walli-e",
     "creador": "Damian Cruz",
-    "descripcion": "Desde la planificasion, disello y creacion de este robot.",
+    "descripcion": "Proyecto de robótica desarrollado desde la planificación y el diseño hasta la construcción y programación del robot.",
     "imagen": "data/recursos/Damian/wall/ima.png",
     "url": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
     "categoria": "Damian"
   },
 
-  
   {
     "titulo": "Miniatura",
     "creador": "DynsG",
-    "descripcion": "d.",
+    "descripcion": "Diseño de miniatura para YouTube con un enfoque visual llamativo, optimizado para captar la atención del público.",
     "imagen": "data/recursos/Dyns/d4.jpeg",
     "url": "https://youtu.be/PkSVWkFvYZE?si=KFaH9fA08j8yRA8Y",
     "categoria": "DynsG"
-  }, 
+  },
   {
     "titulo": "Baner_juanitoVT",
     "creador": "DynsG",
-    "descripcion": "d.",
+    "descripcion": "Diseño de banner personalizado para el canal JuanitoVT, manteniendo una identidad visual moderna y coherente con su contenido.",
     "imagen": "data/recursos/Dyns/d6.jpeg",
     "url": "https://www.youtube.com/@juanitovt7",
     "categoria": "DynsG"
@@ -36,7 +35,7 @@
   {
     "titulo": "Miniatura_EJ_Blox",
     "creador": "DynsG",
-    "descripcion": "d.",
+    "descripcion": "Miniatura diseñada para contenido de videojuegos, con composición visual enfocada en mejorar el impacto y la visibilidad del video.",
     "imagen": "data/recursos/Dyns/d3.jpeg",
     "url": "https://youtu.be/SJRXAaSaNzY?si=z5j1oVIev3Cpx7p9",
     "categoria": "DynsG"
@@ -44,21 +43,18 @@
   {
     "titulo": "Baner_Coolisa!",
     "creador": "DynsG",
-    "descripcion": "d.",
+    "descripcion": "Banner desarrollado para el canal Coolisa!, reforzando su imagen de marca mediante un diseño atractivo y profesional.",
     "imagen": "data/recursos/Dyns/d5.jpeg",
     "url": "https://www.youtube.com/@soycoolisayt",
     "categoria": "DynsG"
   },
 
-  
   {
     "titulo": "Futuristical Beats",
-    "creador": "Damian Cruz | Tecno 730",
-    "descripcion": "Vanguardia en sonidos sintéticos. Un espacio enfocado en la curaduría de música electrónica experimental, potenciado por la sinergia creativa con Tecno-730. Calidad sonora sin concesiones.",
+    "creador": "Damian Cruz | Tecno730",
+    "descripcion": "Proyecto musical enfocado en la creación y producción de música electrónica original, combinando diseño sonoro, composición y experimentación creativa.",
     "imagen": "data/recursos/fuc/ima.png",
     "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
     "categoria": "Tecno"
   }
-
-  
 ]
