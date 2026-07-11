@@ -28,12 +28,12 @@ const renderSearch = () => `
     ...portfolioProjects,
 
     [
-   { titulo: "Damian cruz", descripcion: "Fundador, Desarrollador principal | Codetrax" },
-    { titulo: "Ricardo", descripcion: "Socio, Desarrollador | Codetrax" },
-    { titulo: "Tecno 730", descripcion: "Socio, Diseñador | tecno730" },
-    { titulo: "Miguel Pandares", descripcion: "Socio, Desarrollador | Axira studios" },
-    { titulo: "DynsG", descripcion: "Socia, Diseñadora | Codetrax" },
-    { titulo: "Tomas", descripcion: "Socio, Modelador | Codetrax" }
+   { titulo: "Damian cruz", descripcion: "Fundador | CEO" },
+    { titulo: "Ricardo", descripcion: "Desarrollador Full Stack" },
+    { titulo: "Tecno 730", descripcion: "Diseñador Multimedia" },
+    { titulo: "Miguel Pandares", descripcion: "Desarrollador Full Stack" },
+    { titulo: "DynsG", descripcion: "Diseñadora Gráfica" }
+
 ]
 ];
 
@@ -63,12 +63,12 @@ const renderSearch = () => `
             ...recursosData,
            
            [
-            { titulo: "Damian cruz", descripcion: "Fundador: Mexico, Desarrollador principal | Codetrax", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
-            { titulo: "Ricardo", descripcion: "Socio: Mexico, Desarrollador | Ricardo", imagen: "assets/team/ricardo.jpg", url: "#" },
-            { titulo: "DynsG", descripcion: "Socia: Colombia, Diseñadora | DynsG", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
-            { titulo: "Tecno 730", descripcion: "Socio: Venezuela, Diseñador | tecno730", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
-            { titulo: "Miguel Pandares", descripcion: "Socio: Venezuela, Desarrollador | Axira studios", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" },
-            { titulo: "Tomas", descripcion: "Socio: , Modelador | Tomas", imagen: "assets/team/Tomas.jpg", url: "#" }
+            { titulo: "Damian cruz", descripcion: "Fundador | CEO", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
+            { titulo: "Ricardo", descripcion: "Desarrollador Full Stack", imagen: "assets/team/ricardo.jpg", url: "#" },
+            { titulo: "DynsG", descripcion: "Diseñadora Gráfica", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
+            { titulo: "Tecno 730", descripcion: "Diseñador Multimedia", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
+            { titulo: "Miguel Pandares", descripcion: "Desarrollador Full Stack", imagen: "assets/team/Miguel.jpg", url: "https://linktr.ee/migueltime" }
+            
 ]
         ];
 
@@ -229,20 +229,18 @@ const renderSearch = () => `
                 </div>
 
                 <div class="card yellow">
-                    <div class="profile-tag">Desarrollador Full Stack</div>
                     <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
                     <h2>Ricardo</h2>
-                    <p>Backend • APIs • Aplicaciones</p>
+                    <div class="profile-tag">Desarrollador Full Stack</div>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
 
                </div>
                 </div>
 
                  <div class="card green">
-                    <div class="profile-tag">Desarrollador Full Stack</div>
                     <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
                     <h2>Miguel Pandares</h2>
-                    <p>Desarrollo de Sistemas • Optimización • Automatización</p>
+                    <div class="profile-tag">Desarrollador Full Stack</div>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
                      <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
@@ -254,10 +252,9 @@ const renderSearch = () => `
                 </div>
 
                <div class="card purple">
-                    <div class="profile-tag">Diseñadora Gráfica</div>
                     <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
                     <h2>DynsG</h2>
-                    <p>Branding • Interfaces • Recursos Visuales</p>
+                    <div class="profile-tag">Diseñadora Gráfica</div>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
                      <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
@@ -265,10 +262,9 @@ const renderSearch = () => `
                 </div>
 
                 <div class="card blue">
-                    <div class="profile-tag">Diseñador Multimedia/div>
                     <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
                     <h2>Tecno 730</h2>
-                    <p>Contenido Digital • Motion Graphics • Recursos Visuales</p>
+                    <div class="profile-tag">Diseñador Multimedia/div>
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
                      <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
@@ -278,15 +274,6 @@ const renderSearch = () => `
                </div>
                 </div>
 
-                 <div class="card orange">
-                    <div class="profile-tag">Socio: </div>
-                    <img src="assets/team/Tomas.jpg" alt="Foto" class="team-photo">
-                    <h2>Tomas</h2>
-                    <p>Modelador | Codetrax</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://www.tiktok.com/@el_trolas0?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                 </div>
-                 </div>
             </div>
         </div>
     </section>
@@ -296,7 +283,7 @@ const renderSearch = () => `
         <div class="portfolio-page">
             <h1>『 𝑹𝒆𝒄𝒖𝒓𝒔𝒐𝒔 』</h1>
             <p>Compartimos aplicaciones, herramientas, recursos y proyectos desarrollados por CodeTrax para que la comunidad pueda utilizarlos, aprender de ellos o incorporarlos a sus propios proyectos.</p>
-            <p></p>
+   
             <div class="portfolio-filters">
                 <button class="filter-btn active" data-filter="Todos">Todos</button>
                 <button class="filter-btn" data-filter="Apps">Apps</button>
@@ -313,7 +300,7 @@ const renderSearch = () => `
     <section class="about-section">
         <h1 class="about-title">『 𝑷𝒐𝒓𝒕𝒂𝒇𝒐𝒍𝒊𝒐 』</h1>
         <p>Aquí encontrarás algunos de los proyectos desarrollados por el equipo de CodeTrax. Cada trabajo refleja nuestra experiencia en programación, diseño, automatización y desarrollo multimedia.</p>
-        <p></p>
+        
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
             <button class="filter-btn" data-filter="Damian">Damian</button>
