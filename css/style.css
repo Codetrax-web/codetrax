@@ -120,7 +120,7 @@ main {
     width: 100%;
 }
 
-/* ===== NUEVA BARRA DE BÚSQUEDA MODERNA ===== */
+/* ===== NUEVA BARRA DE BÚSQUEDA MODERNA - BLACK GLASS ===== */
 
 .navbar-container {
   display: flex;
@@ -133,23 +133,25 @@ main {
   align-items: center;
   width: 100%;
   max-width: 500px;
-  background-color: #1a1b23;
+  background: rgba(10, 10, 15, 0.7);
   padding: 0.5rem 1rem;
   border-radius: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
-  border: 1px solid #2a2b33;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(25px);
 }
 
 .search-bar:focus-within {
-  background-color: #222533;
-  border-color: #00ff99;
-  box-shadow: 0 4px 15px rgba(0, 255, 153, 0.35);
+  background: rgba(20, 20, 30, 0.85);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(30px);
 }
 
 .search-bar:hover {
-  background-color: #222533;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  background: rgba(15, 15, 25, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
 }
 
 .InputContainer {
@@ -171,30 +173,30 @@ main {
 }
 
 .input::placeholder {
-  color: #8a8a8a;
+  color: #9a9a9a;
   opacity: 1;
   transition: opacity 0.2s ease;
 }
 
 .input:focus::placeholder {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .searchIcon {
   width: 20px;
   height: 20px;
-  fill: #8a8a8a;
+  fill: #9a9a9a;
   transition: fill 0.2s ease;
 }
 
 .search-bar:focus-within .searchIcon {
-  fill: #00ff99;
+  fill: #ffffff;
 }
 
 .border {
   width: 1px;
   height: 24px;
-  background-color: #3a3b43;
+  background-color: rgba(255, 255, 255, 0.2);
   margin: 0 0.75rem;
 }
 
@@ -206,24 +208,25 @@ main {
   height: 36px;
   border: none;
   border-radius: 50%;
-  background: none;
+  background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .micButton:hover {
-  background-color: #2a2b33;
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .micIcon {
   width: 18px;
   height: 18px;
-  fill: #8a8a8a;
+  fill: #9a9a9a;
   transition: fill 0.2s ease;
 }
 
 .micButton:hover .micIcon {
-  fill: #ff5100;
+  fill: #ffffff;
 }
 
 /* FIN NUEVA BARRA DE BÚSQUEDA */
