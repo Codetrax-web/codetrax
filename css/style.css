@@ -120,116 +120,29 @@ main {
     width: 100%;
 }
 
-/* ===== NUEVA BARRA DE BÚSQUEDA MODERNA - BLACK GLASS ===== */
-
-.navbar-container {
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
+.gt-input {
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 15px;
+    border-radius:15px;
+    background:rgba(30,30,46,.85);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
 }
 
-.search-bar {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  background: rgba(10, 10, 15, 0.7);
-  padding: 0.5rem 1rem;
-  border-radius: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(25px);
+.gt-input__prompt { color:#00ff88; }
+.gt-input__control {
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:white;
+    font-family:inherit;
 }
 
-.search-bar:focus-within {
-  background: rgba(20, 20, 30, 0.85);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(30px);
-}
-
-.search-bar:hover {
-  background: rgba(15, 15, 25, 0.8);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
-}
-
-.InputContainer {
-  display: flex;
-  align-items: center;
-  flex-grow: 1;
-  gap: 0.75rem;
-}
-
-.input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  background: none;
-  color: #f0f0f0;
-  padding: 0.5rem 0;
-  font-family: inherit;
-}
-
-.input::placeholder {
-  color: #9a9a9a;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-.input:focus::placeholder {
-  opacity: 0.6;
-}
-
-.searchIcon {
-  width: 20px;
-  height: 20px;
-  fill: #9a9a9a;
-  transition: fill 0.2s ease;
-}
-
-.search-bar:focus-within .searchIcon {
-  fill: #ffffff;
-}
-
-.border {
-  width: 1px;
-  height: 24px;
-  background-color: rgba(255, 255, 255, 0.2);
-  margin: 0 0.75rem;
-}
-
-.micButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.micButton:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.micIcon {
-  width: 18px;
-  height: 18px;
-  fill: #9a9a9a;
-  transition: fill 0.2s ease;
-}
-
-.micButton:hover .micIcon {
-  fill: #ffffff;
-}
-
-/* FIN NUEVA BARRA DE BÚSQUEDA */
+/* FIN CONTENEDOR PRINCIPAL Y BÚSQUEDA */
 
 /* =====================================================
    COMPONENTES DE UI (Redes, Menú, Botones)
