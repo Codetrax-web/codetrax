@@ -15,11 +15,19 @@
     "url": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
     "categoria": "Damian"
   },
+  {
+    "titulo": "Diseño_MiguelTime",
+    "creador": "Damian Cruz",
+    "descripcion": "Proyecto de robótica desarrollado desde la planificación y el diseño hasta la construcción y programación del robot.",
+    "imagen": "data/recursos/Damian/logo_m.png",
+    "url": "https://www.youtube.com/@MiguelTime",
+    "categoria": "Damian"
+  },
 
   {
     "titulo": "Miniatura",
     "creador": "DynsG",
-    "descripcion": "Diseño de miniatura para YouTube con un enfoque visual llamativo, optimizado para captar la atención del público.",
+    "descripcion": "Diseño integral de identidad visual (logotipo y banner) para el canal Miguel Time, garantizando una estética moderna, profesional y alineada con la esencia de su contenido.",
     "imagen": "data/recursos/Dyns/d4.jpeg",
     "url": "https://youtu.be/PkSVWkFvYZE?si=KFaH9fA08j8yRA8Y",
     "categoria": "DynsG"
