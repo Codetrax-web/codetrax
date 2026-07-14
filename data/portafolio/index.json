@@ -56,5 +56,14 @@
     "imagen": "data/recursos/fuc/ima.png",
     "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
     "categoria": "Tecno"
+  },
+
+   {
+    "titulo": "Axira_Studio",
+    "creador": "Miguel Time",
+    "descripcion": "Convertimos ideas complejas en activos digitales de alto rendimiento. Código limpio, diseño impactante y soluciones tecnológicas pensadas para ti. ¿Tienes un proyecto? Hablemos de cómo hacerlo realidad.",
+    "imagen": "data/recursos/Miguel/ax.png",
+    "url": "https://axiraestudio.github.io/",
+    "categoria": "Miguel"
   }
 ]
