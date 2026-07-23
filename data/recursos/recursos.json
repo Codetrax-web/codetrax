@@ -16,6 +16,14 @@
     "categoria": "codigo"
   },
   {
+    "titulo": "Pokeboll",
+    "creador": "Damian Cruz",
+    "descripcion": "Una sorpresa romántica al estilo Pokémon. ¡Abre el regalo y dedícaselo a esa persona única en tu vida!",
+    "imagen": "data/portafolio/codigo/pokebol/poke.png",
+    "url": "https://codetrax-web.github.io/Pokebola/",
+    "categoria": "codigo"
+  },
+  {
     "titulo": "Flor_Amarilla",
     "creador": "Damian Cruz",
     "descripcion": "Proyecto interactivo desarrollado para compartir un detalle especial, combinando animaciones y diseño web en una experiencia sencilla y significativa.",
