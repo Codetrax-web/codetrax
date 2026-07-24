@@ -332,53 +332,47 @@ const renderSearch = () => `
 `,
 
     contacto: `
-    <section class="about-section">
-        <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
-         <p>¿Tienes alguna propuesta o colaboración en mente? Estamos disponibles para conversar y explorar nuevas oportunidades juntos.</p>
-        <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
-        <!-- ESTE ES EL NUEVO HUB DE CONTACTO -->
-        <div class="contact-hub">
-            <!-- Fila de Redes Sociales -->
-            <div class="socials">
-                <a href="https://www.instagram.com/codetrax" target="_blank" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://github.com/Codetrax-web" target="_blank" class="gh" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="dc" title="Discord"><i class="fa-brands fa-discord"></i></a>
-                <a href="#" target="_blank" class="in" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-            <!-- Tarjetas de Acción -->
-            <div class="action-btns">
-                <!-- Botón Google Meet -->
-                <a href="https://calendar.app.google/7iAyjJockVxnrkot9">
-                    <div class="icon-box"><i class="fa-solid fa-video"></i></div>
-                    <div class="btn-content">
-                        <p class="btn-title">Google Meet</p>
-                        <p class="btn-sub">Agendar videollamada</p>
-                    </div>
-                    <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-                <!-- Botón Zoom -->
-                <a href="https://scheduler.zoom.us/damian-m4ex7n/reuni-n-con-codetrax">
-                    <div class="icon-box"><i class="fa-solid fa-video"></i></div>
-                    <div class="btn-content">
-                        <p class="btn-title">Zoom</p>
-                        <p class="btn-sub">Agendar reunión</p>
-                    </div>
-                    <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-                <!-- Botón Email -->
-                <a href="mailto:codetraxs@gmail.com?subject=Propuesta%20de%20Proyecto">
-                    <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
-                    <div class="btn-content">
-                        <p class="btn-title">Email Directo</p>
-                        <p class="btn-sub">Envíame un mensaje</p>
-                    </div>
-                    <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-                </a>
-            </div>
-        </div>
-        </section>
-    </section>
-`
+            <section class="about-section">
+                <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
+                <p style="text-align: center;">¿Tienes alguna propuesta o colaboración en mente? Estamos disponibles para conversar.</p>
+                <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 20px;">
+                    <div class="contact-hub">
+                        <div class="socials">
+                            <a href="https://www.instagram.com/codetrax" target="_blank" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://github.com/Codetrax-web" target="_blank" class="gh" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="dc" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                            <a href="#" target="_blank" class="in" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                        <div class="action-btns">
+                            <a href="https://calendar.app.google/7iAyjJockVxnrkot9" target="_blank" class="action-btn meet">
+                                <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                                <div class="btn-content">
+                                    <p class="btn-title">Google Meet</p>
+                                    <p class="btn-sub">Agendar videollamada</p>
+                                </div>
+                                <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                            </a>
+                            <a href="https://scheduler.zoom.us/damian-m4ex7n/reuni-n-con-codetrax" target="_blank" class="action-btn zoom">
+                                <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                                <div class="btn-content">
+                                    <p class="btn-title">Zoom</p>
+                                    <p class="btn-sub">Agendar reunión</p>
+                                </div>
+                                <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                            </a>
+                            <a href="mailto:codetraxs@gmail.com?subject=Propuesta%20de%20Proyecto" class="action-btn email">
+                                <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                                <div class="btn-content">
+                                    <p class="btn-title">Email Directo</p>
+                                    <p class="btn-sub">Envíame un mensaje</p>
+                                </div>
+                                <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+   </a>
+   </div>
+   </div>
+   </div>
+   </section>
+   `
     };
 
     /* FIN GESTIÓN DE VISTAS */
