@@ -335,20 +335,48 @@ const renderSearch = () => `
     <section class="about-section">
         <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
          <p>¿Tienes alguna propuesta o colaboración en mente? Estamos disponibles para conversar y explorar nuevas oportunidades juntos.</p>
-    <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
-        <div class="glass-container" style="position: relative; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-radius: 20px; padding: 30px; width: 100%; max-width: 450px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
-            <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 20px;">Contacto.</h1>
-            <form action="https://formspree.io/f/xeewykke" method="POST" target="_blank" style="display: flex; flex-direction: column; gap: 15px;">
-                <!-- Campos reorganizados en columna -->
-
-                <input type="text" name="nombre" placeholder="Nombre" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
-                <input type="text" name="apellido" placeholder="Apellido" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
-                <input type="tel" name="telefono" placeholder="Teléfono" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
-                <input type="email" name="email" placeholder="Email" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem;">
-                <textarea name="mensaje" placeholder="Mensaje" rows="4" required style="padding:12px; background:rgba(51,65,85,0.6); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:white; font-size:1rem; resize:vertical;"></textarea>
-                <button type="submit" style="background:linear-gradient(135deg, #a855f7, #3b82f6); color:white; border:none; padding:14px; border-radius:12px; font-weight:bold; cursor:pointer;">Enviar Mensaje</button>
-            </form>
+        <section class="about-section" style="display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 20px;">
+        <!-- ESTE ES EL NUEVO HUB DE CONTACTO -->
+        <div class="contact-hub">
+            <!-- Fila de Redes Sociales -->
+            <div class="socials">
+                <a href="https://www.instagram.com/codetrax" target="_blank" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://github.com/Codetrax-web" target="_blank" class="gh" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" class="dc" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" target="_blank" class="in" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <!-- Tarjetas de Acción -->
+            <div class="action-btns">
+                <!-- Botón Google Meet -->
+                <a href="https://calendar.google.com/" target="_blank" class="action-btn meet">
+                    <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                    <div class="btn-content">
+                        <p class="btn-title">Google Meet</p>
+                        <p class="btn-sub">Agendar videollamada</p>
+                    </div>
+                    <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+                <!-- Botón Zoom -->
+                <a href="https://calendly.com/" target="_blank" class="action-btn zoom">
+                    <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                    <div class="btn-content">
+                        <p class="btn-title">Zoom</p>
+                        <p class="btn-sub">Agendar reunión</p>
+                    </div>
+                    <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+                <!-- Botón Email -->
+                <a href="mailto:tu-correo@codetrax.com" class="action-btn email">
+                    <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="btn-content">
+                        <p class="btn-title">Email Directo</p>
+                        <p class="btn-sub">Envíame un mensaje</p>
+                    </div>
+                    <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                </a>
+            </div>
         </div>
+        </section>
     </section>
 `
     };
