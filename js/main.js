@@ -168,13 +168,21 @@ const renderSearch = () => `
        GESTIÓN DE VISTAS
        Definición de las plantillas HTML para cada sección
     ===================================================== */
-    const views = {
-     home: `
-     <section class="about-section">
-        <h1 class="about-title">匚ㄖᗪ乇ㄒ尺卂乂</h1>
-     ${renderSearch()}
-     <div id="search-results-grid"></div> 
-     <div class="social-container">LETS_GO...</div>
+    const views = { 
+   home: `
+    <section class="hero-section">
+        <h1 class="hero-title">匚ㄖᗪ乇ㄒ尺卂乂</h1>
+        <h2 class="hero-subtitle">
+            Donde las ideas se convierten en experiencias digitales.
+        </h2>
+        <p class="hero-description">
+            Un equipo de creadores y desarrolladores que combina creatividad,
+            tecnología y colaboración para construir proyectos digitales con identidad.
+        </p>
+        ${renderSearch()}
+        <div id="search-results-grid"></div>
+        <div class="social-container">LETS_GO...</div>
+        </section>
       `,
 
       files: `
