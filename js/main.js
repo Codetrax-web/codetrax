@@ -477,5 +477,17 @@ if (section === 'settings') {
         }
     });
     console.log("CodeTrax inicializado correctamente.");
+
+   if (section === 'contacto') {
+            // Animación para los botones del hub de contacto
+            setTimeout(() => {
+                document.querySelectorAll('.action-btn').forEach(btn => {
+                    btn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.97)'; });
+                    btn.addEventListener('mouseup', function() { this.style.transform = 'scale(1)'; });
+                    btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
+                });
+            }, 100);
+        }
     /* FIN INICIALIZACIÓN Y EVENTOS GLOBALES */
+   
 }); 
