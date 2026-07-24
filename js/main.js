@@ -169,20 +169,19 @@ const renderSearch = () => `
        Definición de las plantillas HTML para cada sección
     ===================================================== */
     const views = { 
-   home: `
-    <section class="hero-section">
-        <h1 class="hero-title">
-            匚ㄖᗪ乇ㄒ尺卂乂
-        </h1>
-        <div class="hero-title-space"></div>
-        <h2 class="hero-subtitle">
+  home: `
+    <section class="about-section">
+        <h1 class="about-title">匚ㄖᗪ乇ㄒ尺卂乂</h1>
+        <br>
+        <h2>
             Donde las ideas se convierten en experiencias digitales.
         </h2>
-        <p class="hero-description">
-            Un equipo de creadores y desarrolladores que combina creatividad,
-            tecnología y colaboración para construir proyectos digitales con identidad.
+        <p>
+            Un equipo de creadores y desarrolladores que combina
+            creatividad, tecnología y colaboración para construir
+            proyectos digitales con identidad.
         </p>
-        <div class="hero-search-space"></div>
+        <br>
         ${renderSearch()}
         <div id="search-results-grid"></div>
         <div class="social-container">
