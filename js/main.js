@@ -171,7 +171,10 @@ const renderSearch = () => `
     const views = { 
    home: `
     <section class="hero-section">
-        <h1 class="hero-title">匚ㄖᗪ乇ㄒ尺卂乂</h1>
+        <h1 class="hero-title">
+            匚ㄖᗪ乇ㄒ尺卂乂
+        </h1>
+        <div class="hero-title-space"></div>
         <h2 class="hero-subtitle">
             Donde las ideas se convierten en experiencias digitales.
         </h2>
@@ -179,12 +182,14 @@ const renderSearch = () => `
             Un equipo de creadores y desarrolladores que combina creatividad,
             tecnología y colaboración para construir proyectos digitales con identidad.
         </p>
+        <div class="hero-search-space"></div>
         ${renderSearch()}
         <div id="search-results-grid"></div>
-        <div class="social-container">LETS_GO...</div>
-        </section>
-      `,
-
+        <div class="social-container">
+            LETS_GO...
+        </div>
+    </section>
+`,
       files: `
           <section class="about-section">
            <h1 class="about-title">『 𝑺𝒐𝒃𝒓𝒆 𝑪𝒐𝒅𝒆𝑻𝒓𝒂𝒙 』</h1>
