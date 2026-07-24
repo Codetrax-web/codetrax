@@ -348,7 +348,7 @@ const renderSearch = () => `
             <!-- Tarjetas de Acción -->
             <div class="action-btns">
                 <!-- Botón Google Meet -->
-                <a href="https://calendar.google.com/" target="_blank" class="action-btn meet">
+                <a href="https://calendar.app.google/7iAyjJockVxnrkot9">
                     <div class="icon-box"><i class="fa-solid fa-video"></i></div>
                     <div class="btn-content">
                         <p class="btn-title">Google Meet</p>
@@ -357,7 +357,7 @@ const renderSearch = () => `
                     <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </a>
                 <!-- Botón Zoom -->
-                <a href="https://calendly.com/" target="_blank" class="action-btn zoom">
+                <a href="https://scheduler.zoom.us/damian-m4ex7n/reuni-n-con-codetrax">
                     <div class="icon-box"><i class="fa-solid fa-video"></i></div>
                     <div class="btn-content">
                         <p class="btn-title">Zoom</p>
@@ -366,7 +366,7 @@ const renderSearch = () => `
                     <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
                 </a>
                 <!-- Botón Email -->
-                <a href="mailto:tu-correo@codetrax.com" class="action-btn email">
+                <a href="mailto:codetraxs@gmail.com?subject=Propuesta%20de%20Proyecto">
                     <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
                     <div class="btn-content">
                         <p class="btn-title">Email Directo</p>
