@@ -235,7 +235,7 @@ const renderSearch = () => `
                <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
                      <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
                      <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
-                     <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
+                     <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
                      <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-discord"></i></a>
                     <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
                </div>
@@ -259,7 +259,7 @@ const renderSearch = () => `
                <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
                      <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
                      <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="hatgpt.com" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                     <a href="https://www.instagram.com/migueltime" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
                      <a href="https://discord.com/invite/SFffG38VFb" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
                      <a href="https://www.twitch.tv/migueltime" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
                      <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
@@ -446,51 +446,36 @@ const renderSearch = () => `
     ===================================================== */
     mainContent.innerHTML = views.home;
 
-   document.querySelectorAll('.menu a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.menu a.active')?.classList.remove('active');
-        link.classList.add('active');
+    document.querySelectorAll('.menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.menu a.active')?.classList.remove('active');
+            link.classList.add('active');
 
-        const section = link.getAttribute('data-section');
-        mainContent.innerHTML = views[section];
+            const section = link.getAttribute('data-section');
+            mainContent.innerHTML = views[section];
 
-        // Lógica de carga limpia: Cada sección hace exactamente lo que debe
-if (section === 'plans') {
-    // Carga Recursos con filtros funcionales
-    loadRecursos();
-} 
+            // Lógica de carga limpia por sección
+            if (section === 'plans') {
+                loadRecursos();
+            } 
 
-if (section === 'settings') {
-    // Carga Portafolio con filtros funcionales
-    renderPortfolio('Todos'); 
-    initializeFilters();
-}
-
-    });
-});
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === '/') {
-            const input = document.getElementById('gt-input-target');
-            if (input) {
-                e.preventDefault();
-                input.focus();
+            if (section === 'settings') {
+                renderPortfolio('Todos'); 
+                initializeFilters();
             }
-        }
-    });
-    console.log("CodeTrax inicializado correctamente.");
 
-   if (section === 'contacto') {
-            // Animación para los botones del hub de contacto
-            setTimeout(() => {
-                document.querySelectorAll('.action-btn').forEach(btn => {
-                    btn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.97)'; });
-                    btn.addEventListener('mouseup', function() { this.style.transform = 'scale(1)'; });
-                    btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
-                });
-            }, 100);
-        }
+            if (section === 'contacto') {
+                // Animación para los botones del hub de contacto integrada correctamente
+                setTimeout(() => {
+                    document.querySelectorAll('.action-btn').forEach(btn => {
+                        btn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.97)'; });
+                        btn.addEventListener('mouseup', function() { this.style.transform = 'scale(1)'; });
+                        btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
+                    });
+                }, 100);
+            }
+        });
+    });
     /* FIN INICIALIZACIÓN Y EVENTOS GLOBALES */
-   
-}); 
+});
