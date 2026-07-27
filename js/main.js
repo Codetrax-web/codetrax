@@ -338,12 +338,19 @@ const renderSearch = () => `
                 <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 20px;">
                     <div class="contact-hub">
                         <div class="socials">
-                            <a href="https://www.instagram.com/cod_etrax?igsh=cnFuZW04OThpeXo4" target="_blank" class="ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://www.threads.com/@cod_etrax" target="_blank" class="gh" title="threads"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="dc" title="YouTube"><i class="fa-brands fa-discord"></i></a>
-                            <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" class="in" title="Tiktok"><i class="fa-brands fa-linkedin-in"></i></a>
-
- <a href="https://x.com/Code_trax" target="_blank" class="in" title="twitter"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/cod_etrax?igsh=cnFuZW04OThpeXo4" target="_blank" class="ig" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.threads.net/@cod_etrax" target="_blank" class="gh" title="Threads">
+          <i class="fa-solid fa-at"></i>
+          </a>
+          <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="dc" title="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" class="in" title="Tiktok">
+          <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://x.com/Code_trax" target="_blank" class="in" title="twitter"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                         <div class="action-btns">
                             <a href="https://calendar.app.google/7iAyjJockVxnrkot9" target="_blank" class="action-btn meet">
