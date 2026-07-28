@@ -626,3 +626,24 @@ main {
     z-index: -1; /* Mantiene las partículas en el fondo absoluto */
     pointer-events: none;
 }
+/* =====================================================
+   EFECTO 3D PARA TARJETAS
+===================================================== */
+.project-card, .card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+}
+
+/* Asegurar que los elementos internos mantengan profundidad visual */
+.project-card *, .card * {
+    transform: translateZ(20px);
+}
+
+.project-card h3, .card h2 {
+    transform: translateZ(35px);
+}
+
+.project-card img, .card img {
+    transform: translateZ(25px);
+}
