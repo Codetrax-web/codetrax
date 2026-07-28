@@ -589,30 +589,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animateParticles();
 });
-/* =====================================================
-   EFECTO INTERACTIVO 3D CON EL MOUSE PARA TARJETAS
-===================================================== */
-document.addEventListener('mousemove', (e) => {
-    const cards = document.querySelectorAll('.project-card, .card');
-    
-    cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left; // Coordenada X respecto a la tarjeta
-        const y = e.clientY - rect.top;  // Coordenada Y respecto a la tarjeta
-
-        // Verificar si el cursor está sobre la tarjeta actual
-        if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            // Calcular la rotación (ajuste el factor '15' para mayor o menor inclinación)
-            const rotateX = -((y - centerY) / centerY) * 15;
-            const rotateY = ((x - centerX) / centerX) * 15;
-
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        } else {
-            // Restablecer posición cuando el cursor sale de la tarjeta
-            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-        }
-    });
-});
