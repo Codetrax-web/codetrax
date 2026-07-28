@@ -132,6 +132,24 @@ const renderSearch = () => `
             });
         });
     }
+   function animateCounters(){
+    const counters=document.querySelectorAll(".counter");
+    counters.forEach(counter=>{
+        const target=+counter.dataset.target;
+        let current=0;
+        const increment=Math.max(1,Math.ceil(target/100));
+        const update=()=>{
+            current+=increment;
+            if(current>=target){
+                counter.textContent=target;
+                return;
+            }
+            counter.textContent=current;
+            requestAnimationFrame(update);
+        }
+        update();
+    });
+}
 
       document.addEventListener('input', (e) => {
           if (e.target.id === 'gt-input-target') {
@@ -182,6 +200,12 @@ const renderSearch = () => `
             proyectos digitales con identidad.
         </p>
         <br>
+        ${renderSearch()}
+        <div id="search-results-grid"></div>
+        <div class="social-container">
+            LETS_GO...
+        </div>
+    </section>
         <section class="stats-section">
     <div class="stat-card">
         <h2 class="counter" data-target="15">0</h2>
@@ -200,12 +224,6 @@ const renderSearch = () => `
         <p>Servicios</p>
     </div>
 </section>
-        ${renderSearch()}
-        <div id="search-results-grid"></div>
-        <div class="social-container">
-            LETS_GO...
-        </div>
-    </section>
 `,
       files: `
           <section class="about-section">
