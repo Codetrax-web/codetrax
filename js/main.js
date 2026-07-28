@@ -521,3 +521,71 @@ const renderSearch = () => `
     });
     /* FIN INICIALIZACIÓN Y EVENTOS GLOBALES */
 });
+/* =====================================================
+   LÓGICA DE PARTÍCULAS DE FONDO (AZUL ELÉCTRICO Y ROJO CARMÍN)
+===================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('bg-particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let particlesArray = [];
+    const numberOfParticles = 45;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 3 + 1;
+            this.speedX = (Math.random() - 0.5) * 0.8;
+            this.speedY = (Math.random() - 0.5) * 0.8;
+            // Alterna entre Azul eléctrico (#007bff) y Rojo carmín (#ff2d55)
+            this.color = Math.random() > 0.5 ? '#007bff' : '#ff2d55';
+        }
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x > canvas.width) this.x = 0;
+            else if (this.x < 0) this.x = canvas.width;
+
+            if (this.y > canvas.height) this.y = 0;
+            else if (this.y < 0) this.y = canvas.height;
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = this.color; // Efecto de brillo neón sutil
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0; // Limpiar sombra para optimizar rendimiento
+        }
+    }
+
+    function initParticles() {
+        particlesArray = [];
+        for (let i = 0; i < numberOfParticles; i++) {
+            particlesArray.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particlesArray.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+});
