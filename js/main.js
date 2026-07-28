@@ -182,6 +182,24 @@ const renderSearch = () => `
             proyectos digitales con identidad.
         </p>
         <br>
+        <section class="stats-section">
+    <div class="stat-card">
+        <h2 class="counter" data-target="15">0</h2>
+        <p>Proyectos</p>
+    </div>
+    <div class="stat-card">
+        <h2 class="counter" data-target="5">0</h2>
+        <p>Integrantes</p>
+    </div>
+    <div class="stat-card">
+        <h2 class="counter" data-target="2026">0</h2>
+        <p>Fundación</p>
+    </div>
+    <div class="stat-card">
+        <h2 class="counter" data-target="6">0</h2>
+        <p>Servicios</p>
+    </div>
+</section>
         ${renderSearch()}
         <div id="search-results-grid"></div>
         <div class="social-container">
