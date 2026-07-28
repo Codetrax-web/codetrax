@@ -481,6 +481,7 @@ const renderSearch = () => `
        Controla navegación, atajos de teclado y buscador
     ===================================================== */
     mainContent.innerHTML = views.home;
+    animateCounters();
 
     document.querySelectorAll('.menu a').forEach(link => {
         link.addEventListener('click', (e) => {
@@ -490,6 +491,11 @@ const renderSearch = () => `
 
             const section = link.getAttribute('data-section');
             mainContent.innerHTML = views[section];
+           if(section==="home"){
+           setTimeout(()=>{
+           animateCounters();
+           },100);
+           }
 
             // Lógica de carga limpia por sección
             if (section === 'plans') {
