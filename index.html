@@ -13,11 +13,15 @@
 
 <body>
     <!-- =====================================================
-       PANTALLA DE CARGA / INTRO DE VIDEO
-    ===================================================== -->
-    <div id="video-intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vw; min-height: 100vh; background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease;">
-        <video id="intro-video" src="assets/ima/intro.mp4" autoplay muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-        <button id="skip-intro" style="position: absolute; bottom: 30px; right: 30px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 8px 16px; border-radius: 8px; cursor: pointer; backdrop-filter: blur(10px); font-family: inherit; font-size: 0.85rem; transition: 0.3s;">Omitir Intro ≫</button>
+       PANTALLA DE CARGA / INTRO DE VIDEO (AJUSTADA A PANTALLA)
+===================================================== -->
+    <div id="video-intro-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 99999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease; overflow: hidden;">
+        <!-- Fondo difuminado sutil para rellenar espacios si la proporción difiere de la pantalla -->
+        <div style="position: absolute; inset: 0; background: #050508; z-index: 1;"></div>
+        <!-- Video con ajuste responsivo total (contain asegura que se vea TODO el contenido) -->
+        <video id="intro-video" src="assets/ima/intro.mp4" autoplay muted playsinline style="position: relative; z-index: 2; width: 100%; height: 100%; object-fit: contain;"></video>
+        <!-- Botón para omitir -->
+        <button id="skip-intro" style="position: absolute; bottom: 30px; right: 30px; z-index: 3; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 8px 16px; border-radius: 8px; cursor: pointer; backdrop-filter: blur(10px); font-family: inherit; font-size: 0.85rem; transition: 0.3s;">Omitir Intro ≫</button>
     </div>
     <!-- INSERTE EL CANVAS DE PARTICULAS AQUÍ -->
     <canvas id="bg-particles" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;"></canvas>
