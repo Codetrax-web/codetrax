@@ -208,7 +208,7 @@ const renderSearch = () => `
     </section>
         <section class="stats-section">
     <div class="stat-card">
-        <h2 class="counter" data-target="15">0</h2>
+        <h2 class="counter" data-target="20">0</h2>
         <p>Proyectos</p>
     </div>
     <div class="stat-card">
@@ -216,11 +216,11 @@ const renderSearch = () => `
         <p>Integrantes</p>
     </div>
     <div class="stat-card">
-        <h2 class="counter" data-target="2026">0</h2>
+        <h2 class="counter" data-target="2020">0</h2>
         <p>Fundación</p>
     </div>
     <div class="stat-card">
-        <h2 class="counter" data-target="6">0</h2>
+        <h2 class="counter" data-target="5">0</h2>
         <p>Servicios</p>
     </div>
 </section>
@@ -361,7 +361,6 @@ const renderSearch = () => `
             <button class="filter-btn" data-filter="DynsG">DynsG</button>
             <button class="filter-btn" data-filter="Tecno">Tecno</button>
             <button class="filter-btn" data-filter="Miguel">Miguel</button>
-            <button class="filter-btn" data-filter="Tomas">Tomas</button>
         </div>
         <div id="portfolio-grid"></div>
     </section>
