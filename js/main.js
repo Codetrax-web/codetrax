@@ -589,3 +589,37 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animateParticles();
 });
+/* =====================================================
+   LÓGICA DE LA INTRO DE VIDEO (PANTALLA DE CARGA)
+===================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const introOverlay = document.getElementById('video-intro-overlay');
+    const introVideo = document.getElementById('intro-video');
+    const skipBtn = document.getElementById('skip-intro');
+
+    if (!introOverlay || !introVideo) return;
+
+    function hideIntro() {
+        introOverlay.style.opacity = '0';
+        setTimeout(() => {
+            introOverlay.style.display = 'none';
+            // Pausar y liberar recursos del video
+            introVideo.pause();
+            introVideo.currentTime = 0;
+        }, 800); // Coincide con la transición de 0.8s del CSS
+    }
+
+    // Cuando el video finalice de reproducirse de forma natural
+    introVideo.addEventListener('ended', hideIntro);
+
+    // Si el usuario hace clic en el botón de omitir
+    if (skipBtn) {
+        skipBtn.addEventListener('click', hideIntro);
+    }
+
+    // Fallback de seguridad: Si el video llegara a fallar al cargar, oculta la intro automáticamente
+    introVideo.addEventListener('error', () => {
+        console.warn("No se pudo cargar el video de introducción. Saltando intro.");
+        hideIntro();
+    });
+});
