@@ -27,8 +27,6 @@
 
 /* --- INICIO REJILLAS GLOBALES --- */
 
-/* USA ESTO EN LUGAR DE REPETIR REGLAS */
-
 #portfolio-grid, 
 #recursos-container, 
 #search-results-grid 
@@ -86,33 +84,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 15px;  /* Reduce padding */
+    padding: 10px 15px;
     border-radius: 15px;
-    background: rgba(30,30,46,.25);  /* Más transparente (era .85) */
+    background: rgba(30,30,46,.25);
     border: 1px solid rgba(255,255,255,.08);
     backdrop-filter: blur(20px);
 }
 
 /* FIN HEADER */
 
-/* =====================================================
-   CONTENEDOR DE BÚSQUEDA / RESULTADOS
-   Evitar reglas rígidas que rompan el layout
-==================================================== */
-
-/* Se eliminó la regla que forzaba 3 columnas con !important para #search-results-grid */
-
-/* =====================================================
-   CONTENEDOR PRINCIPAL Y BÚSQUEDA
-   Layout y barra estilo terminal
-==================================================== */
-
 main {
     width:100%;
     max-width:1200px;
 }
 
-/* Cambiado a una única columna fluida para evitar crear una columna vacía lateral */
 .gt-field {
     display: grid;
     grid-template-columns: 1fr;
@@ -141,8 +126,6 @@ main {
     color:white;
     font-family:inherit;
 }
-
-/* FIN CONTENEDOR PRINCIPAL Y BÚSQUEDA */
 
 /* =====================================================
    COMPONENTES DE UI (Redes, Menú, Botones)
@@ -207,10 +190,8 @@ main {
     .menu { flex-wrap: wrap; justify-content: center; width: 100%; margin-top: 15px; }
 }
 
-/* FIN COMPONENTES DE UI */
-
 /* =====================================================
-   SECCIONES DE CONTENIDO (Acerca, Portfolio)
+   SECCIONES DE CONTENIDO (Acerca, Portfolio, Recursos)
 ==================================================== */
 
 .about-section { max-width:1200px; margin:auto; }
@@ -253,50 +234,93 @@ main {
     border:none;
 }
 
+/* =====================================================
+   TARJETAS ESTILO LIMPIO Y DESPLEGABLE
+===================================================== */
+
 .project-card {
-    position:relative;
-    overflow:hidden;
-    background:rgba(15,15,25,.55);
-    backdrop-filter:blur(15px);
-    border-radius:24px;
-    border:1px solid rgba(255,255,255,.12);
-    padding:20px;
-    transition:.35s;
-    box-shadow:0 0 25px rgba(0,120,255,.15), 0 0 35px rgba(255,0,0,.08);
-    min-width: 220px; /* evita columnas demasiado estrechas */
+    position: relative;
+    overflow: hidden;
+    background: rgba(15, 15, 25, 0.65);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 15px;
+    transition: all 0.35s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
-.project-card::before, .project-card::after {
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    filter:blur(60px);
-}
-
-.project-card::before { top:-80px; left:-80px; background:rgba(0,120,255,.25); }
-.project-card::after { bottom:-80px; right:-80px; background:rgba(255,0,50,.20); }
 .project-card:hover {
-    transform:translateY(-8px);
-    box-shadow:0 0 35px rgba(0,120,255,.35), 0 0 45px rgba(255,0,50,.20);
+    transform: translateY(-6px);
+    border-color: rgba(0, 120, 255, 0.4);
+    box-shadow: 0 0 25px rgba(0, 120, 255, 0.25);
 }
 
 .project-card img {
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:18px;
-    margin-bottom:15px;
-    position:relative;
-    z-index:2;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
 }
 
-.project-card h3, .project-card p, .project-link { position:relative; z-index:2; }
-.project-card p { color:#d6d6d6; line-height:1.6; margin-bottom:20px; }
-.project-link { text-decoration:none; }
+/* Línea divisoria elegante */
+.card-divider {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    margin: 10px 0;
+}
 
-/* FIN SECCIONES DE CONTENIDO */
+.project-card h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 4px;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+}
+
+.card-subtitle {
+    font-size: 0.8rem;
+    color: #a1a1aa;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Panel desplegable de detalles oculto por defecto */
+.project-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 0;
+}
+
+/* Estado cuando la tarjeta está expandida */
+.project-card.expanded .project-details {
+    max-height: 350px;
+    opacity: 1;
+    margin-top: 12px;
+}
+
+.project-card.expanded {
+    border-color: var(--gt-blue, #007bff);
+    box-shadow: 0 0 30px rgba(0, 120, 255, 0.35);
+}
+
+.project-link { text-decoration:none; }
 
 /* =====================================================
    BOTÓN GLASS REALISM
@@ -353,8 +377,6 @@ main {
     background:radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
 }
 
-/* FIN BOTÓN GLASS REALISM */
-
 /* =====================================================
    CONTENIDO DINÁMICO Y EQUIPO
 ==================================================== */
@@ -367,7 +389,6 @@ main {
     border-radius:20px;
 }
 
-/* Team grid: usar CSS Grid y forzar 3 columnas en pantallas grandes */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(220px, 1fr));
@@ -376,7 +397,6 @@ main {
     width: 100%;
 }
 
-/* Adaptación responsiva: 2 columns on medium screens, 1 on small */
 @media (max-width: 1000px) {
     .team-grid { grid-template-columns: repeat(2, minmax(200px, 1fr)); }
 }
@@ -418,12 +438,6 @@ main {
     margin: 0 auto 15px auto;
 }
 
-/* FIN CONTENIDO DINÁMICO Y EQUIPO */
-
-#recursos-container .about-card { transition: transform 0.3s ease; }
-#recursos-container .about-card:hover { transform: translateY(-5px); }
-
-/* FIN RECURSOS */
 /* =====================================================
    CONTACTO HUB
 ==================================================== */
@@ -437,10 +451,9 @@ main {
     padding: 40px;
     width: 100%;
     max-width: 450px;
-    box-shadow: 0 0 25px rgba(0, 120, 255, 0.15), 0 0 35px rgba(255, 0, 50, 0.08); /* Combina con tus tarjetas */
+    box-shadow: 0 0 25px rgba(0, 120, 255, 0.15), 0 0 35px rgba(255, 0, 50, 0.08);
 }
 
-/* SECCIÓN DE REDES SOCIALES */
 .socials {
     display: flex;
     justify-content: center;
@@ -467,7 +480,6 @@ main {
 .socials a.dc:hover { background: #5865F2; transform: translateY(-3px); }
 .socials a.in:hover { background: #0077b5; transform: translateY(-3px); }
 
-/* SECCIÓN DE BOTONES DE ACCIÓN */
 .action-btns {
     display: flex;
     flex-direction: column;
@@ -477,7 +489,7 @@ main {
 .action-btn {
     display: flex;
     align-items: center;
-    background: rgba(30, 30, 46, 0.85); /* Combina con tu barra de búsqueda */
+    background: rgba(30, 30, 46, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     padding: 12px 16px;
@@ -514,7 +526,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: left; /* Alineado a la izquierda */
+    text-align: left;
 }
 
 .btn-title {
@@ -522,7 +534,7 @@ main {
     font-size: 17px;
     margin: 0 0 4px 0;
     letter-spacing: 0.5px;
-    font-family: 'Segoe UI', sans-serif; /* Rompe el monospace para mejor lectura */
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .btn-sub {
@@ -542,6 +554,7 @@ main {
     transform: translateX(4px);
     color: #5865F2;
 }
+
 /* =====================================================
    ESTADÍSTICAS
 ===================================================== */
@@ -614,6 +627,7 @@ main {
     letter-spacing:1px;
     text-transform:uppercase;
 }
+
 /* =====================================================
    FONDO DE PARTÍCULAS DINÁMICAS
 ===================================================== */
@@ -623,9 +637,10 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Mantiene las partículas en el fondo absoluto */
+    z-index: -1;
     pointer-events: none;
 }
+
 /* =====================================================
    EFECTO 3D PARA TARJETAS
 ===================================================== */
@@ -635,7 +650,6 @@ main {
     transition: transform 0.1s ease-out, box-shadow 0.3s ease;
 }
 
-/* Asegurar que los elementos internos mantengan profundidad visual */
 .project-card *, .card * {
     transform: translateZ(20px);
 }
@@ -647,6 +661,7 @@ main {
 .project-card img, .card img {
     transform: translateZ(25px);
 }
+
 /* =====================================================
    BOTÓN DE LIKES PARA TARJETAS
 ===================================================== */
@@ -659,7 +674,7 @@ main {
     padding: 6px 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 12px;
+    margin-top: 0;
     font-family: inherit;
     color: #fff;
     gap: 8px;
@@ -691,7 +706,6 @@ main {
     padding-left: 4px;
 }
 
-/* Estado cuando el usuario le da "Me gusta" */
 .like-btn.liked i {
     color: #ff2d55;
     transform: scale(1.2);
