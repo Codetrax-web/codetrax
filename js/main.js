@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
 
     let portfolioProjects = [];
-    let recursosProjects = []; // Almacenar recursos para filtrar
+    let recursosProjects = []; 
 
     /* =====================================================
        LÓGICA DEL PORTAFOLIO
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadPortfolio() {
         try {
-            // Carga ambos archivos en paralelo para optimizar
             const [portafolioRes, recursosRes] = await Promise.all([
                 fetch('./data/portafolio/index.json'),
                 fetch('./data/recursos/recursos.json')
@@ -40,10 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const portafolioData = await portafolioRes.json();
             const recursosData = await recursosRes.json();
 
-            portfolioProjects = portafolioData; // Para el renderizado normal
-            recursosProjects = recursosData; // Almacenar para filtrar en Recursos
+            portfolioProjects = portafolioData; 
+            recursosProjects = recursosData; 
 
-            // Fusiona ambos para el buscador, incluyendo al equipo de forma plana
             window.searchableData = [
                 ...portafolioData,
                 ...recursosData,
@@ -83,29 +81,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const isLiked = localStorage.getItem(`${uniqueId}_liked`) === 'true';
 
             return `
-                <div class="project-card">
+                <div class="project-card" data-card-id="${uniqueId}">
                     <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                    <div class="card-divider"></div>
                     <h3>${project.titulo}</h3>
-                    <p style="font-size: 0.85rem; color: #a1a1aa;">Creador: ${project.creador || 'Desconocido'}</p>
-                    <p>${project.descripcion}</p>
+                    <p class="card-subtitle">Creador: ${project.creador || 'Desconocido'}</p>
                     
-                    <!-- Botón de Like -->
-                    <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
-                        <div class="like-content">
-                            <i class="fa-solid fa-heart"></i>
-                            <span>Likes</span>
-                        </div>
-                        <span class="like-count">${savedLikes}</span>
-                    </button>
-                    <br><br>
+                    <div class="project-details">
+                        <p style="font-size: 0.85rem; color: #d6d6d6; text-align: left; line-height: 1.5;">${project.descripcion}</p>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <!-- Botón de Like -->
+                            <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
+                                <div class="like-content">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span>Likes</span>
+                                </div>
+                                <span class="like-count">${savedLikes}</span>
+                            </button>
 
-                    <a href="${project.url}" target="_blank" class="project-link">
-                        <button class="button">
-                            <div class="blob1"></div>
-                            <div class="blob2"></div>
-                            <div class="inner">Ver Proyecto</div>
-                        </button>
-                    </a>
+                            <a href="${project.url}" target="_blank" class="project-link" onclick="event.stopPropagation();">
+                                <button class="button" style="padding: 1px;">
+                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">Ver Proyecto</div>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             `;
         }).join('');
@@ -173,11 +174,14 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsGrid.innerHTML = filtered.map(p => `
                 <div class="project-card">
                     <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                    <div class="card-divider"></div>
                     <h3>${p.titulo}</h3>
-                    <p>${p.descripcion}</p>
-                    <a href="${p.url}" target="_blank" class="project-link">
-                        <button class="button"><div class="inner">Ver</div></button>
-                    </a>
+                    <p class="card-subtitle">${p.descripcion || ''}</p>
+                    <div class="project-details" style="max-height: 200px; opacity: 1; margin-top: 10px;">
+                        <a href="${p.url}" target="_blank" class="project-link">
+                            <button class="button"><div class="inner">Ver</div></button>
+                        </a>
+                    </div>
                 </div>
             `).join('');
         }
@@ -441,29 +445,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const isLiked = localStorage.getItem(`${uniqueId}_liked`) === 'true';
 
             return `
-                <div class="project-card">
-                    <img src="${item.imagen}" alt="${item.titulo}">
+                <div class="project-card" data-card-id="${uniqueId}">
+                    <img src="${item.imagen}" alt="${item.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                    <div class="card-divider"></div>
                     <h3>${item.titulo}</h3>
-                    <p><strong>Creador:</strong> ${item.creador || 'Desconocido'}</p>
-                    <p>${item.descripcion}</p>
+                    <p class="card-subtitle">Creador: ${item.creador || 'Desconocido'}</p>
                     
-                    <!-- Botón de Like -->
-                    <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
-                        <div class="like-content">
-                            <i class="fa-solid fa-heart"></i>
-                            <span>Likes</span>
-                        </div>
-                        <span class="like-count">${savedLikes}</span>
-                    </button>
-                    <br><br>
+                    <div class="project-details">
+                        <p style="font-size: 0.85rem; color: #d6d6d6; text-align: left; line-height: 1.5;">${item.descripcion}</p>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <!-- Botón de Like -->
+                            <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
+                                <div class="like-content">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span>Likes</span>
+                                </div>
+                                <span class="like-count">${savedLikes}</span>
+                            </button>
 
-                    <a href="${item.url}" target="_blank" class="project-link">
-                        <button class="button">
-                            <div class="blob1"></div>
-                            <div class="blob2"></div>
-                            <div class="inner">Visita</div>
-                        </button>
-                    </a>
+                            <a href="${item.url}" target="_blank" class="project-link" onclick="event.stopPropagation();">
+                                <button class="button" style="padding: 1px;">
+                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">Visita</div>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             `;
         }).join('');
@@ -651,4 +658,20 @@ document.addEventListener('click', (e) => {
 
     localStorage.setItem(id, currentLikes);
     countSpan.textContent = currentLikes;
+});
+
+/* =====================================================
+   CONTROLADOR DE EXPANSIÓN DE TARJETAS (ACORDEÓN)
+===================================================== */
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.like-btn') || e.target.closest('.project-link')) return;
+
+    const card = e.target.closest('.project-card');
+    if (!card) return;
+
+    document.querySelectorAll('.project-card').forEach(c => {
+        if (c !== card) c.classList.remove('expanded');
+    });
+
+    card.classList.toggle('expanded');
 });
