@@ -464,7 +464,7 @@ main {
 
 .socials a {
     color: #ffffff;
-    font-size: 26px;
+    font-size: 22px;
     width: 55px;
     height: 55px;
     display: flex;
@@ -472,14 +472,45 @@ main {
     align-items: center;
     border-radius: 50%;
     text-decoration: none;
-    transition: all 0.3s ease;
-    background: transparent;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(15, 15, 25, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.socials a.ig:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); transform: translateY(-3px); }
-.socials a.gh:hover { background: #333333; transform: translateY(-3px); }
-.socials a.dc:hover { background: #5865F2; transform: translateY(-3px); }
-.socials a.in:hover { background: #0077b5; transform: translateY(-3px); }
+.socials a:hover {
+    transform: translateY(-4px) scale(1.08);
+    border-color: #00d4ff;
+    color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 5px 15px rgba(220, 20, 60, 0.2);
+}
+.socials a.ig:hover { 
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
+    transform: translateY(-3px); 
+    border-color: transparent;
+}
+.socials a.threads:hover { 
+    background: #000000; 
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px); 
+}
+.socials a.yt:hover { 
+    background: #ff0000; 
+    border-color: #ff0000;
+    transform: translateY(-3px); 
+}
+.socials a.tk:hover { 
+    background: #000000; 
+    border-color: #00f2fe;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    transform: translateY(-3px); 
+}
+.socials a.x-social:hover { 
+    background: #14171a; 
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px); 
+}
 
 .action-btns {
     display: flex;
