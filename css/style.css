@@ -235,7 +235,7 @@ main {
 }
 
 /* =====================================================
-   TARJETAS ESTILO LIMPIO Y DESPLEGABLE
+   TARJETAS CON BORDE FIJO AZUL ELÉCTRICO Y CARMESÍ
 ===================================================== */
 
 .project-card {
@@ -244,10 +244,11 @@ main {
     background: rgba(15, 15, 25, 0.65);
     backdrop-filter: blur(15px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    /* Borde constante en azul eléctrico con sombra sutil carmesí abajo */
+    border: 1px solid rgba(0, 212, 255, 0.6);
     padding: 15px;
     transition: all 0.35s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.25), 0 10px 25px rgba(220, 20, 60, 0.15);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -256,8 +257,8 @@ main {
 
 .project-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(0, 212, 255, 0.5);
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.25), 0 10px 25px rgba(220, 20, 60, 0.15);
+    border-color: rgba(0, 212, 255, 1);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), 0 10px 30px rgba(220, 20, 60, 0.3);
 }
 
 .project-card img {
@@ -317,7 +318,7 @@ main {
 
 .project-card.expanded {
     border-color: #00d4ff;
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.35), 0 5px 20px rgba(220, 20, 60, 0.2);
+    box-shadow: 0 0 35px rgba(0, 212, 255, 0.5), 0 5px 25px rgba(220, 20, 60, 0.3);
 }
 
 .project-link { text-decoration: none; }
