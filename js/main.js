@@ -534,53 +534,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* =====================================================
-   LÓGICA DE PARTÍCULAS DE FONDO
+   LÓGICA DE PARTÍCULAS DE FONDO (VERSIÓN MODIFICADA)
 ===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('bg-particles');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-
     let particlesArray = [];
-    const numberOfParticles = 100;
-
+    // Aumenté ligeramente el número para que la "lluvia" se vea mejor
+    const numberOfParticles = 120; 
+    // --- NUEVO: Lista de símbolos Katakana ---
+    const katakana = "゠ァアィイゥウェエォオカガキギクグケゲコザシジスズセゼソダヂヅデドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワンヷヸヹヺ・ーヽヾ";
+    const symbolArray = katakana.split(''); 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
-
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 3 + 1;
-            this.speedX = (Math.random() - 0.5) * 0.8;
-            this.speedY = (Math.random() - 0.5) * 0.8;
-            this.color = Math.random() > 0.5 ? '#007bff' : '#ff2d55';
+            // Tamaño del símbolo
+            this.size = Math.random() * 10 + 14;
+            // Solo se mueven hacia abajo para el efecto de lluvia
+            this.speedX = 0; 
+            this.speedY = Math.random() * 1 + 0.5; 
+            // --- MODIFICADO: Selección de color aleatoria de los colores globales ---
+            const colors = ['#007bff', '#ff2d55', '#ffffff']; 
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            // --- NUEVO: Asignación de símbolo aleatorio ---
+            this.symbol = symbolArray[Math.floor(Math.random() * symbolArray.length)];
+            this.opacity = Math.random(); // Para el efecto de parpadeo
         }
         update() {
-            this.x += this.speedX;
             this.y += this.speedY;
-
-            if (this.x > canvas.width) this.x = 0;
-            else if (this.x < 0) this.x = canvas.width;
-
-            if (this.y > canvas.height) this.y = 0;
-            else if (this.y < 0) this.y = canvas.height;
+            // Efecto de parpadeo suave
+            this.opacity = Math.random() * 0.5 + 0.5; 
+            // Si sale por debajo, vuelve a empezar arriba
+            if (this.y > canvas.height) {
+                this.y = 0;
+                this.x = Math.random() * canvas.width;
+                this.symbol = symbolArray[Math.floor(Math.random() * symbolArray.length)];
+            }
         }
         draw() {
+            // --- MODIFICADO: Dibujar texto en lugar de un círculo ---
             ctx.fillStyle = this.color;
-            ctx.shadowBlur = 10;
+            ctx.shadowBlur = 15;
             ctx.shadowColor = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.font = `${this.size}px monospace`; // Usamos la misma familia de fuente del body
+            ctx.textAlign = 'center';
+            ctx.globalAlpha = this.opacity; // Aplicamos el parpadeo
+            ctx.fillText(this.symbol, this.x, this.y);
             ctx.shadowBlur = 0;
+            ctx.globalAlpha = 1; // Reset
         }
     }
-
     function initParticles() {
         particlesArray = [];
         for (let i = 0; i < numberOfParticles; i++) {
@@ -596,7 +607,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         requestAnimationFrame(animateParticles);
     }
-
     initParticles();
     animateParticles();
 });
