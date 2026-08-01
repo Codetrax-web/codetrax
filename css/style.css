@@ -251,7 +251,6 @@ main {
     flex-direction: column;
 }
 
-/* Efecto al pasar el cursor (con sutil toque de Azul Eléctrico y Rojo Carmín) */
 .project-card:hover, 
 .resource-card:hover {
     transform: translateY(-6px);
@@ -260,105 +259,118 @@ main {
 }
 
 /* =====================================================
-   ESTILO DE BOTONES (ACTUALIZADO)
+   ESTILOS DE BOTÓN (ACTUALIZADO SEGÚN SOLICITUD)
 ===================================================== */
 .button {
-  cursor: pointer;
-  font-size: 1.4rem;
-  border-radius: 16px;
-  border: none;
-  padding: 2px;
-  background: radial-gradient(circle 80px at 80% -10%, #b90000, #000000);
-  position: relative;
-  transition:
-    background 0.3s,
-    transform 0.3s;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-family: inherit;
+    border-radius: 16px;
+    border: none;
+    padding: 2px;
+    background: radial-gradient(circle 80px at 80% -10%, #b90000, #000000);
+    position: relative;
+    transition: background 0.3s, transform 0.3s;
+    display: inline-block;
+    text-decoration: none;
 }
 
 .button:hover {
-  /*background: radial-gradient(circle 80px at 80% -10%, #181b1b, #000);*/
-  transform: scale(0.98);
+    transform: scale(0.98);
 }
 
 .button::after {
-  content: "";
-  position: absolute;
-  width: 65%;
-  height: 60%;
-  border-radius: 120px;
-  top: 0;
-  right: 0;
-  box-shadow: 0 0 20px #27272738;
-  z-index: -1;
-  transition: box-shadow 0.3s;
+    content: "";
+    position: absolute;
+    width: 65%;
+    height: 60%;
+    border-radius: 120px;
+    top: 0;
+    right: 0;
+    box-shadow: 0 0 20px #27272738;
+    z-index: 1;
+    transition: box-shadow 0.3s;
 }
 
 .button:hover::after {
-  box-shadow: 0 0 10px #ffffff18;
+    box-shadow: 0 0 10px #ffffff18;
 }
 
 .blob1 {
-  position: absolute;
-  width: 70px;
-  height: 100%;
-  border-radius: 16px;
-  bottom: 0;
-  left: 0;
-  background: radial-gradient(
-    circle 60px at 0% 100%,
-    #00e1ff,
-    #0000ff80,
-    transparent
-  );
-  box-shadow: -10px 10px 30px #0051ff2d;
-  transition:
-    background 0.3s,
-    box-shadow 0.3s;
+    position: absolute;
+    width: 70px;
+    height: 100%;
+    border-radius: 16px;
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(
+        circle 60px at 0% 100%,
+        #00e1ff,
+        #0000ff80,
+        transparent
+    );
+    box-shadow: -10px 10px 30px #0051ff2d;
+    transition: background 0.3s, box-shadow 0.3s;
+    z-index: 1;
 }
 
 .button:hover .blob1 {
-  /*  background: radial-gradient(circle 60px at 0% 100%, #181b1b, #000);*/
-  box-shadow: -5px 5px 20px #000;
+    box-shadow: -5px 5px 20px #000;
+}
+
+.blob2 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: -10px;
+    right: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(185, 0, 0, 0.8), transparent 70%);
+    filter: blur(8px);
+    z-index: 1;
 }
 
 .inner {
-  padding: 14px 25px;
-  border-radius: 14px;
-  color: #fff;
-  z-index: 3;
-  position: relative;
-  background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
-  transition: background 0.3s;
+    padding: 14px 25px;
+    border-radius: 14px;
+    color: #fff;
+    z-index: 3;
+    position: relative;
+    background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+    transition: background 0.3s;
+    text-align: center;
+    font-weight: 500;
 }
 
 .button:hover .inner {
-  background: radial-gradient(circle 80px at 80% -50%, #333333, #0f0f0f);
+    background: radial-gradient(circle 80px at 80% -50%, #333333, #0f0f0f);
 }
 
 .inner::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  border-radius: 14px;
-  background: radial-gradient(
-    circle 60px at 0% 100%,
-    #00e1ff1a,
-    #0000ff11,
-    transparent
-  );
-  position: absolute;
-  transition: opacity 0.3s;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 14px;
+    background: radial-gradient(
+        circle 60px at 0% 100%,
+        #00e1ff1a,
+        #0000ff11,
+        transparent
+    );
+    position: absolute;
+    transition: opacity 0.3s;
+    z-index: 1;
 }
 
 .button:hover .inner::before {
-  opacity: 0;
+    opacity: 0;
 }
 
 /* =====================================================
    CONTENIDO DINÁMICO Y EQUIPO
-==================================================== */
+===================================================== */
 
 #content{
     margin-top:30px;
@@ -419,7 +431,7 @@ main {
 
 /* =====================================================
    CONTACTO HUB
-==================================================== */
+===================================================== */
 
 .contact-hub {
     background: rgba(15, 15, 25, 0.55);
@@ -725,6 +737,7 @@ main {
     border-color: #ff2d55;
     background: rgba(255, 45, 85, 0.1);
 }
+
 /* =====================================================
    BARRA DE BÚSQUEDA
 ===================================================== */
