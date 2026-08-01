@@ -828,3 +828,134 @@ main {
         height: 38px;
     }
 }
+
+
+/* =====================================================
+   ESTRUCTURA DE TARJETAS CON EFECTO FLIP (GIRO 3D)
+===================================================== */
+.project-card, 
+.resource-card {
+    background: transparent;
+    perspective: 1000px;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    min-height: 380px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(20, 24, 35, 0.9) 0%, rgba(12, 14, 20, 0.98) 100%);
+    
+    border: 2px solid transparent;
+    background-image: linear-gradient(rgba(20, 24, 35, 0.95), rgba(12, 14, 20, 0.98)), 
+                      linear-gradient(180deg, var(--gt-blue, #007bff), #8a2be2, var(--gt-red, #ff2d55));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 123, 255, 0.2), 0 0 15px rgba(255, 45, 85, 0.2);
+}
+
+.project-card.flipped .card-inner,
+.resource-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, 
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.card-front {
+    z-index: 2;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-front img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.card-back {
+    background: linear-gradient(135deg, rgba(15, 17, 25, 0.98) 0%, rgba(25, 15, 25, 0.98) 100%);
+    transform: rotateY(180deg);
+    z-index: 1;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.card-description-text {
+    font-size: 0.85rem;
+    color: #d6d6d6;
+    line-height: 1.5;
+    flex-grow: 1;
+    margin: 10px 0;
+    overflow-y: auto;
+}
+
+.card-back-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+}
+
+.card-category-badge {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.like-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.like-btn:hover {
+    background: rgba(255, 45, 85, 0.2);
+    border-color: rgba(255, 45, 85, 0.4);
+}
+
+.like-btn.liked {
+    background: rgba(255, 45, 85, 0.3);
+    border-color: #ff2d55;
+    color: #ff2d55;
+}
+
+.like-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
