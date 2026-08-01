@@ -324,58 +324,86 @@ main {
 .project-link { text-decoration: none; }
 
 /* =====================================================
-   BOTÓN GLASS REALISM
-==================================================== */
-
+   BOTÓN GLASS REALISM (ESTILO ACTUALIZADO)
+===================================================== */
 .button {
-    cursor:pointer;
-    font-size:1rem;
-    border-radius:16px;
-    border:none;
-    padding:2px;
-    background:radial-gradient(circle 80px at 80% -10%, #ffffff, #181b1b);
-    position:relative;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: inherit;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 2px;
+    background: #0e1116;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    text-decoration: none;
 }
-
+/* Efecto de brillo superior y destello lateral azul */
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    z-index: 3;
+}
 .button::after {
-    content:"";
-    position:absolute;
-    width:65%;
-    height:60%;
-    border-radius:120px;
-    top:0;
-    right:0;
-    box-shadow:0 0 20px #ffffff38;
-    z-index:-1;
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 10%;
+    width: 40%;
+    height: 4px;
+    background: #00d4ff;
+    filter: blur(6px);
+    z-index: 1;
+    opacity: 0.8;
 }
-
 .blob1 {
-    position:absolute;
-    width:70px;
-    height:100%;
-    border-radius:16px;
-    bottom:0;
-    left:0;
-    background:radial-gradient(circle 60px at 0% 100%, #3fe9ff, #0000ff80, transparent);
+    position: absolute;
+    width: 50px;
+    height: 100%;
+    border-radius: 16px;
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(circle 40px at 0% 100%, #00d4ff, transparent);
+    z-index: 1;
+    opacity: 0.6;
 }
-
 .blob2 {
-    position:absolute;
-    width:80px;
-    height:80px;
-    top:-10px;
-    right:-10px;
-    border-radius:50%;
-    background:radial-gradient(circle, rgba(255,255,255,.6), transparent 70%);
-    filter:blur(12px);
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: -10px;
+    right: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent 70%);
+    filter: blur(8px);
+    z-index: 1;
 }
-
 .inner {
-    padding:14px 25px;
-    border-radius:14px;
-    color:white;
-    position:relative;
-    background:radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+    padding: 10px 22px;
+    border-radius: 14px;
+    color: #ffffff;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(35, 39, 47, 0.9) 0%, rgba(15, 17, 21, 0.95) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    letter-coordinates: 0.5px;
+    text-align: center;
+}
+.button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+.button:active {
+    transform: translateY(1px);
 }
 
 /* =====================================================
