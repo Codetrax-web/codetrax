@@ -2,26 +2,12 @@
    VARIABLES GLOBALES
    Colores principales utilizados en todo el sitio
 ==================================================== */
-
-:root {
-    --gt-bg: #0b0d12;              /* Fondo general muy oscuro / negro espacial */
-    --gt-surface: #141721;         /* Superficies de tarjetas y contenedores */
-    --gt-border: rgba(255, 255, 255, 0.12); /* Bordes sutiles */
-    
-    /* Nueva paleta solicitada */
-    --gt-silver: #e0e6ed;          /* Blanco Plata */
-    --gt-blue: #0066ff;            /* Azul Eléctrico */
-    --gt-red: #d90429;             /* Rojo Carmín */
-    
-    --gt-ink: #ffffff;
+:root{
+  --color-white-silver: #F5F5F5;  /* Blanco Plata */
+  --color-carbon-black: #1A1A1A;  /* Negro Carbón */
+  --color-electric-blue: #00A8FF; /* Azul Eléctrico */
+  --color-carmine-red: #D70040;   /* Rojo Carmín */
 }
-
-body {
-    background-color: var(--gt-bg);
-    color: var(--gt-silver);
-    font-family: monospace; /* O la fuente que estés utilizando */
-}
-
 /* FIN VARIABLES GLOBALES */
 
 /* =====================================================
