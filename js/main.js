@@ -102,9 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="like-count">${savedLikes}</span>
                             </button>
 
-                            <a href="${project.url}" target="_blank" class="project-link" onclick="event.stopPropagation();">
-                                <button class="button" style="padding: 1px;">
-                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">Ver Proyecto</div>
+                            <a href="${project.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
+                                <button class="button">
+                                    <div class="blob1"></div>
+                                    <div class="blob2"></div>
+                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VER</div>
                                 </button>
                             </a>
                         </div>
@@ -180,8 +182,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${p.titulo}</h3>
                     <p class="card-subtitle">${p.descripcion || ''}</p>
                     <div class="project-details" style="max-height: 200px; opacity: 1; margin-top: 10px;">
-                        <a href="${p.url}" target="_blank" class="project-link">
-                            <button class="button"><div class="inner">Ver</div></button>
+                        <a href="${p.url}" target="_blank" class="project-link" style="text-decoration: none;">
+                            <button class="button">
+                                <div class="blob1"></div>
+                                <div class="blob2"></div>
+                                <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VER</div>
+                            </button>
                         </a>
                     </div>
                 </div>
@@ -466,9 +472,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="like-count">${savedLikes}</span>
                             </button>
 
-                            <a href="${item.url}" target="_blank" class="project-link" onclick="event.stopPropagation();">
-                                <button class="button" style="padding: 1px;">
-                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">Visita</div>
+                            <a href="${item.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
+                                <button class="button">
+                                    <div class="blob1"></div>
+                                    <div class="blob2"></div>
+                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VISITA</div>
                                 </button>
                             </a>
                         </div>
@@ -543,9 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
-    // Aumenté ligeramente el número para que la "lluvia" se vea mejor
     const numberOfParticles = 120; 
-    // --- NUEVO: Lista de símbolos Katakana ---
     const katakana = "゠ァアィイゥウェエォオカガキギクグケゲコザシジスズセゼソダヂヅデドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワンヷヸヹヺ・ーヽヾ";
     const symbolArray = katakana.split(''); 
     function resizeCanvas() {
@@ -558,23 +564,17 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor() {
             this.x = Math.random() * canvas.width;
             this.y = Math.random() * canvas.height;
-            // Tamaño del símbolo
             this.size = Math.random() * 10 + 14;
-            // Solo se mueven hacia abajo para el efecto de lluvia
             this.speedX = 0; 
             this.speedY = Math.random() * 1 + 0.5; 
-            // --- MODIFICADO: Selección de color aleatoria de los colores globales ---
             const colors = ['#007bff', '#ff2d55', '#ffffff']; 
             this.color = colors[Math.floor(Math.random() * colors.length)];
-            // --- NUEVO: Asignación de símbolo aleatorio ---
             this.symbol = symbolArray[Math.floor(Math.random() * symbolArray.length)];
-            this.opacity = Math.random(); // Para el efecto de parpadeo
+            this.opacity = Math.random(); 
         }
         update() {
             this.y += this.speedY;
-            // Efecto de parpadeo suave
             this.opacity = Math.random() * 0.5 + 0.5; 
-            // Si sale por debajo, vuelve a empezar arriba
             if (this.y > canvas.height) {
                 this.y = 0;
                 this.x = Math.random() * canvas.width;
@@ -582,16 +582,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         draw() {
-            // --- MODIFICADO: Dibujar texto en lugar de un círculo ---
             ctx.fillStyle = this.color;
             ctx.shadowBlur = 15;
             ctx.shadowColor = this.color;
-            ctx.font = `${this.size}px monospace`; // Usamos la misma familia de fuente del body
+            ctx.font = `${this.size}px monospace`; 
             ctx.textAlign = 'center';
-            ctx.globalAlpha = this.opacity; // Aplicamos el parpadeo
+            ctx.globalAlpha = this.opacity; 
             ctx.fillText(this.symbol, this.x, this.y);
             ctx.shadowBlur = 0;
-            ctx.globalAlpha = 1; // Reset
+            ctx.globalAlpha = 1; 
         }
     }
     function initParticles() {
