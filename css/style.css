@@ -233,93 +233,31 @@ main {
 }
 
 /* =====================================================
-   TARJETAS CON BORDE FIJO AZUL ELÉCTRICO Y CARMESÍ
+   TARJETAS DE PORTAFOLIO Y RECURSOS (ESTILO UNIFICADO)
 ===================================================== */
-
-.project-card {
+.project-card, 
+.resource-card {
     position: relative;
     overflow: hidden;
-    background: rgba(15, 15, 25, 0.65);
-    backdrop-filter: blur(15px);
+    background: linear-gradient(135deg, rgba(20, 24, 35, 0.85) 0%, rgba(12, 14, 20, 0.95) 100%);
+    backdrop-filter: blur(20px);
     border-radius: 20px;
-    /* Borde constante en azul eléctrico con sombra sutil carmesí abajo */
-    border: 1px solid rgba(0, 212, 255, 0.6);
-    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 18px;
     transition: all 0.35s ease;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.25), 0 10px 25px rgba(220, 20, 60, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    text-align: center;
 }
 
-.project-card:hover {
+/* Efecto al pasar el cursor (con sutil toque de Azul Eléctrico y Rojo Carmín) */
+.project-card:hover, 
+.resource-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(0, 212, 255, 1);
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), 0 10px 30px rgba(220, 20, 60, 0.3);
+    border-color: rgba(0, 102, 255, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 102, 255, 0.25), 0 0 20px rgba(217, 4, 4, 0.2);
 }
-
-.project-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 14px;
-    margin-bottom: 5px;
-    position: relative;
-    z-index: 2;
-}
-
-/* Línea divisoria elegante */
-.card-divider {
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    margin: 10px 0;
-}
-
-.project-card h3 {
-    font-size: 1rem;
-    color: #fff;
-    margin-bottom: 4px;
-    font-family: 'Segoe UI', sans-serif;
-    letter-spacing: 0.5px;
-    position: relative;
-    z-index: 2;
-}
-
-.card-subtitle {
-    font-size: 0.8rem;
-    color: #a1a1aa;
-    margin-bottom: 0;
-    position: relative;
-    z-index: 2;
-}
-
-/* Panel desplegable de detalles oculto por defecto */
-.project-details {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 0;
-}
-
-/* Estado cuando la tarjeta está expandida */
-.project-card.expanded .project-details {
-    max-height: 350px;
-    opacity: 1;
-    margin-top: 12px;
-}
-
-.project-card.expanded {
-    border-color: #00d4ff;
-    box-shadow: 0 0 35px rgba(0, 212, 255, 0.5), 0 5px 25px rgba(220, 20, 60, 0.3);
-}
-
-.project-link { text-decoration: none; }
 
 /* =====================================================
    BOTÓN GLASS REALISM (ESTILO ACTUALIZADO)
