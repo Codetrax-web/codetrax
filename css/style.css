@@ -4,10 +4,22 @@
 ==================================================== */
 
 :root {
+    --gt-bg: #0b0d12;              /* Fondo general muy oscuro / negro espacial */
+    --gt-surface: #141721;         /* Superficies de tarjetas y contenedores */
+    --gt-border: rgba(255, 255, 255, 0.12); /* Bordes sutiles */
+    
+    /* Nueva paleta solicitada */
+    --gt-silver: #e0e6ed;          /* Blanco Plata */
+    --gt-blue: #0066ff;            /* Azul Eléctrico */
+    --gt-red: #d90429;             /* Rojo Carmín */
+    
     --gt-ink: #ffffff;
-    --gt-surface: #1e1e2e;
-    --gt-blue: #007bff;
-    --gt-red: #ff2d55;
+}
+
+body {
+    background-color: var(--gt-bg);
+    color: var(--gt-silver);
+    font-family: monospace; /* O la fuente que estés utilizando */
 }
 
 /* FIN VARIABLES GLOBALES */
