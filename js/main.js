@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
    const renderSearch = () => `
     <div class="gt-field">
         <div class="search-bar-container">
-            <input type="text" id="gt-input-target" class="search-input" placeholder="Search something...">
+            <i class="fa-solid fa-magnifying-glass search-icon-left"></i>
+            <input type="text" id="gt-input-target" class="search-input" placeholder="Search...">
             <button class="search-btn" type="button">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-filter"></i>
             </button>
         </div>
         <div id="search-results-grid"></div>
@@ -151,6 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* =====================================================
+       LÓGICA DE BÚSQUEDA Y FILTRADO POR APARTADO
+    ===================================================== */
     document.addEventListener('input', (e) => {
         if (e.target.id === 'gt-input-target') {
             const term = e.target.value.toLowerCase().trim();
@@ -161,7 +165,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 return; 
             }
 
-            const filtered = window.searchableData.filter(p => 
+            const activeMenuLink = document.querySelector('.menu a.active');
+            const currentSection = activeMenuLink ? activeMenuLink.getAttribute('data-section') : 'home';
+
+            let dataSource = window.searchableData;
+
+            if (currentSection === 'plans') {
+                dataSource = recursosProjects;
+            } else if (currentSection === 'settings') {
+                dataSource = portfolioProjects;
+            }
+
+            const filtered = dataSource.filter(p => 
                 (p.titulo && p.titulo.toLowerCase().includes(term)) || 
                 (p.descripcion && p.descripcion.toLowerCase().includes(term)) ||
                 (p.categoria && p.categoria.toLowerCase().includes(term))
@@ -170,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (filtered.length === 0) {
                 resultsGrid.innerHTML = `
                     <div style="grid-column: 1/-1; text-align: center; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px;">
-                        <p style="color: #fff;">No se encontró nada relacionado con "${term}".</p>
+                        <p style="color: #fff;">No se encontró nada relacionado con "${term}" en este apartado.</p>
                     </div>`;
                 return;
             }
@@ -195,13 +210,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    document.addEventListener('click', (e) => {
+        const searchBtn = e.target.closest('.search-btn');
+        if (!searchBtn) return;
+        
+        const inputTarget = document.getElementById('gt-input-target');
+        if (inputTarget) {
+            inputTarget.focus();
+        }
+    });
+
     /* =====================================================
        GESTIÓN DE VISTAS
     ===================================================== */
     const views = { 
       home: `
         <section class="about-section">
-            <h1 class="about-title">匚ㄖᗪ乇ㄒ尺卂乂</h1>
+            <h1 class="about-title">匚ㄖᗪ乇TST尺卂乂</h1>
             <br>
             <h2>
                 Donde las ideas se convierten en experiencias digitales.
