@@ -85,31 +85,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             return `
                 <div class="project-card" data-card-id="${uniqueId}">
-                    <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                    <div class="card-divider"></div>
-                    <h3>${project.titulo}</h3>
-                    <p class="card-subtitle">Creador: ${project.creador || 'Desconocido'}</p>
-                    
-                    <div class="project-details">
-                        <p style="font-size: 0.85rem; color: #d6d6d6; text-align: left; line-height: 1.5;">${project.descripcion}</p>
+                    <div class="card-inner">
+                        <!-- CARA FRONTAL -->
+                        <div class="card-front">
+                            <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                            <div class="card-divider"></div>
+                            <h3>${project.titulo}</h3>
+                            <p class="card-subtitle">Creador: ${project.creador || 'Desconocido'}</p>
+                            <span class="card-category-badge">${project.categoria || 'General'}</span>
+                        </div>
                         
-                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                            <!-- Botón de Like -->
-                            <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
-                                <div class="like-content">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span>Likes</span>
-                                </div>
-                                <span class="like-count">${savedLikes}</span>
-                            </button>
-
-                            <a href="${project.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
-                                <button class="button">
-                                    <div class="blob1"></div>
-                                    <div class="blob2"></div>
-                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VER</div>
+                        <!-- CARA POSTERIOR (AL GIRAR) -->
+                        <div class="card-back">
+                            <h3>${project.titulo}</h3>
+                            <p class="card-description-text">${project.descripcion}</p>
+                            
+                            <div class="card-back-actions">
+                                <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
+                                    <div class="like-content">
+                                        <i class="fa-solid fa-heart"></i>
+                                        <span>Likes</span>
+                                    </div>
+                                    <span class="like-count">${savedLikes}</span>
                                 </button>
-                            </a>
+
+                                <a href="${project.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
+                                    <button class="button">
+                                        <div class="blob1"></div>
+                                        <div class="blob2"></div>
+                                        <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VER</div>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,18 +199,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             resultsGrid.innerHTML = filtered.map(p => `
                 <div class="project-card">
-                    <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                    <div class="card-divider"></div>
-                    <h3>${p.titulo}</h3>
-                    <p class="card-subtitle">${p.descripcion || ''}</p>
-                    <div class="project-details" style="max-height: 200px; opacity: 1; margin-top: 10px;">
-                        <a href="${p.url}" target="_blank" class="project-link" style="text-decoration: none;">
-                            <button class="button">
-                                <div class="blob1"></div>
-                                <div class="blob2"></div>
-                                <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VER</div>
-                            </button>
-                        </a>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="${p.imagen}" alt="${p.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                            <div class="card-divider"></div>
+                            <h3>${p.titulo}</h3>
+                            <p class="card-subtitle">${p.creador || p.descripcion || ''}</p>
+                            <span class="card-category-badge">${p.categoria || 'General'}</span>
+                        </div>
+                        <div class="card-back">
+                            <h3>${p.titulo}</h3>
+                            <p class="card-description-text">${p.descripcion || 'Sin descripción disponible.'}</p>
+                            <div class="card-back-actions">
+                                <a href="${p.url}" target="_blank" class="project-link" style="text-decoration: none; width: 100%;">
+                                    <button class="button" style="width: 100%;">
+                                        <div class="blob1"></div>
+                                        <div class="blob2"></div>
+                                        <div class="inner" style="padding: 8px 18px; font-size: 0.85rem; text-align: center;">VER</div>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -479,31 +495,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             return `
                 <div class="project-card" data-card-id="${uniqueId}">
-                    <img src="${item.imagen}" alt="${item.titulo}" onerror="this.src='assets/placeholder.jpg'">
-                    <div class="card-divider"></div>
-                    <h3>${item.titulo}</h3>
-                    <p class="card-subtitle">Creador: ${item.creador || 'Desconocido'}</p>
-                    
-                    <div class="project-details">
-                        <p style="font-size: 0.85rem; color: #d6d6d6; text-align: left; line-height: 1.5;">${item.descripcion}</p>
-                        
-                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                            <!-- Botón de Like -->
-                            <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
-                                <div class="like-content">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span>Likes</span>
-                                </div>
-                                <span class="like-count">${savedLikes}</span>
-                            </button>
-
-                            <a href="${item.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
-                                <button class="button">
-                                    <div class="blob1"></div>
-                                    <div class="blob2"></div>
-                                    <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VISITA</div>
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="${item.imagen}" alt="${item.titulo}" onerror="this.src='assets/placeholder.jpg'">
+                            <div class="card-divider"></div>
+                            <h3>${item.titulo}</h3>
+                            <p class="card-subtitle">Creador: ${item.creador || 'Desconocido'}</p>
+                            <span class="card-category-badge">${item.categoria || 'General'}</span>
+                        </div>
+                        <div class="card-back">
+                            <h3>${item.titulo}</h3>
+                            <p class="card-description-text">${item.descripcion}</p>
+                            <div class="card-back-actions">
+                                <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
+                                    <div class="like-content">
+                                        <i class="fa-solid fa-heart"></i>
+                                        <span>Likes</span>
+                                    </div>
+                                    <span class="like-count">${savedLikes}</span>
                                 </button>
-                            </a>
+                                <a href="${item.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
+                                    <button class="button">
+                                        <div class="blob1"></div>
+                                        <div class="blob2"></div>
+                                        <div class="inner" style="padding: 8px 18px; font-size: 0.85rem;">VISITA</div>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -697,17 +715,17 @@ document.addEventListener('click', (e) => {
 });
 
 /* =====================================================
-   CONTROLADOR DE EXPANSIÓN DE TARJETAS (ACORDEÓN)
+   CONTROLADOR DE GIRO DE TARJETAS (FLIP 3D)
 ===================================================== */
 document.addEventListener('click', (e) => {
     if (e.target.closest('.like-btn') || e.target.closest('.project-link')) return;
 
-    const card = e.target.closest('.project-card');
+    const card = e.target.closest('.project-card') || e.target.closest('.resource-card');
     if (!card) return;
 
-    document.querySelectorAll('.project-card').forEach(c => {
-        if (c !== card) c.classList.remove('expanded');
+    document.querySelectorAll('.project-card, .resource-card').forEach(c => {
+        if (c !== card) c.classList.remove('flipped');
     });
 
-    card.classList.toggle('expanded');
+    card.classList.toggle('flipped');
 });
