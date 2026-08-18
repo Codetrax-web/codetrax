@@ -469,37 +469,77 @@ main {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Social buttons — estilo tipo "plataforma/tabla iluminada" */
+.socials a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 52px;
+    margin: 0 8px;
+    border-radius: 10px;               /* esquinas redondeadas tipo caja */
+    background: rgba(18,18,22,0.88);   /* fondo oscuro de la caja */
+    color: #ffffff;
+    font-size: 22px;                   /* tamaño del icono */
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    transition: transform .20s ease, box-shadow .20s ease, border-color .20s ease;
+    overflow: visible;
+}
+
+/* "Plataforma" / base debajo del botón (pseudo-elemento) */
+.socials a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;                      /* separada por debajo de la caja */
+    width: 72%;
+    height: 12px;
+    border-radius: 6px;
+    background: rgba(0,0,0,0.6);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    opacity: 0.12;
+    transition: opacity .24s ease, transform .24s ease, filter .24s ease;
+    z-index: -1;
+}
+
+/* Hover: eleva la caja, ilumina la base y sube el icono */
 .socials a:hover {
-    transform: translateY(-4px) scale(1.08);
-    border-color: #00d4ff;
-    color: #00d4ff;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4), 0 5px 15px rgba(220, 20, 60, 0.2);
+    transform: translateY(-8px);
+    border-color: rgba(255,255,255,0.12);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.7), 0 0 18px rgba(0,123,255,0.06);
 }
-.socials a.ig:hover { 
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
-    transform: translateY(-3px); 
-    border-color: transparent;
+
+/* Hover en la base: mayor brillo / blur para el "resplandor" */
+.socials a:hover::after {
+    opacity: 0.7;
+    transform: translateX(-50%) translateY(6px) scale(1.06);
+    filter: blur(6px);
+    background: radial-gradient(circle at 50% 25%, rgba(0,123,255,0.22), rgba(0,0,0,0.2));
 }
-.socials a.threads:hover { 
-    background: #000000; 
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-3px); 
+
+/* Mover icono hacia arriba al hacer hover (efecto flotante) */
+.socials a i {
+    transition: transform .20s ease, text-shadow .20s ease, color .20s ease;
 }
-.socials a.yt:hover { 
-    background: #ff0000; 
-    border-color: #ff0000;
-    transform: translateY(-3px); 
+.socials a:hover i {
+    transform: translateY(-6px);
+    text-shadow: 0 6px 18px rgba(0,123,255,0.18);
 }
-.socials a.tk:hover { 
-    background: #000000; 
-    border-color: #00f2fe;
-    box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-    transform: translateY(-3px); 
-}
-.socials a.x-social:hover { 
-    background: #14171a; 
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-3px); 
+
+/* Ejemplos de color por plataforma (ajusta según prefieras) */
+.socials a.tw:hover::after { background: radial-gradient(circle at 50% 25%, rgba(29,161,242,0.25), rgba(0,0,0,0.18)); }
+.socials a.ig:hover::after { background: radial-gradient(circle at 50% 25%, rgba(216,48,163,0.20), rgba(0,0,0,0.18)); }
+.socials a.yt:hover::after { background: radial-gradient(circle at 50% 25%, rgba(255,0,0,0.20), rgba(0,0,0,0.18)); }
+.socials a.tk:hover::after { background: radial-gradient(circle at 50% 25%, rgba(0,242,254,0.18), rgba(0,0,0,0.18)); }
+
+/* Ajustes responsivos (opcional) */
+@media (max-width: 480px) {
+    .socials a { width: 48px; height: 44px; font-size: 18px; margin: 0 6px; }
+    .socials a::after { height: 10px; bottom: -8px; }
 }
 
 .action-btns {
