@@ -1,77 +1,81 @@
 [
+  // Categoría: Damian
   {
-    "titulo": "Electrum",
+    "titulo": "Electrum CDMX",
     "creador": "Damian Cruz",
-    "descripcion": "Desarrollo integral de la identidad digital de Electrum, incluyendo branding, diseño web y estrategias para fortalecer su presencia en línea.",
+    "descripcion": "Gestión integral de la identidad digital para Electrum. Desarrollo de plataforma web, branding y automatización de procesos para proyectos de infraestructura eléctrica de baja y media tensión.",
     "imagen": "data/recursos/Damian/electrum/ima.png",
     "url": "https://electrumcdmx.es/",
     "categoria": "Damian"
   },
   {
-    "titulo": "Walli-e",
+    "titulo": "Walli-e Robot",
     "creador": "Damian Cruz",
-    "descripcion": "Proyecto de robótica desarrollado desde la planificación y el diseño hasta la construcción y programación del robot.",
+    "descripcion": "Proyecto de ingeniería robótica integral. Abarca desde la planificación, diseño estructural y modelado, hasta la implementación de sistemas de control y programación de movimientos.",
     "imagen": "data/recursos/Damian/wall/ima.png",
-    "url": "https://www.instagram.com/p/CuVA0JkAnzw/?utm_source=ig_web_button_share_sheet&igsh=MzRlODBiNWFlZA==",
+    "url": "https://www.instagram.com/p/CuVA0JkAnzw/",
     "categoria": "Damian"
   },
   {
-    "titulo": "Diseño_MiguelTime",
+    "titulo": "Identidad Visual - Miguel Time",
     "creador": "Damian Cruz",
-    "descripcion": "Proyecto de robótica desarrollado desde la planificación y el diseño hasta la construcción y programación del robot.",
+    "descripcion": "Diseño y desarrollo de la identidad visual para la marca personal Miguel Time, asegurando una estética coherente en todos los activos digitales del canal.",
     "imagen": "data/recursos/Damian/logo_m.png",
     "url": "https://www.youtube.com/@MiguelTime",
     "categoria": "Damian"
   },
 
+  // Categoría: DynsG
   {
-    "titulo": "Miniatura",
+    "titulo": "Branding Miguel Time",
     "creador": "DynsG",
-    "descripcion": "Diseño integral de identidad visual (logotipo y banner) para el canal Miguel Time, garantizando una estética moderna, profesional y alineada con la esencia de su contenido.",
+    "descripcion": "Diseño integral de activos visuales (logotipo y banner) para el canal Miguel Time, enfocado en proyectar una imagen profesional y moderna.",
     "imagen": "data/recursos/Dyns/d4.jpeg",
     "url": "https://youtu.be/PkSVWkFvYZE?si=KFaH9fA08j8yRA8Y",
     "categoria": "DynsG"
   },
   {
-    "titulo": "Baner_juanitoVT",
+    "titulo": "Banner JuanitoVT",
     "creador": "DynsG",
-    "descripcion": "Diseño de banner personalizado para el canal JuanitoVT, manteniendo una identidad visual moderna y coherente con su contenido.",
+    "descripcion": "Diseño de banner personalizado para el canal JuanitoVT, optimizando la jerarquía visual para alinearse con el estilo de contenido del creador.",
     "imagen": "data/recursos/Dyns/d6.jpeg",
     "url": "https://www.youtube.com/@juanitovt7",
     "categoria": "DynsG"
   },
   {
-    "titulo": "Miniatura_EJ_Blox",
+    "titulo": "Miniatura EJ Blox",
     "creador": "DynsG",
-    "descripcion": "Miniatura diseñada para contenido de videojuegos, con composición visual enfocada en mejorar el impacto y la visibilidad del video.",
+    "descripcion": "Diseño de miniatura estratégica para contenido gaming, enfocada en maximizar el CTR mediante composición visual de alto impacto.",
     "imagen": "data/recursos/Dyns/d3.jpeg",
     "url": "https://youtu.be/SJRXAaSaNzY?si=z5j1oVIev3Cpx7p9",
     "categoria": "DynsG"
   },
   {
-    "titulo": "Baner_Coolisa!",
+    "titulo": "Banner Coolisa!",
     "creador": "DynsG",
-    "descripcion": "Banner desarrollado para el canal Coolisa!, reforzando su imagen de marca mediante un diseño atractivo y profesional.",
+    "descripcion": "Desarrollo de banner para el canal Coolisa!, reforzando la identidad de marca mediante un diseño atractivo y profesional.",
     "imagen": "data/recursos/Dyns/d5.jpeg",
     "url": "https://www.youtube.com/@soycoolisayt",
     "categoria": "DynsG"
   },
 
+  // Categoría: Miguel
   {
-    "titulo": "Futuristical Beats",
-    "creador": "Damian Cruz | Tecno730",
-    "descripcion": "Proyecto musical enfocado en la creación y producción de música electrónica original, combinando diseño sonoro, composición y experimentación creativa.",
-    "imagen": "data/recursos/fuc/ima.png",
-    "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
-    "categoria": "Tecno"
-  },
-
-   {
-    "titulo": "Axira_Studio",
+    "titulo": "Axira Studio",
     "creador": "Miguel Time",
-    "descripcion": "Convertimos ideas complejas en activos digitales de alto rendimiento. Código limpio, diseño impactante y soluciones tecnológicas pensadas para ti. ¿Tienes un proyecto? Hablemos de cómo hacerlo realidad.",
+    "descripcion": "Soluciones digitales de alto rendimiento. Transformamos ideas complejas en código limpio y diseño impactante. Creamos activos tecnológicos pensados para la escalabilidad.",
     "imagen": "data/recursos/Miguel/ax.png",
     "url": "https://axiraestudio.github.io/",
     "categoria": "Miguel"
+  },
+
+  // Categoría: Tecno
+  {
+    "titulo": "Futuristical Beats",
+    "creador": "Damian Cruz | Tecno730",
+    "descripcion": "Laboratorio de producción musical enfocado en electrónica experimental. Un proyecto creativo que fusiona diseño sonoro, síntesis y composición.",
+    "imagen": "data/recursos/fuc/ima.png",
+    "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
+    "categoria": "Tecno"
   }
 ]
