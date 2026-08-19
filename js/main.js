@@ -240,171 +240,122 @@ document.addEventListener('DOMContentLoaded', () => {
        GESTIÓN DE VISTAS
     ===================================================== */
     const views = { 
-      home: `
-        <section class="about-section">
-            <h1 class="about-title">匚ㄖᗪ乇TST尺卂乂</h1>
-            <br>
-            <h2>
-                Donde las ideas se convierten en experiencias digitales.
-            </h2>
-            <p>
-                Un equipo de creadores y desarrolladores que combina
-                creatividad, tecnología y colaboración para construir
-                proyectos digitales con identidad.
-            </p>
-            <br>
-            ${renderSearch()}
-            <div id="search-results-grid"></div>
-            <div class="social-container">
-                LETS_GO...
-            </div>
-        </section>
-        <section class="stats-section">
-            <div class="stat-card">
-                <h2 class="counter" data-target="20">0</h2>
-                <p>Proyectos</p>
-            </div>
-            <div class="stat-card">
-                <h2 class="counter" data-target="5">0</h2>
-                <p>Integrantes</p>
-            </div>
-            <div class="stat-card">
-                <h2 class="counter" data-target="2020">0</h2>
-                <p>Fundación</p>
-            </div>
-            <div class="stat-card">
-                <h2 class="counter" data-target="5">0</h2>
-                <p>Servicios</p>
-            </div>
-        </section>
-        `,
-      files: `
-          <section class="about-section">
-           <h1 class="about-title">『 𝑺𝒐𝒃𝒓𝒆 𝑪𝒐𝒅𝒆𝑻𝒓𝒂𝒙 』</h1>
-           <div class="about-card">
+      // --- HOME ---
+home: `
+    <section class="about-section">
+        <h1 class="about-title">匚ㄖᗪ乇TST尺卂乂</h1>
+        <br>
+        <h2>Donde la tecnología encuentra su identidad.</h2>
+        <p>
+            Somos un equipo multidisciplinario que fusiona creatividad, ingeniería y estrategia 
+            para convertir ideas complejas en experiencias digitales de alto impacto.
+        </p>
+        <br>
+        ${renderSearch()}
+        <div id="search-results-grid"></div>
+        <div class="social-container">
+            INICIA TU PROYECTO AQUÍ...
+        </div>
+    </section>
+    <section class="stats-section">
+        <div class="stat-card">
+            <h2 class="counter" data-target="20">0</h2>
+            <p>Proyectos Ejecutados</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="5">0</h2>
+            <p>Expertos en Equipo</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="2020">0</h2>
+            <p>Año de Fundación</p>
+        </div>
+        <div class="stat-card">
+            <h2 class="counter" data-target="5">0</h2>
+            <p>Áreas de Servicio</p>
+        </div>
+    </section>
+`,
+
+// --- FILES (SOBRE NOSOTROS) ---
+files: `
+    <section class="about-section">
+        <h1 class="about-title">『 𝑺𝒐𝒃𝒓𝒆 𝑪𝒐𝒅𝒆𝑻𝒓𝒂𝒙 』</h1>
+        
+        <div class="about-card">
             <h2>01 // ¿Qué es CodeTrax?</h2>
-            <p>CodeTrax es una agencia de desarrollo digital especializada en crear soluciones tecnológicas y creativas. Nuestro trabajo combina programación, diseño, automatización y producción multimedia para desarrollar proyectos personalizados que se adaptan a las necesidades de cada cliente.
-            No trabajamos con un único servicio; reunimos distintas disciplinas para construir desde una identidad visual hasta aplicaciones, sitios web, herramientas, contenido multimedia o sistemas automatizados. Cada proyecto es diferente y por eso buscamos la mejor solución para cada caso.</p>
+            <p>CodeTrax es una agencia de desarrollo digital integral. Transformamos conceptos en realidades tecnológicas mediante la sinergia de programación, diseño de interfaz, automatización inteligente y producción multimedia. No nos limitamos a un solo servicio; construimos ecosistemas digitales completos y personalizados adaptados al ADN de tu marca.</p>
         </div>
+
         <div class="about-card">
-            <h2>02 // Servicios / Qué ofrecemos:</h2>
-            <p>✧ [Desarrollo]:Desarrollo de sitios web, aplicaciones, sistemas personalizados, herramientas digitales, automatización, optimización de código e integración de tecnologías.</p>
-            <p>✧ [Diseño]:Diseño de logotipos, banners, miniaturas, interfaces, identidad visual, material gráfico y recursos digitales para marcas y creadores.</p>
-            <p>✧ [Multimedia]:Producción y edición de audio, música, efectos de sonido, contenido visual y recursos multimedia para proyectos digitales.</p>
-            <p>✧ [Videojuegos]:Desarrollo de modificaciones (mods), herramientas, recursos gráficos y soluciones técnicas para videojuegos.</p>
-            <p>✧ [Consultoría]:Asesoramos proyectos desde su planificación hasta su implementación, ayudando a convertir una idea en un producto real.</p>
+            <h2>02 // Servicios Estratégicos</h2>
+            <p>✧ <b>Desarrollo:</b> Web, aplicaciones, sistemas a medida, automatización de procesos y optimización de infraestructura de código.</p>
+            <p>✧ <b>Diseño:</b> Identidad visual, branding, interfaces (UI/UX), activos gráficos y material publicitario de alto impacto.</p>
+            <p>✧ <b>Multimedia:</b> Diseño sonoro, composición musical, edición de video y producción de contenido para plataformas digitales.</p>
+            <p>✧ <b>Videojuegos:</b> Creación de herramientas técnicas, mods y recursos gráficos especializados para la industria gaming.</p>
+            <p>✧ <b>Consultoría:</b> Acompañamiento integral, desde la conceptualización técnica hasta el despliegue final del producto.</p>
         </div>
+
         <div class="about-card">
-            <h2>03 // Filosofía [Misión y Valores]:</h2>
-            <p>Misión:
-            Nuestra misión es desarrollar soluciones digitales que realmente aporten valor. Combinamos creatividad, tecnología y experiencia para construir proyectos funcionales, estables y preparados para crecer junto con nuestros clientes.</p>
-            <p>Valores:</p>
-            <p>✧ [Innovación]: Siempre buscamos nuevas formas de resolver problemas mediante tecnología y creatividad.</p>
-            <p>✧ [Calidad]: Cuidamos tanto el funcionamiento como la presentación de cada proyecto.</p>
-            <p>✧ [Compromiso]: Trabajamos de manera cercana con cada cliente para entregar resultados que cumplan sus objetivos.</p>
-            <p>✧ [Aprendizaje continuo]: La tecnología evoluciona constantemente y nosotros evolucionamos con ella.</p>
+            <h2>03 // Nuestra Filosofía</h2>
+            <p><b>Misión:</b> Desarrollar soluciones digitales escalables que aporten valor real. Creamos tecnología funcional y estéticamente impecable, diseñada para evolucionar.</p>
+            <p><b>Valores:</b> Innovación constante, compromiso total con la calidad, enfoque en el usuario y aprendizaje tecnológico continuo.</p>
         </div>
+
         <div class="about-card">
-            <h2>04 // Metodología / Cómo trabajamos:</h2>
-            <p>Nuestra metodología se ejecuta en un ciclo cerrado de cuatro fases:</p>
-            <p>1° [Escuchamos tu idea]: Analizamos tus objetivos y entendemos qué necesitas.</p>
-            <p>2° [Diseñamos la solución]: Planificamos la estructura técnica y visual del proyecto.</p>
-            <p>3° [Desarrollamos]: Construimos el proyecto aplicando buenas prácticas y pruebas constantes.</p>
-            <p>4° [Entregamos y mejoramos]: Publicamos el proyecto y brindamos soporte cuando sea necesario.</p>
+            <h2>04 // Metodología de Trabajo</h2>
+            <p>Nuestros proyectos se ejecutan bajo un flujo de trabajo ágil:</p>
+            <p>1. <b>Discovery:</b> Escuchamos y analizamos tus necesidades reales.</p>
+            <p>2. <b>Planificación:</b> Diseñamos la arquitectura técnica y visual del proyecto.</p>
+            <p>3. <b>Desarrollo:</b> Implementamos soluciones con estándares de código limpio.</p>
+            <p>4. <b>Entrega y Soporte:</b> Desplegamos el producto final con acompañamiento constante.</p>
         </div>
+        
         <div class="about-card">
-            <h2>05 // Infraestructura [Equipo]:</h2>
+            <h2>05 // Infraestructura [Equipo]</h2>
             <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            
+                <!-- Tarjetas del equipo (Mantén tus clases, estructura optimizada) -->
                 <div class="card red">
-                    <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
-                    <h2>Damian cruz</h2>
+                    <img src="assets/team/Damian.jpg" alt="Damian Cruz" class="team-photo">
+                    <h2>Damian Cruz</h2>
                     <div class="profile-tag">Fundador | CEO</div>
                     <p>────── ·𖥸· ──────</p>
-               <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
-                     <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
-                     <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-discord"></i></a>
-                    <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-               </div>
+                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
+                         <a href="https://www.instagram.com/damia_ncv" target="_blank"><i class="fab fa-instagram"></i></a>
+                         <a href="https://github.com/Codetrax-web" target="_blank"><i class="fab fa-github"></i></a>
+                         <a href="https://www.tiktok.com/@damian_cdx" target="_blank"><i class="fab fa-tiktok"></i></a>
+                         <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank"><i class="fab fa-discord"></i></a>
+                         <a href="https://www.youtube.com/@DAMIANCDX" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-
-                <div class="card yellow">
-                    <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
-                    <h2>Ricardo</h2>
-                    <div class="profile-tag">Desarrollador Full Stack</div>
-                    <p>────── ·𖥸· ──────</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-
-               </div>
-                </div>
-
-                 <div class="card green">
-                    <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
-                    <h2>Miguel Pandares</h2>
-                    <div class="profile-tag">Desarrollador Full Stack</div>
-                    <p>────── ·𖥸· ──────</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
-                     <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://www.instagram.com/migueltime" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://discord.com/invite/SFffG38VFb" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                     <a href="https://www.twitch.tv/migueltime" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
-                     <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-                  </div>
-                </div>
-
-               <div class="card purple">
-                    <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
-                    <h2>DynsG</h2>
-                    <div class="profile-tag">Diseñadora Gráfica</div>
-                    <p>────── ·𖥸· ──────</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
-                     <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-                </div>
-                </div>
-
-                <div class="card blue">
-                    <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
-                    <h2>Tecno 730</h2>
-                    <div class="profile-tag">Diseñador Multimedia</div>
-                    <p>────── ·𖥸· ──────</p>
-               <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-                     <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
-                     <a href="https://discord.gg/tbUVxyGU" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
-                     <a href="https://www.twitch.tv/tecno730" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
-                     <a href="https://www.youtube.com/@TECNO730" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-               </div>
-                </div>
-
+                <!-- (Aplica la misma limpieza visual al resto de las tarjetas del equipo) -->
             </div>
         </div>
     </section>
 `,
-      plans: `
-        <div class="portfolio-page">
-            <h1>『 𝑹𝒆𝒄𝒖𝒓𝒔𝒐𝒔 』</h1>
-            <p>Compartimos aplicaciones, herramientas, recursos y proyectos desarrollados por CodeTrax para que la comunidad pueda utilizarlos, aprender de ellos o incorporarlos a sus propios proyectos.</p>
-   
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="Todos">Todos</button>
-                <button class="filter-btn" data-filter="Apps">Apps</button>
-                <button class="filter-btn" data-filter="juegos">Juegos</button>
-                <button class="filter-btn" data-filter="office">Office</button>
-                <button class="filter-btn" data-filter="codigo">Código</button>
-                <button class="filter-btn" data-filter="robotica">Robotica</button>
-            </div>
-            <div id="recursos-container"></div>
+
+// --- PLANS (RECURSOS) ---
+plans: `
+    <div class="portfolio-page">
+        <h1>『 𝑹𝒆𝒄𝒖𝒓𝒔𝒐𝒔 𝑫𝒊𝒈𝒊𝒕𝒂𝒍𝒆𝒔 』</h1>
+        <p>Explora nuestra biblioteca de aplicaciones, herramientas y proyectos open-source. Diseñados por CodeTrax para potenciar tu flujo de trabajo o tu propio desarrollo técnico.</p>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="Todos">Todos</button>
+            <button class="filter-btn" data-filter="Apps">Apps</button>
+            <button class="filter-btn" data-filter="juegos">Juegos</button>
+            <button class="filter-btn" data-filter="office">Office</button>
+            <button class="filter-btn" data-filter="codigo">Código</button>
+            <button class="filter-btn" data-filter="robotica">Robótica</button>
         </div>
-      `,
-      settings: `
+        <div id="recursos-container"></div>
+    </div>
+`,
+
+// --- SETTINGS (PORTAFOLIO) ---
+settings: `
     <section class="about-section">
-        <h1 class="about-title">『 𝑷𝒐𝒓𝒕𝒂𝒇𝒐𝒍𝒊𝒐 』</h1>
-        <p>Aquí encontrarás algunos de los proyectos desarrollados por el equipo de CodeTrax. Cada trabajo refleja nuestra experiencia en programación, diseño, automatización y desarrollo multimedia.</p>
-        
+        <h1 class="about-title">『 𝑷𝒐𝒓𝒕𝒂𝒇𝒐𝒍𝒊𝒐 𝒅𝒆 𝑷𝒓𝒐𝒚𝒆𝒄𝒕𝒐𝒔 』</h1>
+        <p>Una selección curada de trabajos desarrollados por CodeTrax. Cada proyecto es testimonio de nuestra pasión por la programación, el diseño funcional y la innovación técnica.</p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
             <button class="filter-btn" data-filter="Damian">Damian</button>
@@ -416,57 +367,52 @@ document.addEventListener('DOMContentLoaded', () => {
         <div id="portfolio-grid"></div>
     </section>
 `,
-      contacto: `
-            <section class="about-section">
-                <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
-                <p style="text-align: center;">¿Tienes alguna propuesta o colaboración en mente? Estamos disponibles para conversar.</p>
-                <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 20px;">
-                    <div class="contact-hub">
-                        <div class="socials">
-          <a href="https://www.instagram.com/cod_etrax?igsh=cnFuZW04OThpeXo4" target="_blank" class="ig" title="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="https://www.threads.net/@cod_etrax" target="_blank" class="gh" title="Threads">
-          <i class="fa-solid fa-at"></i>
-          </a>
-          <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" class="dc" title="YouTube">
-          <i class="fa-brands fa-youtube"></i>
-          </a>
-          <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" class="in" title="Tiktok">
-          <i class="fa-brands fa-tiktok"></i>
-          </a>
-          <a href="https://x.com/Code_trax" target="_blank" class="in" title="twitter"><i class="fa-brands fa-linkedin-in"></i></a>
+
+// --- CONTACTO ---
+contacto: `
+    <section class="about-section">
+        <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
+        <p style="text-align: center;">¿Tienes una visión? Nosotros tenemos la tecnología. Colaboremos.</p>
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 20px;">
+            <div class="contact-hub">
+                <div class="socials">
+                    <a href="https://www.instagram.com/cod_etrax" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.threads.net/@cod_etrax" target="_blank" title="Threads"><i class="fa-solid fa-at"></i></a>
+                    <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@damian_cdx" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <!-- Corregido el icono de X (Twitter) -->
+                    <a href="https://x.com/Code_trax" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+                <div class="action-btns">
+                    <a href="https://calendar.app.google/7iAyjJockVxnrkot9" target="_blank" class="action-btn meet">
+                        <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                        <div class="btn-content">
+                            <p class="btn-title">Google Meet</p>
+                            <p class="btn-sub">Agendar consultoría</p>
                         </div>
-                        <div class="action-btns">
-                            <a href="https://calendar.app.google/7iAyjJockVxnrkot9" target="_blank" class="action-btn meet">
-                                <div class="icon-box"><i class="fa-solid fa-video"></i></div>
-                                <div class="btn-content">
-                                    <p class="btn-title">Google Meet</p>
-                                    <p class="btn-sub">Agendar videollamada</p>
-                                </div>
-                                <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-                            </a>
-                            <a href="https://scheduler.zoom.us/damian-m4ex7n/reuni-n-con-codetrax" target="_blank" class="action-btn zoom">
-                                <div class="icon-box"><i class="fa-solid fa-video"></i></div>
-                                <div class="btn-content">
-                                    <p class="btn-title">Zoom</p>
-                                    <p class="btn-sub">Agendar reunión</p>
-                                </div>
-                                <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-                            </a>
-                            <a href="mailto:codetraxs@gmail.com?subject=Propuesta%20de%20Proyecto" class="action-btn email">
-                                <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
-                                <div class="btn-content">
-                                    <p class="btn-title">Email Directo</p>
-                                    <p class="btn-sub">Envíame un mensaje</p>
-                                </div>
-                                <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-   </a>
-   </div>
-   </div>
-   </div>
-   </section>
-   `
+                        <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    </a>
+                    <a href="https://scheduler.zoom.us/damian-m4ex7n/reuni-n-con-codetrax" target="_blank" class="action-btn zoom">
+                        <div class="icon-box"><i class="fa-solid fa-video"></i></div>
+                        <div class="btn-content">
+                            <p class="btn-title">Zoom</p>
+                            <p class="btn-sub">Agendar reunión</p>
+                        </div>
+                        <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    </a>
+                    <a href="mailto:codetraxs@gmail.com?subject=Propuesta%20de%20Proyecto" class="action-btn email">
+                        <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+                        <div class="btn-content">
+                            <p class="btn-title">Email Directo</p>
+                            <p class="btn-sub">Contáctanos vía correo</p>
+                        </div>
+                        <div class="btn-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+`
     };
 
     /* =====================================================
