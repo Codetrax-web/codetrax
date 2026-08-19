@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.searchableData = [
                 ...portafolioData,
                 ...recursosData,
-                { titulo: "Damian cruz", descripcion: "Fundador | CEO", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
+                { titulo: "Damian Cruz", descripcion: "Fundador | CEO", imagen: "assets/team/Damian.jpg", url: "https://codetrax-web.github.io/presentasion/" },
                 { titulo: "Ricardo", descripcion: "Desarrollador Full Stack", imagen: "assets/team/ricardo.jpg", url: "#" },
                 { titulo: "DynsG", descripcion: "Diseñadora Gráfica", imagen: "assets/team/DynsG.jpg", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
                 { titulo: "Tecno 730", descripcion: "Diseñador Multimedia", imagen: "assets/team/tecno.jpg", url: "https://linktr.ee/__TECNO730__" },
@@ -315,22 +315,76 @@ files: `
             <h2>05 // Infraestructura [Equipo]</h2>
             <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                 <!-- Tarjetas del equipo (Mantén tus clases, estructura optimizada) -->
-                <div class="card red">
-                    <img src="assets/team/Damian.jpg" alt="Damian Cruz" class="team-photo">
-                    <h2>Damian Cruz</h2>
-                    <div class="profile-tag">Fundador | CEO</div>
-                    <p>────── ·𖥸· ──────</p>
-                    <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
-                         <a href="https://www.instagram.com/damia_ncv" target="_blank"><i class="fab fa-instagram"></i></a>
-                         <a href="https://github.com/Codetrax-web" target="_blank"><i class="fab fa-github"></i></a>
-                         <a href="https://www.tiktok.com/@damian_cdx" target="_blank"><i class="fab fa-tiktok"></i></a>
-                         <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank"><i class="fab fa-discord"></i></a>
-                         <a href="https://www.youtube.com/@DAMIANCDX" target="_blank"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+               
+      <div class="card red">
+            <img src="assets/team/Damian.jpg" alt="Foto" class="team-photo">
+            <h2>Damian Cruz</h2>
+            <div class="profile-tag">Fundador | CEO</div>
+            <p>────── ·𖥸· ──────</p>
+      <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
+            <a href="https://www.instagram.com/damia_ncv" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/Codetrax-web" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
+            <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
+            <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" style="color:white; font-size: 1.2rem;"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+      </div>
+      </div>
+
+      <div class="card yellow">
+            <img src="assets/team/ricardo.jpg" alt="Foto" class="team-photo">
+            <h2>Ricardo</h2>
+            <div class="profile-tag">Desarrollador Full Stack</div>
+            <p>────── ·𖥸· ──────</p>
+      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+
+      </div>
+      </div>
+
+      <div class="card green">
+            <img src="assets/team/Miguel.jpg" alt="Foto" class="team-photo">
+            <h2>Miguel Pandares</h2>
+            <div class="profile-tag">Desarrollador Full Stack</div>
+            <p>────── ·𖥸· ──────</p>
+      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+            <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+            <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/migueltime" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+            <a href="https://discord.com/invite/SFffG38VFb" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+            <a href="https://www.twitch.tv/migueltime" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
+            <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+
+      </div>
+      </div>
+
+      <div class="card purple">
+            <img src="assets/team/DynsG.jpg" alt="Foto" class="team-photo">
+            <h2>DynsG</h2>
+            <div class="profile-tag">Diseñadora Gráfica</div>
+            <p>────── ·𖥸· ──────</p>
+      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+            <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+
+      </div>
+      </div>
+
+      <div class="card blue">
+            <img src="assets/team/tecno.jpg" alt="Foto" class="team-photo">
+            <h2>Tecno 730</h2>
+            <div class="profile-tag">Diseñador Multimedia</div>
+            <p>────── ·𖥸· ──────</p>
+      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+            <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/tecno_730/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+            <a href="https://discord.gg/tbUVxyGU" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
+            <a href="https://www.twitch.tv/tecno730" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
+            <a href="https://www.youtube.com/@TECNO730" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+                    
+      </div>
+      </div>
                 <!-- (Aplica la misma limpieza visual al resto de las tarjetas del equipo) -->
-            </div>
-        </div>
+      </div>
+      </div>
     </section>
 `,
 
