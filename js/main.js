@@ -395,11 +395,11 @@ plans: `
         <p>Explora nuestra biblioteca de aplicaciones, herramientas y proyectos open-source. Diseñados por CodeTrax para potenciar tu flujo de trabajo o tu propio desarrollo técnico.</p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
-            <button class="filter-btn" data-filter="Apps">Apps</button>
+            <button class="filter-btn" data-filter="Aplicaciones">Apps</button>
             <button class="filter-btn" data-filter="juegos">Juegos</button>
             <button class="filter-btn" data-filter="office">Office</button>
-            <button class="filter-btn" data-filter="codigo">Código</button>
-            <button class="filter-btn" data-filter="robotica">Robótica</button>
+            <button class="filter-btn" data-filter="Código">Código</button>
+            <button class="filter-btn" data-filter="Robótica">Robótica</button>
         </div>
         <div id="recursos-container"></div>
     </div>
