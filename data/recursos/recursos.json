@@ -1,94 +1,96 @@
 [
   {
-    "titulo": "Copa_Pistón",
+    "titulo": "Copa Pistón",
     "creador": "Damian Cruz",
-    "descripcion": "Trofeo digital con temática automotriz, diseñado para reconocer logros, competencias y eventos con un estilo moderno y personalizable.",
+    "descripcion": "Desarrollo de trofeo digital interactivo con temática automotriz. Diseñado para ofrecer una experiencia de reconocimiento personalizada, moderna y altamente adaptable a cualquier evento.",
     "imagen": "data/portafolio/codigo/copa/copa.png",
     "url": "https://codetrax-web.github.io/Copa-piston/",
-    "categoria": "codigo"
+    "categoria": "Código"
   },
   {
-    "titulo": "Orquidea_Azul",
+    "titulo": "Orquídea Azul",
     "creador": "Damian Cruz",
-    "descripcion": "Experiencia web interactiva inspirada en la elegancia de una orquídea azul, creada para transmitir un detalle único mediante diseño y animación.",
+    "descripcion": "Experiencia web conceptual enfocada en la estética y la fluidez. Utiliza animaciones avanzadas para transformar un diseño interactivo en una experiencia visual única.",
     "imagen": "data/portafolio/codigo/orquidea/orquidea.png",
     "url": "https://codetrax-web.github.io/Orquidea-Azul/",
-    "categoria": "codigo"
+    "categoria": "Código"
   },
   {
-    "titulo": "Pokeboll",
+    "titulo": "Pokébola Sorpresa",
     "creador": "Damian Cruz",
-    "descripcion": "Una sorpresa romántica al estilo Pokémon. ¡Abre el regalo y dedícaselo a esa persona única en tu vida!",
+    "descripcion": "Aplicación web lúdica con interfaz interactiva. Diseñada como una experiencia de regalo sorpresa, combinando una estética inspirada en el universo Pokémon con interactividad web.",
     "imagen": "data/portafolio/codigo/pokebol/poke.png",
     "url": "https://codetrax-web.github.io/Pokebola/",
-    "categoria": "codigo"
+    "categoria": "Código"
   },
   {
-    "titulo": "Flor_Amarilla",
+    "titulo": "Flores Amarillas",
     "creador": "Damian Cruz",
-    "descripcion": "Proyecto interactivo desarrollado para compartir un detalle especial, combinando animaciones y diseño web en una experiencia sencilla y significativa.",
+    "descripcion": "Proyecto de desarrollo web enfocado en la creación de experiencias digitales sentimentales, utilizando animaciones optimizadas y una interfaz intuitiva para conectar emocionalmente con el usuario.",
     "imagen": "data/portafolio/codigo/flor_amarilla/amarilla.png",
     "url": "https://codetrax-web.github.io/Flores-Amarillas",
-    "categoria": "codigo"
+    "categoria": "Código"
   },
   {
-    "titulo": "Certificado_VIP",
+    "titulo": "Certificado VIP Digital",
     "creador": "Damian Cruz",
-    "descripcion": "Certificado digital personalizable diseñado para eventos, celebraciones y reconocimientos con una presentación profesional.",
+    "descripcion": "Solución de certificado digital altamente personalizable. Diseñada para eventos, reconocimientos o celebraciones, ofreciendo un acabado profesional y elegante.",
     "imagen": "data/portafolio/codigo/fiesta/vip.png",
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
-    "categoria": "codigo"
+    "categoria": "Código"
   },
+
 
   
   {
-    "titulo": "Sistema_de_Riego",
+    "titulo": "Sistema de Riego Automatizado",
     "creador": "Damian Cruz",
-    "descripcion": "Sistema de riego automatizado basado en Arduino, desarrollado para optimizar el cuidado de plantas mediante sensores y control automático.",
+    "descripcion": "Sistema automatizado basado en Arduino. Integra sensores y lógica de control para optimizar el mantenimiento eficiente de plantas mediante riego preciso.",
     "imagen": "data/portafolio/robotica/riego/riego.png",
     "url": "https://www.mediafire.com/file/dgoz0tdo7boirw8/Sistema_de_Riego.ino/file",
-    "categoria": "robotica"
+    "categoria": "Robótica"
   },
   {
-    "titulo": "Carro_Arduino",
+    "titulo": "Rover Robótico Bluetooth",
     "creador": "Damian Cruz",
-    "descripcion": "Vehículo robótico controlado por Bluetooth utilizando Arduino, ideal para proyectos educativos y de robótica básica.",
+    "descripcion": "Vehículo robótico teledirigido vía Bluetooth. Un proyecto enfocado en el aprendizaje de sistemas embebidos, motores paso a paso y comunicación inalámbrica.",
     "imagen": "data/portafolio/robotica/car/carro.png",
     "url": "https://www.mediafire.com/file/mxcaavqjad5vfrg/Carro_bluetooth.ino/file",
-    "categoria": "robotica"
+    "categoria": "Robótica"
   },
   {
-    "titulo": "Grua_con_Joystick",
+    "titulo": "Grúa Robótica de Precisión",
     "creador": "Damian Cruz",
-    "descripcion": "Grúa robótica controlada mediante joystick y Arduino, diseñada para demostrar precisión en el manejo de servomotores y sistemas mecánicos.",
+    "descripcion": "Mecanismo robótico controlado por joystick analógico. Diseñado para demostrar cinemática, precisión en servomotores y sistemas de control industrial a pequeña escala.",
     "imagen": "data/portafolio/robotica/grua/pro.png",
     "url": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file",
-    "categoria": "robotica"
+    "categoria": "Robótica"
   },
+
 
   
   {
-    "titulo": "KWGT",
+    "titulo": "KWGT Kustom Widget",
     "creador": "Play Store",
-    "descripcion": "Aplicación para crear widgets personalizados en Android con amplias opciones de diseño y personalización.",
+    "descripcion": "Herramienta avanzada para la personalización extrema de la pantalla de inicio en Android, permitiendo la creación de widgets funcionales y dinámicos.",
     "imagen": "data/portafolio/Apps/kwgt.png",
     "url": "https://www.mediafire.com/file/1l9c1fl9ogb4goo/KWGT_Pro.apk/file",
-    "categoria": "Apps"
+    "categoria": "Aplicaciones"
   },
   {
-    "titulo": "DynamicSpot",
+    "titulo": "DynamicSpot Premium",
     "creador": "Play Store",
-    "descripcion": "Aplicación que incorpora una isla dinámica en Android para mostrar notificaciones y accesos rápidos de forma inteligente.",
+    "descripcion": "Adaptación de la funcionalidad de isla dinámica para dispositivos Android. Permite una gestión inteligente, rápida y centralizada de notificaciones.",
     "imagen": "data/portafolio/Apps/dyna.png",
     "url": "https://www.mediafire.com/file/d7afrep1xo2fpee/dynamic_Spot_v2.00_%2528Premium%2529.apk/file",
-    "categoria": "Apps"
+    "categoria": "Aplicaciones"
   },
   {
-    "titulo": "KLCK Pro",
+    "titulo": "KLCK Pro Lock Screen",
     "creador": "Play Store",
-    "descripcion": "Herramienta para diseñar pantallas de bloqueo totalmente personalizadas mediante widgets, animaciones y automatización visual.",
+    "descripcion": "Solución de personalización avanzada para pantallas de bloqueo. Permite diseñar interfaces interactivas con lógica de estado y animaciones fluidas.",
     "imagen": "data/portafolio/Apps/klck.png",
     "url": "https://www.mediafire.com/file/3jmcppgboiihuj8/Kustom-Lock-v3.76b422110-mod-GameDVA.com.apk/file",
-    "categoria": "Apps"
+    "categoria": "Aplicaciones"
   }
 ]
