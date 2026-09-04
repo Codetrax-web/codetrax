@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>『 Codetrax 』</title>
+    
+    <link rel="icon" type="image/webp" href="assets/ima/logo.webp">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- =====================================================
+     PANTALLA DE CARGA / INTRO DE VIDEO
+     ===================================================== -->
+<div id="video-intro-overlay">
+    <video
+        id="intro-video"
+        src="assets/ima/intro.mp4"
+        autoplay
+        muted
+        playsinline
+        preload="auto">
+    </video>
+    <!-- Botón para omitir -->
+    <button id="skip-intro">
+        Omitir Intro ≫
+    </button>
+</div>
+<style>
+#video-intro-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: opacity 0.8s ease;
+}
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+/* =========================
+   BOTÓN OMITIR
+   ========================= */
+#skip-intro {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100000;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: 0.3s;
+    display: block;
+}
+#skip-intro:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+/* =========================
+   CELULARES
+   ========================= */
+@media (max-width: 768px) {
+    #skip-intro {
+        display: block;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+        font-size: 0.8rem;
+        z-index: 100000;
+    }
+}
+</style>
+<script>
+const introOverlay = document.getElementById("video-intro-overlay");
+const introVideo = document.getElementById("intro-video");
+const skipIntro = document.getElementById("skip-intro");
+/* =========================
+   INTENTAR REPRODUCIR
+   ========================= */
+window.addEventListener("load", () => {
+    introVideo.play().catch(() => {
+        console.log("El navegador bloqueó el autoplay.");
+    });
+});
+/* =========================
+   OMITIR INTRO
+   ========================= */
+function closeIntro() {
+    introVideo.pause();
+    introOverlay.style.opacity = "0";
+    setTimeout(() => {
+        introOverlay.style.display = "none";
+    }, 800);
+}
+/* BOTÓN */
+skipIntro.addEventListener("click", closeIntro);
+/* =========================
+   CUANDO TERMINE EL VIDEO
+   ========================= */
+introVideo.addEventListener("ended", closeIntro);
+
+</script>
+    
+    <!-- INSERTE EL CANVAS DE PARTICULAS AQUÍ -->
+    <canvas id="bg-particles" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;"></canvas>
+    <header class="main-header">
+       <div class="logo-container">
+       <img src="assets/ima/log_cod.webp" alt="log_cod" class="logo">
+    </div>
+        
+        <nav class="menu" aria-label="Main navigation">
+            <a href="/" class="active" data-section="home"><span>HOME</span></a>
+            <a href="/files" data-section="files"><span>CODETRAX</span></a>
+            <a href="/plans" data-section="plans"><span>RECURSOS</span></a>
+            <a href="/settings" data-section="settings"><span>PROYECTOS</span></a>
+            <a href="/contacto" data-section="contacto"><span>CONECTA</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="content"></div>
+    </main>
+
+    <footer style="text-align: center; padding: 20px; color: #a1a1aa; font-size: 0.9rem; margin-top: 40px;">
+        <p>『 © 2026 Codetrax. Construyendo el futuro.』</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
