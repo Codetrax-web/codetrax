@@ -2,129 +2,120 @@
 <html lang="es">
 
 <head>
+    <!-- Configuración básica de codificación y diseño responsive -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>『 Codetrax 』</title>
-    
+    <!-- Título de la pestaña del navegador -->
+    <title>𝘾𝙊𝘿𝙀𝙏𝙍𝘼𝙓</title>
+    <!-- =================================================================
+         CONFIGURACIÓN PARA VISTA PREVIA / TARJETA EN REDES SOCIALES (OPEN GRAPH)
+         ================================================================= -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://codetrax.s.gy/">
+    <meta property="og:title" content="『 Codetrax 』">
+    <meta property="og:description" content="Codetrax - Construyendo el futuro. Explora nuestros recursos, proyectos y archivos.">
+    <!-- URL absoluta a la imagen de vista previa (se recomienda usar JPG o PNG de 1200x630px) -->
+    <meta property="og:image" content="https://codetrax.s.gy/assets/ima/logo.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <!-- Configuración especial para tarjetas en Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://codetrax.s.gy/">
+    <meta name="twitter:title" content="『 Codetrax 』">
+    <meta name="twitter:description" content="Codetrax - Construyendo el futuro. Explora nuestros recursos, proyectos y archivos.">
+    <meta name="twitter:image" content="https://codetrax.s.gy/assets/ima/logo.webp">
+    <!-- Favicon (icono de la pestaña del navegador) -->
     <link rel="icon" type="image/webp" href="assets/ima/logo.webp">
+    <!-- Estilos CSS locales y librería externa de íconos (FontAwesome) -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- =================================================================
+         ESTILOS DEL VIDEO INTRO (Organizados en el head para mejor estructura)
+         ================================================================= -->
+    <style>
+        /* Capa superpuesta que cubre toda la pantalla para el vídeo */
+        #video-intro-overlay {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100dvh;
+            background: #000;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: opacity 0.8s ease;
+        }
+        /* Ajuste del reproductor de video */
+        #intro-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+        /* Botón flotante para omitir la intro */
+        #skip-intro {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100000;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            display: block;
+        }
+        #skip-intro:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        /* Adaptación de estilos para pantallas de teléfonos celulares */
+        @media (max-width: 768px) {
+            #skip-intro {
+                display: block;
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 18px;
+                font-size: 0.8rem;
+                z-index: 100000;
+            }
+        }
+    </style>
 </head>
-
 <body>
     <!-- =====================================================
-     PANTALLA DE CARGA / INTRO DE VIDEO
-     ===================================================== -->
-<div id="video-intro-overlay">
-    <video
-        id="intro-video"
-        src="assets/ima/intro.mp4"
-        autoplay
-        muted
-        playsinline
-        preload="auto">
-    </video>
-    <!-- Botón para omitir -->
-    <button id="skip-intro">
-        Omitir Intro ≫
-    </button>
-</div>
-<style>
-#video-intro-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100dvh;
-    background: #000;
-    z-index: 99999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    transition: opacity 0.8s ease;
-}
-#intro-video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #000;
-}
-/* =========================
-   BOTÓN OMITIR
-   ========================= */
-#skip-intro {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    z-index: 100000;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    font-family: inherit;
-    font-size: 0.85rem;
-    transition: 0.3s;
-    display: block;
-}
-#skip-intro:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-/* =========================
-   CELULARES
-   ========================= */
-@media (max-width: 768px) {
-    #skip-intro {
-        display: block;
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 18px;
-        font-size: 0.8rem;
-        z-index: 100000;
-    }
-}
-</style>
-<script>
-const introOverlay = document.getElementById("video-intro-overlay");
-const introVideo = document.getElementById("intro-video");
-const skipIntro = document.getElementById("skip-intro");
-/* =========================
-   INTENTAR REPRODUCIR
-   ========================= */
-window.addEventListener("load", () => {
-    introVideo.play().catch(() => {
-        console.log("El navegador bloqueó el autoplay.");
-    });
-});
-/* =========================
-   OMITIR INTRO
-   ========================= */
-function closeIntro() {
-    introVideo.pause();
-    introOverlay.style.opacity = "0";
-    setTimeout(() => {
-        introOverlay.style.display = "none";
-    }, 800);
-}
-/* BOTÓN */
-skipIntro.addEventListener("click", closeIntro);
-/* =========================
-   CUANDO TERMINE EL VIDEO
-   ========================= */
-introVideo.addEventListener("ended", closeIntro);
-
-</script>
-    
-    <!-- INSERTE EL CANVAS DE PARTICULAS AQUÍ -->
-    <canvas id="bg-particles" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;"></canvas>
-    <header class="main-header">
-       <div class="logo-container">
-       <img src="assets/ima/log_cod.webp" alt="log_cod" class="logo">
+         1. PANTALLA DE CARGA / VIDEO INTRO
+         ===================================================== -->
+    <div id="video-intro-overlay">
+        <video 
+            id="intro-video" 
+            src="assets/ima/intro.mp4" 
+            autoplay 
+            muted 
+            playsinline 
+            preload="auto">
+        </video>
+        <!-- Botón interactivo para saltar la intro -->
+        <button id="skip-intro">Omitir Intro ≫</button>
     </div>
-        
-        <nav class="menu" aria-label="Main navigation">
+    <!-- =====================================================
+         2. FONDO ANIMADO DE PARTÍCULAS
+         ===================================================== -->
+    <canvas id="bg-particles" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;"></canvas>
+    <!-- =====================================================
+         3. ENCABEZADO Y MENÚ DE NAVEGACIÓN PRINCIPAL
+         ===================================================== -->
+    <header class="main-header">
+        <div class="logo-container">
+            <img src="assets/ima/log_cod.webp" alt="Logotipo de Codetrax" class="logo">
+        </div>
+        <nav class="menu" aria-label="Navegación principal">
             <a href="/" class="active" data-section="home"><span>HOME</span></a>
             <a href="/files" data-section="files"><span>CODETRAX</span></a>
             <a href="/plans" data-section="plans"><span>RECURSOS</span></a>
@@ -132,17 +123,45 @@ introVideo.addEventListener("ended", closeIntro);
             <a href="/contacto" data-section="contacto"><span>CONECTA</span></a>
         </nav>
     </header>
-
+    <!-- =====================================================
+         4. CONTENIDO PRINCIPAL DINÁMICO
+         ===================================================== -->
     <main>
         <div id="content"></div>
     </main>
-
+    <!-- =====================================================
+         5. PIE DE PÁGINA (FOOTER)
+         ===================================================== -->
     <footer style="text-align: center; padding: 20px; color: #a1a1aa; font-size: 0.9rem; margin-top: 40px;">
         <p>『 © 2026 Codetrax. Construyendo el futuro.』</p>
     </footer>
-
+    <!-- =====================================================
+         6. SCRIPTS / LÓGICA DE PROGRAMACIÓN
+         ===================================================== -->
+    <!-- Control del video intro -->
+    <script>
+        const introOverlay = document.getElementById("video-intro-overlay");
+        const introVideo = document.getElementById("intro-video");
+        const skipIntro = document.getElementById("skip-intro");
+        // Intenta reproducir el video cuando la página haya cargado por completo
+        window.addEventListener("load", () => {
+            introVideo.play().catch(() => {
+                console.log("El navegador bloqueó la reproducción automática.");
+            });
+        });
+        // Función para ocultar con una transición suave la intro
+        function closeIntro() {
+            introVideo.pause();
+            introOverlay.style.opacity = "0";
+            setTimeout(() => {
+                introOverlay.style.display = "none";
+            }, 800);
+        }
+        // Eventos para cerrar la intro: al hacer clic en el botón o cuando termina el video
+        skipIntro.addEventListener("click", closeIntro);
+        introVideo.addEventListener("ended", closeIntro);
+    </script>
+    <!-- Archivo de JavaScript principal de tu aplicación -->
     <script src="js/main.js"></script>
-
 </body>
-
 </html>

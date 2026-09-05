@@ -1,17 +1,21 @@
 /* =====================================================
-   INICIALIZACIÓN DEL DOM
-   Espera a que el HTML cargue para ejecutar la lógica
+   CONFIGURACIÓN Y CONEXIÓN A SHEET.BEST / GOOGLE SHEETS
 ===================================================== */
+// Coloca aquí la URL de tu API en Sheet.best
+const SHEET_BEST_API_URL = 'https://api.sheetbest.com/sheets/71f37bb9-d490-4b35-842c-b265c96fb0f8';
 
+/* =====================================================
+   INICIALIZACIÓN DEL DOM
+===================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-    loadPortfolio().catch(err => console.error("Datos iniciales no disponibles:", err));
+    loadDataAndSyncCounters().catch(err => console.error("Error al inicializar datos:", err));
     console.log("CodeTrax inicializado correctamente.");
     const mainContent = document.getElementById('content');
 
     /* =====================================================
-       ESTRUCTURAS DE DATOS Y RENDERIZADO
+       ESTRUCTURAS DE DATOS Y BÚSQUEDA
     ===================================================== */
-   const renderSearch = () => `
+    const renderSearch = () => `
     <div class="gt-field">
         <div class="search-bar-container">
             <i class="fa-solid fa-magnifying-glass search-icon-left"></i>
@@ -26,29 +30,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let portfolioProjects = [];
     let recursosProjects = []; 
+    let sheetMetrics = { Portafolio: {}, Recursos: {} };
 
     /* =====================================================
-       LÓGICA DEL PORTAFOLIO
-       Carga datos externos y gestiona filtros
+       CARGA DE ARCHIVOS JSON LOCALES Y SINCRO DE MÉTRICAS
     ===================================================== */
-
-    async function loadPortfolio() {
+    async function fetchMetricsFromSheet(tabName) {
+        if (!SHEET_BEST_API_URL || SHEET_BEST_API_URL.includes('TU_API_KEY_AQUI')) return {};
         try {
-            const [portafolioRes, recursosRes] = await Promise.all([
-                fetch('./data/portafolio/index.json'),
-                fetch('./data/recursos/recursos.json')
+            const url = `${SHEET_BEST_API_URL}/tabs/${tabName}`;
+            const res = await fetch(url);
+            if (!res.ok) return {};
+            const data = await res.json();
+            
+            const metricsMap = {};
+            if (Array.isArray(data)) {
+                data.forEach(row => {
+                    if (row.titulo) {
+                        metricsMap[row.titulo.trim().toLowerCase()] = {
+                            likes: parseInt(row.likes) || 0,
+                            vistas: parseInt(row.vistas) || 0
+                        };
+                    }
+                });
+            }
+            return metricsMap;
+        } catch (e) {
+            console.warn(`No se pudieron obtener métricas de Sheet.best (${tabName}):`, e.message);
+            return {};
+        }
+    }
+
+    async function loadDataAndSyncCounters() {
+        try {
+            // 1. Cargar datos principales siempre desde los archivos JSON locales
+            const [portRes, recRes] = await Promise.all([
+                fetch('./data/portafolio/index.json').catch(() => null),
+                fetch('./data/recursos/recursos.json').catch(() => null)
             ]);
 
-            const portafolioData = await portafolioRes.json();
-            const recursosData = await recursosRes.json();
+            portfolioProjects = portRes && portRes.ok ? await portRes.json() : [];
+            recursosProjects = recRes && recRes.ok ? await recRes.json() : [];
 
-            portfolioProjects = portafolioData; 
-            recursosProjects = recursosData; 
+            // 2. Traer los contadores acumulados desde Google Sheets
+            const [portMetrics, recMetrics] = await Promise.all([
+                fetchMetricsFromSheet('Portafolio'),
+                fetchMetricsFromSheet('Recursos')
+            ]);
+
+            sheetMetrics.Portafolio = portMetrics;
+            sheetMetrics.Recursos = recMetrics;
 
             window.searchableData = [
-                ...portafolioData,
-                ...recursosData,
-                { titulo: "Damian Cruz", descripcion: "Fundador | CEO", imagen: "assets/team/Damian.webp", url: "https://codetrax-web.github.io/presentasion/" },
+                ...portfolioProjects,
+                ...recursosProjects,
+                { titulo: "Damian Cruz", descripcion: "Fundador | CEO", imagen: "assets/team/Damian.webp", url: "https://codetrax-web.github.io/Presentacion/" },
                 { titulo: "Ricardo", descripcion: "Desarrollador Full Stack", imagen: "assets/team/ricardo.webp", url: "#" },
                 { titulo: "DynsG", descripcion: "Diseñadora Gráfica", imagen: "assets/team/DynsG.webp", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
                 { titulo: "Tecno 730", descripcion: "Diseñador Multimedia", imagen: "assets/team/tecno.webp", url: "https://linktr.ee/__TECNO730__" },
@@ -58,10 +94,57 @@ document.addEventListener('DOMContentLoaded', () => {
             renderPortfolio('Todos');
             initializeFilters();
         } catch (error) {
-            console.error('Error cargando datos:', error);
+            console.error('Error al cargar datos locales/métricas:', error);
         }
     }
 
+    /* =====================================================
+       ENVIAR/ACTUALIZAR REGISTROS EN GOOGLE SHEETS
+    ===================================================== */
+    window.updateSheetCounter = async function(project, field, newValue, tabName) {
+        if (!SHEET_BEST_API_URL || SHEET_BEST_API_URL.includes('TU_API_KEY_AQUI')) return;
+        try {
+            const encodedTitle = encodeURIComponent(project.titulo);
+            const searchUrl = `${SHEET_BEST_API_URL}/tabs/${tabName}/titulo/${encodedTitle}`;
+            
+            // Comprobar si la fila del proyecto ya existe en Google Sheets
+            const checkRes = await fetch(searchUrl);
+            const existingRows = checkRes.ok ? await checkRes.json() : [];
+
+            if (Array.isArray(existingRows) && existingRows.length > 0) {
+                // Si existe, actualizamos el contador (PATCH)
+                await fetch(searchUrl, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ [field]: newValue })
+                });
+            } else {
+                // Si aún no está en la hoja de Excel, se registra la fila completa (POST)
+                const newRow = {
+                    titulo: project.titulo,
+                    creador: project.creador || '',
+                    categoria: project.categoria || '',
+                    descripcion: project.descripcion || '',
+                    imagen: project.imagen || '',
+                    url: project.url || '',
+                    likes: field === 'likes' ? newValue : (project.likes || 0),
+                    vistas: field === 'vistas' ? newValue : 0
+                };
+
+                await fetch(`${SHEET_BEST_API_URL}/tabs/${tabName}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newRow)
+                });
+            }
+        } catch (err) {
+            console.error(`Error enviando datos a Sheet.best:`, err);
+        }
+    };
+
+    /* =====================================================
+       RENDERIZADO DE PORTAFOLIO
+    ===================================================== */
     function renderPortfolio(category) {
         const grid = document.getElementById('portfolio-grid');
         if (!grid) return;
@@ -80,13 +163,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         grid.innerHTML = filteredProjects.map(project => {
             const uniqueId = `port_${project.titulo.toLowerCase().replace(/\s+/g, '-')}`;
-            const savedLikes = localStorage.getItem(uniqueId) ? parseInt(localStorage.getItem(uniqueId)) : (project.likes || 12);
+            const keyTitle = project.titulo.trim().toLowerCase();
+            const sheetLikeCount = sheetMetrics.Portafolio[keyTitle]?.likes;
+
+            const savedLikes = sheetLikeCount !== undefined 
+                ? sheetLikeCount 
+                : (localStorage.getItem(uniqueId) ? parseInt(localStorage.getItem(uniqueId)) : (parseInt(project.likes) || 0));
+
             const isLiked = localStorage.getItem(`${uniqueId}_liked`) === 'true';
 
             return `
-                <div class="project-card" data-card-id="${uniqueId}">
+                <div class="project-card" data-card-id="${uniqueId}" data-title="${project.titulo}" data-tab="Portafolio">
                     <div class="card-inner">
-                        <!-- CARA FRONTAL -->
                         <div class="card-front">
                             <img src="${project.imagen}" alt="${project.titulo}" onerror="this.src='assets/placeholder.webp'">
                             <div class="card-divider"></div>
@@ -94,12 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="card-subtitle">Creador: ${project.creador || 'Desconocido'}</p>
                             <span class="card-category-badge">${project.categoria || 'General'}</span>
                         </div>
-                        
-                        <!-- CARA POSTERIOR (AL GIRAR) -->
                         <div class="card-back">
                             <h3>${project.titulo}</h3>
                             <p class="card-description-text">${project.descripcion}</p>
-                            
                             <div class="card-back-actions">
                                 <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${uniqueId}">
                                     <div class="like-content">
@@ -108,8 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </div>
                                     <span class="like-count">${savedLikes}</span>
                                 </button>
-
-                                <a href="${project.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
+                                <a href="${project.url}" target="_blank" class="project-link" style="text-decoration: none;">
                                     <button class="button">
                                         <div class="blob1"></div>
                                         <div class="blob2"></div>
@@ -160,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =====================================================
-       LÓGICA DE BÚSQUEDA Y FILTRADO POR APARTADO
+       LÓGICA DE BÚSQUEDA
     ===================================================== */
     document.addEventListener('input', (e) => {
         if (e.target.id === 'gt-input-target') {
@@ -229,21 +313,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', (e) => {
         const searchBtn = e.target.closest('.search-btn');
         if (!searchBtn) return;
-        
         const inputTarget = document.getElementById('gt-input-target');
-        if (inputTarget) {
-            inputTarget.focus();
-        }
+        if (inputTarget) inputTarget.focus();
     });
 
     /* =====================================================
        GESTIÓN DE VISTAS
     ===================================================== */
     const views = { 
-      // --- HOME ---
+         // --- HOME ---
 home: `
     <section class="about-section">
-        <h1 class="about-title">匚ㄖᗪ乇T尺卂乂</h1>
+        <h1 class="about-title">✧.* 匚ㄖᗪ乇ㄒ尺卂乂 ✧.*</h1>
         <br>
         <h2>Donde la tecnología encuentra su identidad.</h2>
         <p>
@@ -280,7 +361,7 @@ home: `
 // --- FILES (SOBRE NOSOTROS) ---
 files: `
     <section class="about-section">
-        <h1 class="about-title">『 𝑺𝒐𝒃𝒓𝒆 𝑪𝒐𝒅𝒆𝑻𝒓𝒂𝒙 』</h1>
+        <h1 class="about-title">『 𝙎𝙊𝘽𝙍𝙀 𝘾𝙊𝘿𝙀𝙏𝙍𝘼𝙓 』</h1>
         
         <div class="about-card">
             <h2>01 // ¿Qué es CodeTrax?</h2>
@@ -348,7 +429,7 @@ files: `
       <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
             <a href="https://github.com/MiguelTime" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
             <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" style="color:white;"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/migueltime" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/migueltime_yt/" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
             <a href="https://discord.com/invite/SFffG38VFb" target="_blank" style="color:white;"><i class="fab fa-discord"></i></a>
             <a href="https://www.twitch.tv/migueltime" target="_blank" style="color:white;"><i class="fab fa-twitch"></i></a>
             <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
@@ -391,7 +472,7 @@ files: `
 // --- PLANS (RECURSOS) ---
 plans: `
     <div class="portfolio-page">
-        <h1>『 𝑹𝒆𝒄𝒖𝒓𝒔𝒐𝒔 𝑫𝒊𝒈𝒊𝒕𝒂𝒍𝒆𝒔 』</h1>
+        <h1>『 𝙍𝙀𝘾𝙐𝙍𝙎𝙊𝙎 』</h1>
         <p>Explora nuestra biblioteca de aplicaciones, herramientas y proyectos open-source. Diseñados por CodeTrax para potenciar tu flujo de trabajo o tu propio desarrollo técnico.</p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
@@ -408,7 +489,7 @@ plans: `
 // --- SETTINGS (PORTAFOLIO) ---
 settings: `
     <section class="about-section">
-        <h1 class="about-title">『 𝑷𝒐𝒓𝒕𝒂𝒇𝒐𝒍𝒊𝒐 𝒅𝒆 𝑷𝒓𝒐𝒚𝒆𝒄𝒕𝒐𝒔 』</h1>
+        <h1 class="about-title">『 𝙋𝙊𝙍𝙏𝘼𝙁𝙊𝙇𝙄𝙊 』</h1>
         <p>Una selección curada de trabajos desarrollados por CodeTrax. Cada proyecto es testimonio de nuestra pasión por la programación, el diseño funcional y la innovación técnica.</p>
         <div class="portfolio-filters">
             <button class="filter-btn active" data-filter="Todos">Todos</button>
@@ -425,7 +506,7 @@ settings: `
 // --- Contacto ---
 contacto: `
     <section class="about-section">
-        <h1 class="about-title">『 𝑪𝒐𝒏𝒕𝒂𝒄𝒕𝒐 』</h1>
+        <h1 class="about-title">『 𝘾𝙊𝙉𝙏𝘼𝘾𝙏𝙊 』</h1>
         <p style="text-align: center;">¿Tienes una visión? Nosotros tenemos la tecnología. Colaboremos.</p>
         <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 20px;">
             <div class="contact-hub">
@@ -438,7 +519,7 @@ contacto: `
                 </div>
                 <div class="action-btns">
                     <a href="https://calendar.app.google/7iAyjJockVxnrkot9" target="_blank" class="action-btn">
-                        <i class="fa-solid fa-video main-icon" style="color: #22c55e;"></i>
+                        <i class="fa-solid fa-video main-icon" style="color: #00ff5e;"></i>
                         <div class="btn-content">
                             <span class="btn-title">Google Meet</span>
                             <span class="btn-desc">Agendar consultoría</span>
@@ -446,7 +527,7 @@ contacto: `
                         <i class="fa-solid fa-chevron-right arrow-icon"></i>
                     </a>
                     <a href="https://scheduler.zoom.us/damian-m4ex7n/reuni-n-con-codetrax" target="_blank" class="action-btn">
-                        <i class="fa-solid fa-video main-icon" style="color: #3b82f6;"></i>
+                        <i class="fa-solid fa-video main-icon" style="color: #0062ff;"></i>
                         <div class="btn-content">
                             <span class="btn-title">Zoom</span>
                             <span class="btn-desc">Agendar reunión</span>
@@ -454,7 +535,7 @@ contacto: `
                         <i class="fa-solid fa-chevron-right arrow-icon"></i>
                     </a>
                     <a href="mailto:codetraxs@gmail.com?subject=Propuesta%20de%20Proyecto" class="action-btn">
-                        <i class="fa-solid fa-envelope main-icon" style="color: #ef4444;"></i>
+                        <i class="fa-solid fa-envelope main-icon" style="color: #ff0000;"></i>
                         <div class="btn-content">
                             <span class="btn-title">Email Directo</span>
                             <span class="btn-desc">Contáctanos vía correo</span>
@@ -489,11 +570,17 @@ contacto: `
 
         container.innerHTML = filteredRecursos.map(item => {
             const uniqueId = `rec_${item.titulo.toLowerCase().replace(/\s+/g, '-')}`;
-            const savedLikes = localStorage.getItem(uniqueId) ? parseInt(localStorage.getItem(uniqueId)) : (item.likes || 24);
+            const keyTitle = item.titulo.trim().toLowerCase();
+            const sheetLikeCount = sheetMetrics.Recursos[keyTitle]?.likes;
+
+            const savedLikes = sheetLikeCount !== undefined 
+                ? sheetLikeCount 
+                : (localStorage.getItem(uniqueId) ? parseInt(localStorage.getItem(uniqueId)) : (parseInt(item.likes) || 0));
+
             const isLiked = localStorage.getItem(`${uniqueId}_liked`) === 'true';
 
             return `
-                <div class="project-card" data-card-id="${uniqueId}">
+                <div class="project-card" data-card-id="${uniqueId}" data-title="${item.titulo}" data-tab="Recursos">
                     <div class="card-inner">
                         <div class="card-front">
                             <img src="${item.imagen}" alt="${item.titulo}" onerror="this.src='assets/placeholder.webp'">
@@ -513,7 +600,7 @@ contacto: `
                                     </div>
                                     <span class="like-count">${savedLikes}</span>
                                 </button>
-                                <a href="${item.url}" target="_blank" class="project-link" onclick="event.stopPropagation();" style="text-decoration: none;">
+                                <a href="${item.url}" target="_blank" class="project-link" style="text-decoration: none;">
                                     <button class="button">
                                         <div class="blob1"></div>
                                         <div class="blob2"></div>
@@ -528,23 +615,8 @@ contacto: `
         }).join('');
     }
 
-    async function loadRecursos() {
-        try {
-            if (recursosProjects.length === 0) {
-                const response = await fetch('./data/recursos/recursos.json');
-                recursosProjects = await response.json();
-            }
-            renderRecursos('Todos');
-            initializeFilters();
-        } catch (error) {
-            console.error('Error cargando recursos:', error);
-            const container = document.getElementById('recursos-container');
-            if (container) container.innerHTML = '<p>No se pudieron cargar los recursos.</p>';
-        }
-    }
-
     /* =====================================================
-       INICIALIZACIÓN Y EVENTOS GLOBALES
+       INICIALIZACIÓN Y NAVEGACIÓN
     ===================================================== */
     mainContent.innerHTML = views.home;
     animateCounters();
@@ -557,144 +629,42 @@ contacto: `
 
             const section = link.getAttribute('data-section');
             mainContent.innerHTML = views[section];
-            if(section === "home"){
-               setTimeout(()=>{
-               animateCounters();
-               },100);
-            }
 
+            if (section === "home") setTimeout(animateCounters, 100);
             if (section === 'plans') {
-                loadRecursos();
-            } 
-
+                renderRecursos('Todos');
+                initializeFilters();
+            }
             if (section === 'settings') {
                 renderPortfolio('Todos'); 
                 initializeFilters();
             }
-
-            if (section === 'contacto') {
-                setTimeout(() => {
-                    document.querySelectorAll('.action-btn').forEach(btn => {
-                        btn.addEventListener('mousedown', function() { this.style.transform = 'scale(0.97)'; });
-                        btn.addEventListener('mouseup', function() { this.style.transform = 'scale(1)'; });
-                        btn.addEventListener('mouseleave', function() { this.style.transform = ''; });
-                    });
-                }, 100);
-            }
         });
     });
+
+    // Búsqueda auxiliar de objeto por título
+    window.findProjectByTitle = function(title, tabName) {
+        const list = tabName === 'Recursos' ? recursosProjects : portfolioProjects;
+        return list.find(p => p.titulo && p.titulo.toLowerCase() === title.toLowerCase()) || { titulo: title };
+    };
 });
 
 /* =====================================================
-   LÓGICA DE PARTÍCULAS DE FONDO (VERSIÓN MODIFICADA)
-===================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('bg-particles');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let particlesArray = [];
-    const numberOfParticles = 120; 
-    const katakana = "゠ァアィイゥウェエォオカガキギクグケゲコザシジスズセゼソダヂヅデドナニヌネノハバパヒビピフブプヘベペホボポマミムメモヤユヨラリルレロワンヷヸヹヺ・ーヽヾ";
-    const symbolArray = katakana.split(''); 
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 10 + 14;
-            this.speedX = 0; 
-            this.speedY = Math.random() * 1 + 0.5; 
-            const colors = ['#007bff', '#ff2d55', '#ffffff']; 
-            this.color = colors[Math.floor(Math.random() * colors.length)];
-            this.symbol = symbolArray[Math.floor(Math.random() * symbolArray.length)];
-            this.opacity = Math.random(); 
-        }
-        update() {
-            this.y += this.speedY;
-            this.opacity = Math.random() * 0.5 + 0.5; 
-            if (this.y > canvas.height) {
-                this.y = 0;
-                this.x = Math.random() * canvas.width;
-                this.symbol = symbolArray[Math.floor(Math.random() * symbolArray.length)];
-            }
-        }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = this.color;
-            ctx.font = `${this.size}px monospace`; 
-            ctx.textAlign = 'center';
-            ctx.globalAlpha = this.opacity; 
-            ctx.fillText(this.symbol, this.x, this.y);
-            ctx.shadowBlur = 0;
-            ctx.globalAlpha = 1; 
-        }
-    }
-    function initParticles() {
-        particlesArray = [];
-        for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle());
-        }
-    }
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particlesArray.forEach(particle => {
-            particle.update();
-            particle.draw();
-        });
-        requestAnimationFrame(animateParticles);
-    }
-    initParticles();
-    animateParticles();
-});
-
-/* =====================================================
-   LÓGICA DE LA INTRO DE VIDEO
-===================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    const introOverlay = document.getElementById('video-intro-overlay');
-    const introVideo = document.getElementById('intro-video');
-    const skipBtn = document.getElementById('skip-intro');
-
-    if (!introOverlay || !introVideo) return;
-
-    function hideIntro() {
-        introOverlay.style.opacity = '0';
-        setTimeout(() => {
-            introOverlay.style.display = 'none';
-            introVideo.pause();
-            introVideo.currentTime = 0;
-        }, 800);
-    }
-
-    introVideo.addEventListener('ended', hideIntro);
-
-    if (skipBtn) {
-        skipBtn.addEventListener('click', hideIntro);
-    }
-
-    introVideo.addEventListener('error', () => {
-        console.warn("No se pudo cargar el video de introducción. Saltando intro.");
-        hideIntro();
-    });
-});
-
-/* =====================================================
-   CONTROLADOR GLOBAL DE LIKES
+   CONTROLADOR DE LIKES (ESCRIBE EN GOOGLE SHEETS)
 ===================================================== */
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('.like-btn');
     if (!btn) return;
 
+    e.stopPropagation();
+
+    const card = btn.closest('.project-card');
     const id = btn.dataset.id;
+    const projectTitle = card ? card.dataset.title : null;
+    const tabName = card ? card.dataset.tab : 'Portafolio';
+
     const countSpan = btn.querySelector('.like-count');
-    let currentLikes = parseInt(countSpan.textContent);
+    let currentLikes = parseInt(countSpan.textContent) || 0;
     
     const likedKey = `${id}_liked`;
     const isAlreadyLiked = localStorage.getItem(likedKey) === 'true';
@@ -711,6 +681,34 @@ document.addEventListener('click', (e) => {
 
     localStorage.setItem(id, currentLikes);
     countSpan.textContent = currentLikes;
+
+    if (projectTitle) {
+        const project = window.findProjectByTitle(projectTitle, tabName);
+        window.updateSheetCounter(project, 'likes', currentLikes, tabName);
+    }
+});
+
+/* =====================================================
+   CONTROLADOR DE CLICS EN "VER" / "VISITA" (REGISTRA VISTAS)
+===================================================== */
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('.project-link');
+    if (!link) return;
+
+    const card = link.closest('.project-card');
+    if (!card) return;
+
+    const projectTitle = card.dataset.title;
+    const tabName = card.dataset.tab;
+
+    if (projectTitle) {
+        let currentViews = parseInt(localStorage.getItem(`views_${projectTitle}`)) || 0;
+        currentViews++;
+        localStorage.setItem(`views_${projectTitle}`, currentViews);
+
+        const project = window.findProjectByTitle(projectTitle, tabName);
+        window.updateSheetCounter(project, 'vistas', currentViews, tabName);
+    }
 });
 
 /* =====================================================
@@ -719,10 +717,10 @@ document.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
     if (e.target.closest('.like-btn') || e.target.closest('.project-link')) return;
 
-    const card = e.target.closest('.project-card') || e.target.closest('.resource-card');
+    const card = e.target.closest('.project-card');
     if (!card) return;
 
-    document.querySelectorAll('.project-card, .resource-card').forEach(c => {
+    document.querySelectorAll('.project-card').forEach(c => {
         if (c !== card) c.classList.remove('flipped');
     });
 
