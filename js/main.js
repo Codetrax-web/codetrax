@@ -450,7 +450,7 @@ files: `
       </div>
       </div>
 
-      <div class="card naranja">
+      <div class="card orange">
             <img src="assets/team/Naoko.webp" alt="Foto" class="team-photo">
             <h2>Naoko Aki</h2>
             <div class="profile-tag">Diseñadora Gráfica Anime</div>
