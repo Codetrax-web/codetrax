@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { titulo: "Damian Cruz", descripcion: "Fundador | CEO", imagen: "assets/team/Damian.webp", url: "https://codetrax-web.github.io/Presentacion/" },
                 { titulo: "Ricardo", descripcion: "Desarrollador Full Stack", imagen: "assets/team/ricardo.webp", url: "#" },
                 { titulo: "DynsG", descripcion: "Diseñadora Gráfica", imagen: "assets/team/DynsG.webp", url: "https://youtube.com/@dyns.g-oficial?si=Nhl0NTcDzmamv2s7" },
+                { titulo: "Naoko Aki", descripcion: "Diseñadora Gráfica Anime", imagen: "assets/team/Naoko.webp", url: "https://ko-fi.com/naokotan" },
                 { titulo: "Tecno 730", descripcion: "Diseñador Multimedia", imagen: "assets/team/tecno.webp", url: "https://linktr.ee/__TECNO730__" },
                 { titulo: "Miguel Pandares", descripcion: "Desarrollador Full Stack", imagen: "assets/team/Miguel.webp", url: "https://linktr.ee/migueltime" }
             ];
@@ -445,6 +446,17 @@ files: `
       <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
             <a href="https://x.com/AltamarDyn3634" target="_blank" style="color:white;"><i class="fab fa-twitter"></i></a>
             <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
+
+      </div>
+      </div>
+
+      <div class="card naranja">
+            <img src="assets/team/Naoko.webp" alt="Foto" class="team-photo">
+            <h2>Naoko Aki</h2>
+            <div class="profile-tag">Diseñadora Gráfica Anime</div>
+            <p>────── ·𖥸· ──────</p>
+      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+            <a href="https://ko-fi.com/naokotan" target="_blank" style="color:white;"><i class="fab fa-global"></i></a>
 
       </div>
       </div>
