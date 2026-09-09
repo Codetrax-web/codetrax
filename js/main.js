@@ -456,7 +456,7 @@ files: `
             <div class="profile-tag">Diseñadora Gráfica Anime</div>
             <p>────── ·𖥸· ──────</p>
       <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-            <a href="https://ko-fi.com/naokotan" target="_blank" style="color:white;"><i class="fab fa-global"></i></a>
+            <a href="https://ko-fi.com/naokotan" target="_blank" style="color:white;"><i class="fas fa-globe"></i></a>
 
       </div>
       </div>
