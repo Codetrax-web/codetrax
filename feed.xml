@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Codetrax: blog y tutoriales</title>
+    <link>https://codetrax-web.github.io/codetrax/</link>
+    <description>Tutoriales de robótica, código y diseño de Codetrax.</description>
+    <language>es-mx</language>
+    <item>
+      <title>Cómo hacer un sistema de riego automático con Arduino</title>
+      <link>https://codetrax-web.github.io/codetrax/#/blog/riego-automatico-arduino</link>
+      <guid>https://codetrax-web.github.io/codetrax/#/blog/riego-automatico-arduino</guid>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0000</pubDate>
+      <description>Sensor de humedad, relé y bomba: la lógica básica y un código base para empezar.</description>
+    </item>
+  </channel>
+</rss>

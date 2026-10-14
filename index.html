@@ -4,31 +4,45 @@
 <head>
     <!-- Configuración básica de codificación y diseño responsive -->
     <meta charset="UTF-8">
+    <!-- Animaciones SIEMPRE activas: intro, partículas y efectos CSS corren en todos los dispositivos, sin interruptor ni excepciones. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO: descripción que aparece en Google, URL canónica (evita duplicados con github.io) y color del navegador móvil -->
+    <meta name="description" content="Codetrax es una agencia de desarrollo digital: sitios web, apps, sistemas a medida, branding y multimedia para tu marca.">
+    <meta name="robots" content="index, follow">
+    <link rel="alternate" type="application/rss+xml" title="Codetrax" href="https://codetrax-web.github.io/codetrax/feed.xml">
+    <link rel="canonical" href="https://codetrax-web.github.io/codetrax/">
+    <!-- SEGURIDAD: política de contenido. Solo permite scripts propios (y Umami), bloquea iframes, objetos y <base> ajenos.
+         Si agregas un servicio externo nuevo (otra fuente, otro script), añade su dominio aquí o el navegador lo bloqueará. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://*.supabase.co https://*.workers.dev https://places.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev; form-action 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#070707">
     <!-- Título de la pestaña del navegador -->
-    <title>𝘾𝙊𝘿𝙀𝙏𝙍𝘼𝙓</title>
+    <title>Codetrax | Desarrollo web, apps y diseño</title>
     <!-- =================================================================
          CONFIGURACIÓN PARA VISTA PREVIA / TARJETA EN REDES SOCIALES (OPEN GRAPH)
          ================================================================= -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://codetrax.s.gy/">
-    <meta property="og:title" content="『 Codetrax 』">
-    <meta property="og:description" content="Codetrax - Construyendo el futuro. Explora nuestros recursos, proyectos y archivos.">
+    <meta property="og:url" content="https://codetrax-web.github.io/codetrax/">
+    <meta property="og:title" content="Codetrax | Desarrollo web, apps y diseño">
+    <meta property="og:description" content="Agencia de desarrollo digital: sitios web, apps, branding y multimedia a medida.">
     <!-- URL absoluta a la imagen de vista previa (se recomienda usar JPG o PNG de 1200x630px) -->
-    <meta property="og:image" content="https://codetrax.s.gy/assets/ima/logo.webp">
+    <!-- Imagen para compartir en redes (1200x630 PNG) -->
+    <meta property="og:image" content="https://codetrax-web.github.io/codetrax/assets/ima/og.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <!-- Configuración especial para tarjetas en Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://codetrax.s.gy/">
-    <meta name="twitter:title" content="『 Codetrax 』">
-    <meta name="twitter:description" content="Codetrax - Construyendo el futuro. Explora nuestros recursos, proyectos y archivos.">
-    <meta name="twitter:image" content="https://codetrax.s.gy/assets/ima/logo.webp">
+    <meta name="twitter:url" content="https://codetrax-web.github.io/codetrax/">
+    <meta name="twitter:title" content="Codetrax | Desarrollo web, apps y diseño">
+    <meta name="twitter:description" content="Agencia de desarrollo digital: sitios web, apps, branding y multimedia a medida.">
+    <meta name="twitter:image" content="https://codetrax-web.github.io/codetrax/assets/ima/og.png">
     <!-- Favicon (icono de la pestaña del navegador) -->
-    <link rel="icon" type="image/webp" href="assets/ima/logo.webp">
+    <!-- Favicon: cabeza del león (el logo completo no se lee a 32px) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/ima/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/ima/favicon-180.png">
     <!-- Estilos CSS locales y librería externa de íconos (FontAwesome) -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css?v=20261013d">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- =================================================================
          ESTILOS DEL VIDEO INTRO (Organizados en el head para mejor estructura)
          ================================================================= -->
@@ -75,6 +89,10 @@
         #skip-intro:hover {
             background: rgba(255, 255, 255, 0.2);
         }
+        /* En móvil vertical se usa el video 9:16 y se llena la pantalla */
+        @media (max-width: 768px) and (orientation: portrait) {
+            #intro-video { object-fit: cover; }
+        }
         /* Adaptación de estilos para pantallas de teléfonos celulares */
         @media (max-width: 768px) {
             #skip-intro {
@@ -89,13 +107,14 @@
     </style>
 </head>
 <body>
+    <!-- Enlace para teclado: salta el menú e ir directo al contenido -->
+    <a href="#content" class="skip-link">Saltar al contenido</a>
     <!-- =====================================================
          1. PANTALLA DE CARGA / VIDEO INTRO
          ===================================================== -->
     <div id="video-intro-overlay">
         <video 
             id="intro-video" 
-            src="assets/ima/intro.mp4" 
             autoplay 
             muted 
             playsinline 
@@ -107,7 +126,7 @@
     <!-- =====================================================
          2. FONDO ANIMADO DE PARTÍCULAS
          ===================================================== -->
-    <canvas id="bg-particles" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;"></canvas>
+    <canvas id="bg-particles" aria-hidden="true" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;"></canvas>
     <!-- =====================================================
          3. ENCABEZADO Y MENÚ DE NAVEGACIÓN PRINCIPAL
          ===================================================== -->
@@ -116,52 +135,41 @@
             <img src="assets/ima/log_cod.webp" alt="Logotipo de Codetrax" class="logo">
         </div>
         <nav class="menu" aria-label="Navegación principal">
-            <a href="/" class="active" data-section="home"><span>HOME</span></a>
-            <a href="/files" data-section="files"><span>CODETRAX</span></a>
-            <a href="/plans" data-section="plans"><span>RECURSOS</span></a>
-            <a href="/settings" data-section="settings"><span>PROYECTOS</span></a>
-            <a href="/contacto" data-section="contacto"><span>CONECTA</span></a>
+            <!-- Rutas por hash: cada sección tiene URL propia. data-section conecta con views{} en main.js -->
+            <a href="#/" class="active" data-section="home"><span>INICIO</span></a>
+            <a href="#/files" data-section="files"><span>SERVICIOS</span></a>
+            <a href="#/plans" data-section="plans"><span>RECURSOS</span></a>
+            <a href="#/blog" data-section="blog"><span>BLOG</span></a>
+            <a href="#/settings" data-section="settings"><span>PORTAFOLIO</span></a>
+            <a href="#/donar" data-section="donar"><span>APOYA</span></a>
+            <a href="#/contacto" data-section="contacto"><span>CONTACTO</span></a>
         </nav>
+        <!-- Selector de idioma ES/EN: guarda la elección y traduce la interfaz (ver applyI18n en main.js) -->
+        <button id="lang-toggle" type="button" aria-label="Cambiar idioma / Change language">EN</button>
     </header>
     <!-- =====================================================
          4. CONTENIDO PRINCIPAL DINÁMICO
          ===================================================== -->
     <main>
-        <div id="content"></div>
+        <div id="content" tabindex="-1"></div>
+        <noscript><p style="padding:20px">Activa JavaScript para ver el contenido, o escríbenos a codetraxs@gmail.com.</p></noscript>
     </main>
     <!-- =====================================================
          5. PIE DE PÁGINA (FOOTER)
          ===================================================== -->
-    <footer style="text-align: center; padding: 20px; color: #a1a1aa; font-size: 0.9rem; margin-top: 40px;">
+    <footer style="text-align: center; padding: 20px; color: #fff; font-size: 0.9rem; margin-top: 40px;">
         <p>『 © 2026 Codetrax. Construyendo el futuro.』</p>
+        <p class="footer-links"><a href="#/privacidad">Aviso de privacidad</a> · <a href="#/terminos">Términos</a></p>
     </footer>
+    <!-- Botón "volver arriba": aparece al bajar 400px (lógica en main.js) -->
+    <button id="back-top" type="button" aria-label="Volver arriba" hidden><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
     <!-- =====================================================
          6. SCRIPTS / LÓGICA DE PROGRAMACIÓN
          ===================================================== -->
     <!-- Control del video intro -->
-    <script>
-        const introOverlay = document.getElementById("video-intro-overlay");
-        const introVideo = document.getElementById("intro-video");
-        const skipIntro = document.getElementById("skip-intro");
-        // Intenta reproducir el video cuando la página haya cargado por completo
-        window.addEventListener("load", () => {
-            introVideo.play().catch(() => {
-                console.log("El navegador bloqueó la reproducción automática.");
-            });
-        });
-        // Función para ocultar con una transición suave la intro
-        function closeIntro() {
-            introVideo.pause();
-            introOverlay.style.opacity = "0";
-            setTimeout(() => {
-                introOverlay.style.display = "none";
-            }, 800);
-        }
-        // Eventos para cerrar la intro: al hacer clic en el botón o cuando termina el video
-        skipIntro.addEventListener("click", closeIntro);
-        introVideo.addEventListener("ended", closeIntro);
-    </script>
+    <!-- Script de la intro movido a js/intro.js: permite una CSP sin scripts inline -->
+    <script src="js/intro.js?v=8"></script>
     <!-- Archivo de JavaScript principal de tu aplicación -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=20261013d"></script>
 </body>
 </html>

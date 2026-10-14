@@ -1,0 +1,13 @@
+[
+  {
+    "slug": "riego-automatico-arduino",
+    "titulo": "Cómo hacer un sistema de riego automático con Arduino",
+    "fecha": "2026-10-11",
+    "tags": [
+      "Arduino",
+      "Robótica"
+    ],
+    "resumen": "Sensor de humedad, relé y bomba: la lógica básica y un código base para empezar.",
+    "contenido": "<p>Un sistema de riego automático mide la humedad del suelo y enciende una bomba solo cuando hace falta. Con Arduino necesitas cuatro piezas: una placa, un sensor de humedad capacitivo, un módulo relé y una bomba pequeña.</p><h3>Cómo funciona</h3><p>El sensor entrega un valor analógico: entre más seco el suelo, mayor la lectura. Si supera un umbral, el Arduino activa el relé y la bomba riega; cuando baja, se apaga.</p><h3>Código base</h3><pre><code>const int SENSOR = A0;  // sensor de humedad\nconst int RELE   = 7;   // relé de la bomba\nconst int SECO   = 600; // umbral: calíbralo con tu sensor\n\nvoid setup() {\n  pinMode(RELE, OUTPUT);\n  digitalWrite(RELE, HIGH);  // la mayoría de relés se activan con LOW\n}\n\nvoid loop() {\n  int humedad = analogRead(SENSOR);\n  digitalWrite(RELE, humedad &gt; SECO ? LOW : HIGH);\n  delay(1000);\n}</code></pre><h3>Consejos</h3><p>Calibra el umbral midiendo el sensor en seco y dentro de un vaso con agua. Usa un sensor capacitivo, porque los resistivos se oxidan. Añade un tiempo mínimo entre riegos para no encender y apagar la bomba sin parar.</p><p>¿Quieres un sistema a tu medida, con sensores, app o panel web? <a href=\"#/contacto\">Escríbenos</a>.</p>"
+  }
+]

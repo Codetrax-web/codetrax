@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://codetrax-web.github.io/codetrax/sitemap.xml

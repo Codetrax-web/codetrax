@@ -3,10 +3,14 @@
    Colores principales utilizados en todo el sitio
 ==================================================== */
 :root {
-    --gt-ink: #ffffff;
-    --gt-surface: #1e1e2e;
-    --gt-blue: #007bff;
-    --gt-red: #ff2d55;
+    /* PALETA OFICIAL (v6) */
+    --gt-ink: #ffffff;          /* TODO el texto va en blanco */
+    --gt-bg: #070707;           /* fondo principal */
+    --gt-surface: #121212;      /* tarjetas y superficies (un poco más claras que el fondo) */
+    --gt-blue: #001CF0;         /* azul: SOLO rellenos, botones y degradados (como texto contrasta poco) */
+    --gt-blue-light: #5B7BFF;   /* azul claro: íconos, enlaces y detalles (contraste 5.1 sobre #121212) */
+    --gt-red: #F00000;          /* rojo principal */
+    --gt-purple: #270042;       /* morado: degradados y brillos */
 }
 /* FIN VARIABLES GLOBALES */
 
@@ -84,7 +88,7 @@ body {
     justify-content: center;
     padding: 10px 15px;
     border-radius: 15px;
-    background: rgba(30,30,46,.25);
+    background: rgba(18,18,18,.25);
     border: 1px solid rgba(255,255,255,.08);
     backdrop-filter: blur(20px);
 }
@@ -103,27 +107,7 @@ main {
     width: 100%;
 }
 
-.gt-input {
-    position:relative;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:12px 15px;
-    border-radius:15px;
-    background:rgba(30,30,46,.85);
-    border:1px solid rgba(255,255,255,.15);
-    backdrop-filter:blur(10px);
-}
 
-.gt-input__prompt { color:#00ff88; }
-.gt-input__control {
-    width:100%;
-    border:none;
-    outline:none;
-    background:transparent;
-    color:white;
-    font-family:inherit;
-}
 
 /* =====================================================
    COMPONENTES DE UI (Redes, Menú, Botones)
@@ -204,7 +188,7 @@ main {
 }
 
 .about-card h2 { margin-bottom:10px; }
-.about-card p { line-height:1.8; color:#ddd; }
+.about-card p { line-height:1.8; color: #fff; }
 .portfolio-page { width:100%; }
 .portfolio-page h1 { text-align:center; margin-bottom:25px; }
 .portfolio-filters {
@@ -239,7 +223,7 @@ main {
 .resource-card {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(20, 24, 35, 0.85) 0%, rgba(12, 14, 20, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(20, 24, 35, 0.85) 0%, rgba(7,7,7, 0.95) 100%);
     backdrop-filter: blur(20px);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -413,13 +397,12 @@ main {
     color: white;
 }
 
-.card.red { border-top: 4px solid #ff0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.3); }
+.card.red { border-top: 4px solid #ff0000; box-shadow: 0 0 15px rgba(240,0,0, 0.3); }
 .card.yellow { border-top: 4px solid #ffff00; box-shadow: 0 0 15px rgba(255, 255, 0, 0.3); }
 .card.green { border-top: 4px solid #00ff00; box-shadow: 0 0 15px rgba(0, 255, 0, 0.3); }
-.card.purple { border-top: 4px solid #800080; box-shadow: 0 0 15px rgba(128, 0, 128, 0.3); }
-.card.orange { border-top: 4px solid #ff7700; box-shadow: 0 0 15px rgba(255, 119, 0, 0.3); }
-.card.blue { border-top: 4px solid #7DF9FF; box-shadow: 0 0 15px rgba(125, 249, 255, 0.3); }
-.card.orange { border-top: 4px solid #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.3); }
+.card.purple { border-top: 4px solid #8d008d; box-shadow: 0 0 15px rgba(128, 0, 128, 0.3); }
+.card.blue { border-top: 4px solid var(--gt-blue-light); box-shadow: 0 0 15px rgba(125, 249, 255, 0.3); }
+.card.orange { border-top: 4px solid #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);}
 
 .team-photo {
     width: 120px;
@@ -435,7 +418,7 @@ main {
 ===================================================== */
 
 .contact-hub {
-    background: rgba(15, 15, 25, 0.65);
+    background: rgba(18,18,18, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -498,7 +481,7 @@ main {
 .socials a:hover {
     transform: translateY(-5px);
     border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 12px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 12px rgba(91,123,255, 0.3);
 }
 
 .socials a:hover::after {
@@ -564,7 +547,7 @@ main {
 
 .action-btn .btn-desc {
     font-size: 0.8rem;
-    color: #a1a1aa;
+    color: #fff;
 }
 
 /* Flecha indicadora a la derecha */
@@ -576,15 +559,15 @@ main {
 
 /* Efecto hover profesional */
 .action-btn:hover {
-    background: rgba(28, 28, 42, 0.95);
-    border-color: rgba(0, 123, 255, 0.4);
+    background: rgba(18,18,18, 0.95);
+    border-color: rgba(91,123,255, 0.4);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(0, 123, 255, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(91,123,255, 0.15);
 }
 
 .action-btn:hover .arrow-icon {
     transform: translateX(4px);
-    color: #007bff;
+    color: var(--gt-blue-light);
 }
 
 /* =====================================================
@@ -600,7 +583,7 @@ main {
 .stat-card{
     position:relative;
     overflow:hidden;
-    background:rgba(15,15,25,.55);
+    background:rgba(18,18,18,.55);
     backdrop-filter:blur(15px);
     border:1px solid rgba(255,255,255,.12);
     border-radius:22px;
@@ -620,7 +603,7 @@ main {
     top:-90px;
     left:-90px;
     border-radius:50%;
-    background:rgba(0,123,255,.25);
+    background:rgba(91,123,255,.25);
     filter:blur(70px);
 }
 
@@ -632,7 +615,7 @@ main {
     bottom:-90px;
     right:-90px;
     border-radius:50%;
-    background:rgba(255,45,85,.18);
+    background:rgba(240,0,0,.18);
     filter:blur(70px);
 }
 
@@ -640,7 +623,7 @@ main {
     transform:translateY(-8px);
     box-shadow:
     0 0 35px rgba(0,120,255,.35),
-    0 0 45px rgba(255,45,85,.18);
+    0 0 45px rgba(240,0,0,.18);
 }
 
 .stat-card h2{
@@ -697,36 +680,15 @@ main {
 /* =====================================================
    BOTÓN DE LIKES PARA TARJETAS
 ===================================================== */
-.like-btn {
-    display: inline-flex;
-    align-items: center;
-    background: rgba(20, 20, 30, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 6px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 0;
-    font-family: inherit;
-    color: #fff;
-    gap: 8px;
-}
 
 .like-btn:hover {
-    border-color: var(--gt-red, #ff2d55);
-    box-shadow: 0 0 10px rgba(255, 45, 85, 0.3);
+    border-color: var(--gt-red);
+    box-shadow: 0 0 10px rgba(240,0,0, 0.3);
 }
 
-.like-content {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding-right: 8px;
-    border-right: 1px solid rgba(255, 255, 255, 0.15);
-}
 
 .like-btn i {
-    color: #a1a1aa;
+    color: #fff;
     font-size: 1rem;
     transition: transform 0.2s ease, color 0.2s ease;
 }
@@ -739,13 +701,13 @@ main {
 }
 
 .like-btn.liked i {
-    color: #ff2d55;
+    color: #F00000;
     transform: scale(1.2);
 }
 
 .like-btn.liked {
-    border-color: #ff2d55;
-    background: rgba(255, 45, 85, 0.1);
+    border-color: #F00000;
+    background: rgba(240,0,0, 0.1);
 }
 
 /* =====================================================
@@ -758,7 +720,7 @@ main {
     width: 100%;
     max-width: 580px;
     margin: 25px auto;
-    background: rgba(15, 15, 22, 0.95);
+    background: rgba(18,18,18, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
     padding: 10px 12px 10px 18px;
@@ -766,18 +728,18 @@ main {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     
-    background-image: linear-gradient(rgba(15, 15, 22, 0.95), rgba(15, 15, 22, 0.95)), 
-                      linear-gradient(135deg, #ff2d55 0%, transparent 40%, transparent 60%, #007bff 100%);
+    background-image: linear-gradient(rgba(18,18,18, 0.95), rgba(18,18,18, 0.95)), 
+                      linear-gradient(135deg, #F00000 0%, transparent 40%, transparent 60%, #001CF0 100%);
     background-origin: border-box;
     background-clip: padding-box, border-box;
 }
 
 .search-bar-container:focus-within {
-    box-shadow: 0 0 25px rgba(0, 123, 255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 25px rgba(91,123,255, 0.3), 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .search-icon-left {
-    color: #a1a1aa;
+    color: #fff;
     font-size: 1.1rem;
     margin-right: 14px;
 }
@@ -805,7 +767,7 @@ main {
     height: 42px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(30, 30, 45, 0.8);
+    background: rgba(18,18,18, 0.8);
     color: #fff;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -815,14 +777,14 @@ main {
 
 .search-btn:hover {
     transform: scale(1.05);
-    background: rgba(45, 45, 65, 0.9);
-    border-color: rgba(0, 123, 255, 0.5);
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    background: rgba(38,38,38, 0.9);
+    border-color: rgba(91,123,255, 0.5);
+    box-shadow: 0 0 15px rgba(91,123,255, 0.4);
 }
 
 .search-btn i {
     font-size: 1rem;
-    color: #e4e4e7;
+    color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -861,14 +823,14 @@ main {
     transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
     transform-style: preserve-3d;
     border-radius: 20px;
-    background: linear-gradient(135deg, rgba(20, 24, 35, 0.9) 0%, rgba(12, 14, 20, 0.98) 100%);
+    background: linear-gradient(135deg, rgba(20, 24, 35, 0.9) 0%, rgba(7,7,7, 0.98) 100%);
     
     border: 2px solid transparent;
-    background-image: linear-gradient(rgba(20, 24, 35, 0.95), rgba(12, 14, 20, 0.98)), 
-                      linear-gradient(180deg, var(--gt-blue, #007bff), #8a2be2, var(--gt-red, #ff2d55));
+    background-image: linear-gradient(rgba(20, 24, 35, 0.95), rgba(7,7,7, 0.98)), 
+                      linear-gradient(180deg, var(--gt-blue), #270042, var(--gt-red));
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 123, 255, 0.2), 0 0 15px rgba(255, 45, 85, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(91,123,255, 0.2), 0 0 15px rgba(240,0,0, 0.2);
 }
 
 .project-card.flipped .card-inner,
@@ -935,37 +897,422 @@ main {
     background: rgba(255, 255, 255, 0.08);
     padding: 4px 10px;
     border-radius: 8px;
-    color: #a1a1aa;
+    color: #fff;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.like-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 10px;
-    cursor: pointer;
+.like-btn { /* fusionado: antes estaba duplicado */
     display: flex;
     align-items: center;
-    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 0;
+    font-family: inherit;
+    color: #fff;
+    gap: 8px;
 }
 
 .like-btn:hover {
-    background: rgba(255, 45, 85, 0.2);
-    border-color: rgba(255, 45, 85, 0.4);
+    background: rgba(240,0,0, 0.2);
+    border-color: rgba(240,0,0, 0.4);
 }
 
 .like-btn.liked {
-    background: rgba(255, 45, 85, 0.3);
-    border-color: #ff2d55;
-    color: #ff2d55;
+    background: rgba(240,0,0, 0.3);
+    border-color: #F00000;
+    color: #F00000;
 }
 
-.like-content {
+.like-content { /* fusionado: antes estaba duplicado */
     display: flex;
     align-items: center;
     gap: 5px;
+    padding-right: 8px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
+
+
+/* =====================================================
+   MEJORAS AGREGADAS (v2)
+   Al final del archivo para sobrescribir reglas anteriores sin romperlas.
+   Duplicados de .like-btn, .like-content y .card.orange ya fusionados; .project-card se deja por su cascada.
+===================================================== */
+
+/* Enlace "saltar al contenido": solo visible al enfocarlo con teclado */
+.skip-link { position:absolute; left:-999px; top:10px; background:#fff; color:#000; padding:10px 16px; border-radius:8px; z-index:100001; }
+.skip-link:focus { left:10px; }
+
+/* Foco visible para quien navega con teclado */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+.project-card:focus-visible { outline:3px solid var(--gt-blue-light); outline-offset:3px; }
+
+/* Fondo fijo compatible con iOS: background-attachment:fixed falla en Safari móvil */
+body { background:none; min-height:100dvh; }
+body::before { content:""; position:fixed; inset:0; z-index:-2; background:url('../assets/ima/BANNER.webp') center/cover no-repeat; }
+
+/* Rendimiento: quita el 3D aplicado a TODOS los hijos (texto borroso y costo de GPU); el giro sigue en .card-inner */
+.project-card *, .card * { transform:none; }
+.card-front, .card-back { transform-style:flat; }
+.card-back { transform:rotateY(180deg); }
+/* Menos blur en elementos repetidos (tarjetas) para móviles modestos */
+.filter-btn { backdrop-filter:none; }
+/* Vuelve el desenfoque glass en tarjetas grandes (son pocas, no pesa) */
+.stat-card, .about-card { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+
+/* Botón CTA (.neon-button ya existía sin usarse) */
+.neon-button { display:inline-block; cursor:pointer; font-family:inherit; }
+
+/* Servicios en el Home */
+.section-title { text-align:center; margin:40px 0 20px; }
+.services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.service-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:22px; }
+.service-card i { font-size:1.6rem; color:var(--gt-blue-light); margin-bottom:12px; }
+.service-card h3 { margin-bottom:8px; }
+.service-card p { color: #fff; line-height:1.6; font-size:.9rem; }
+
+/* Formulario de contacto */
+.contact-form { max-width:460px; margin:30px auto 0; display:flex; flex-direction:column; gap:8px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:24px; padding:30px; }
+.contact-form h2 { text-align:center; margin-bottom:10px; }
+.contact-form input, .contact-form select, .contact-form textarea {
+    width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.15);
+    background:rgba(0,0,0,.4); color:#fff; font-family:inherit; font-size:1rem; }
+.contact-form button { margin-top:12px; }
+
+/* Botón flotante de WhatsApp */
+.whatsapp-float { position:fixed; right:20px; bottom:20px; width:56px; height:56px; border-radius:50%;
+    background:#25d366; color:#fff; font-size:30px; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 20px rgba(0,0,0,.5); z-index:1000; text-decoration:none; }
+
+/* (Sin modo "no-motion": las animaciones corren siempre) */
+
+
+/* =====================================================
+   ANIMACIONES (v3)
+   Principio: un momento protagonista (el título con brillo), el resto discreto y
+   ligado a acciones del usuario. Se ejecutan siempre en todos los dispositivos.
+===================================================== */
+
+/* Transición al cambiar de sección (la clase la pone navigate() en main.js) */
+#content.view-enter { animation: viewIn .45s ease both; }
+@keyframes viewIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+
+/* Título principal: degradado de marca que se desplaza lentamente */
+.about-title {
+    background: linear-gradient(90deg, #fff 0%, var(--gt-blue-light) 25%, #F00000 50%, var(--gt-blue-light) 75%, #fff 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+    animation: shimmer 8s linear infinite;
+}
+@keyframes shimmer { to { background-position: -300% 0; } }
+
+/* Logo con flotación muy suave */
+.logo { animation: float 6s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-4px); } }
+
+/* Aparición al hacer scroll. Usa la propiedad "translate" (independiente de "transform")
+   para no pelear con el giro 3D ni con el efecto hover de las tarjetas. */
+.reveal { opacity:0; translate:0 28px;
+    transition: opacity .6s ease, translate .6s ease; transition-delay: calc(var(--i, 0) * 70ms); }
+.reveal.in-view { opacity:1; translate:0 0; }
+
+/* Tarjetas de servicio: se elevan y el ícono rebota al pasar el cursor (respuesta a una acción) */
+.service-card { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.service-card:hover { transform: translateY(-6px); border-color: rgba(91,123,255,.5); box-shadow: 0 12px 30px rgba(0,0,0,.5), 0 0 18px rgba(91,123,255,.25); }
+.service-card:hover i { animation: bounce .6s ease; }
+@keyframes bounce { 30% { transform: translateY(-8px) scale(1.15); } 60% { transform: translateY(0); } }
+
+/* Botón CTA: destello que cruza el botón al pasar el cursor */
+.neon-button { overflow: hidden; }
+.neon-button::before { content:""; position:absolute; top:0; left:-120%; width:60%; height:100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-20deg); }
+.neon-button:hover::before { left:140%; transition: left .6s ease; }
+
+/* WhatsApp: onda que llama la atención sin ser molesta */
+.whatsapp-float::after { content:""; position:absolute; inset:0; border-radius:50%; border:2px solid #25d366; animation: ripple 2.4s ease-out infinite; }
+@keyframes ripple { from { transform: scale(1); opacity:.8; } to { transform: scale(1.7); opacity:0; } }
+
+/* Menú: la pestaña activa se desplaza con suavidad al cambiar */
+.menu a { transition: background .3s ease, box-shadow .3s ease, transform .2s ease; }
+.menu a:active { transform: scale(.95); }
+
+/* Botón de animaciones (esquina inferior izquierda) */
+
+
+/* =====================================================
+   SECCIÓN DONAR / PAGOS (v4)
+===================================================== */
+.amount-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:25px 0; }
+.chip { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); color:#fff; font-family:inherit;
+    padding:10px 18px; border-radius:999px; cursor:pointer; transition:.25s; }
+.chip:hover { transform:translateY(-3px); }
+.chip.active { background:linear-gradient(135deg,var(--gt-blue),var(--gt-red)); border-color:transparent; }
+
+.donate-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; margin-bottom:25px; }
+.donate-card { display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:20px; padding:24px;
+    transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+.donate-card:hover { transform:translateY(-6px); border-color:rgba(91,123,255,.5); box-shadow:0 12px 30px rgba(0,0,0,.5), 0 0 18px rgba(91,123,255,.25); }
+.donate-card > i { font-size:2rem; color:var(--gt-red); }
+.donate-card p { color: #fff; font-size:.9rem; line-height:1.6; flex-grow:1; }
+.donate-card.is-soon { opacity:.55; }          /* método aún sin configurar */
+.donate-card .soon { padding:6px 14px; border-radius:8px; background:rgba(255,255,255,.08); color: #fff; font-size:.8rem; }
+.clabe { display:block; word-break:break-all; background:rgba(0,0,0,.5); padding:8px 12px; border-radius:8px; color:var(--gt-blue-light); }
+.donate-note a { color:var(--gt-blue-light); }
+
+
+/* =====================================================
+   ASISTENTE VIRTUAL (chat flotante). Esquina inferior izquierda; WhatsApp va a la derecha.
+===================================================== */
+.chat-toggle { position:fixed; left:20px; bottom:20px; width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
+    background:linear-gradient(135deg,var(--gt-blue),var(--gt-red)); color:#fff; font-size:24px; z-index:1000; box-shadow:0 6px 20px rgba(0,0,0,.5); }
+.chat-panel { position:fixed; left:20px; bottom:88px; width:min(360px, calc(100vw - 40px)); height:min(480px, calc(100dvh - 120px));
+    display:flex; flex-direction:column; background:rgba(18,18,18,.95); border:1px solid rgba(255,255,255,.12);
+    border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,.6); z-index:1000; overflow:hidden; animation:viewIn .3s ease both; }
+.chat-panel[hidden] { display:none; }
+.chat-head { display:flex; justify-content:space-between; align-items:center; padding:14px 16px; font-weight:bold; border-bottom:1px solid rgba(255,255,255,.1); }
+.chat-close { background:none; border:none; color:#fff; cursor:pointer; font-size:1rem; }
+.chat-msgs { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; }
+.chat-msg { max-width:85%; padding:10px 12px; border-radius:14px; font-size:.88rem; line-height:1.5; }
+.chat-msg.bot { align-self:flex-start; background:rgba(255,255,255,.08); }
+.chat-msg.user { align-self:flex-end; background:linear-gradient(135deg,var(--gt-blue),#270042); }
+.chat-msg.typing { opacity:.6; font-style:italic; }
+.chat-msg a { color:var(--gt-blue-light); }
+.chat-chips { display:flex; flex-wrap:wrap; gap:6px; padding:0 14px 10px; }
+.chat-chips button { font-family:inherit; font-size:.78rem; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:6px 10px; cursor:pointer; }
+.chat-form { display:flex; gap:8px; padding:10px 14px; border-top:1px solid rgba(255,255,255,.1); }
+.chat-form input { flex:1; padding:10px; border-radius:12px; border:1px solid rgba(255,255,255,.15); background:rgba(0,0,0,.4); color:#fff; font-family:inherit; }
+.chat-form button { width:42px; border:none; border-radius:12px; cursor:pointer; background:var(--gt-blue); color:#fff; }
+.chat-foot { font-size:.7rem; color: #fff; text-align:center; padding:0 12px 10px; }
+
+
+/* =====================================================
+   V5: insignia, stack, testimonios, blog, legal, idioma, volver arriba
+===================================================== */
+.avail-slot { text-align:center; margin-bottom:14px; }
+.avail-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; font-size:.85rem;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); }
+.avail-badge .dot { width:9px; height:9px; border-radius:50%; background:#a1a1aa; }
+.avail-badge.open .dot { background:#00ff5e; box-shadow:0 0 8px #00ff5e; animation:ripple-dot 1.8s ease-in-out infinite; }
+@keyframes ripple-dot { 50% { opacity:.35; } }
+
+.stack-row { display:flex; flex-wrap:wrap; justify-content:center; gap:14px; list-style:none; }
+.stack-row li { display:flex; flex-direction:column; align-items:center; gap:6px; min-width:84px; padding:14px 10px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-radius:14px; font-size:.8rem; transition:transform .25s ease; }
+.stack-row li:hover { transform:translateY(-4px); }
+.stack-row i { font-size:1.8rem; color:var(--gt-blue-light); }
+
+.testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; }
+.testi-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:18px; padding:22px; }
+.testi-card blockquote { line-height:1.7; color: #fff; margin-bottom:14px; }
+.testi-card figcaption { display:flex; align-items:center; gap:12px; font-size:.85rem; color: #fff; }
+.testi-card img { width:44px; height:44px; border-radius:50%; object-fit:cover; }
+
+.post-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; margin-top:24px; }
+.post-card { display:flex; flex-direction:column; gap:10px; padding:22px; border-radius:18px; color:#fff; text-decoration:none;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); transition:transform .3s ease, border-color .3s ease; }
+.post-card:hover { transform:translateY(-5px); border-color:rgba(91,123,255,.5); }
+.post-card p { color: #fff; font-size:.9rem; line-height:1.6; flex-grow:1; }
+.post { max-width:760px; }
+.post h1 { margin:12px 0 6px; }
+.post-meta, .post-back { color: #fff; font-size:.85rem; }
+.post-back { color:var(--gt-blue-light); text-decoration:none; }
+.post-body { line-height:1.8; color: #fff; }
+.post-body h3 { margin:22px 0 8px; color:#fff; }
+.post-body pre { overflow-x:auto; background:rgba(0,0,0,.6); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:16px; margin:12px 0; font-size:.85rem; }
+.post-body a, .legal a, .footer-links a { color:var(--gt-blue-light); }
+.legal h2 { margin:14px 0 6px; font-size:1.05rem; }
+.consent { display:flex; gap:8px; align-items:flex-start; font-size:.8rem; color: #fff; margin-top:6px; }
+.consent input { width:auto; margin-top:3px; }
+.footer-links { margin-top:6px; font-size:.8rem; }
+
+#lang-toggle { margin-left:10px; padding:8px 14px; border-radius:10px; cursor:pointer; font-family:inherit; color:#fff;
+    background:rgba(0,0,0,.4); border:1px solid rgba(255,255,255,.2); }
+#lang-toggle:hover { background:rgba(255,255,255,.15); }
+.main-header { gap:10px; flex-wrap:wrap; }
+
+#back-top { position:fixed; left:20px; bottom:20px; width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.25);
+    background:rgba(18,18,18,.85); color:#fff; font-size:1.1rem; cursor:pointer; z-index:1000; }
+#back-top:hover { background:var(--gt-blue); }
+#back-top[hidden] { display:none; }
+
+
+/* =====================================================
+   V6: reseñas de Google y suscripción
+===================================================== */
+.stars { color:#fbbc04; letter-spacing:2px; }
+.g-head, .g-links { text-align:center; margin:0 0 16px; color: #fff; font-size:.9rem; }
+.g-links { margin:16px 0 0; }
+.g-links a { color:var(--gt-blue-light); }
+.testi-card blockquote { display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden; }  /* reseñas largas se recortan */
+.testi-card figcaption a { color:#fff; text-decoration:none; }
+
+.sub-section { margin:40px 0; }
+.sub-box { max-width:560px; margin:0 auto; text-align:center; padding:30px; border-radius:22px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
+.sub-box h2 { margin-bottom:8px; }
+.sub-box p { color: #fff; line-height:1.6; margin-bottom:16px; }
+.sub-form { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.sub-form input[type=email] { flex:1 1 220px; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.15);
+    background:rgba(0,0,0,.4); color:#fff; font-family:inherit; font-size:1rem; }
+.sub-form .consent { flex-basis:100%; justify-content:center; }
+.sub-rss { margin:14px 0 0 !important; font-size:.8rem; }
+.sub-rss a { color:var(--gt-blue-light); }
+
+
+/* Donativos: monto libre */
+.amount-box { max-width:460px; margin:24px auto; padding:22px; text-align:center; border-radius:20px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
+.amount-box label { display:block; margin-bottom:10px; font-weight:600; }
+.amount-row { display:flex; gap:10px; }
+.amount-row input, .amount-row select { padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.2);
+    background:rgba(0,0,0,.45); color:#fff; font-family:inherit; font-size:1.1rem; }
+.amount-row input { flex:1; min-width:0; }
+#amount-summary { margin-top:6px; font-size:.85rem; color: #fff; }
+
+
+/* Fondo base de la paleta (por si la imagen de fondo no carga) */
+/* IMPORTANTE: el color de fondo va SOLO en <html>. Si <body> tuviera fondo propio, taparía el banner
+   (body::before con z-index negativo se pinta debajo del fondo del body). */
+html { background-color: var(--gt-bg); }
+body { background: none; color: var(--gt-ink); }
+
+
+/* GLASS sobre fondo oscuro: superficies translúcidas CLARAS (blanco al 7%) + desenfoque.
+   Sobre un fondo casi negro, un cristal oscuro no se notaría; el tono claro es lo que da el efecto. */
+
+
+/* =====================================================
+   BOTONES DE TARJETAS (v7): Glass / Likes / Descargar
+   Todos usan la paleta: fondo #070707-#121212, texto blanco, azul claro #5B7BFF como luz.
+===================================================== */
+/* Reverso de la tarjeta: botones en fila y, si no caben, pasan a la siguiente línea */
+.card-back .card-back-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; }
+
+/* 1) Botón principal "glass": borde degradado claro + luz azul en el costado izquierdo */
+.btn-glass {
+    position:relative; display:inline-flex; align-items:center; justify-content:center;
+    min-width:112px; padding:11px 28px; border-radius:14px; color:#fff; text-decoration:none;
+    font-family:inherit; font-size:.95rem; cursor:pointer; isolation:isolate;
+    border:1px solid transparent;
+    background:
+        linear-gradient(180deg, #1a1a1a, #0b0b0b) padding-box,                                           /* relleno oscuro */
+        linear-gradient(135deg, rgba(255,255,255,.75), rgba(255,255,255,.10) 45%, rgba(255,255,255,.45)) border-box; /* borde con brillo */
+    transition: transform .2s ease, box-shadow .25s ease;
+}
+.btn-glass::before {                      /* la luz azul del borde izquierdo */
+    content:""; position:absolute; left:-2px; top:14%; bottom:14%; width:4px; border-radius:4px; z-index:-1;
+    background:linear-gradient(180deg, transparent, var(--gt-blue-light) 35%, var(--gt-blue) 70%, transparent);
+    box-shadow:-5px 0 14px 2px rgba(91,123,255,.65); transition: box-shadow .25s ease;
+}
+.btn-glass:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.55); }
+.btn-glass:hover::before { box-shadow:-7px 0 22px 4px rgba(91,123,255,.95); }
+.btn-glass:active { transform:scale(.97); }
+
+/* 2) Likes en píldora: contador | divisor azul | pulgar */
+.btn-like {
+    display:inline-flex; align-items:center; gap:12px; padding:9px 18px; border-radius:999px;
+    background:#121212; border:1px solid rgba(255,255,255,.14); color:#fff; font-family:inherit; font-size:.95rem; cursor:pointer;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.btn-like .like-count { min-width:2ch; text-align:center; font-variant-numeric:tabular-nums; }
+.btn-like .like-divider { width:2px; height:22px; border-radius:2px; background:var(--gt-blue-light); }
+.btn-like i { font-size:1.2rem; color:var(--gt-blue-light); transition: transform .2s ease; }   /* pulgar vacío */
+.btn-like:hover { border-color:var(--gt-blue-light); transform:translateY(-1px); }
+.btn-like.liked { border-color:var(--gt-blue-light); box-shadow:0 0 14px rgba(91,123,255,.45); }
+.btn-like.liked i { font-weight:900; animation:likePop .4s ease; }                                 /* pulgar relleno */
+@keyframes likePop { 40% { transform:scale(1.4) rotate(-10deg); } }
+
+/* 3) Descargar: bloque negro con icono en recuadro + título y subtítulo */
+.btn-download {
+    display:inline-flex; align-items:center; justify-content:center; flex:1 1 100%; gap:12px; padding:9px 20px 9px 12px; border-radius:14px;   /* ocupa su propia fila bajo los otros botones */
+    background:#050505; border:1px solid rgba(255,255,255,.18); color:#fff; text-decoration:none; text-align:left;
+    transition: border-color .2s ease, box-shadow .25s ease, transform .2s ease;
+}
+.btn-download .dl-icon { display:grid; place-items:center; width:38px; height:38px; border:2px solid #fff; border-radius:10px; font-size:1.05rem; }
+.btn-download b { display:block; font-size:1rem; }
+.btn-download small { display:block; font-size:.78rem; opacity:.8; white-space:nowrap; }
+.btn-download:hover { border-color:var(--gt-blue-light); box-shadow:0 0 16px rgba(91,123,255,.5); transform:translateY(-2px); }
+.btn-download:hover .dl-icon i { animation:dlBounce .6s ease; }
+@keyframes dlBounce { 40% { transform:translateY(4px); } }
+
+
+/* =====================================================
+   VENTANA AMPLIADA (v8): reemplaza el giro de tarjetas
+===================================================== */
+.card-back { display:none !important; }                       /* el reverso solo sirve como fuente de datos */
+.project-card .card-inner, .resource-card .card-inner { transform:none !important; }
+.project-card .card-front::after, .resource-card .card-front::after {
+    content:"Toca para ver más"; font-size:.75rem; letter-spacing:.04em; color:var(--gt-blue-light); margin-top:auto; }
+.project-card:hover .card-inner, .resource-card:hover .card-inner { transform:translateY(-4px); transition:transform .3s ease; }
+
+#card-modal { position:fixed; inset:0; z-index:9000; display:flex; align-items:center; justify-content:center; padding:20px;
+    background:rgba(7,7,7,.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); animation:cmFade .25s ease; }
+#card-modal[hidden] { display:none; }
+body.modal-open { overflow:hidden; }
+.cm-panel { position:relative; width:min(900px,100%); max-height:calc(100dvh - 40px); overflow-y:auto; border-radius:22px; padding:28px;
+    background:rgba(18,18,18,.85); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.14); box-shadow:0 20px 60px rgba(0,0,0,.7), 0 0 30px rgba(91,123,255,.25);
+    animation:cmIn .35s cubic-bezier(.2,.8,.2,1); }
+.cm-close { position:absolute; top:14px; right:14px; width:40px; height:40px; border-radius:50%; cursor:pointer;
+    border:1px solid rgba(255,255,255,.2); background:rgba(0,0,0,.5); color:#fff; }
+.cm-close:hover { border-color:var(--gt-red); }
+.cm-body { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:28px; align-items:start; }
+.cm-media img { width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; border-radius:16px; }
+.cm-info { display:flex; flex-direction:column; gap:12px; text-align:left; }
+.cm-title { font-size:1.6rem; padding-right:44px; margin:0; }
+.cm-info .card-subtitle { margin:0; }
+.cm-info .card-category-badge { align-self:flex-start; }
+.cm-desc { display:flex; flex-direction:column; gap:16px; }
+.cm-desc .card-description-text { overflow:visible; font-size:1rem; margin:0; flex-grow:0; }
+.cm-desc .card-back-actions { display:flex; flex-wrap:wrap; gap:12px; justify-content:flex-start; margin-top:4px; }
+@media (max-width:720px) {
+    #card-modal { align-items:flex-end; padding:0; }
+    .cm-panel { max-height:92dvh; border-radius:22px 22px 0 0; padding:22px; }
+    .cm-body { grid-template-columns:1fr; gap:18px; }
+}
+@keyframes cmFade { from { opacity:0; } }
+@keyframes cmIn { from { opacity:0; transform:translateY(24px) scale(.97); } }
+
+
+/* Pista en la tarjeta cerrada: "Toca para ver más" (la tarjeta abre la ventana ampliada) */
+.project-card .card-front::after { content:"Toca para ver más"; display:block; margin-top:auto; padding-top:10px;
+    font-size:.78rem; text-align:center; color:#fff; opacity:.7; letter-spacing:.04em; }
+
+
+/* =====================================================
+   TIPOGRAFÍA DE DISPLAY (títulos, menú y 404)
+   Para cambiarla: elige UNA línea en --gt-display y deja las demás comentadas.
+   Los archivos van en assets/fonts/ (ver LEEME.txt). Si falta el archivo, se usa la fuente de respaldo.
+===================================================== */
+@font-face { font-family:'Grunge Display'; src:url('../assets/fonts/grunge.woff2') format('woff2'); font-display:swap; }
+@font-face { font-family:'Trash Display';  src:url('../assets/fonts/trash.woff2') format('woff2'); font-display:swap; }
+@font-face { font-family:'Scratch Display'; src:url('../assets/fonts/scratch.woff2') format('woff2'); font-display:swap; }
+@font-face { font-family:'Dry Brush Display'; src:url('../assets/fonts/dry-brush.woff2') format('woff2'); font-display:swap; }
+:root {
+    --gt-display: 'Grunge Display';      /* <- elige: Grunge */
+    /* --gt-display: 'Trash Display';    <- o Trash */
+    /* --gt-display: 'Scratch Display';  <- o Scratch */
+    /* --gt-display: 'Dry Brush Display'; <- o Dry Brush */
+    --gt-display-fallback: ui-sans-serif, system-ui, sans-serif;
+}
+/* Se aplica a: menú, títulos principales, el 404 y el logotipo de texto */
+.menu a span, .about-title, .font-display { font-family: var(--gt-display), var(--gt-display-fallback); letter-spacing:.02em; }
+
+
+/* Confirmaciones: tarjeta de "mensaje enviado" y aviso emergente (toast) */
+.confirm-card { display:flex; gap:14px; align-items:flex-start; text-align:left; max-width:620px; margin:0 auto 24px;
+    padding:18px 22px; border-radius:16px; background:rgba(255,255,255,.07); border:1px solid var(--gt-blue-light);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); box-shadow:0 0 22px rgba(91,123,255,.3); }
+.confirm-card > i { font-size:1.8rem; color:#00ff5e; }
+.confirm-card p { margin:4px 0 0; line-height:1.6; }
+#toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,140%); max-width:min(460px,92vw); padding:14px 20px;
+    border-radius:14px; background:#121212; border:1px solid var(--gt-blue-light); box-shadow:0 0 22px rgba(91,123,255,.35);
+    color:#fff; font-size:.95rem; line-height:1.5; text-align:center; z-index:2000; transition:transform .45s ease; }
+#toast.show { transform:translate(-50%,0); }
