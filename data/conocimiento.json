@@ -1,0 +1,375 @@
+[
+  {
+    "id": "quienes",
+    "q": "¿Qué es Codetrax?",
+    "keywords": [
+      "codetrax",
+      "quienes son",
+      "que es",
+      "agencia",
+      "a que se dedican",
+      "acerca",
+      "empresa"
+    ],
+    "a": "Codetrax es una agencia de desarrollo digital. Combinamos programación, diseño de interfaz, automatización y producción multimedia para convertir ideas en productos digitales a la medida de cada marca.",
+    "link": {
+      "t": "Ver servicios",
+      "h": "#/files"
+    }
+  },
+  {
+    "id": "servicios",
+    "q": "¿Qué servicios ofrecen?",
+    "keywords": [
+      "servicios",
+      "ofrecen",
+      "que hacen",
+      "trabajan",
+      "sirven",
+      "que ofrecen"
+    ],
+    "a": "Ofrecemos cinco áreas:\n• Desarrollo: sitios web, apps, sistemas a medida y automatización de procesos.\n• Diseño: branding, interfaces UI/UX y material gráfico.\n• Multimedia: edición de video, diseño sonoro y contenido para plataformas.\n• Videojuegos: herramientas técnicas, mods y recursos gráficos.\n• Consultoría: acompañamiento desde la idea hasta el despliegue.",
+    "link": {
+      "t": "Ver servicios",
+      "h": "#/files"
+    }
+  },
+  {
+    "id": "web",
+    "q": "¿Hacen páginas web y apps?",
+    "keywords": [
+      "pagina web",
+      "paginas web",
+      "sitio web",
+      "app",
+      "aplicacion",
+      "sistema",
+      "programar",
+      "tienda",
+      "software"
+    ],
+    "a": "Sí. Desarrollamos sitios web, aplicaciones y sistemas a medida, y automatizamos procesos. Un ejemplo es la plataforma de Electrum CDMX, que puedes ver en el portafolio.",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/settings"
+    }
+  },
+  {
+    "id": "diseno",
+    "q": "¿Hacen logos, branding o diseño?",
+    "keywords": [
+      "logo",
+      "logotipo",
+      "branding",
+      "marca",
+      "identidad",
+      "diseno",
+      "banner",
+      "miniatura",
+      "ui",
+      "ux",
+      "interfaz"
+    ],
+    "a": "Sí. Creamos identidad visual, logotipos, banners, miniaturas e interfaces UI/UX. En el portafolio hay trabajos para canales de YouTube y otras marcas.",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/settings"
+    }
+  },
+  {
+    "id": "multimedia",
+    "q": "¿Hacen video o música?",
+    "keywords": [
+      "video",
+      "musica",
+      "audio",
+      "sonido",
+      "multimedia",
+      "edicion",
+      "contenido",
+      "beats"
+    ],
+    "a": "Sí. El área multimedia cubre edición de video, diseño sonoro, composición musical y producción de contenido para plataformas digitales.",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/settings"
+    }
+  },
+  {
+    "id": "videojuegos",
+    "q": "¿Hacen trabajos para videojuegos?",
+    "keywords": [
+      "videojuego",
+      "juego",
+      "game",
+      "gaming",
+      "mod",
+      "gamer"
+    ],
+    "a": "Sí. Hacemos herramientas técnicas, mods y recursos gráficos para proyectos de videojuegos. Cuéntanos tu proyecto para revisar si podemos ayudarte.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "cotizar",
+    "q": "¿Cuánto cuesta un proyecto? ¿Cómo cotizo?",
+    "keywords": [
+      "precio",
+      "costo",
+      "cuanto",
+      "cotiz",
+      "presupuesto",
+      "tarifa",
+      "cuesta",
+      "cobran"
+    ],
+    "a": "El costo depende del alcance de cada proyecto, así que lo definimos después de escuchar tu idea. Puedes contarnos tu proyecto en el formulario de Contacto, escribirnos por correo o agendar una reunión por Google Meet.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "proceso",
+    "q": "¿Cómo trabajan?",
+    "keywords": [
+      "proceso",
+      "metodologia",
+      "etapas",
+      "como trabajan",
+      "pasos",
+      "discovery",
+      "entrega",
+      "soporte"
+    ],
+    "a": "Trabajamos en cuatro etapas:\n1. Discovery: escuchamos y analizamos tus necesidades reales.\n2. Planificación: diseñamos la arquitectura técnica y visual.\n3. Desarrollo: implementamos con código limpio.\n4. Entrega y soporte: desplegamos el producto y te acompañamos después.",
+    "link": {
+      "t": "Ver metodología",
+      "h": "#/files"
+    }
+  },
+  {
+    "id": "disponibilidad",
+    "q": "¿Están aceptando proyectos?",
+    "keywords": [
+      "disponible",
+      "disponibilidad",
+      "aceptan",
+      "aceptando",
+      "agenda",
+      "libre",
+      "ocupados"
+    ],
+    "a": "Sí, en este momento estamos aceptando proyectos nuevos. Si tu idea tiene fecha límite, indícanos la fecha en tu mensaje para revisar si podemos cumplirla.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "equipo",
+    "q": "¿Quién forma el equipo?",
+    "keywords": [
+      "equipo",
+      "quienes trabajan",
+      "fundador",
+      "ceo",
+      "desarrollador",
+      "disenadora",
+      "disenador",
+      "miembros",
+      "personas"
+    ],
+    "a": "El equipo está formado por:\n• Damian Cruz: fundador y CEO.\n• Ricardo y Miguel Pandares: desarrolladores Full Stack.\n• DynsG y Naoko Aki: diseñadoras gráficas.\n• Tecno 730: diseñador multimedia.",
+    "link": {
+      "t": "Conocer al equipo",
+      "h": "#/files"
+    }
+  },
+  {
+    "id": "contacto",
+    "q": "¿Cómo los contacto?",
+    "keywords": [
+      "contacto",
+      "contactar",
+      "contactarlos",
+      "escribir",
+      "correo",
+      "email",
+      "mail",
+      "whatsapp",
+      "meet",
+      "reunion",
+      "llamar",
+      "formulario"
+    ],
+    "a": "Puedes escribirnos a codetraxs@gmail.com, llenar el formulario de Contacto o agendar una consultoría por Google Meet. Nuestras redes sociales también aparecen en esa sección.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "portafolio",
+    "q": "¿Qué trabajos han hecho?",
+    "keywords": [
+      "portafolio",
+      "trabajos",
+      "proyectos",
+      "ejemplos",
+      "casos",
+      "hecho",
+      "hicieron",
+      "muestra"
+    ],
+    "a": "En el portafolio está Electrum CDMX (plataforma web), Axira Studio (sitio web), identidad visual y banners para canales de YouTube, miniaturas, un robot inspirado en WALL·E y un proyecto de música electrónica.",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/settings"
+    }
+  },
+  {
+    "id": "recursos",
+    "q": "¿Qué recursos gratis tienen?",
+    "keywords": [
+      "recursos",
+      "gratis",
+      "gratuito",
+      "descargar",
+      "descarga",
+      "codigo",
+      "robotica",
+      "archivos"
+    ],
+    "a": "En Recursos hay proyectos web como Copa Pistón u Orquídea Azul, y proyectos de robótica con Arduino: un sistema de riego automatizado, un rover Bluetooth y una grúa robótica. Los proyectos web tienen el botón Probar y los de Arduino el botón Descargar.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/plans"
+    }
+  },
+  {
+    "id": "blog",
+    "q": "¿Tienen tutoriales?",
+    "keywords": [
+      "blog",
+      "tutorial",
+      "tutoriales",
+      "articulo",
+      "articulos",
+      "aprender",
+      "guia",
+      "como hacer"
+    ],
+    "a": "Sí. En el blog publicamos tutoriales, como cómo hacer un sistema de riego automático con Arduino.",
+    "link": {
+      "t": "Ir al blog",
+      "h": "#/blog"
+    }
+  },
+  {
+    "id": "apoyo",
+    "q": "¿Cómo puedo apoyarlos?",
+    "keywords": [
+      "apoyar",
+      "apoyo",
+      "donar",
+      "donacion",
+      "donativo",
+      "cafe",
+      "invitar",
+      "paypal",
+      "transferencia",
+      "pagar"
+    ],
+    "a": "Puedes apoyarnos con un donativo voluntario desde la sección Apoya. Eliges el monto que quieras y los métodos disponibles aparecen ahí. Los donativos no compran servicios.",
+    "link": {
+      "t": "Ir a Apoya",
+      "h": "#/donar"
+    }
+  },
+  {
+    "id": "likes",
+    "q": "¿Qué significan los likes y el contador?",
+    "keywords": [
+      "like",
+      "likes",
+      "me gusta",
+      "contador",
+      "vistas",
+      "pulgar"
+    ],
+    "a": "El botón de pulgar cuenta cuántas personas les gustó un proyecto o recurso. Si el contador global está activo, el número se comparte con todos los visitantes; si no, se guarda solo en tu navegador.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/plans"
+    }
+  },
+  {
+    "id": "privacidad",
+    "q": "¿Qué pasa con mis datos?",
+    "keywords": [
+      "privacidad",
+      "datos",
+      "datos personales",
+      "informacion personal",
+      "aviso",
+      "terminos",
+      "cookies",
+      "rastreo"
+    ],
+    "a": "Usamos tus datos solo para responder tus mensajes y enviarte cotizaciones. La analítica del sitio no usa cookies. Puedes leer el aviso de privacidad y los términos completos en el pie de página.",
+    "link": {
+      "t": "Aviso de privacidad",
+      "h": "#/privacidad"
+    }
+  },
+  {
+    "id": "idioma",
+    "q": "¿El sitio está en inglés?",
+    "keywords": [
+      "ingles",
+      "english",
+      "idioma",
+      "language",
+      "traduccion"
+    ],
+    "a": "El sitio tiene botón de ES y EN en el encabezado. Algunos textos largos todavía están solo en español.",
+    "link": {
+      "t": "Cambiar idioma",
+      "h": "#/"
+    }
+  },
+  {
+    "id": "mision",
+    "q": "¿Cuál es su misión y valores?",
+    "keywords": [
+      "mision",
+      "valores",
+      "vision",
+      "filosofia",
+      "objetivo",
+      "proposito"
+    ],
+    "a": "Nuestra misión es desarrollar soluciones digitales escalables que aporten valor real. Nuestros valores son innovación constante, compromiso con la calidad, enfoque en el usuario y aprendizaje continuo.",
+    "link": {
+      "t": "Ver filosofía",
+      "h": "#/files"
+    }
+  },
+  {
+    "id": "asistente",
+    "q": "¿Qué puedes hacer tú?",
+    "keywords": [
+      "ayuda",
+      "ayudas",
+      "que puedes hacer",
+      "puedes",
+      "asistente",
+      "bot",
+      "chat"
+    ],
+    "a": "Puedo responder preguntas sobre Codetrax: servicios, portafolio, recursos, el equipo, cómo contactarnos o cómo apoyarnos. Para proyectos específicos, lo mejor es escribirnos en la sección de Contacto."
+  }
+]
