@@ -70,5 +70,13 @@
     "imagen": "data/portafolio/Tecno/ima.webp",
     "url": "https://youtube.com/@beats291?si=dlmLLujiuF-NTtgL",
     "categoria": "Multimedia"
+  },
+ {
+    "titulo": "Identidad Visual - Tecno730",
+    "creador": "Damian Cruz | Tecno730",
+    "descripcion": "Identidad visual creada para Tecno. El proyecto reúne elementos gráficos pensados para dar una imagen coherente al canal y sus contenidos..",
+    "imagen": "data/portafolio/Tecno/Tecno.webp",
+    "url": "https://www.youtube.com/@TECNO730",
+    "categoria": "Multimedia"
   }
 ]

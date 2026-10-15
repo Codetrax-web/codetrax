@@ -28,10 +28,10 @@ const SERVICES = [
    con "TU_" aparece como "Próximamente" (así nunca hay enlaces rotos).
 ===================================================== */
 const DONATIONS = {
-    paypalUser:  '@DamianCruz436',          // Usuario de paypal.me/TU_USUARIO
-    banco:       'Morse',                   // Ej. BBVA
-    titular:     'Damian Cruz',             // Nombre del titular de la cuenta
-    clabe:       '4240754827429022'      // CLABE interbancaria (18 dígitos)
+    paypalUser:  'TU_USUARIO_PAYPAL',      // Usuario de paypal.me/TU_USUARIO
+    banco:       'TU_BANCO',               // Ej. BBVA
+    titular:     'TU_NOMBRE_TITULAR',      // Nombre del titular de la cuenta
+    clabe:       'TU_CLABE_18_DIGITOS'     // CLABE interbancaria (18 dígitos)
 };
 // Atajos OPCIONALES: solo rellenan el campo de monto; la persona puede escribir cualquier cantidad. Pon [] para quitarlos.
 const MONTOS = [];   // vacío = la persona escribe el monto que quiera, sin cantidades sugeridas
@@ -50,7 +50,7 @@ function cardActions({ url, download, label, id, liked, likes, allowDownload = f
     const dl = allowDownload ? (download || (isFile(url) ? url : null)) : null;
     const demo = url && url !== dl ? url : null;
     const ext = dl ? String(dl).split('?')[0].split('.').pop().toLowerCase() : '';
-    const kind = ext === 'ino' ? 'Arduino · .ino' : 'Archivo .' + ext;
+    const kind = ext === 'ino' ? 'Arduino · .ino' : ext === 'zip' ? 'Código fuente · .zip' : 'Archivo .' + ext;
     return `
         ${demo ? `<a href="${esc(safeUrl(demo))}" target="_blank" rel="noopener noreferrer" class="btn-glass project-link">${label}</a>` : ''}
         <button type="button" class="btn-like ${liked ? 'liked' : ''}" data-id="${esc(id)}" aria-pressed="${!!liked}" aria-label="Me gusta">
@@ -72,7 +72,7 @@ function donateMethods() {
     const link = (href, txt, extra = '') => `<a class="neon-button" href="${href}" target="_blank" rel="noopener noreferrer" ${extra}>${txt}</a>`;
     return [
         card('fa-brands fa-paypal', 'PayPal', 'Escribe arriba la cantidad que quieras y paga con tu cuenta o tarjeta.',
-             ready(D.paypalUser), link('https://paypal.me/DamianCruz436' + D.paypalUser, 'Donar con PayPal', 'data-paypal="' + D.paypalUser + '"')),
+             ready(D.paypalUser), link('https://paypal.me/' + D.paypalUser, 'Donar con PayPal', 'data-paypal="' + D.paypalUser + '"')),
         card('fa-solid fa-building-columns', 'Transferencia', ready(D.clabe) ? `${D.banco} · ${D.titular}` : 'SPEI desde tu banco, sin comisiones.',
              ready(D.clabe), `<code class="clabe">${D.clabe}</code><button type="button" class="neon-button copy-btn" data-copy="${D.clabe}">Copiar CLABE</button>`)
     ].join('');
@@ -229,7 +229,7 @@ const TITLES = {
           3) copia Project URL y la clave "anon public" (Settings > API) y pégalas abajo.
    La clave anon es pública por diseño; la seguridad la dan las reglas del SQL.
 ===================================================== */
-const METRICS = { url:'https://ukdzhpdbtbhhgfpdgmjb.supabase.co/rest/v1/', anonKey:'TU_ANON_KEY' };
+const METRICS = { url:'https://TU_PROYECTO.supabase.co', anonKey:'TU_ANON_KEY' };
 const metricsReady = () => ENABLE_REMOTE_METRICS && !METRICS.url.includes('TU_') && !METRICS.anonKey.includes('TU_');
 const metricsHeaders = () => ({ 'apikey': METRICS.anonKey, 'Authorization': 'Bearer ' + METRICS.anonKey, 'Content-Type': 'application/json' });
 
@@ -646,7 +646,7 @@ files: `
             <div class="profile-tag">Diseñadora Gráfica Anime</div>
             <p>────── ·𖥸· ──────</p>
       <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-            <a href="https://ko-fi.com/naokotan" target="_blank" rel="noopener noreferrer" aria-label="Globe" style="color:white;"><i class="fas fa-globe"></i></a>
+            <a href="https://ko-fi.com/naokotan" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi de Naoko Aki" style="color:white;"><i class="fas fa-globe"></i></a>
 
       </div>
       </div>
@@ -835,7 +835,7 @@ contacto: `
             <button type="submit" class="neon-button">Enviar mensaje</button>
         </form>
         <!-- Botón flotante de WhatsApp: cambia 521XXXXXXXXXX por tu número con lada (52 + 1 + 10 dígitos) -->
-        <a class="whatsapp-float" href="https://wa.me/+52 1 55 7852 6705?text=Hola%20Codetrax%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+        <a class="whatsapp-float" href="https://wa.me/521XXXXXXXXXX?text=Hola%20Codetrax%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
     </section>
 `
     };

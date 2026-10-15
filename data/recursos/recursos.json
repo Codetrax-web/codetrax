@@ -5,7 +5,8 @@
     "descripcion": "Trofeo digital interactivo con temática automotriz, pensado para reconocer a participantes o ganadores de un evento. Su presentación puede adaptarse a cada ocasión.",
     "imagen": "data/recursos/codigo/copa/copa.webp",
     "url": "https://codetrax-web.github.io/Copa-piston/",
-    "categoria": "Código"
+    "categoria": "Código",
+    "descarga": "https://github.com/codetrax-web/Copa-piston/archive/refs/heads/main.zip"
   },
   {
     "titulo": "Orquídea Azul",
@@ -13,7 +14,8 @@
     "descripcion": "Sitio web conceptual que combina una propuesta visual en tonos azules con animaciones e interacción. Visítalo para recorrer la experiencia.",
     "imagen": "data/recursos/codigo/orquidea/orquidea.webp",
     "url": "https://codetrax-web.github.io/Orquidea-Azul/",
-    "categoria": "Código"
+    "categoria": "Código",
+    "descarga": "https://github.com/codetrax-web/Orquidea-Azul/archive/refs/heads/main.zip"
   },
   {
     "titulo": "Rosa roja",
@@ -21,7 +23,8 @@
     "descripcion": "Experiencia web conceptual dedicada a una rosa roja, con una presentación visual animada. Abre el proyecto para explorar cómo se desarrolla en pantalla.",
     "imagen": "data/recursos/codigo/Rosa/ros.webp",
     "url": "https://codetrax-web.github.io/Rosa_roja/",
-    "categoria": "Código"
+    "categoria": "Código",
+    "descarga": "https://github.com/codetrax-web/Rosa_roja/archive/refs/heads/main.zip"
   },
   {
     "titulo": "Pokébola Sorpresa",
@@ -29,7 +32,8 @@
     "descripcion": "Experiencia web interactiva inspirada en Pokémon y pensada como un regalo sorpresa. Visita la página para descubrir su contenido.",
     "imagen": "data/recursos/codigo/pokebol/poke.webp",
     "url": "https://codetrax-web.github.io/Pokebola/",
-    "categoria": "Código"
+    "categoria": "Código",
+    "descarga": "https://github.com/codetrax-web/Pokebola/archive/refs/heads/main.zip"
   },
   {
     "titulo": "Flores Amarillas",
@@ -37,7 +41,8 @@
     "descripcion": "Detalle digital de flores amarillas presentado como una experiencia web animada. Abre el proyecto para recorrer la composición.",
     "imagen": "data/recursos/codigo/flor_amarilla/amarilla.webp",
     "url": "https://codetrax-web.github.io/Flores-Amarillas",
-    "categoria": "Código"
+    "categoria": "Código",
+    "descarga": "https://github.com/codetrax-web/Flores-Amarillas/archive/refs/heads/main.zip"
   },
   {
     "titulo": "Certificado VIP Digital",
@@ -45,7 +50,8 @@
     "descripcion": "Certificado digital personalizable para celebraciones, eventos o reconocimientos. Permite presentar el reconocimiento con un diseño festivo.",
     "imagen": "data/recursos/codigo/fiesta/vip.webp",
     "url": "https://codetrax-web.github.io/Certificado-fiestero/",
-    "categoria": "Código"
+    "categoria": "Código",
+    "descarga": "https://github.com/codetrax-web/Certificado-fiestero/archive/refs/heads/main.zip"
   },
   {
     "titulo": "Sistema de Riego Automatizado",
