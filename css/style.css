@@ -1316,3 +1316,99 @@ body.modal-open { overflow:hidden; }
     border-radius:14px; background:#121212; border:1px solid var(--gt-blue-light); box-shadow:0 0 22px rgba(91,123,255,.35);
     color:#fff; font-size:.95rem; line-height:1.5; text-align:center; z-index:2000; transition:transform .45s ease; }
 #toast.show { transform:translate(-50%,0); }
+
+/* =====================================================
+   VIDEO INTRO (movido desde el <style> inline de index.html
+   para poder quitar 'unsafe-inline' de style-src en la CSP)
+===================================================== */
+/* Capa superpuesta que cubre toda la pantalla para el vídeo */
+#video-intro-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: opacity 0.8s ease;
+}
+/* Ajuste del reproductor de video */
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+/* Botón flotante para omitir la intro */
+#skip-intro {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100000;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: 0.3s;
+    display: block;
+}
+#skip-intro:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+/* En móvil vertical se usa el video 9:16 y se llena la pantalla */
+@media (max-width: 768px) and (orientation: portrait) {
+    #intro-video { object-fit: cover; }
+}
+/* Adaptación de estilos para pantallas de teléfonos celulares */
+@media (max-width: 768px) {
+    #skip-intro {
+        display: block;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+        font-size: 0.8rem;
+        z-index: 100000;
+    }
+}
+
+/* Clases que sustituyen los atributos style="..." que había en index.html
+   (la CSP ya no permite estilos inline). #bg-particles no necesita clase nueva:
+   su regla ya existía más arriba en este archivo. */
+.noscript-msg { padding: 20px; }
+.site-footer { text-align: center; padding: 20px; color: #fff; font-size: 0.9rem; margin-top: 40px; }
+
+/* Accesibilidad: respeta "reducir movimiento" del sistema operativo */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Clases para estilos antes inline en js/main.js (CSP sin 'unsafe-inline') */
+.empty-state { grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px); }
+.empty-state-sm { padding: 20px; border-radius: 15px; }
+.empty-state-text { color: #fff; font-size: 1.2rem; }
+.empty-state-sm .empty-state-text { font-size: 1rem; }
+.search-result-link { text-decoration: none; width: 100%; }
+.search-result-btn { width: 100%; }
+.search-result-inner { padding: 8px 18px; font-size: 0.85rem; text-align: center; }
+.team-grid-wide { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.social-links { margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem; }
+.social-link { color: white; font-size: 1.2rem; }
+.text-center { text-align: center; }
+.contact-hub-wrap { display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 20px; }
+.icon-green { color: #00ff5e; }
+.icon-red { color: #F00000; }
+.honeypot { display: none; }
+/* Sin JS: la intro no debe tapar el sitio (index.html usa <html class="no-js">, main.js quita la clase) */
+.no-js #video-intro-overlay { display: none !important; }
+/* 404 */
+.error-page { justify-content: center; text-align: center; }
+.error-title { font-size: 5rem; }
+.error-msg { margin: 10px 0 24px; }
