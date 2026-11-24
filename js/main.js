@@ -1,3 +1,4 @@
+document.documentElement.classList.remove('no-js');
 /* =====================================================
    AJUSTES GENERALES DEL SITIO (editar aquí)
 ===================================================== */
@@ -12,6 +13,43 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g,
 // SEGURIDAD: valida enlaces que vienen de JSON o de APIs. Solo permite http(s) y rutas relativas;
 // cualquier otro esquema (javascript:, data:, vbscript:) se reemplaza por "#".
 const safeUrl = u => { try { return ['https:', 'http:'].includes(new URL(u, location.href).protocol) ? u : '#'; } catch (e) { return '#'; } };
+
+// safeStorage: localStorage puede lanzar SecurityError (Safari privado, storage bloqueado)
+// o QuotaExceededError (lleno). Sin esto, un solo acceso tumba todo el script.
+// Devuelve null en lectura y no hace nada en escritura si falla, nunca lanza.
+const safeStorage = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
+    remove(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+// parseInt seguro: nunca devuelve NaN; si el valor guardado esta corrupto, usa el fallback.
+const safeInt = (v, fallback = 0) => { const n = parseInt(v, 10); return Number.isFinite(n) ? n : fallback; };
+// Sanitizador por allowlist para HTML de confianza (blog). Sin dependencias nuevas:
+// permite solo p,h2,h3,pre,code,a,strong,em,ul,ol,li; elimina script/style/iframe,
+// atributos on*=, href/src javascript:/data:, y style. Lo demas se escapa como texto.
+function sanitizeHtml(html) {
+    const allowed = new Set(['p','h2','h3','pre','code','a','strong','em','ul','ol','li']);
+    const tmp = document.createElement('div');
+    tmp.innerHTML = String(html ?? '');
+    const clean = (node) => {
+        [...node.childNodes].forEach(child => {
+            if (child.nodeType === 3) return;
+            if (child.nodeType !== 1) { child.remove(); return; }
+            const tag = child.tagName.toLowerCase();
+            if (!allowed.has(tag)) { clean(child); node.replaceChild(document.createTextNode(child.textContent), child); return; }
+            [...child.attributes].forEach(a => {
+                const n = a.name.toLowerCase();
+                if (tag === 'a' && n === 'href') {
+                    const v = String(a.value || '').trim().toLowerCase();
+                    if (!(v.startsWith('#/') || v.startsWith('https://') || v.startsWith('http://'))) child.removeAttribute(a.name);
+                } else child.removeAttribute(a.name);
+            });
+            clean(child);
+        });
+    };
+    clean(tmp);
+    return tmp.innerHTML;
+}
 
 // Servicios mostrados en el Home (antes solo estaban en la pestaña "Servicios").
 const SERVICES = [
@@ -49,7 +87,7 @@ function cardActions({ url, download, label, id, liked, likes, allowDownload = f
     const isFile = u => /\.(ino|zip|rar|7z|pdf|py|js)$/i.test(String(u || '').split('?')[0]);
     const dl = allowDownload ? (download || (isFile(url) ? url : null)) : null;
     const demo = url && url !== dl ? url : null;
-    const ext = dl ? String(dl).split('?')[0].split('.').pop().toLowerCase() : '';
+    const ext = dl ? (/\.ino\b/i.test(String(dl)) ? 'ino' : String(dl).split('?')[0].split('.').pop().toLowerCase()) : '';
     const kind = ext === 'ino' ? 'Arduino · .ino' : ext === 'zip' ? 'Código fuente · .zip' : 'Archivo .' + ext;
     return `
         ${demo ? `<a href="${esc(safeUrl(demo))}" target="_blank" rel="noopener noreferrer" class="btn-glass project-link">${label}</a>` : ''}
@@ -117,7 +155,8 @@ const track = name => { try { window.umami && window.umami.track(name); } catch 
    La interfaz está en español. Si el idioma es "en", applyI18n() reemplaza el texto de cada elemento
    cuyo texto exacto aparezca en este diccionario. Para traducir algo más, agrégalo aquí. */
 // Idioma inicial: el que el visitante eligió antes; si no, el de su navegador (en/es).
-let lang = localStorage.getItem('lang') || ((navigator.language || 'es').slice(0, 2) === 'en' ? 'en' : 'es');
+let lang = safeStorage.get('lang');
+lang = (lang === 'es' || lang === 'en') ? lang : ((navigator.language || 'es').slice(0, 2) === 'en' ? 'en' : 'es');
 const EN = {
  'INICIO':'HOME','SERVICIOS':'SERVICES','RECURSOS':'RESOURCES','PORTAFOLIO':'PORTFOLIO','APOYA':'SUPPORT','CONTACTO':'CONTACT',
  'Saltar al contenido':'Skip to content','Aviso de privacidad':'Privacy notice','Términos':'Terms',
@@ -157,7 +196,7 @@ let _gReviews;
 function loadGoogleReviews() {
     if (_gReviews) return _gReviews;
     if (GOOGLE_REVIEWS.placeId.startsWith('TU_') || GOOGLE_REVIEWS.apiKey.startsWith('TU_')) return (_gReviews = Promise.resolve(null));
-    try { const c = JSON.parse(localStorage.getItem('gr-cache')); if (c && Date.now() - c.t < 864e5) return (_gReviews = Promise.resolve(c.d)); } catch (e) {}
+    try { const c = JSON.parse(safeStorage.get('gr-cache')); if (c && typeof c.t === 'number' && c.d && Array.isArray(c.d.reviews) && Date.now() - c.t < 864e5) return (_gReviews = Promise.resolve(c.d)); } catch (e) {}
     return (_gReviews = fetch(`https://places.googleapis.com/v1/places/${GOOGLE_REVIEWS.placeId}?languageCode=es`, {
         headers: { 'X-Goog-Api-Key': GOOGLE_REVIEWS.apiKey, 'X-Goog-FieldMask': 'rating,userRatingCount,googleMapsUri,reviews' }
     }).then(r => r.ok ? r.json() : null).then(p => {
@@ -165,7 +204,7 @@ function loadGoogleReviews() {
         const d = { rating: p.rating, count: p.userRatingCount, url: p.googleMapsUri, reviews: (p.reviews || []).map(r => ({
             nombre: r.authorAttribution?.displayName || '', link: r.authorAttribution?.uri || '', foto: r.authorAttribution?.photoUri || '',
             sub: r.relativePublishTimeDescription || '', rating: r.rating, texto: r.text?.text || r.originalText?.text || '' })).filter(r => r.texto) };
-        try { localStorage.setItem('gr-cache', JSON.stringify({ t: Date.now(), d })); } catch (e) {}
+        safeStorage.set('gr-cache', JSON.stringify({ t: Date.now(), d }));
         return d;
     }).catch(() => null));   // si falla (cuota, clave mal restringida), el sitio sigue sin reseñas
 }
@@ -180,7 +219,7 @@ function fillSlots() {
     slot('stack-slot', `<h2 class="section-title">Tecnologías con las que trabajamos</h2>
         <ul class="stack-row">${STACK.map(s => `<li><i class="${s.i}" aria-hidden="true"></i><span>${esc(s.n)}</span></li>`).join('')}</ul>`);
     // --- Testimonios: manuales + reseñas de Google (si están configuradas) ---
-    const manual = TESTIMONIOS.filter(t => !t.texto.startsWith('TU_') && !t.nombre.startsWith('TU_'))
+    const manual = TESTIMONIOS.filter(t => t && String(t.texto ?? '').startsWith('TU_') === false && String(t.nombre ?? '').startsWith('TU_') === false && t.texto && t.nombre)
         .map(t => ({ nombre:t.nombre, sub:t.rol, texto:t.texto, foto:t.foto, rating:0, link:'' }));
     const stars = n => n ? `<span class="stars" role="img" aria-label="${n} de 5">${'★'.repeat(n)}${'☆'.repeat(5 - n)}</span>` : '';
     const card = t => `<figure class="testi-card"><div>${stars(t.rating)}</div>
@@ -228,6 +267,7 @@ const TITLES = {
    Pasos: 1) crea un proyecto gratis en supabase.com  2) ejecuta supabase-setup.sql en el SQL Editor
           3) copia Project URL y la clave "anon public" (Settings > API) y pégalas abajo.
    La clave anon es pública por diseño; la seguridad la dan las reglas del SQL.
+   NUNCA pegues la clave service_role aqui: da acceso total y bypass a RLS a cualquiera que lea este JS publico.
 ===================================================== */
 const METRICS = { url:'https://TU_PROYECTO.supabase.co', anonKey:'TU_ANON_KEY' };
 const metricsReady = () => ENABLE_REMOTE_METRICS && !METRICS.url.includes('TU_') && !METRICS.anonKey.includes('TU_');
@@ -268,37 +308,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lee los contadores de una tabla ('Portafolio' o 'Recursos') y devuelve { "titulo en minúsculas": {likes, vistas} }
     async function fetchMetrics(tabName) {
         if (!metricsReady()) return {};
+        const c = new AbortController(); const to = setTimeout(() => c.abort(), 3000);
         try {
-            const res = await fetch(`${METRICS.url}/rest/v1/metricas?tabla=eq.${encodeURIComponent(tabName)}&select=titulo,likes,vistas`, { headers: metricsHeaders() });
+            const res = await fetch(`${METRICS.url}/rest/v1/metricas?tabla=eq.${encodeURIComponent(tabName)}&select=titulo,likes,vistas`, { headers: metricsHeaders(), signal: c.signal });
             if (!res.ok) return {};
+            const data = await res.json();
             const map = {};
-            (await res.json()).forEach(r => { map[r.titulo.trim().toLowerCase()] = { likes: r.likes || 0, vistas: r.vistas || 0 }; });
+            (Array.isArray(data) ? data : []).forEach(r => {
+                const t = String(r && r.titulo ? r.titulo : '').trim().toLowerCase();
+                if (!t) return;
+                map[t] = { likes: Number(r.likes) || 0, vistas: Number(r.vistas) || 0 };
+            });
             return map;
         } catch (err) {
             console.error('Error leyendo métricas:', err);
             return {};
-        }
+        } finally { clearTimeout(to); }
+    }
+    // Carga un JSON local; si falla, no es ok, esta malformado o no es array, devuelve [].
+    // Asi un archivo roto no aborta el otro ni el render.
+    async function loadJson(url) {
+        try {
+            const r = await fetch(url);
+            if (!r.ok) return [];
+            const d = await r.json();
+            return Array.isArray(d) ? d : [];
+        } catch (e) { console.error('Error cargando ' + url + ':', e); return []; }
     }
 
     async function loadDataAndSyncCounters() {
         try {
-            // 1. Cargar datos principales siempre desde los archivos JSON locales
-            const [portRes, recRes] = await Promise.all([
-                fetch('./data/portafolio/index.json').catch(() => null),
-                fetch('./data/recursos/recursos.json').catch(() => null)
+            // 1. Cargar datos principales siempre desde los archivos JSON locales, cada uno por separado
+            const [portData, recData] = await Promise.all([
+                loadJson('./data/portafolio/index.json'),
+                loadJson('./data/recursos/recursos.json')
             ]);
-
-            portfolioProjects = portRes && portRes.ok ? await portRes.json() : [];
-            recursosProjects = recRes && recRes.ok ? await recRes.json() : [];
-
-            // 2. Traer los contadores acumulados desde Supabase
-            const [portMetrics, recMetrics] = await Promise.all([
-                fetchMetrics('Portafolio'),
-                fetchMetrics('Recursos')
-            ]);
-
-            metricsCache.Portafolio = portMetrics;
-            metricsCache.Recursos = recMetrics;
+            portfolioProjects = portData.filter(p => p && String(p.titulo ?? '').trim());
+            recursosProjects = recData.filter(p => p && String(p.titulo ?? '').trim());
 
             window.searchableData = [
                 ...portfolioProjects,
@@ -311,11 +357,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 { titulo: "Miguel Pandares", descripcion: "Desarrollador Full Stack", imagen: "assets/team/Miguel.webp", url: "https://linktr.ee/migueltime" }
             ];
 
+            // Contador de proyectos: siempre desde los datos reales, nunca hardcodeado.
+            const projCounter = document.querySelector('.counter[data-target]');
+            if (projCounter && portfolioProjects.length) projCounter.dataset.target = String(portfolioProjects.length);
+            // Pintar primero con datos locales; las metricas remotas no bloquean el contenido.
             renderPortfolio('Todos');
             renderRecursos('Todos'); // necesario si el usuario entra directo a #/plans
             initializeFilters();
+            // 2. Contadores desde Supabase, en segundo plano y con timeout (ver fetchMetrics)
+            Promise.all([fetchMetrics('Portafolio'), fetchMetrics('Recursos')]).then(([portMetrics, recMetrics]) => {
+                metricsCache.Portafolio = portMetrics;
+                metricsCache.Recursos = recMetrics;
+                renderPortfolio('Todos'); renderRecursos('Todos');
+            }).catch(e => console.error('Error al cargar metricas:', e));
         } catch (error) {
             console.error('Error al cargar datos locales/métricas:', error);
+            try { renderPortfolio('Todos'); renderRecursos('Todos'); initializeFilters(); } catch (e2) {}
         }
     }
 
@@ -348,22 +405,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (filteredProjects.length === 0) {
             grid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px);">
-                    <p style="color: #fff; font-size: 1.2rem;">No hay proyectos disponibles.</p>
+                <div class="empty-state">
+                    <p class="empty-state-text">No hay proyectos disponibles.</p>
                 </div>`;
             return;
         }
 
-        grid.innerHTML = filteredProjects.map(project => {
-            const uniqueId = `port_${project.titulo.toLowerCase().replace(/\s+/g, '-')}`;
-            const keyTitle = project.titulo.trim().toLowerCase();
+        grid.innerHTML = filteredProjects.map((project, i) => {
+            const title = String(project.titulo ?? '').trim();
+            if (!title) return '';
+            const uniqueId = `port_${i}_${title.toLowerCase().replace(/\s+/g, '-')}`;
+            const keyTitle = title.toLowerCase();
             const sheetLikeCount = metricsCache.Portafolio[keyTitle]?.likes;
 
-            const savedLikes = sheetLikeCount !== undefined 
-                ? sheetLikeCount 
-                : (localStorage.getItem(uniqueId) ? parseInt(localStorage.getItem(uniqueId)) : (parseInt(project.likes) || 0));
+            const savedLikes = sheetLikeCount !== undefined
+                ? sheetLikeCount
+                : safeInt(safeStorage.get(uniqueId), safeInt(project.likes, 0));
 
-            const isLiked = localStorage.getItem(`${uniqueId}_liked`) === 'true';
+            const isLiked = safeStorage.get(`${uniqueId}_liked`) === 'true';
 
             return `
                 <div class="project-card" tabindex="0" role="button" aria-label="Ver detalles de ${esc(project.titulo)}" data-card-id="${uniqueId}" data-title="${esc(project.titulo)}" data-tab="Portafolio">
@@ -407,7 +466,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateCounters(){
         const counters = document.querySelectorAll(".counter");
         counters.forEach(counter => {
-            const target = +counter.dataset.target;
+            const target = Number(counter.dataset.target);
+            if (!Number.isFinite(target) || target < 0) { counter.textContent = '0'; return; }
+            if (REDUCED_MOTION) { counter.textContent = String(target); return; }
             let current = 0;
             const increment = Math.max(1, Math.ceil(target / 100));
             const update = () => {
@@ -455,8 +516,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (filtered.length === 0) {
                 resultsGrid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 20px; background: rgba(0,0,0,0.3); border-radius: 15px;">
-                        <p style="color: #fff;">No se encontró nada relacionado con "${esc(term)}" en este apartado.</p>
+                    <div class="empty-state empty-state-sm">
+                        <p class="empty-state-text">No se encontró nada relacionado con "${esc(term)}" en este apartado.</p>
                     </div>`;
                 return;
             }
@@ -475,11 +536,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <h3>${esc(p.titulo)}</h3>
                             <p class="card-description-text">${esc(p.descripcion || 'Sin descripción disponible.')}</p>
                             <div class="card-back-actions">
-                                <a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer" class="project-link" style="text-decoration: none; width: 100%;">
-                                    <button class="button" style="width: 100%;">
+                                <a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer" class="project-link search-result-link">
+                                    <button class="button search-result-btn">
                                         <div class="blob1"></div>
                                         <div class="blob2"></div>
-                                        <div class="inner" style="padding: 8px 18px; font-size: 0.85rem; text-align: center;">VER</div>
+                                        <div class="inner search-result-inner">VER</div>
                                     </button>
                                 </a>
                             </div>
@@ -585,7 +646,7 @@ files: `
         
         <div class="about-card">
             <h2>05 // Infraestructura [Equipo]</h2>
-            <div class="team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div class="team-grid team-grid-wide">
                 <!-- Tarjetas del equipo (Mantén tus clases, estructura optimizada) -->
                
       <div class="card red">
@@ -593,12 +654,12 @@ files: `
             <h2>Damian Cruz</h2>
             <div class="profile-tag">Fundador | CEO</div>
             <p>────── ·𖥸· ──────</p>
-      <div class="social-links" style="margin-top: 10px; display: flex; justify-content: center; gap: 15px;">
-            <a href="https://www.instagram.com/damia_ncv" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/Codetrax-web" target="_blank" rel="noopener noreferrer" aria-label="Github" style="color:white; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
-            <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" style="color:white; font-size: 1.2rem;"><i class="fab fa-tiktok"></i></a>
-            <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" rel="noopener noreferrer" aria-label="Discord" style="color:white; font-size: 1.2rem;"><i class="fab fa-discord"></i></a>
-            <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" rel="noopener noreferrer" aria-label="Youtube" style="color:white;"><i class="fab fa-youtube"></i></a>
+      <div class="social-links">
+            <a href="https://www.instagram.com/damia_ncv" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/Codetrax-web" target="_blank" rel="noopener noreferrer" aria-label="Github" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" class="social-link"><i class="fab fa-tiktok"></i></a>
+            <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" rel="noopener noreferrer" aria-label="Youtube" class="social-link"><i class="fab fa-youtube"></i></a>
       </div>
       </div>
 
@@ -607,7 +668,7 @@ files: `
             <h2>Ricardo</h2>
             <div class="profile-tag">Desarrollador Full Stack</div>
             <p>────── ·𖥸· ──────</p>
-      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
+      <div class="social-links">
 
       </div>
       </div>
@@ -617,13 +678,13 @@ files: `
             <h2>Miguel Pandares</h2>
             <div class="profile-tag">Desarrollador Full Stack</div>
             <p>────── ·𖥸· ──────</p>
-      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-            <a href="https://github.com/MiguelTime" target="_blank" rel="noopener noreferrer" aria-label="Github" style="color:white;"><i class="fab fa-github"></i></a>
-            <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" style="color:white;"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/migueltime_yt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:white;"><i class="fab fa-instagram"></i></a>
-            <a href="https://discord.com/invite/SFffG38VFb" target="_blank" rel="noopener noreferrer" aria-label="Discord" style="color:white;"><i class="fab fa-discord"></i></a>
-            <a href="https://www.twitch.tv/migueltime" target="_blank" rel="noopener noreferrer" aria-label="Twitch" style="color:white;"><i class="fab fa-twitch"></i></a>
-            <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" rel="noopener noreferrer" aria-label="Youtube" style="color:white;"><i class="fab fa-youtube"></i></a>
+      <div class="social-links">
+            <a href="https://github.com/MiguelTime" target="_blank" rel="noopener noreferrer" aria-label="Github" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="https://www.tiktok.com/@migueltime_yt?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" class="social-link"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/migueltime_yt/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://discord.com/invite/SFffG38VFb" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="https://www.twitch.tv/migueltime" target="_blank" rel="noopener noreferrer" aria-label="Twitch" class="social-link"><i class="fab fa-twitch"></i></a>
+            <a href="https://www.youtube.com/channel/UC4UWTtlSDu8YyiQtpVXQ7LA" target="_blank" rel="noopener noreferrer" aria-label="Youtube" class="social-link"><i class="fab fa-youtube"></i></a>
 
       </div>
       </div>
@@ -633,9 +694,9 @@ files: `
             <h2>DynsG</h2>
             <div class="profile-tag">Diseñadora Gráfica</div>
             <p>────── ·𖥸· ──────</p>
-      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-            <a href="https://x.com/AltamarDyn3634" target="_blank" rel="noopener noreferrer" aria-label="Twitter" style="color:white;"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" rel="noopener noreferrer" aria-label="Youtube" style="color:white;"><i class="fab fa-youtube"></i></a>
+      <div class="social-links">
+            <a href="https://x.com/AltamarDyn3634" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@Dyns.g-Oficial/videos" target="_blank" rel="noopener noreferrer" aria-label="Youtube" class="social-link"><i class="fab fa-youtube"></i></a>
 
       </div>
       </div>
@@ -645,8 +706,8 @@ files: `
             <h2>Naoko Aki</h2>
             <div class="profile-tag">Diseñadora Gráfica Anime</div>
             <p>────── ·𖥸· ──────</p>
-      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-            <a href="https://ko-fi.com/naokotan" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi de Naoko Aki" style="color:white;"><i class="fas fa-globe"></i></a>
+      <div class="social-links">
+            <a href="https://ko-fi.com/naokotan" target="_blank" rel="noopener noreferrer" aria-label="Ko-fi de Naoko Aki" class="social-link"><i class="fas fa-globe"></i></a>
 
       </div>
       </div>
@@ -656,12 +717,12 @@ files: `
             <h2>Tecno 730</h2>
             <div class="profile-tag">Diseñador Multimedia</div>
             <p>────── ·𖥸· ──────</p>
-      <div class="social-links" style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; font-size: 1.2rem;">
-            <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" style="color:white;"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/tecno_730/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:white;"><i class="fab fa-instagram"></i></a>
-            <a href="https://discord.gg/tbUVxyGU" target="_blank" rel="noopener noreferrer" aria-label="Discord" style="color:white;"><i class="fab fa-discord"></i></a>
-            <a href="https://www.twitch.tv/tecno730" target="_blank" rel="noopener noreferrer" aria-label="Twitch" style="color:white;"><i class="fab fa-twitch"></i></a>
-            <a href="https://www.youtube.com/@TECNO730" target="_blank" rel="noopener noreferrer" aria-label="Youtube" style="color:white;"><i class="fab fa-youtube"></i></a>
+      <div class="social-links">
+            <a href="https://www.tiktok.com/@tecno_730?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" class="social-link"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/tecno_730/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://discord.gg/tbUVxyGU" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="https://www.twitch.tv/tecno730" target="_blank" rel="noopener noreferrer" aria-label="Twitch" class="social-link"><i class="fab fa-twitch"></i></a>
+            <a href="https://www.youtube.com/@TECNO730" target="_blank" rel="noopener noreferrer" aria-label="Youtube" class="social-link"><i class="fab fa-youtube"></i></a>
                     
       </div>
       </div>
@@ -706,7 +767,7 @@ settings: `
 donar: `
     <section class="about-section">
         <h1 class="about-title">『 APOYA 』</h1>
-        <p style="text-align:center">Codetrax crea recursos y proyectos abiertos para la comunidad. Si te sirvieron, tu apoyo nos ayuda a seguir publicando.</p>
+        <p class="text-center">Codetrax crea recursos y proyectos abiertos para la comunidad. Si te sirvieron, tu apoyo nos ayuda a seguir publicando.</p>
         <!-- MONTO LIBRE: la persona decide cuánto aportar. El enlace de PayPal se actualiza solo con lo que escriba. -->
         <div class="amount-box">
             <label for="amount-input">Tú decides cuánto aportar</label>
@@ -736,16 +797,16 @@ blog: (slug) => {
         <article class="about-section post">
             <a href="#/blog" class="post-back">← Volver al blog</a>
             <h1>${esc(p.titulo)}</h1>
-            <p class="post-meta">${esc(p.fecha)} · ${(p.tags || []).map(esc).join(', ')}</p>
-            <div class="post-body">${p.contenido}</div>
+            <p class="post-meta">${esc(p.fecha)} · ${(Array.isArray(p.tags) ? p.tags : []).map(esc).join(', ')}</p>
+            <div class="post-body">${sanitizeHtml(p.contenido)}</div>
             <div id="sub-slot" class="sub-section"></div>   <!-- HTML propio (data/blog/posts.json), por eso no se escapa -->
         </article>` : `<section class="about-section"><p>No encontramos ese artículo. <a href="#/blog">Volver al blog</a></p></section>`;
     return `<section class="about-section"><h1 class="about-title">『 BLOG 』</h1>
-        <p style="text-align:center">Tutoriales y notas</p>
-        <div class="post-list">${blogPosts.map(x => `
+        <p class="text-center">Tutoriales y notas</p>
+        <div class="post-list">${blogPosts.filter(x => x && x.slug && x.titulo).map(x => `
             <a class="post-card" href="#/blog/${esc(x.slug)}">
                 <h3>${esc(x.titulo)}</h3><p>${esc(x.resumen)}</p>
-                <span class="donate-cta">Leer más</span></a>`).join('') || '<p style="text-align:center">Próximamente.</p>'}</div>
+                <span class="donate-cta">Leer más</span></a>`).join('') || '<p class="text-center">Próximamente.</p>'}</div>
         <div id="sub-slot" class="sub-section"></div></section>`;
 },
 
@@ -783,8 +844,8 @@ terminos: `
 contacto: `
     <section class="about-section">
         <h1 class="about-title">『 CONTACTO 』</h1>
-        <p style="text-align: center;">¿Tienes una visión? Nosotros tenemos la tecnología. Colaboremos.</p>
-        <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 20px;">
+        <p class="text-center">¿Tienes una visión? Nosotros tenemos la tecnología. Colaboremos.</p>
+        <div class="contact-hub-wrap">
             <div class="contact-hub">
                 <div class="socials">
                     <a href="https://www.instagram.com/cod_etrax" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -795,7 +856,7 @@ contacto: `
                 </div>
                 <div class="action-btns">
                     <a href="https://calendar.app.google/7iAyjJockVxnrkot9" target="_blank" rel="noopener noreferrer" class="action-btn">
-                        <i class="fa-solid fa-video main-icon" style="color: #00ff5e;"></i>
+                        <i class="fa-solid fa-video main-icon icon-green"></i>
                         <div class="btn-content">
                             <span class="btn-title">Google Meet</span>
                             <span class="btn-desc">Agendar consultoría</span>
@@ -804,7 +865,7 @@ contacto: `
                     </a>
                     <!-- Zoom retirado: duplicaba a Google Meet. Un solo agendador evita confusión -->
                     <a href="mailto:codetraxs@gmail.com?subject=Propuesta%20de%20Proyecto" class="action-btn">
-                        <i class="fa-solid fa-envelope main-icon" style="color: #F00000;"></i>
+                        <i class="fa-solid fa-envelope main-icon icon-red"></i>
                         <div class="btn-content">
                             <span class="btn-title">Email Directo</span>
                             <span class="btn-desc">Contáctanos vía correo</span>
@@ -830,12 +891,12 @@ contacto: `
             </select>
             <label for="cf-msg">Mensaje</label>
             <textarea id="cf-msg" name="mensaje" rows="4" required></textarea>
-            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true"> <!-- honeypot: los bots lo llenan, las personas no -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true"> <!-- honeypot: los bots lo llenan, las personas no -->
             <label class="consent"><input type="checkbox" required> Acepto el <a href="#/privacidad">aviso de privacidad</a></label>
             <button type="submit" class="neon-button">Enviar mensaje</button>
         </form>
-        <!-- Botón flotante de WhatsApp: cambia 521XXXXXXXXXX por tu número con lada (52 + 1 + 10 dígitos) -->
-        <a class="whatsapp-float" href="https://wa.me/521XXXXXXXXXX?text=Hola%20Codetrax%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+        <!-- Botón flotante de WhatsApp: número real de Damian (52 + 1 + 5578526705) -->
+        <a class="whatsapp-float" href="https://wa.me/5215578526705?text=Hola%20Codetrax%2C%20quiero%20cotizar%20un%20proyecto" target="_blank" rel="noopener noreferrer" aria-label="Escribir por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
     </section>
 `
     };
@@ -853,22 +914,24 @@ contacto: `
 
         if (filteredRecursos.length === 0) {
             container.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: rgba(0,0,0,0.3); border-radius: 20px; backdrop-filter: blur(10px);">
-                    <p style="color: #fff; font-size: 1.2rem;">No hay recursos disponibles.</p>
+                <div class="empty-state">
+                    <p class="empty-state-text">No hay recursos disponibles.</p>
                 </div>`;
             return;
         }
 
-        container.innerHTML = filteredRecursos.map(item => {
-            const uniqueId = `rec_${item.titulo.toLowerCase().replace(/\s+/g, '-')}`;
-            const keyTitle = item.titulo.trim().toLowerCase();
+        container.innerHTML = filteredRecursos.map((item, i) => {
+            const title = String(item.titulo ?? '').trim();
+            if (!title) return '';
+            const uniqueId = `rec_${i}_${title.toLowerCase().replace(/\s+/g, '-')}`;
+            const keyTitle = title.toLowerCase();
             const sheetLikeCount = metricsCache.Recursos[keyTitle]?.likes;
 
-            const savedLikes = sheetLikeCount !== undefined 
-                ? sheetLikeCount 
-                : (localStorage.getItem(uniqueId) ? parseInt(localStorage.getItem(uniqueId)) : (parseInt(item.likes) || 0));
+            const savedLikes = sheetLikeCount !== undefined
+                ? sheetLikeCount
+                : safeInt(safeStorage.get(uniqueId), safeInt(item.likes, 0));
 
-            const isLiked = localStorage.getItem(`${uniqueId}_liked`) === 'true';
+            const isLiked = safeStorage.get(`${uniqueId}_liked`) === 'true';
 
             return `
                 <div class="project-card" tabindex="0" role="button" aria-label="Ver detalles de ${esc(item.titulo)}" data-card-id="${uniqueId}" data-title="${esc(item.titulo)}" data-tab="Recursos">
@@ -914,20 +977,20 @@ contacto: `
                 <div><b>${lang === 'en' ? 'Message sent!' : '¡Mensaje enviado!'}</b>
                 <p>${lang === 'en' ? 'Thanks for writing. We will reply to your email within 24 hours.' : 'Gracias por escribirnos. Te responderemos a tu correo en un plazo de 24 horas.'}</p></div></div>`);
         }   // huecos dinámicos, idioma y analítica
-        document.title = TITLES[key];
+        document.title = (key === 'blog' && slug) ? ((blogPosts.find(x => x && x.slug === slug)?.titulo || '') + ' | Codetrax') : TITLES[key];
         // Animación de entrada de la sección: se quita y se vuelve a poner la clase para reiniciar la animación CSS
         mainContent.classList.remove('view-enter'); void mainContent.offsetWidth; mainContent.classList.add('view-enter');
         if (key === 'home') setTimeout(animateCounters, 100);
         if (key === 'plans') { renderRecursos('Todos'); initializeFilters(); }
         if (key === 'settings') { renderPortfolio('Todos'); initializeFilters(); }
-        window.scrollTo({ top: 0 });
+        window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'instant' });
     }
     // Carga los artículos del blog; si el usuario ya está en #/blog, vuelve a pintar cuando lleguen
     fetch('./data/blog/posts.json').then(r => r.ok ? r.json() : []).catch(() => []).then(d => {
-        blogPosts = d; if (location.hash.startsWith('#/blog')) navigate();
+        blogPosts = Array.isArray(d) ? d.filter(x => x && x.slug && x.titulo) : []; if (location.hash.startsWith('#/blog')) navigate();
     });
     document.getElementById('lang-toggle')?.addEventListener('click', () => {   // selector ES/EN
-        lang = lang === 'en' ? 'es' : 'en'; localStorage.setItem('lang', lang); navigate();
+        lang = lang === 'en' ? 'es' : 'en'; safeStorage.set('lang', lang); navigate();
     });
     window.addEventListener('hashchange', navigate);
     navigate();  // pinta la sección inicial según la URL
@@ -935,7 +998,7 @@ contacto: `
     // Búsqueda auxiliar de objeto por título
     window.findProjectByTitle = function(title, tabName) {
         const list = tabName === 'Recursos' ? recursosProjects : portfolioProjects;
-        return list.find(p => p.titulo && p.titulo.toLowerCase() === title.toLowerCase()) || { titulo: title };
+        return list.find(p => p.titulo && String(p.titulo).toLowerCase() === String(title).toLowerCase()) || { titulo: title };
     };
 });
 
@@ -954,23 +1017,23 @@ document.addEventListener('click', (e) => {
     const tabName = host ? (host.dataset.tab || 'Portafolio') : 'Portafolio';
 
     const countSpan = btn.querySelector('.like-count');
-    let currentLikes = parseInt(countSpan.textContent) || 0;
+    let currentLikes = safeInt(countSpan.textContent, 0);
     
     const likedKey = `${id}_liked`;
-    const isAlreadyLiked = localStorage.getItem(likedKey) === 'true';
+    const isAlreadyLiked = safeStorage.get(likedKey) === 'true';
 
     if (!isAlreadyLiked) {
         currentLikes++;
-        localStorage.setItem(likedKey, 'true');
+        safeStorage.set(likedKey, 'true');
         btn.classList.add('liked');
     } else {
         currentLikes = Math.max(0, currentLikes - 1);
-        localStorage.setItem(likedKey, 'false');
+        safeStorage.set(likedKey, 'false');
         btn.classList.remove('liked');
     }
 
     btn.setAttribute('aria-pressed', btn.classList.contains('liked'));   // accesibilidad: estado del botón
-    localStorage.setItem(id, currentLikes);
+    safeStorage.set(id, String(currentLikes));
     countSpan.textContent = currentLikes;
 
     if (projectTitle) {
@@ -993,9 +1056,10 @@ document.addEventListener('click', (e) => {
     const tabName = host.dataset.tab || 'Portafolio';
 
     if (projectTitle) {
-        let currentViews = parseInt(localStorage.getItem(`views_${projectTitle}`)) || 0;
+        const viewKey = `views_${String(projectTitle).trim().toLowerCase()}`;
+        let currentViews = safeInt(safeStorage.get(viewKey), 0);
         currentViews++;
-        localStorage.setItem(`views_${projectTitle}`, currentViews);
+        safeStorage.set(viewKey, String(currentViews));
 
         const project = window.findProjectByTitle(projectTitle, tabName);
         window.sendMetric(project, 'vistas', 1, tabName);   // cada clic suma una vista
@@ -1106,9 +1170,9 @@ document.addEventListener('click', e => {
    ANIMACIONES (v3)
    Todas se desactivan si el usuario pidió "reducir movimiento" en su sistema.
 ===================================================== */
-// Se lee la clase que puso el script del <head> (botón del sitio o ajuste del sistema)
-// Siempre false: las animaciones corren en todos los dispositivos, aunque el sistema pida reducir movimiento.
-const REDUCED_MOTION = false;
+// Respetar la preferencia del sistema: si el usuario pidio reducir movimiento, no hay lluvia,
+// ni reveals, ni contadores animados, ni scroll suave, y la intro se salta (ver introFailsafe).
+const REDUCED_MOTION = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---- 1. Fondo: lluvia de símbolos katakana ----
    Columnas de caracteres japoneses que caen y se desvanecen (usa el <canvas id="bg-particles">).
@@ -1116,9 +1180,11 @@ const REDUCED_MOTION = false;
    - Colores de la paleta: azul claro (80% de las columnas) y rojo (20%); de vez en cuando un símbolo blanco brillante.
    - Se limita a ~18 cuadros por segundo y se pausa si la pestaña no está visible (ahorra batería). */
 (function initKatakanaRain() {
+    if (REDUCED_MOTION) return;
     const cv = document.getElementById('bg-particles');
     if (!cv) return;
     const ctx = cv.getContext('2d');
+    if (!ctx) return;
     const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'.split('');
     const SIZE = 18;                       // tamaño del símbolo en píxeles (también el ancho de cada columna)
     let W, H, cols, drops, colors, raf, last = 0;
@@ -1260,14 +1326,14 @@ const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '
 // Base de conocimiento EDITABLE en data/conocimiento.json: { q, keywords[], a, link:{t,h} }.
 // Se consulta primero; si no hay coincidencia, se usan las respuestas integradas de FAQ.
 let KB_FILE = [];
-fetch('./data/conocimiento.json').then(r => r.json()).then(d => { KB_FILE = d; }).catch(() => {});
+fetch('./data/conocimiento.json').then(r => r.ok ? r.json() : []).catch(() => []).then(d => { KB_FILE = Array.isArray(d) ? d.filter(e => e && Array.isArray(e.keywords)) : []; });
 
 function localAnswer(q) {
     const t = norm(q);
     // 1) Archivo: gana la entrada con más palabras clave presentes
     let best = null, bestScore = 0;
     KB_FILE.forEach(e => {
-        const sc = e.keywords.filter(k => t.includes(norm(k))).length;
+        const sc = (Array.isArray(e.keywords) ? e.keywords : []).filter(k => t.includes(norm(String(k)))).length;
         if (sc > bestScore) { best = e; bestScore = sc; }
     });
     if (best) return best.a + (best.link ? ` [${best.link.t}](${best.link.h})` : '');
@@ -1323,7 +1389,9 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
     }
     async function send(text) {
         if (busy || !text.trim()) return;
-        busy = true; add('user', text); history.push({ role: 'user', content: text });
+        busy = true;
+        try {
+        add('user', text); history.push({ role: 'user', content: text });
         const typing = add('bot', 'Escribiendo…'); typing.classList.add('typing');
         let reply, fromAI = false;   // fromAI: la respuesta vino del Worker (no es de confianza total)
         if (CHAT_IA) {
@@ -1336,10 +1404,11 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
                 reply = String((await r.json()).reply || '').slice(0, 1200); fromAI = !!reply;   // límite de longitud
             } catch (e) { console.warn('Chat IA no disponible, uso respuestas locales:', e.message); }
         }
-        reply = reply || localAnswer(text);   // respaldo local
+        try { reply = reply || localAnswer(text); } catch (e) { reply = FAQ_DEFAULT; }   // respaldo local, nunca bloquear el chat
         history.push({ role: 'assistant', content: reply });
-        typing.classList.remove('typing'); typing.innerHTML = fmt(reply, fromAI); msgs.scrollTop = msgs.scrollHeight;
-        busy = false;
+        typing.classList.remove('typing'); typing.innerHTML = fmt(reply, true); msgs.scrollTop = msgs.scrollHeight;
+        } catch (e) { console.error('Error en chat:', e); }
+        finally { busy = false; }
     }
     toggle.addEventListener('click', () => open(panel.hidden));
     $('.chat-close').addEventListener('click', () => open(false));
@@ -1355,7 +1424,7 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
 const backTop = document.getElementById('back-top');
 if (backTop) {
     addEventListener('scroll', () => { backTop.hidden = scrollY < 400; }, { passive: true });  // visible tras 400px
-    backTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+    backTop.addEventListener('click', () => scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'smooth' }));
 }
 // Mide clics en llamadas a la acción importantes (CTA, WhatsApp, agenda, correo)
 document.addEventListener('click', e => {
@@ -1372,7 +1441,7 @@ document.addEventListener('error', e => {
     const img = e.target;
     if (!(img instanceof HTMLImageElement) || img.dataset.fallback) return;
     img.dataset.fallback = '1';
-    if (img.closest('.testi-card')) img.remove(); else img.src = 'assets/placeholder.webp';
+    if (img.closest('.testi-card')) img.remove(); else img.src = 'assets/ima/logo.webp';
 }, true);   // "true" = fase de captura, porque el evento error no burbujea
 
 
@@ -1393,11 +1462,12 @@ document.addEventListener('error', e => {
         overlay.style.opacity = '0';
         setTimeout(() => { overlay.style.display = 'none'; }, 800);
     };
+    if (REDUCED_MOTION) { close(); return; }   // sin video intro si el sistema pide reducir movimiento
     skip && skip.addEventListener('click', close);          // botón "Omitir Intro"
     if (video) {
         video.addEventListener('ended', close);             // el video terminó
         video.addEventListener('error', close);             // video inexistente o dañado
-        video.addEventListener('loadedmetadata', () => setTimeout(close, (video.duration + 2) * 1000)); // tope = duración + 2s
+        video.addEventListener('loadedmetadata', () => { const d = Number.isFinite(video.duration) ? video.duration : 10; setTimeout(close, (d + 2) * 1000); }); // tope = duración + 2s (10s si no hay duración válida)
         const p = video.play && video.play();               // si el navegador bloquea el autoplay, no dejar la pantalla negra
         if (p && p.catch) p.catch(close);
     }
@@ -1414,7 +1484,7 @@ document.addEventListener('error', (e) => {
     if (!img || img.tagName !== 'IMG') return;
     if (img.dataset.failed || img.closest('.testi-card')) { img.remove(); return; }
     img.dataset.failed = '1';
-    img.src = 'assets/placeholder.webp';
+    img.src = 'assets/ima/logo.webp';
 }, true);
 
 
