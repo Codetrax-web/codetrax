@@ -1215,6 +1215,29 @@ body { background: none; color: var(--gt-ink); }
 .btn-glass:hover::before { box-shadow:-7px 0 22px 4px rgba(91,123,255,.95); }
 .btn-glass:active { transform:scale(.97); }
 
+/* Botón "Ver detalles" de las tarjetas: misma apariencia que .btn-glass (borde con brillo,
+   luz azul lateral, texto blanco), sin rediseño. main.js añade un <button class="btn-glass details-btn">
+   en el frente de cada tarjeta (portafolio, recursos y búsqueda); la tarjeta ya no es role="button". */
+.details-btn {
+    position:relative; display:inline-flex; align-items:center; justify-content:center;
+    min-width:112px; padding:11px 28px; border-radius:14px; color:#fff; text-decoration:none;
+    font-family:inherit; font-size:.95rem; cursor:pointer; isolation:isolate;
+    border:1px solid transparent;
+    background:
+        linear-gradient(180deg, #1a1a1a, #0b0b0b) padding-box,
+        linear-gradient(135deg, rgba(255,255,255,.75), rgba(255,255,255,.10) 45%, rgba(255,255,255,.45)) border-box;
+    transition: transform .2s ease, box-shadow .25s ease;
+}
+.details-btn::before {
+    content:""; position:absolute; left:-2px; top:14%; bottom:14%; width:4px; border-radius:4px; z-index:-1;
+    background:linear-gradient(180deg, transparent, var(--gt-blue-light) 35%, var(--gt-blue) 70%, transparent);
+    box-shadow:-5px 0 14px 2px rgba(91,123,255,.65); transition: box-shadow .25s ease;
+}
+.details-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.55); }
+.details-btn:hover::before { box-shadow:-7px 0 22px 4px rgba(91,123,255,.95); }
+.details-btn:active { transform:scale(.97); }
+.details-btn:focus-visible { outline:2px solid var(--gt-blue-light); outline-offset:2px; }
+
 /* 2) Likes en píldora: contador | divisor azul | pulgar */
 .btn-like {
     display:inline-flex; align-items:center; gap:12px; padding:9px 18px; border-radius:999px;
