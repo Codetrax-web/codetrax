@@ -18,9 +18,9 @@ if (window.top !== window.self) { try { window.top.location = window.self.locati
         const markIntroSeen = () => { try { sessionStorage.setItem(INTRO_SEEN_KEY, String(Date.now())); } catch (e) {} };
         if (introSeen()) { introOverlay.style.display = "none"; return; }
         // Elige el video según el dispositivo: versión vertical 9:16 en teléfonos en vertical, horizontal en el resto.
-        // El "?v=2" evita que el navegador reutilice la versión anterior (8 s con audio) guardada en caché.
+        // El "?v=20261124" evita que el navegador reutilice la versión anterior (8 s con audio) guardada en caché.
         const esMovilVertical = matchMedia("(max-width: 768px) and (orientation: portrait)").matches;
-        introVideo.src = esMovilVertical ? "assets/ima/intro-vertical.mp4?v=2" : "assets/ima/intro.mp4?v=2";
+        introVideo.src = esMovilVertical ? "assets/ima/intro-vertical.mp4?v=20261124" : "assets/ima/intro.mp4?v=20261124";
         // La intro se muestra una sola vez por sesión (si ya se vio, se oculta arriba y no se reproduce).
         // Un solo intento de reproducir el video cuando la página haya cargado por completo;
         // si el navegador bloquea el autoplay, se cierra la intro en vez de dejarla congelada.
