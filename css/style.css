@@ -553,7 +553,7 @@ main {
 /* Flecha indicadora a la derecha */
 .action-btn .arrow-icon {
     font-size: 14px;
-    color: #71717a;
+    color: #9a9aa5;
     transition: transform 0.25s ease, color 0.25s ease;
 }
 
@@ -651,7 +651,7 @@ main {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     z-index: -1;
     pointer-events: none;
 }
@@ -703,11 +703,6 @@ main {
 .like-btn.liked i {
     color: #F00000;
     transform: scale(1.2);
-}
-
-.like-btn.liked {
-    border-color: #F00000;
-    background: rgba(240,0,0, 0.1);
 }
 
 /* =====================================================
@@ -852,6 +847,11 @@ main {
     padding: 20px;
     box-sizing: border-box;
     border-radius: 20px;
+    background: linear-gradient(135deg, rgba(15, 17, 25, 0.98) 0%, rgba(25, 15, 25, 0.98) 100%);
+    transform: rotateY(180deg);
+    z-index: 1;
+    justify-content: space-between;
+    text-align: left;
 }
 
 .card-front {
@@ -865,14 +865,6 @@ main {
     height: 180px;
     object-fit: cover;
     border-radius: 12px;
-}
-
-.card-back {
-    background: linear-gradient(135deg, rgba(15, 17, 25, 0.98) 0%, rgba(25, 15, 25, 0.98) 100%);
-    transform: rotateY(180deg);
-    z-index: 1;
-    justify-content: space-between;
-    text-align: left;
 }
 
 .card-description-text {
@@ -893,7 +885,7 @@ main {
 }
 
 .card-category-badge {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     background: rgba(255, 255, 255, 0.08);
     padding: 4px 10px;
     border-radius: 8px;
@@ -958,7 +950,6 @@ body::before { content:""; position:fixed; inset:0; z-index:-2; background:url('
 /* Rendimiento: quita el 3D aplicado a TODOS los hijos (texto borroso y costo de GPU); el giro sigue en .card-inner */
 .project-card *, .card * { transform:none; }
 .card-front, .card-back { transform-style:flat; }
-.card-back { transform:rotateY(180deg); }
 /* Menos blur en elementos repetidos (tarjetas) para móviles modestos */
 .filter-btn { backdrop-filter:none; }
 /* Vuelve el desenfoque glass en tarjetas grandes (son pocas, no pesa) */
@@ -986,7 +977,7 @@ body::before { content:""; position:fixed; inset:0; z-index:-2; background:url('
 
 /* Botón flotante de WhatsApp */
 .whatsapp-float { position:fixed; right:20px; bottom:20px; width:56px; height:56px; border-radius:50%;
-    background:#25d366; color:#fff; font-size:30px; display:flex; align-items:center; justify-content:center;
+    background:#075e54; color:#fff; font-size:30px; display:flex; align-items:center; justify-content:center;
     box-shadow:0 6px 20px rgba(0,0,0,.5); z-index:1000; text-decoration:none; }
 
 /* (Sin modo "no-motion": las animaciones corren siempre) */
@@ -1035,7 +1026,7 @@ body::before { content:""; position:fixed; inset:0; z-index:-2; background:url('
 .neon-button:hover::before { left:140%; transition: left .6s ease; }
 
 /* WhatsApp: onda que llama la atención sin ser molesta */
-.whatsapp-float::after { content:""; position:absolute; inset:0; border-radius:50%; border:2px solid #25d366; animation: ripple 2.4s ease-out infinite; }
+.whatsapp-float::after { content:""; position:absolute; inset:0; border-radius:50%; border:2px solid #075e54; animation: ripple 2.4s ease-out infinite; }
 @keyframes ripple { from { transform: scale(1); opacity:.8; } to { transform: scale(1.7); opacity:0; } }
 
 /* Menú: la pestaña activa se desplaza con suavidad al cambiar */
@@ -1181,7 +1172,6 @@ body::before { content:""; position:fixed; inset:0; z-index:-2; background:url('
 /* IMPORTANTE: el color de fondo va SOLO en <html>. Si <body> tuviera fondo propio, taparía el banner
    (body::before con z-index negativo se pinta debajo del fondo del body). */
 html { background-color: var(--gt-bg); }
-body { background: none; color: var(--gt-ink); }
 
 
 /* GLASS sobre fondo oscuro: superficies translúcidas CLARAS (blanco al 7%) + desenfoque.
@@ -1272,7 +1262,7 @@ body { background: none; color: var(--gt-ink); }
 .card-back { display:none !important; }                       /* el reverso solo sirve como fuente de datos */
 .project-card .card-inner, .resource-card .card-inner { transform:none !important; }
 .project-card .card-front::after, .resource-card .card-front::after {
-    content:"Toca para ver más"; font-size:.75rem; letter-spacing:.04em; color:var(--gt-blue-light); margin-top:auto; }
+    content:"Toca para ver más"; font-size:.8rem; letter-spacing:.04em; color:var(--gt-blue-light); margin-top:auto; }
 .project-card:hover .card-inner, .resource-card:hover .card-inner { transform:translateY(-4px); transition:transform .3s ease; }
 
 #card-modal { position:fixed; inset:0; z-index:9000; display:flex; align-items:center; justify-content:center; padding:20px;
