@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 
 <head>
     <!-- Configuración básica de codificación y diseño responsive -->
@@ -12,8 +12,13 @@
     <link rel="alternate" type="application/rss+xml" title="Codetrax" href="https://codetrax-web.github.io/codetrax/feed.xml">
     <link rel="canonical" href="https://codetrax-web.github.io/codetrax/">
     <!-- SEGURIDAD: política de contenido. Solo permite scripts propios (y Umami), bloquea iframes, objetos y <base> ajenos.
-         Si agregas un servicio externo nuevo (otra fuente, otro script), añade su dominio aquí o el navegador lo bloqueará. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://*.supabase.co https://*.workers.dev https://places.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev; form-action 'self' https:; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+         Si agregas un servicio externo nuevo (otra fuente, otro script), añade su dominio aquí o el navegador lo bloqueará.
+         PENDIENTE DE ESTRECHAR: connect-src aún usa https://*.supabase.co y https://*.workers.dev porque en
+         js/main.js METRICS.url ('TU_PROYECTO.supabase.co') y CHAT_API_URL ('TU_URL_DEL_WORKER') siguen sin
+         configurar (placeholder TU_). Cuando se configure el proyecto Supabase y el Worker exactos, sustituye
+         ambos comodines por sus hosts exactos, p. ej. https://xxxx.supabase.co y https://codetrax-chat.<usuario>.workers.dev. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; style-src 'self' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https://lh3.googleusercontent.com; media-src 'self'; connect-src 'self' https://*.supabase.co https://*.workers.dev https://places.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev; form-action 'self' https://formspree.io https://buttondown.com; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+    <!-- Sin JavaScript no hay intro que mostrar: oculta la capa del vídeo (el <video> se llena desde js/intro.js). -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="theme-color" content="#070707">
     <!-- Título de la pestaña del navegador -->
@@ -42,69 +47,8 @@
     <link rel="apple-touch-icon" href="assets/ima/favicon-180.png">
     <!-- Estilos CSS locales y librería externa de íconos (FontAwesome) -->
     <link rel="stylesheet" href="css/style.css?v=20261014a">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- =================================================================
-         ESTILOS DEL VIDEO INTRO (Organizados en el head para mejor estructura)
-         ================================================================= -->
-    <style>
-        /* Capa superpuesta que cubre toda la pantalla para el vídeo */
-        #video-intro-overlay {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100dvh;
-            background: #000;
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            transition: opacity 0.8s ease;
-        }
-        /* Ajuste del reproductor de video */
-        #intro-video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #000;
-        }
-        /* Botón flotante para omitir la intro */
-        #skip-intro {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100000;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            font-family: inherit;
-            font-size: 0.85rem;
-            transition: 0.3s;
-            display: block;
-        }
-        #skip-intro:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        /* En móvil vertical se usa el video 9:16 y se llena la pantalla */
-        @media (max-width: 768px) and (orientation: portrait) {
-            #intro-video { object-fit: cover; }
-        }
-        /* Adaptación de estilos para pantallas de teléfonos celulares */
-        @media (max-width: 768px) {
-            #skip-intro {
-                display: block;
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 18px;
-                font-size: 0.8rem;
-                z-index: 100000;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- Estilos del vídeo intro: movidos a css/style.css (sección VIDEO INTRO) para poder quitar 'unsafe-inline' de style-src en la CSP. -->
 </head>
 <body>
     <!-- Enlace para teclado: salta el menú e ir directo al contenido -->
@@ -126,7 +70,7 @@
     <!-- =====================================================
          2. FONDO ANIMADO DE PARTÍCULAS
          ===================================================== -->
-    <canvas id="bg-particles" aria-hidden="true" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1;"></canvas>
+    <canvas id="bg-particles" aria-hidden="true"></canvas>
     <!-- =====================================================
          3. ENCABEZADO Y MENÚ DE NAVEGACIÓN PRINCIPAL
          ===================================================== -->
@@ -152,12 +96,12 @@
          ===================================================== -->
     <main>
         <div id="content" tabindex="-1"></div>
-        <noscript><p style="padding:20px">Activa JavaScript para ver el contenido, o escríbenos a codetraxs@gmail.com.</p></noscript>
+        <noscript><p class="noscript-msg">Activa JavaScript para ver el contenido, o escríbenos a codetraxs@gmail.com.</p></noscript>
     </main>
     <!-- =====================================================
          5. PIE DE PÁGINA (FOOTER)
          ===================================================== -->
-    <footer style="text-align: center; padding: 20px; color: #fff; font-size: 0.9rem; margin-top: 40px;">
+    <footer class="site-footer">
         <p>『 © 2026 Codetrax. Construyendo el futuro.』</p>
         <p class="footer-links"><a href="#/privacidad">Aviso de privacidad</a> · <a href="#/terminos">Términos</a></p>
     </footer>

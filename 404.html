@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 | Codetrax</title><meta name="robots" content="noindex">
-<!-- GitHub Pages muestra este archivo en cualquier URL inexistente. Usa rutas absolutas porque puede abrirse desde cualquier carpeta.
-     Si cambias de dominio, actualiza BASE. -->
-<link rel="stylesheet" href="https://codetrax-web.github.io/codetrax/css/style.css?v=5">
-</head><body style="justify-content:center;text-align:center">
-<main><h1 class="about-title" style="font-size:5rem">404</h1>
-<p id="m" style="margin:10px 0 24px">Esta página no existe o se movió.</p>
-<a id="b" class="neon-button" href="https://codetrax-web.github.io/codetrax/">Volver al inicio</a></main>
-<script>if((localStorage.getItem('lang')||navigator.language).slice(0,2)==='en'){m.textContent='This page does not exist or was moved.';b.textContent='Back to home';document.documentElement.lang='en';}</script>
+<!-- SEGURIDAD: misma política de contenido que index.html (copiada exacta).
+     Solo permite scripts propios, bloquea iframes, objetos y <base> ajenos. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cloud.umami.is; style-src 'self' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https://lh3.googleusercontent.com; media-src 'self'; connect-src 'self' https://*.supabase.co https://*.workers.dev https://places.googleapis.com https://cloud.umami.is https://api-gateway.umami.dev; form-action 'self' https://formspree.io https://buttondown.com; frame-src 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<!-- GitHub Pages muestra este archivo en cualquier URL inexistente.
+     Rutas relativas (sin dominio): si cambias de dominio no hay nada que actualizar. -->
+<link rel="stylesheet" href="/codetrax/css/style.css?v=5">
+</head><body class="error-page">
+<main><h1 class="about-title error-title">404</h1>
+<p id="m" class="error-msg">Esta página no existe o se movió.</p>
+<a id="b" class="neon-button" href="/codetrax/">Volver al inicio</a></main>
+<script src="/codetrax/js/404.js"></script>
 </body></html>
