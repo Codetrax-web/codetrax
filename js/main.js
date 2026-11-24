@@ -22,6 +22,16 @@ const safeStorage = {
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} },
     remove(k) { try { localStorage.removeItem(k); } catch (e) {} }
 };
+// Normaliza para comparar sin acentos, mayúsculas ni espacios extra (búsqueda y filtros de categoría).
+const normCat = s => String(s ?? '').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+// safeSession: como safeStorage pero en sessionStorage (vistas por sesión, intro por sesión). Nunca lanza.
+const safeSession = {
+    get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} },
+    remove(k) { try { sessionStorage.removeItem(k); } catch (e) {} }
+};
+// Botón "Ver detalles": su estilo vive en css/style.css (.details-btn), no se inyecta <style> inline
+// porque la CSP sin 'unsafe-inline' lo bloquearía.
 // parseInt seguro: nunca devuelve NaN; si el valor guardado esta corrupto, usa el fallback.
 const safeInt = (v, fallback = 0) => { const n = parseInt(v, 10); return Number.isFinite(n) ? n : fallback; };
 // Sanitizador por allowlist para HTML de confianza (blog). Sin dependencias nuevas:
@@ -85,7 +95,19 @@ const ready = v => !!v && !String(v).startsWith('TU_');   // ¿ya está configur
 ===================================================== */
 function cardActions({ url, download, label, id, liked, likes, allowDownload = false }) {
     const isFile = u => /\.(ino|zip|rar|7z|pdf|py|js)$/i.test(String(u || '').split('?')[0]);
-    const dl = allowDownload ? (download || (isFile(url) ? url : null)) : null;
+    // Descarga restringida: solo URLs relativas / del mismo sitio o de github.com, y nunca
+    // extensiones ejecutables (.exe, .bat, .sh, .msi, .apk, .scr). Si no cumple, no hay botón Descargar.
+    const isExecutable = u => /\.(exe|bat|sh|msi|apk|scr)$/i.test(String(u || '').split('?')[0].split('#')[0]);
+    const isAllowedDownload = u => {
+        if (!u || isExecutable(u)) return false;
+        try {
+            const parsed = new URL(String(u), location.href);
+            if (parsed.origin === location.origin) return true;   // relativa o mismo sitio
+            return parsed.hostname === 'github.com' || parsed.hostname.endsWith('.github.com');
+        } catch (e) { return false; }
+    };
+    const candidate = allowDownload ? (download || (isFile(url) ? url : null)) : null;
+    const dl = candidate && isAllowedDownload(candidate) ? candidate : null;
     const demo = url && url !== dl ? url : null;
     const ext = dl ? (/\.ino\b/i.test(String(dl)) ? 'ino' : String(dl).split('?')[0].split('.').pop().toLowerCase()) : '';
     const kind = ext === 'ino' ? 'Arduino · .ino' : ext === 'zip' ? 'Código fuente · .zip' : 'Archivo .' + ext;
@@ -107,12 +129,12 @@ function donateMethods() {
             <i class="${icon}" aria-hidden="true"></i><h3>${name}</h3><p>${desc}</p>
             ${ok ? action : '<span class="soon">Próximamente</span>'}
         </article>`;
-    const link = (href, txt, extra = '') => `<a class="neon-button" href="${href}" target="_blank" rel="noopener noreferrer" ${extra}>${txt}</a>`;
+    const link = (href, txt, extra = '') => `<a class="neon-button" href="${esc(href)}" target="_blank" rel="noopener noreferrer" ${extra}>${txt}</a>`;
     return [
         card('fa-brands fa-paypal', 'PayPal', 'Escribe arriba la cantidad que quieras y paga con tu cuenta o tarjeta.',
-             ready(D.paypalUser), link('https://paypal.me/' + D.paypalUser, 'Donar con PayPal', 'data-paypal="' + D.paypalUser + '"')),
-        card('fa-solid fa-building-columns', 'Transferencia', ready(D.clabe) ? `${D.banco} · ${D.titular}` : 'SPEI desde tu banco, sin comisiones.',
-             ready(D.clabe), `<code class="clabe">${D.clabe}</code><button type="button" class="neon-button copy-btn" data-copy="${D.clabe}">Copiar CLABE</button>`)
+             ready(D.paypalUser), link('https://paypal.me/' + encodeURIComponent(String(D.paypalUser)), 'Donar con PayPal', 'data-paypal="' + esc(D.paypalUser) + '"')),
+        card('fa-solid fa-building-columns', 'Transferencia', ready(D.clabe) ? `${esc(D.banco)} · ${esc(D.titular)}` : 'SPEI desde tu banco, sin comisiones.',
+             ready(D.clabe), `<code class="clabe">${esc(D.clabe)}</code><button type="button" class="neon-button copy-btn" data-copy="${esc(D.clabe)}">Copiar CLABE</button>`)
     ].join('');
 }
 
@@ -217,18 +239,18 @@ function fillSlots() {
         ? `<span class="avail-badge open" data-no-i18n><span class="dot"></span>${lang === 'en' ? 'Accepting projects in' : 'Aceptando proyectos en'} ${month}</span>`
         : `<span class="avail-badge" data-no-i18n><span class="dot"></span>${lang === 'en' ? 'Fully booked this month' : 'Agenda llena este mes'}</span>`);
     slot('stack-slot', `<h2 class="section-title">Tecnologías con las que trabajamos</h2>
-        <ul class="stack-row">${STACK.map(s => `<li><i class="${s.i}" aria-hidden="true"></i><span>${esc(s.n)}</span></li>`).join('')}</ul>`);
+        <ul class="stack-row">${STACK.filter(s => s && String(s.n ?? '').trim()).map(s => `<li><i class="${esc(String(s.i ?? ''))}" aria-hidden="true"></i><span>${esc(String(s.n ?? ''))}</span></li>`).join('')}</ul>`);
     // --- Testimonios: manuales + reseñas de Google (si están configuradas) ---
-    const manual = TESTIMONIOS.filter(t => t && String(t.texto ?? '').startsWith('TU_') === false && String(t.nombre ?? '').startsWith('TU_') === false && t.texto && t.nombre)
-        .map(t => ({ nombre:t.nombre, sub:t.rol, texto:t.texto, foto:t.foto, rating:0, link:'' }));
+    const manual = TESTIMONIOS.filter(t => t && String(t.texto ?? '').trim() && String(t.nombre ?? '').trim() && !String(t.texto ?? '').startsWith('TU_') && !String(t.nombre ?? '').startsWith('TU_'))
+        .map(t => ({ nombre: String(t.nombre ?? ''), sub: String(t.rol ?? ''), texto: String(t.texto ?? ''), foto: String(t.foto ?? ''), rating: 0, link: '' }));
     const stars = n => n ? `<span class="stars" role="img" aria-label="${n} de 5">${'★'.repeat(n)}${'☆'.repeat(5 - n)}</span>` : '';
     const card = t => `<figure class="testi-card"><div>${stars(t.rating)}</div>
-        <blockquote>“${esc(t.texto)}”</blockquote>
-        <figcaption>${t.foto ? `<img src="${esc(t.foto)}" alt="" width="44" height="44" loading="lazy" referrerpolicy="no-referrer">` : ''}
-        <span><b>${t.link ? `<a href="${esc(safeUrl(t.link))}" target="_blank" rel="noopener noreferrer">${esc(t.nombre)}</a>` : esc(t.nombre)}</b><br>${esc(t.sub)}</span></figcaption></figure>`;
+        <blockquote>“${esc(String(t.texto ?? ''))}”</blockquote>
+        <figcaption>${t.foto ? `<img src="${esc(safeUrl(t.foto))}" alt="" width="44" height="44" loading="lazy" referrerpolicy="no-referrer">` : ''}
+        <span><b>${t.link ? `<a href="${esc(safeUrl(t.link))}" target="_blank" rel="noopener noreferrer">${esc(String(t.nombre ?? ''))}</a>` : esc(String(t.nombre ?? ''))}</b><br>${esc(String(t.sub ?? ''))}</span></figcaption></figure>`;
     const draw = (items, g) => slot('testi-slot', items.length ? `<h2 class="section-title">Lo que dicen nuestros clientes</h2>
         ${g ? `<p class="g-head" data-no-i18n>Google Maps · <b>${Number(g.rating) || 0}</b> ${stars(Math.round(g.rating))} (${Number(g.count) || 0})</p>` : ''}
-        <div class="testi-grid">${items.map(card).join('')}</div>
+        <div class="testi-grid">${items.filter(t => t && String(t.nombre ?? '').trim() && String(t.texto ?? '').trim()).map(card).join('')}</div>
         ${g ? `<p class="g-links"><a href="${esc(safeUrl(g.url))}" target="_blank" rel="noopener noreferrer">Ver todas las reseñas</a> ·
         <a href="https://search.google.com/local/writereview?placeid=${esc(GOOGLE_REVIEWS.placeId)}" target="_blank" rel="noopener noreferrer">Déjanos una reseña</a></p>` : ''}` : '');
     draw(manual, null);                                              // primero lo manual (instantáneo)
@@ -238,7 +260,7 @@ function fillSlots() {
     slot('sub-slot', SUBSCRIBE.action.includes('TU_') ? '' : `<div class="sub-box">
         <h2>Suscríbete</h2>
         <p>Recibe novedades, tutoriales y recursos nuevos en tu correo. Sin spam y puedes darte de baja cuando quieras.</p>
-        <form class="sub-form" action="${esc(SUBSCRIBE.action)}" method="post" target="_blank">
+        <form class="sub-form" action="${esc(SUBSCRIBE.action)}" method="post">
             <input type="email" name="${esc(SUBSCRIBE.field)}" required placeholder="${lang === 'en' ? 'Your email' : 'Tu correo'}" aria-label="Email" autocomplete="email">
             <input type="hidden" name="embed" value="1">
             <button type="submit" class="neon-button">Suscribirme</button>
@@ -256,6 +278,9 @@ const TITLES = {
     files:'Servicios y equipo | Codetrax',
     plans:'Recursos | Codetrax',
     settings:'Portafolio | Codetrax',
+    servicios:'Servicios y equipo | Codetrax',
+    recursos:'Recursos | Codetrax',
+    portafolio:'Portafolio | Codetrax',
     donar:'Apoya a Codetrax | Donaciones y pagos',
     contacto:'Contacto | Codetrax'
 };
@@ -362,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (projCounter && portfolioProjects.length) projCounter.dataset.target = String(portfolioProjects.length);
             // Pintar primero con datos locales; las metricas remotas no bloquean el contenido.
             renderPortfolio('Todos');
-            renderRecursos('Todos'); // necesario si el usuario entra directo a #/plans
+            renderRecursos('Todos'); // necesario si el usuario entra directo a #/recursos
             initializeFilters();
             // 2. Contadores desde Supabase, en segundo plano y con timeout (ver fetchMetrics)
             Promise.all([fetchMetrics('Portafolio'), fetchMetrics('Recursos')]).then(([portMetrics, recMetrics]) => {
@@ -381,14 +406,17 @@ document.addEventListener('DOMContentLoaded', () => {
     ===================================================== */
     // Suma delta (+1 o -1) a 'likes' o 'vistas' llamando a la función segura del servidor (incrementar_metrica).
     window.sendMetric = async function(project, field, delta, tabName) {
-        if (!metricsReady()) return;
+        if (!metricsReady()) return true;   // solo local: no hay nada remoto que revertir
         try {
-            await fetch(`${METRICS.url}/rest/v1/rpc/incrementar_metrica`, {
+            const res = await fetch(`${METRICS.url}/rest/v1/rpc/incrementar_metrica`, {
                 method: 'POST', headers: metricsHeaders(),
                 body: JSON.stringify({ p_tabla: tabName, p_titulo: project.titulo, p_campo: field, p_delta: delta })
             });
+            if (!res.ok) { console.error('Error enviando métrica: HTTP', res.status); return false; }
+            return true;
         } catch (err) {
             console.error('Error enviando métrica:', err);
+            return false;
         }
     };
 
@@ -399,8 +427,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('portfolio-grid');
         if (!grid) return;
 
-        let filteredProjects = category !== 'Todos' 
-            ? portfolioProjects.filter(project => project.categoria?.toLowerCase() === category.toLowerCase())
+        let filteredProjects = normCat(category) !== 'todos'
+            ? portfolioProjects.filter(project => normCat(project.categoria ?? '') === normCat(category))
             : portfolioProjects;
 
         if (filteredProjects.length === 0) {
@@ -425,14 +453,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const isLiked = safeStorage.get(`${uniqueId}_liked`) === 'true';
 
             return `
-                <div class="project-card" tabindex="0" role="button" aria-label="Ver detalles de ${esc(project.titulo)}" data-card-id="${uniqueId}" data-title="${esc(project.titulo)}" data-tab="Portafolio">
+                <div class="project-card" data-card-id="${uniqueId}" data-title="${esc(project.titulo)}" data-tab="Portafolio">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img loading="lazy" width="300" height="180" src="${esc(project.imagen)}" alt="${esc(project.titulo)}">
+                            <img loading="lazy" width="300" height="180" src="${esc(project.imagen ? safeUrl(project.imagen) : 'assets/ima/logo.webp')}" alt="${esc(project.titulo)}">
                             <div class="card-divider"></div>
                             <h3>${esc(project.titulo)}</h3>
                             <p class="card-subtitle">Creador: ${esc(project.creador || 'Desconocido')}</p>
                             <span class="card-category-badge">${esc(project.categoria || 'General')}</span>
+                            <button type="button" class="btn-glass details-btn">Ver detalles</button>
                         </div>
                         <div class="card-back">
                             <h3>${esc(project.titulo)}</h3>
@@ -487,14 +516,23 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =====================================================
        LÓGICA DE BÚSQUEDA
     ===================================================== */
+    let searchTimer = null;   // debounce del buscador (~200 ms)
     document.addEventListener('input', (e) => {
-        if (e.target.id === 'gt-input-target') {
-            const term = e.target.value.toLowerCase().trim();
+        if (e.target.id !== 'gt-input-target') return;
+        const inputEl = e.target;
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+            const term = normCat(inputEl.value);   // sin acentos ni mayúsculas (misma norma que el chat)
             const resultsGrid = document.getElementById('search-results-grid');
+            if (!resultsGrid) return;
 
-            if (!term || !window.searchableData) { 
-                if (resultsGrid) resultsGrid.innerHTML = ''; 
-                return; 
+            if (!term) { resultsGrid.innerHTML = ''; return; }
+            if (!window.searchableData) {   // datos aún no cargados
+                resultsGrid.innerHTML = `
+                    <div class="empty-state empty-state-sm">
+                        <p class="empty-state-text">Cargando…</p>
+                    </div>`;
+                return;
             }
 
             const activeMenuLink = document.querySelector('.menu a.active');
@@ -502,35 +540,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let dataSource = window.searchableData;
 
-            if (currentSection === 'plans') {
+            if (currentSection === 'recursos') {
                 dataSource = recursosProjects;
-            } else if (currentSection === 'settings') {
+            } else if (currentSection === 'portafolio') {
                 dataSource = portfolioProjects;
             }
 
-            const filtered = dataSource.filter(p => 
-                (p.titulo && p.titulo.toLowerCase().includes(term)) || 
-                (p.descripcion && p.descripcion.toLowerCase().includes(term)) ||
-                (p.categoria && p.categoria.toLowerCase().includes(term))
+            const filtered = dataSource.filter(p =>
+                normCat(p.titulo ?? '').includes(term) ||
+                normCat(p.descripcion ?? '').includes(term) ||
+                normCat(p.categoria ?? '').includes(term)
             );
 
             if (filtered.length === 0) {
                 resultsGrid.innerHTML = `
                     <div class="empty-state empty-state-sm">
-                        <p class="empty-state-text">No se encontró nada relacionado con "${esc(term)}" en este apartado.</p>
+                        <p class="empty-state-text">No se encontró nada relacionado con "${esc(inputEl.value.trim())}" en este apartado.</p>
                     </div>`;
                 return;
             }
 
-            resultsGrid.innerHTML = filtered.map(p => `
+            const total = filtered.length;
+            const shown = filtered.slice(0, 20);   // máximo 20 resultados visibles
+            resultsGrid.innerHTML = (total > 20
+                ? `<p class="search-count" role="status">Mostrando 20 de ${total} resultados</p>` : '')
+                + shown.map(p => `
                 <div class="project-card">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img loading="lazy" width="300" height="180" src="${esc(p.imagen)}" alt="${esc(p.titulo)}">
+                            <img loading="lazy" width="300" height="180" src="${esc(p.imagen ? safeUrl(p.imagen) : 'assets/ima/logo.webp')}" alt="${esc(p.titulo)}">
                             <div class="card-divider"></div>
                             <h3>${esc(p.titulo)}</h3>
                             <p class="card-subtitle">${esc(p.creador || p.descripcion || '')}</p>
                             <span class="card-category-badge">${esc(p.categoria || 'General')}</span>
+                            <button type="button" class="btn-glass details-btn">Ver detalles</button>
                         </div>
                         <div class="card-back">
                             <h3>${esc(p.titulo)}</h3>
@@ -548,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 </div>
             `).join('');
-        }
+        }, 200);
     });
 
     document.addEventListener('click', (e) => {
@@ -655,7 +698,7 @@ files: `
             <div class="profile-tag">Fundador | CEO</div>
             <p>────── ·𖥸· ──────</p>
       <div class="social-links">
-            <a href="https://www.instagram.com/damia_ncv" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/dam.ian9651" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
             <a href="https://github.com/Codetrax-web" target="_blank" rel="noopener noreferrer" aria-label="Github" class="social-link"><i class="fab fa-github"></i></a>
             <a href="https://www.tiktok.com/@damian_cdx?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" class="social-link"><i class="fab fa-tiktok"></i></a>
             <a href="https://discord.com/invite/rsAwuCg6xK" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="social-link"><i class="fab fa-discord"></i></a>
@@ -848,8 +891,8 @@ contacto: `
         <div class="contact-hub-wrap">
             <div class="contact-hub">
                 <div class="socials">
-                    <a href="https://www.instagram.com/cod_etrax" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://www.threads.net/@cod_etrax" target="_blank" rel="noopener noreferrer" aria-label="At" title="Threads"><i class="fa-solid fa-at fa-threads-symbol"></i></a>
+                    <a href="https://www.instagram.com/codetraxhp" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.threads.net/@codetraxhp" target="_blank" rel="noopener noreferrer" aria-label="At" title="Threads"><i class="fa-solid fa-at fa-threads-symbol"></i></a>
                     <a href="https://www.youtube.com/@DAMIANCDX" target="_blank" rel="noopener noreferrer" aria-label="Youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
                     <a href="https://www.tiktok.com/@damian_cdx" target="_blank" rel="noopener noreferrer" aria-label="Tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                     <a href="https://x.com/Code_trax" target="_blank" rel="noopener noreferrer" aria-label="Twitter" title="X"><i class="fa-brands fa-twitter"></i></a>
@@ -908,8 +951,8 @@ contacto: `
         const container = document.getElementById('recursos-container');
         if (!container) return;
 
-        let filteredRecursos = category !== 'Todos' 
-            ? recursosProjects.filter(item => item.categoria?.toLowerCase() === category.toLowerCase())
+        let filteredRecursos = normCat(category) !== 'todos'
+            ? recursosProjects.filter(item => normCat(item.categoria ?? '') === normCat(category))
             : recursosProjects;
 
         if (filteredRecursos.length === 0) {
@@ -934,14 +977,15 @@ contacto: `
             const isLiked = safeStorage.get(`${uniqueId}_liked`) === 'true';
 
             return `
-                <div class="project-card" tabindex="0" role="button" aria-label="Ver detalles de ${esc(item.titulo)}" data-card-id="${uniqueId}" data-title="${esc(item.titulo)}" data-tab="Recursos">
+                <div class="project-card" data-card-id="${uniqueId}" data-title="${esc(item.titulo)}" data-tab="Recursos">
                     <div class="card-inner">
                         <div class="card-front">
-                            <img loading="lazy" width="300" height="180" src="${esc(item.imagen)}" alt="${esc(item.titulo)}">
+                            <img loading="lazy" width="300" height="180" src="${esc(item.imagen ? safeUrl(item.imagen) : 'assets/ima/logo.webp')}" alt="${esc(item.titulo)}">
                             <div class="card-divider"></div>
                             <h3>${esc(item.titulo)}</h3>
                             <p class="card-subtitle">Creador: ${esc(item.creador || 'Desconocido')}</p>
                             <span class="card-category-badge">${esc(item.categoria || 'General')}</span>
+                            <button type="button" class="btn-glass details-btn">Ver detalles</button>
                         </div>
                         <div class="card-back">
                             <h3>${esc(item.titulo)}</h3>
@@ -957,18 +1001,23 @@ contacto: `
     /* =====================================================
        INICIALIZACIÓN Y NAVEGACIÓN
     ===================================================== */
-    /* Enrutador por hash: #/files, #/plans, #/settings, #/contacto.
-       Cada sección tiene URL propia, funciona el botón "atrás" y se puede compartir un enlace directo. */
-    const ROUTES = ['home','files','plans','settings','donar','contacto','blog','privacidad','terminos'];
+    /* Enrutador por hash: #/servicios, #/recursos, #/portafolio, #/contacto.
+       Cada sección tiene URL propia, funciona el botón "atrás" y se puede compartir un enlace directo.
+       Alias viejos (files/plans/settings, p. ej. enlaces en data/conocimiento.json): redirigen a la ruta nueva. */
+    const ROUTES = ['home','servicios','recursos','portafolio','donar','contacto','blog','privacidad','terminos'];
+    const ROUTE_ALIASES = { files: 'servicios', plans: 'recursos', settings: 'portafolio' };
+    const VIEW_KEYS = { servicios: 'files', recursos: 'plans', portafolio: 'settings' };
     function navigate() {
         const [wanted, slug] = location.hash.replace('#/','').split('/');   // #/blog/mi-post -> blog + slug
-        const key = ROUTES.includes(wanted) ? wanted : 'home';      // ruta desconocida -> home
+        const canonical = ROUTE_ALIASES[wanted] || wanted;
+        const key = ROUTES.includes(canonical) ? canonical : 'home';      // ruta desconocida -> home
+        const viewKey = VIEW_KEYS[key] || key;   // las vistas internas siguen con claves files/plans/settings
         document.querySelectorAll('.menu a').forEach(l => {          // marca el enlace activo
             const on = l.dataset.section === key;
             l.classList.toggle('active', on);
             on ? l.setAttribute('aria-current','page') : l.removeAttribute('aria-current');
         });
-        mainContent.innerHTML = typeof views[key] === 'function' ? views[key](slug) : views[key];
+        mainContent.innerHTML = typeof views[viewKey] === 'function' ? views[viewKey](slug) : views[viewKey];
         fillSlots(); applyI18n(); track('vista-' + key);
         // Confirmación después de enviar el formulario de contacto
         if (key === 'contacto' && slug === 'enviado') {
@@ -981,8 +1030,8 @@ contacto: `
         // Animación de entrada de la sección: se quita y se vuelve a poner la clase para reiniciar la animación CSS
         mainContent.classList.remove('view-enter'); void mainContent.offsetWidth; mainContent.classList.add('view-enter');
         if (key === 'home') setTimeout(animateCounters, 100);
-        if (key === 'plans') { renderRecursos('Todos'); initializeFilters(); }
-        if (key === 'settings') { renderPortfolio('Todos'); initializeFilters(); }
+        if (key === 'recursos') { renderRecursos('Todos'); initializeFilters(); }
+        if (key === 'portafolio') { renderPortfolio('Todos'); initializeFilters(); }
         window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'instant' });
     }
     // Carga los artículos del blog; si el usuario ya está en #/blog, vuelve a pintar cuando lleguen
@@ -1017,12 +1066,12 @@ document.addEventListener('click', (e) => {
     const tabName = host ? (host.dataset.tab || 'Portafolio') : 'Portafolio';
 
     const countSpan = btn.querySelector('.like-count');
-    let currentLikes = safeInt(countSpan.textContent, 0);
-    
+    const prevLikes = safeInt(countSpan.textContent, 0);
     const likedKey = `${id}_liked`;
-    const isAlreadyLiked = safeStorage.get(likedKey) === 'true';
+    const wasLiked = safeStorage.get(likedKey) === 'true';
 
-    if (!isAlreadyLiked) {
+    let currentLikes = prevLikes;
+    if (!wasLiked) {
         currentLikes++;
         safeStorage.set(likedKey, 'true');
         btn.classList.add('liked');
@@ -1038,7 +1087,20 @@ document.addEventListener('click', (e) => {
 
     if (projectTitle) {
         const project = window.findProjectByTitle(projectTitle, tabName);
-        window.sendMetric(project, 'likes', isAlreadyLiked ? -1 : 1, tabName);   // +1 al dar like, -1 al quitarlo
+        const delta = wasLiked ? -1 : 1;
+        // Si el servidor rechaza el like (res no ok / error de red), revertir el contador local
+        // y avisar: no dejar un like fantasma.
+        Promise.resolve(window.sendMetric(project, 'likes', delta, tabName)).then(ok => {
+            if (ok !== false) return;
+            safeStorage.set(likedKey, wasLiked ? 'true' : 'false');
+            safeStorage.set(id, String(prevLikes));
+            document.querySelectorAll(`.btn-like[data-id="${CSS.escape(id)}"]`).forEach(o => {
+                const c = o.querySelector('.like-count'); if (c) c.textContent = prevLikes;
+                o.classList.toggle('liked', wasLiked); o.setAttribute('aria-pressed', wasLiked);
+            });
+            if (typeof showToast === 'function') showToast(lang === 'en' ? 'Could not save your like. Please try again.' : 'No se pudo guardar tu like. Inténtalo de nuevo.');
+            else console.warn('No se pudo guardar el like en el servidor.');
+        });
     }
 });
 
@@ -1048,6 +1110,8 @@ document.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
     const link = e.target.closest('.project-link');
     if (!link) return;
+    // Las descargas NO cuentan como vistas: solo Visita/Probar.
+    if (link.classList.contains('btn-download') || link.hasAttribute('download')) return;
 
     const host = link.closest('.project-card, #card-modal');   // tarjeta o ventana ampliada
     if (!host) return;
@@ -1056,13 +1120,14 @@ document.addEventListener('click', (e) => {
     const tabName = host.dataset.tab || 'Portafolio';
 
     if (projectTitle) {
-        const viewKey = `views_${String(projectTitle).trim().toLowerCase()}`;
-        let currentViews = safeInt(safeStorage.get(viewKey), 0);
-        currentViews++;
-        safeStorage.set(viewKey, String(currentViews));
+        // Máximo 1 vista por proyecto y sesión: clave normalizada + marca temporal de sesión.
+        const viewKey = 'views_' + String(projectTitle).trim().toLowerCase();
+        if (safeSession.get(viewKey)) return;   // ya contada en esta sesión
+        safeSession.set(viewKey, String(Date.now()));
+        safeStorage.set(viewKey, String(safeInt(safeStorage.get(viewKey), 0) + 1));   // contador local persistente
 
         const project = window.findProjectByTitle(projectTitle, tabName);
-        window.sendMetric(project, 'vistas', 1, tabName);   // cada clic suma una vista
+        window.sendMetric(project, 'vistas', 1, tabName);   // solo se envía cuando se cuenta una nueva
     }
 });
 
@@ -1089,8 +1154,10 @@ function openCardModal(card) {
     cmLastFocus = document.activeElement;
     // La ventana guarda el proyecto y la pestaña, para que likes y vistas se registren igual que en la tarjeta
     cm.dataset.title = card.dataset.title || '';
-    cm.dataset.tab = card.dataset.tab || (location.hash.startsWith('#/plans') ? 'Recursos' : 'Portafolio');
+    cm.dataset.tab = card.dataset.tab || (location.hash.startsWith('#/recursos') ? 'Recursos' : 'Portafolio');
     const img = front.querySelector('img');
+    // La foto del modal hereda la del frente (ya pasada por safeUrl al renderizar); se revalida aquí por si el DOM cambió.
+    const imgHtml = img ? (() => { const c = img.cloneNode(false); c.setAttribute('src', safeUrl(img.getAttribute('src') || '')); return c.outerHTML; })() : '';
     const title = front.querySelector('h3');
     const sub = front.querySelector('.card-subtitle');
     const badge = front.querySelector('.card-category-badge');
@@ -1098,7 +1165,7 @@ function openCardModal(card) {
     tmp.innerHTML = back.innerHTML;
     tmp.querySelector('h3')?.remove();                     // el título ya va arriba
     cm.querySelector('.cm-body').innerHTML = `
-        <div class="cm-media">${img ? img.outerHTML : ''}</div>
+        <div class="cm-media">${imgHtml}</div>
         <div class="cm-info">
             <h2 id="cm-title" class="cm-title">${esc(title ? title.textContent : '')}</h2>
             ${sub ? sub.outerHTML : ''}
@@ -1124,12 +1191,12 @@ cm.addEventListener('click', e => {
     if (e.target === cm || e.target.closest('.cm-close')) closeCardModal();
 });
 
-// Abrir: clic en cualquier parte de la tarjeta (menos los botones de like y enlaces)
+// Abrir: botón "Ver detalles" explícito, o clic en cualquier parte de la tarjeta (menos like y enlaces)
 document.addEventListener('click', e => {
     if (e.target.closest('#card-modal')) return;
     if (e.target.closest('.btn-like') || e.target.closest('.project-link')) return;
     const card = e.target.closest('.project-card, .resource-card');
-    if (card) openCardModal(card);
+    if (card) openCardModal(card);   // el botón .details-btn llega aquí igual que el clic en la tarjeta
 });
 
 // Teclado: Esc cierra, Tab no sale de la ventana, Enter/Espacio abre la tarjeta enfocada
@@ -1145,10 +1212,8 @@ document.addEventListener('keydown', e => {
         }
         return;
     }
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches?.('.project-card, .resource-card')) {
-        e.preventDefault();
-        openCardModal(e.target);
-    }
+    // Las tarjetas ya no son enfocables (sin role="button" ni tabindex): el modal se abre con el
+    // botón "Ver detalles" (nativo, Enter/Espacio ya disparan su clic) o con clic.
 });
 
 // Al dar like dentro de la ventana, actualiza la misma tarjeta en la cuadrícula
@@ -1188,11 +1253,23 @@ const REDUCED_MOTION = typeof matchMedia === 'function' && matchMedia('(prefers-
     const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'.split('');
     const SIZE = 18;                       // tamaño del símbolo en píxeles (también el ancho de cada columna)
     let W, H, cols, drops, colors, raf, last = 0;
+    // devicePixelRatio: el canvas se dibuja a resolución real y se escala con setTransform,
+    // así no se ve borroso en pantallas retina. En resize se CONSERVA el array drops existente
+    // (solo se recorta o se amplía con columnas nuevas), en vez de recrearlo desde cero.
     function resize() {
-        W = cv.width = innerWidth; H = cv.height = innerHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = innerWidth; H = innerHeight;
+        cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+        cv.style.width = W + 'px'; cv.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         cols = Math.ceil(W / SIZE);
-        drops = Array.from({ length: cols }, () => -Math.random() * (H / SIZE));   // cada columna arranca a distinta altura
-        colors = Array.from({ length: cols }, () => Math.random() < .8 ? '91,123,255' : '240,0,0');
+        if (!drops) {
+            drops = Array.from({ length: cols }, () => -Math.random() * (H / SIZE));   // cada columna arranca a distinta altura
+            colors = Array.from({ length: cols }, () => Math.random() < .8 ? '91,123,255' : '240,0,0');
+        } else {
+            while (drops.length < cols) { drops.push(-Math.random() * (H / SIZE)); colors.push(Math.random() < .8 ? '91,123,255' : '240,0,0'); }
+            drops.length = cols; colors.length = cols;
+        }
     }
     function frame(t) {
         raf = requestAnimationFrame(frame);
@@ -1213,7 +1290,8 @@ const REDUCED_MOTION = typeof matchMedia === 'function' && matchMedia('(prefers-
             drops[i]++;
         }
     }
-    addEventListener('resize', resize);
+    let resizeTimer = null;   // debounce del resize (~150 ms)
+    addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(resize, 150); });
     document.addEventListener('visibilitychange', () => {
         document.hidden ? cancelAnimationFrame(raf) : (raf = requestAnimationFrame(frame));
     });
@@ -1255,7 +1333,7 @@ function updateDonationLink() {
     const valid = Number.isFinite(v) && v >= 1 && v <= 100000;
     const amount = valid ? (Math.round(v * 100) / 100).toString() : '';
     const pp = document.querySelector('a[data-paypal]');
-    if (pp) pp.href = `https://paypal.me/${pp.dataset.paypal}` + (valid ? `/${amount}${cur}` : '');
+    if (pp) pp.href = `https://paypal.me/${encodeURIComponent(pp.dataset.paypal || '')}` + (valid ? `/${amount}${cur}` : '');
     document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', valid && Number(c.dataset.amount) === v));
     const sum = document.getElementById('amount-summary');
     if (sum) sum.textContent = valid ? `Aportarás ${amount} ${cur} con PayPal. ¡Gracias!`
@@ -1307,15 +1385,15 @@ const FAQ = [
     [['contact','correo','email','whatsapp','agendar','reunion','meet','hablar'],
      'Puedes escribirnos o agendar una reunión por Google Meet desde [Contacto](#/contacto).'],
     [['portafolio','proyectos','trabajos','ejemplos','casos'],
-     'Mira lo que hemos hecho en el [Portafolio](#/settings): sitios web, branding, robótica y multimedia.'],
+     'Mira lo que hemos hecho en el [Portafolio](#/portafolio): sitios web, branding, robótica y multimedia.'],
     [['recurso','descargar','gratis','arduino','codigo','robot'],
-     'En [Recursos](#/plans) hay proyectos de código y robótica (Arduino) para explorar.'],
+     'En [Recursos](#/recursos) hay proyectos de código y robótica (Arduino) para explorar.'],
     [['equipo','quienes','fundador','damian','miguel','ricardo'],
-     'Somos un equipo multidisciplinario de desarrollo, diseño y multimedia. Conócenos en [Servicios y equipo](#/files).'],
+     'Somos un equipo multidisciplinario de desarrollo, diseño y multimedia. Conócenos en [Servicios y equipo](#/servicios).'],
     [['proceso','metodologia','etapas','soporte'],
-     'Trabajamos en 4 etapas: Discovery, Planificación, Desarrollo, y Entrega con soporte. Más detalle en [Servicios](#/files).'],
+     'Trabajamos en 4 etapas: Discovery, Planificación, Desarrollo, y Entrega con soporte. Más detalle en [Servicios](#/servicios).'],
     [['servicio','ofrec','hacen','desarrollo','pagina','web','app','diseno','branding','logo','video','multimedia','juego','consultor'],
-     'Ofrecemos desarrollo (web, apps, sistemas), diseño y branding, multimedia, videojuegos y consultoría. Detalles en [Servicios](#/files).'],
+     'Ofrecemos desarrollo (web, apps, sistemas), diseño y branding, multimedia, videojuegos y consultoría. Detalles en [Servicios](#/servicios).'],
     [['hola','buenas','hey','buenos'],
      '¡Hola! Soy el asistente de Codetrax. Pregúntame por servicios, cotizaciones, portafolio o cómo contactarnos.']
 ];
@@ -1362,7 +1440,8 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
 
     const $ = s => root.querySelector(s);
     const toggle = $('.chat-toggle'), panel = $('.chat-panel'), msgs = $('.chat-msgs'),
-          form = $('.chat-form'), input = form.querySelector('input'), chips = $('.chat-chips');
+          form = $('.chat-form'), input = form.querySelector('input'), chips = $('.chat-chips'),
+          sendBtn = form.querySelector('button[type="submit"]');
     const history = [];            // historial que se envía a la IA
     let busy = false, greeted = false;
 
@@ -1381,15 +1460,16 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
                 add('bot', '¡Hola! Soy el asistente de Codetrax. ¿En qué te ayudo?');
                 ['¿Qué servicios ofrecen?', '¿Cómo cotizo un proyecto?', '¿Cómo los apoyo?'].forEach(q => {
                     const b = document.createElement('button'); b.type = 'button'; b.textContent = q;
-                    b.onclick = () => { chips.remove(); send(q); }; chips.appendChild(b);
+                    b.onclick = () => { send(q).then(ok => { if (ok) chips.remove(); }); }; chips.appendChild(b);
                 });
             }
             input.focus();
         } else toggle.focus();
     }
     async function send(text) {
-        if (busy || !text.trim()) return;
+        if (busy || !text.trim()) return false;   // ocupado o vacío: no se acepta, el texto se conserva
         busy = true;
+        if (sendBtn) sendBtn.disabled = true;   // deshabilitar el envío mientras busy
         try {
         add('user', text); history.push({ role: 'user', content: text });
         const typing = add('bot', 'Escribiendo…'); typing.classList.add('typing');
@@ -1408,12 +1488,13 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
         history.push({ role: 'assistant', content: reply });
         typing.classList.remove('typing'); typing.innerHTML = fmt(reply, true); msgs.scrollTop = msgs.scrollHeight;
         } catch (e) { console.error('Error en chat:', e); }
-        finally { busy = false; }
+        finally { busy = false; if (sendBtn) sendBtn.disabled = false; }
+        return true;   // aceptado: el llamador ya puede vaciar el input / quitar los chips
     }
     toggle.addEventListener('click', () => open(panel.hidden));
     $('.chat-close').addEventListener('click', () => open(false));
     root.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) open(false); });
-    form.addEventListener('submit', e => { e.preventDefault(); const t = input.value; input.value = ''; send(t); });
+    form.addEventListener('submit', e => { e.preventDefault(); const t = input.value; send(t).then(ok => { if (ok) input.value = ''; }); });
     msgs.addEventListener('click', e => { if (e.target.closest('a[href^="#/"]')) open(false); });  // al seguir un enlace interno, cierra el chat
 })();
 

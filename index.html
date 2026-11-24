@@ -49,6 +49,38 @@
     <link rel="stylesheet" href="css/style.css?v=20261014a">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Estilos del vídeo intro: movidos a css/style.css (sección VIDEO INTRO) para poder quitar 'unsafe-inline' de style-src en la CSP. -->
+    <!-- Datos estructurados (JSON-LD) con datos reales del sitio. Las rutas hash (#/...) se
+         resuelven en el cliente; no se listan como URLs separadas en el sitemap. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Codetrax",
+          "url": "https://codetrax-web.github.io/codetrax/",
+          "description": "Codetrax es una agencia de desarrollo digital: sitios web, apps, sistemas a medida, branding y multimedia para tu marca.",
+          "email": "codetraxs@gmail.com",
+          "sameAs": [
+            "https://www.instagram.com/codetraxhp",
+            "https://www.threads.net/@codetraxhp"
+          ]
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Cómo hacer un sistema de riego automático con Arduino",
+          "description": "Sensor de humedad, relé y bomba: la lógica básica y un código base para empezar.",
+          "datePublished": "2026-10-11",
+          "dateModified": "2026-10-11",
+          "author": { "@type": "Organization", "name": "Codetrax", "url": "https://codetrax-web.github.io/codetrax/" },
+          "publisher": { "@type": "Organization", "name": "Codetrax", "url": "https://codetrax-web.github.io/codetrax/" },
+          "mainEntityOfPage": "https://codetrax-web.github.io/codetrax/#/blog/riego-automatico-arduino",
+          "url": "https://codetrax-web.github.io/codetrax/#/blog/riego-automatico-arduino",
+          "inLanguage": "es-MX"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Enlace para teclado: salta el menú e ir directo al contenido -->
@@ -62,7 +94,9 @@
             autoplay 
             muted 
             playsinline 
-            preload="auto">
+            preload="metadata">
+            <!-- preload="metadata": solo metadatos hasta que el usuario vea la intro; la lógica de
+                 mostrarla una vez por sesión (sessionStorage) vive en js/intro.js y va junto con este cambio. -->
         </video>
         <!-- Botón interactivo para saltar la intro -->
         <button id="skip-intro">Omitir Intro ≫</button>
@@ -79,12 +113,13 @@
             <img src="assets/ima/log_cod.webp" alt="Logotipo de Codetrax" class="logo">
         </div>
         <nav class="menu" aria-label="Navegación principal">
-            <!-- Rutas por hash: cada sección tiene URL propia. data-section conecta con views{} en main.js -->
+            <!-- Rutas por hash: cada sección tiene URL propia. data-section conecta con views{} en main.js.
+                 Los alias viejos files/plans/settings redirigen a las rutas nuevas en navigate() (js/main.js). -->
             <a href="#/" class="active" data-section="home"><span>INICIO</span></a>
-            <a href="#/files" data-section="files"><span>SERVICIOS</span></a>
-            <a href="#/plans" data-section="plans"><span>RECURSOS</span></a>
+            <a href="#/servicios" data-section="servicios"><span>SERVICIOS</span></a>
+            <a href="#/recursos" data-section="recursos"><span>RECURSOS</span></a>
             <a href="#/blog" data-section="blog"><span>BLOG</span></a>
-            <a href="#/settings" data-section="settings"><span>PORTAFOLIO</span></a>
+            <a href="#/portafolio" data-section="portafolio"><span>PORTAFOLIO</span></a>
             <a href="#/donar" data-section="donar"><span>APOYA</span></a>
             <a href="#/contacto" data-section="contacto"><span>CONTACTO</span></a>
         </nav>
