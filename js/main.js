@@ -34,6 +34,11 @@ const safeSession = {
 // porque la CSP sin 'unsafe-inline' lo bloquearía.
 // parseInt seguro: nunca devuelve NaN; si el valor guardado esta corrupto, usa el fallback.
 const safeInt = (v, fallback = 0) => { const n = parseInt(v, 10); return Number.isFinite(n) ? n : fallback; };
+// PAGINACIÓN (baja): 12 tarjetas por página en portafolio, recursos y buscador.
+// Cada render muestra slice(0, pagina * PAGE_SIZE) y un botón "Cargar más" suma una página.
+// Los ids de tarjeta usan el índice dentro de la lista filtrada completa, así que al paginar
+// no cambian y los likes/vistas guardados siguen correspondiendo a la misma tarjeta.
+const PAGE_SIZE = 12;
 // Sanitizador por allowlist para HTML de confianza (blog). Sin dependencias nuevas:
 // permite solo p,h2,h3,pre,code,a,strong,em,ul,ol,li; elimina script/style/iframe,
 // atributos on*=, href/src javascript:/data:, y style. Lo demas se escapa como texto.
@@ -177,8 +182,14 @@ const track = name => { try { window.umami && window.umami.track(name); } catch 
    La interfaz está en español. Si el idioma es "en", applyI18n() reemplaza el texto de cada elemento
    cuyo texto exacto aparezca en este diccionario. Para traducir algo más, agrégalo aquí. */
 // Idioma inicial: el que el visitante eligió antes; si no, el de su navegador (en/es).
+// normalizeLang: solo 'es'/'en' exactos son válidos. Cualquier otro valor guardado
+// ('fr', 'EN', null, ...) se descarta; en ese caso manda el idioma del navegador
+// ('en' si empieza por 'en', si no 'es'). 'EN' en mayúsculas NO vale como 'en'.
+const normalizeLang = v => (v === 'es' || v === 'en') ? v : 'es';
 let lang = safeStorage.get('lang');
 lang = (lang === 'es' || lang === 'en') ? lang : ((navigator.language || 'es').slice(0, 2) === 'en' ? 'en' : 'es');
+// setLang: único punto para cambiar de idioma; valida antes de guardar.
+const setLang = v => { lang = normalizeLang(v); safeStorage.set('lang', lang); };
 const EN = {
  'INICIO':'HOME','SERVICIOS':'SERVICES','RECURSOS':'RESOURCES','PORTAFOLIO':'PORTFOLIO','APOYA':'SUPPORT','CONTACTO':'CONTACT',
  'Saltar al contenido':'Skip to content','Aviso de privacidad':'Privacy notice','Términos':'Terms',
@@ -199,6 +210,7 @@ const EN = {
  'Suscríbete':'Subscribe','Recibe novedades, tutoriales y recursos nuevos en tu correo. Sin spam y puedes darte de baja cuando quieras.':'Get news, tutorials and new resources by email. No spam, unsubscribe anytime.','Suscribirme':'Subscribe me','Ver todas las reseñas':'See all reviews','Déjanos una reseña':'Leave us a review','Transparencia':'Transparency','Agendar consultoría':'Book a consultation','Contáctanos vía correo':'Contact us by email'
 };
 function applyI18n() {
+    lang = normalizeLang(lang);   // por si algo asignó un valor inválido, vuelve a 'es'
     document.documentElement.lang = lang;
     const norm = t => t.replace(/\s+/g, ' ').trim();
     document.querySelectorAll('.menu span, #content *, footer *, .skip-link').forEach(el => {
@@ -210,6 +222,24 @@ function applyI18n() {
     const s = document.getElementById('gt-input-target');
     if (s) s.placeholder = lang === 'en' ? 'Search projects, resources or team...' : 'Buscar proyectos, recursos o equipo...';
     const t = document.getElementById('lang-toggle'); if (t) t.textContent = lang === 'en' ? 'ES' : 'EN';
+    // Panel del chat y modal: se traduce solo el "cromo" (etiquetas, placeholders, pie).
+    // El saludo, las sugerencias y las respuestas del bot quedan en español porque la base
+    // de conocimiento local (FAQ / data/conocimiento.json) solo casa palabras clave en español:
+    // traducir las sugerencias haría que enviaran preguntas en inglés que el motor local no responde.
+    // Los toasts no se reescriben aquí: ya se crean traducidos en cada llamada a showToast()
+    // y son mensajes de un solo uso (desaparecen a los 6 s).
+    const chatToggle = document.querySelector('.chat-toggle');
+    if (chatToggle) chatToggle.setAttribute('aria-label', lang === 'en' ? 'Open virtual assistant' : 'Abrir asistente virtual');
+    const chatClose = document.querySelector('.chat-close');
+    if (chatClose) chatClose.setAttribute('aria-label', lang === 'en' ? 'Close assistant' : 'Cerrar asistente');
+    const chatInput = document.querySelector('.chat-form input');
+    if (chatInput) chatInput.placeholder = lang === 'en' ? 'Type your question...' : 'Escribe tu pregunta...';
+    const chatSend = document.querySelector('.chat-form button[type="submit"]');
+    if (chatSend) chatSend.setAttribute('aria-label', lang === 'en' ? 'Send' : 'Enviar');
+    const chatFoot = document.querySelector('.chat-foot');
+    if (chatFoot) chatFoot.textContent = lang === 'en' ? 'Automatic assistant: it can make mistakes. For important matters use Contact.' : 'Asistente automático: puede equivocarse. Para temas importantes usa Contacto.';
+    const cmClose = document.querySelector('.cm-close');
+    if (cmClose) cmClose.setAttribute('aria-label', lang === 'en' ? 'Close' : 'Cerrar');
 }
 
 // Consulta Google Places (New) una vez y guarda el resultado 24 h en el navegador para no gastar cuota.
@@ -314,8 +344,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="search-bar-container">
             <i class="fa-solid fa-magnifying-glass search-icon-left"></i>
             <input type="text" id="gt-input-target" class="search-input" placeholder="Buscar proyectos, recursos o equipo..." aria-label="Buscar">
-            <button class="search-btn" type="button">
-                <i class="fa-solid fa-filter"></i>
+            <button class="search-btn" type="button" aria-label="Filtrar">
+                <i class="fa-solid fa-filter" aria-hidden="true"></i>
             </button>
         </div>
         <div id="search-results-grid"></div>
@@ -326,6 +356,105 @@ document.addEventListener('DOMContentLoaded', () => {
     let recursosProjects = [];
     let blogPosts = [];   // se carga desde data/blog/posts.json 
     let metricsCache = { Portafolio: {}, Recursos: {} };
+
+    // --- Paginación (baja): página visible por sección; se reinicia al cambiar de filtro. ---
+    let portfolioPage = 1, recursosPage = 1;
+    let portfolioCategory = 'Todos', recursosCategory = 'Todos';
+    // Buscador: resultados de la búsqueda activa y página visible (se reinician con cada término nuevo).
+    let searchPage = 1, searchFiltered = [], searchTotal = 0;
+
+    // Botón "Cargar más": va DESPUÉS de la cuadrícula (no dentro, para no ser un ítem del grid)
+    // y se recrea en cada render; si ya no quedan tarjetas, no se muestra.
+    function renderLoadMore(anchorEl, target, total, shown) {
+        document.querySelectorAll(`.load-more-btn[data-target="${target}"]`).forEach(b => b.remove());
+        if (!anchorEl || total <= shown) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'load-more-btn neon-button';   // reutiliza el estilo de botón existente, sin CSS nuevo
+        btn.dataset.target = target;
+        btn.textContent = lang === 'en' ? 'Load more' : 'Cargar más';
+        anchorEl.insertAdjacentElement('afterend', btn);
+    }
+
+    /* renderCards(lista, tipo): único render de tarjetas para portafolio, recursos y buscador.
+       tipo 'portfolio' | 'recursos' | 'search'. La UI visible es la misma que antes:
+       - portafolio/recursos: frente idéntico + reverso con cardActions() (likes/vistas intactos;
+         'Visita' sin descarga en portafolio, 'Probar' con descarga en recursos).
+       - search: frente con subtítulo creador||descripción y reverso con botón VER (sin likes,
+         como antes; por eso no lleva data-card-id/data-title/data-tab).
+       'lista' debe ser ya el slice visible (desde 0), así el índice i coincide con el de la
+       lista filtrada completa y los ids port_N_/rec_N_ no cambian al paginar. */
+    function renderCards(list, tipo) {
+        const isRecursos = tipo === 'recursos';
+        const isSearch = tipo === 'search';
+        const tab = isRecursos ? 'Recursos' : 'Portafolio';
+        return list.map((p, i) => {
+            const title = String(p.titulo ?? '').trim();
+            if (!title) return '';
+            const keyTitle = title.toLowerCase();
+            const front = `
+                        <div class="card-front">
+                            <img loading="lazy" width="300" height="180" src="${esc(p.imagen ? safeUrl(p.imagen) : 'assets/ima/logo.webp')}" alt="${esc(p.titulo)}">
+                            <div class="card-divider"></div>
+                            <h3>${esc(p.titulo)}</h3>
+                            ${isSearch
+                                ? `<p class="card-subtitle">${esc(p.creador || p.descripcion || '')}</p>`
+                                : `<p class="card-subtitle">Creador: ${esc(p.creador || 'Desconocido')}</p>`}
+                            <span class="card-category-badge">${esc(p.categoria || 'General')}</span>
+                            <button type="button" class="btn-glass details-btn">Ver detalles</button>
+                        </div>`;
+            if (isSearch) {
+                return `
+                <div class="project-card">
+                    <div class="card-inner">${front}
+                        <div class="card-back">
+                            <h3>${esc(p.titulo)}</h3>
+                            <p class="card-description-text">${esc(p.descripcion || 'Sin descripción disponible.')}</p>
+                            <div class="card-back-actions">
+                                <a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer" class="project-link search-result-link">
+                                    <button class="button search-result-btn">
+                                        <div class="blob1"></div>
+                                        <div class="blob2"></div>
+                                        <div class="inner search-result-inner">VER</div>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }
+            const uniqueId = `${isRecursos ? 'rec' : 'port'}_${i}_${keyTitle.replace(/\s+/g, '-')}`;
+            const sheetLikeCount = metricsCache[tab][keyTitle]?.likes;
+            const savedLikes = sheetLikeCount !== undefined
+                ? sheetLikeCount
+                : safeInt(safeStorage.get(uniqueId), safeInt(p.likes, 0));
+            const isLiked = safeStorage.get(`${uniqueId}_liked`) === 'true';
+            return `
+                <div class="project-card" data-card-id="${uniqueId}" data-title="${esc(p.titulo)}" data-tab="${tab}">
+                    <div class="card-inner">${front}
+                        <div class="card-back">
+                            <h3>${esc(p.titulo)}</h3>
+                            <p class="card-description-text">${esc(p.descripcion)}</p>
+                            <div class="card-back-actions">${cardActions({ url: p.url, download: p.descarga, label: isRecursos ? 'Probar' : 'Visita', id: uniqueId, liked: isLiked, likes: savedLikes, allowDownload: isRecursos })}</div>
+                        </div>
+                    </div>
+                </div>`;
+        }).join('');
+    }
+
+    // Pinta los resultados de la búsqueda activa con la misma paginación (12 + "Cargar más").
+    // Decisión: se unifica con el mecanismo general en vez de mantener el tope fijo de 20:
+    // el buscador ya no corta en 20, muestra 12 y el resto bajo "Cargar más".
+    function renderSearchResults() {
+        const resultsGrid = document.getElementById('search-results-grid');
+        if (!resultsGrid) return;
+        if (!searchFiltered.length) { resultsGrid.innerHTML = ''; renderLoadMore(resultsGrid, 'search', 0, 0); return; }
+        const shown = searchFiltered.slice(0, searchPage * PAGE_SIZE);
+        resultsGrid.innerHTML = (searchTotal > PAGE_SIZE
+            ? `<p class="search-count" role="status">${lang === 'en' ? `Showing ${shown.length} of ${searchTotal} results` : `Mostrando ${shown.length} de ${searchTotal} resultados`}</p>` : '')
+            + renderCards(shown, 'search');
+        renderLoadMore(resultsGrid, 'search', searchTotal, shown.length);
+    }
 
     /* =====================================================
        CARGA DE ARCHIVOS JSON LOCALES Y SINCRO DE MÉTRICAS
@@ -393,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
             Promise.all([fetchMetrics('Portafolio'), fetchMetrics('Recursos')]).then(([portMetrics, recMetrics]) => {
                 metricsCache.Portafolio = portMetrics;
                 metricsCache.Recursos = recMetrics;
-                renderPortfolio('Todos'); renderRecursos('Todos');
+                renderPortfolio(portfolioCategory); renderRecursos(recursosCategory);   // conserva el filtro y la página activos (antes volvía a 'Todos')
             }).catch(e => console.error('Error al cargar metricas:', e));
         } catch (error) {
             console.error('Error al cargar datos locales/métricas:', error);
@@ -426,8 +555,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderPortfolio(category) {
         const grid = document.getElementById('portfolio-grid');
         if (!grid) return;
+        // Al cambiar de filtro se vuelve a la página 1; re-render del mismo filtro (p. ej. al
+        // llegar las métricas remotas) conserva la página para no perder el "Cargar más".
+        if (normCat(category) !== normCat(portfolioCategory)) { portfolioPage = 1; portfolioCategory = category; }
 
-        let filteredProjects = normCat(category) !== 'todos'
+        const filteredProjects = normCat(category) !== 'todos'
             ? portfolioProjects.filter(project => normCat(project.categoria ?? '') === normCat(category))
             : portfolioProjects;
 
@@ -436,42 +568,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="empty-state">
                     <p class="empty-state-text">No hay proyectos disponibles.</p>
                 </div>`;
+            renderLoadMore(grid, 'portfolio', 0, 0);
             return;
         }
 
-        grid.innerHTML = filteredProjects.map((project, i) => {
-            const title = String(project.titulo ?? '').trim();
-            if (!title) return '';
-            const uniqueId = `port_${i}_${title.toLowerCase().replace(/\s+/g, '-')}`;
-            const keyTitle = title.toLowerCase();
-            const sheetLikeCount = metricsCache.Portafolio[keyTitle]?.likes;
-
-            const savedLikes = sheetLikeCount !== undefined
-                ? sheetLikeCount
-                : safeInt(safeStorage.get(uniqueId), safeInt(project.likes, 0));
-
-            const isLiked = safeStorage.get(`${uniqueId}_liked`) === 'true';
-
-            return `
-                <div class="project-card" data-card-id="${uniqueId}" data-title="${esc(project.titulo)}" data-tab="Portafolio">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img loading="lazy" width="300" height="180" src="${esc(project.imagen ? safeUrl(project.imagen) : 'assets/ima/logo.webp')}" alt="${esc(project.titulo)}">
-                            <div class="card-divider"></div>
-                            <h3>${esc(project.titulo)}</h3>
-                            <p class="card-subtitle">Creador: ${esc(project.creador || 'Desconocido')}</p>
-                            <span class="card-category-badge">${esc(project.categoria || 'General')}</span>
-                            <button type="button" class="btn-glass details-btn">Ver detalles</button>
-                        </div>
-                        <div class="card-back">
-                            <h3>${esc(project.titulo)}</h3>
-                            <p class="card-description-text">${esc(project.descripcion)}</p>
-                            <div class="card-back-actions">${cardActions({ url: project.url, label: 'Visita', id: uniqueId, liked: isLiked, likes: savedLikes })}</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }).join('');
+        const shown = filteredProjects.slice(0, portfolioPage * PAGE_SIZE);
+        grid.innerHTML = renderCards(shown, 'portfolio');
+        renderLoadMore(grid, 'portfolio', filteredProjects.length, shown.length);
     }
 
     function initializeFilters() {
@@ -526,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const resultsGrid = document.getElementById('search-results-grid');
             if (!resultsGrid) return;
 
-            if (!term) { resultsGrid.innerHTML = ''; return; }
+            if (!term) { searchFiltered = []; searchTotal = 0; searchPage = 1; renderSearchResults(); return; }
             if (!window.searchableData) {   // datos aún no cargados
                 resultsGrid.innerHTML = `
                     <div class="empty-state empty-state-sm">
@@ -557,40 +660,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="empty-state empty-state-sm">
                         <p class="empty-state-text">No se encontró nada relacionado con "${esc(inputEl.value.trim())}" en este apartado.</p>
                     </div>`;
+                searchFiltered = []; searchTotal = 0; searchPage = 1;
+                renderLoadMore(resultsGrid, 'search', 0, 0);
                 return;
             }
 
-            const total = filtered.length;
-            const shown = filtered.slice(0, 20);   // máximo 20 resultados visibles
-            resultsGrid.innerHTML = (total > 20
-                ? `<p class="search-count" role="status">Mostrando 20 de ${total} resultados</p>` : '')
-                + shown.map(p => `
-                <div class="project-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img loading="lazy" width="300" height="180" src="${esc(p.imagen ? safeUrl(p.imagen) : 'assets/ima/logo.webp')}" alt="${esc(p.titulo)}">
-                            <div class="card-divider"></div>
-                            <h3>${esc(p.titulo)}</h3>
-                            <p class="card-subtitle">${esc(p.creador || p.descripcion || '')}</p>
-                            <span class="card-category-badge">${esc(p.categoria || 'General')}</span>
-                            <button type="button" class="btn-glass details-btn">Ver detalles</button>
-                        </div>
-                        <div class="card-back">
-                            <h3>${esc(p.titulo)}</h3>
-                            <p class="card-description-text">${esc(p.descripcion || 'Sin descripción disponible.')}</p>
-                            <div class="card-back-actions">
-                                <a href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener noreferrer" class="project-link search-result-link">
-                                    <button class="button search-result-btn">
-                                        <div class="blob1"></div>
-                                        <div class="blob2"></div>
-                                        <div class="inner search-result-inner">VER</div>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            // Búsqueda activa: se guarda para paginarla con "Cargar más" (12 por página, como el resto).
+            searchFiltered = filtered; searchTotal = filtered.length; searchPage = 1;
+            renderSearchResults();
         }, 200);
     });
 
@@ -599,6 +676,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!searchBtn) return;
         const inputTarget = document.getElementById('gt-input-target');
         if (inputTarget) inputTarget.focus();
+    });
+
+    // "Cargar más": suma una página y vuelve a pintar esa sección (el scroll se conserva:
+    // el contenido crece hacia abajo y el botón se recrea al final de la lista).
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.load-more-btn');
+        if (!btn) return;
+        if (btn.dataset.target === 'portfolio') { portfolioPage++; renderPortfolio(portfolioCategory); }
+        else if (btn.dataset.target === 'recursos') { recursosPage++; renderRecursos(recursosCategory); }
+        else if (btn.dataset.target === 'search') { searchPage++; renderSearchResults(); }
     });
 
     /* =====================================================
@@ -950,8 +1037,10 @@ contacto: `
     function renderRecursos(category) {
         const container = document.getElementById('recursos-container');
         if (!container) return;
+        // Igual que en portafolio: cambio de filtro -> página 1; mismo filtro -> conserva la página.
+        if (normCat(category) !== normCat(recursosCategory)) { recursosPage = 1; recursosCategory = category; }
 
-        let filteredRecursos = normCat(category) !== 'todos'
+        const filteredRecursos = normCat(category) !== 'todos'
             ? recursosProjects.filter(item => normCat(item.categoria ?? '') === normCat(category))
             : recursosProjects;
 
@@ -960,42 +1049,13 @@ contacto: `
                 <div class="empty-state">
                     <p class="empty-state-text">No hay recursos disponibles.</p>
                 </div>`;
+            renderLoadMore(container, 'recursos', 0, 0);
             return;
         }
 
-        container.innerHTML = filteredRecursos.map((item, i) => {
-            const title = String(item.titulo ?? '').trim();
-            if (!title) return '';
-            const uniqueId = `rec_${i}_${title.toLowerCase().replace(/\s+/g, '-')}`;
-            const keyTitle = title.toLowerCase();
-            const sheetLikeCount = metricsCache.Recursos[keyTitle]?.likes;
-
-            const savedLikes = sheetLikeCount !== undefined
-                ? sheetLikeCount
-                : safeInt(safeStorage.get(uniqueId), safeInt(item.likes, 0));
-
-            const isLiked = safeStorage.get(`${uniqueId}_liked`) === 'true';
-
-            return `
-                <div class="project-card" data-card-id="${uniqueId}" data-title="${esc(item.titulo)}" data-tab="Recursos">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img loading="lazy" width="300" height="180" src="${esc(item.imagen ? safeUrl(item.imagen) : 'assets/ima/logo.webp')}" alt="${esc(item.titulo)}">
-                            <div class="card-divider"></div>
-                            <h3>${esc(item.titulo)}</h3>
-                            <p class="card-subtitle">Creador: ${esc(item.creador || 'Desconocido')}</p>
-                            <span class="card-category-badge">${esc(item.categoria || 'General')}</span>
-                            <button type="button" class="btn-glass details-btn">Ver detalles</button>
-                        </div>
-                        <div class="card-back">
-                            <h3>${esc(item.titulo)}</h3>
-                            <p class="card-description-text">${esc(item.descripcion)}</p>
-                            <div class="card-back-actions">${cardActions({ url: item.url, download: item.descarga, label: 'Probar', id: uniqueId, liked: isLiked, likes: savedLikes, allowDownload: true })}</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }).join('');
+        const shown = filteredRecursos.slice(0, recursosPage * PAGE_SIZE);
+        container.innerHTML = renderCards(shown, 'recursos');
+        renderLoadMore(container, 'recursos', filteredRecursos.length, shown.length);
     }
 
     /* =====================================================
@@ -1004,13 +1064,28 @@ contacto: `
     /* Enrutador por hash: #/servicios, #/recursos, #/portafolio, #/contacto.
        Cada sección tiene URL propia, funciona el botón "atrás" y se puede compartir un enlace directo.
        Alias viejos (files/plans/settings, p. ej. enlaces en data/conocimiento.json): redirigen a la ruta nueva. */
+    // Scroll por ruta (baja): guarda el scrollY de la ruta saliente para restaurarlo al volver
+    // con "atrás"/"adelante". Un clic en un enlace interno #/... precede a su hashchange, así
+    // que ese caso sí sube arriba; sin clic previo, es navegación del historial y se restaura.
+    let currentRouteKey = null;
+    const scrollByRoute = {};
+    let navFromLink = false;
+    document.addEventListener('click', e => {
+        if (e.target.closest('a[href^="#/"]')) {
+            navFromLink = true;
+            setTimeout(() => { navFromLink = false; }, 1000);   // el hashchange llega mucho antes; evita que un clic sin cambio de hash contamine un "atrás" posterior
+        }
+    });
     const ROUTES = ['home','servicios','recursos','portafolio','donar','contacto','blog','privacidad','terminos'];
     const ROUTE_ALIASES = { files: 'servicios', plans: 'recursos', settings: 'portafolio' };
     const VIEW_KEYS = { servicios: 'files', recursos: 'plans', portafolio: 'settings' };
-    function navigate() {
+    function navigate(opts = {}) {
         const [wanted, slug] = location.hash.replace('#/','').split('/');   // #/blog/mi-post -> blog + slug
         const canonical = ROUTE_ALIASES[wanted] || wanted;
         const key = ROUTES.includes(canonical) ? canonical : 'home';      // ruta desconocida -> home
+        if (currentRouteKey !== null) scrollByRoute[currentRouteKey] = window.scrollY;   // guarda la ruta saliente antes de reemplazar el contenido
+        const isFirstNav = currentRouteKey === null;
+        currentRouteKey = key;
         const viewKey = VIEW_KEYS[key] || key;   // las vistas internas siguen con claves files/plans/settings
         document.querySelectorAll('.menu a').forEach(l => {          // marca el enlace activo
             const on = l.dataset.section === key;
@@ -1032,14 +1107,23 @@ contacto: `
         if (key === 'home') setTimeout(animateCounters, 100);
         if (key === 'recursos') { renderRecursos('Todos'); initializeFilters(); }
         if (key === 'portafolio') { renderPortfolio('Todos'); initializeFilters(); }
-        window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'instant' });
+        // Scroll: re-render de la misma ruta (idioma, llegada de posts) no mueve el scroll;
+        // enlace interno -> arriba (suave salvo reduced-motion); atrás/adelante -> scroll guardado.
+        if (opts.keepScroll) {
+            // no tocar el scroll
+        } else if (navFromLink || isFirstNav) {
+            window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
+        } else {
+            window.scrollTo({ top: scrollByRoute[key] ?? 0, behavior: 'auto' });
+        }
+        navFromLink = false;
     }
     // Carga los artículos del blog; si el usuario ya está en #/blog, vuelve a pintar cuando lleguen
     fetch('./data/blog/posts.json').then(r => r.ok ? r.json() : []).catch(() => []).then(d => {
-        blogPosts = Array.isArray(d) ? d.filter(x => x && x.slug && x.titulo) : []; if (location.hash.startsWith('#/blog')) navigate();
+        blogPosts = Array.isArray(d) ? d.filter(x => x && x.slug && x.titulo) : []; if (location.hash.startsWith('#/blog')) navigate({ keepScroll: true });
     });
     document.getElementById('lang-toggle')?.addEventListener('click', () => {   // selector ES/EN
-        lang = lang === 'en' ? 'es' : 'en'; safeStorage.set('lang', lang); navigate();
+        setLang(lang === 'en' ? 'es' : 'en'); navigate({ keepScroll: true });   // cambiar de idioma no mueve el scroll
     });
     window.addEventListener('hashchange', navigate);
     navigate();  // pinta la sección inicial según la URL
@@ -1414,6 +1498,11 @@ function localAnswer(q) {
         const sc = (Array.isArray(e.keywords) ? e.keywords : []).filter(k => t.includes(norm(String(k)))).length;
         if (sc > bestScore) { best = e; bestScore = sc; }
     });
+    if (best && best.id === 'disponibilidad') {
+        return AVAILABILITY.open
+            ? 'Sí, en este momento estamos aceptando proyectos nuevos. Si tu idea tiene fecha límite, indícanos la fecha en tu mensaje para revisar si podemos cumplirla.'
+            : 'En este momento tenemos la agenda llena y no estamos aceptando proyectos nuevos. Puedes escribirnos igualmente en [Contacto](#/contacto) y te avisamos cuando se libere un hueco.';
+    }
     if (best) return best.a + (best.link ? ` [${best.link.t}](${best.link.h})` : '');
     // 2) Respuestas integradas
     const hit = FAQ.find(([keys]) => keys.some(k => t.includes(k)));
@@ -1472,7 +1561,7 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
         if (sendBtn) sendBtn.disabled = true;   // deshabilitar el envío mientras busy
         try {
         add('user', text); history.push({ role: 'user', content: text });
-        const typing = add('bot', 'Escribiendo…'); typing.classList.add('typing');
+        const typing = add('bot', lang === 'en' ? 'Typing…' : 'Escribiendo…'); typing.classList.add('typing');
         let reply, fromAI = false;   // fromAI: la respuesta vino del Worker (no es de confianza total)
         if (CHAT_IA) {
             try {   // modo IA: espera máx. 15 s
@@ -1516,13 +1605,20 @@ document.addEventListener('click', e => {
 
 /* =====================================================
    SEGURIDAD: imágenes rotas sin atributos inline (permite una CSP estricta)
-   Foto de testimonio rota -> se quita; cualquier otra -> imagen de respaldo (una sola vez, sin bucles).
+   UN SOLO handler (antes había dos duplicados con flags distintos): 1.er fallo ->
+   'assets/ima/logo.webp'; 2.º fallo -> se quita la imagen. Regla igual para todas,
+   sin excepción por testimonio: si falla una foto de testimonio, también recibe el logo
+   y solo se quita si el logo falla también.
 ===================================================== */
 document.addEventListener('error', e => {
     const img = e.target;
-    if (!(img instanceof HTMLImageElement) || img.dataset.fallback) return;
+    if (!(img instanceof HTMLImageElement)) return;
+    // Regla única, un solo flag dataset.fallback: 1.er fallo -> logo de respaldo;
+    // 2.º fallo (o la imagen ya era el logo) -> eliminar. Sin este guardado, el 2.º
+    // fallo repondría el logo en bucle.
+    if (img.dataset.fallback || img.getAttribute('src') === 'assets/ima/logo.webp') { img.remove(); return; }
     img.dataset.fallback = '1';
-    if (img.closest('.testi-card')) img.remove(); else img.src = 'assets/ima/logo.webp';
+    img.src = 'assets/ima/logo.webp';
 }, true);   // "true" = fase de captura, porque el evento error no burbujea
 
 
@@ -1555,18 +1651,6 @@ document.addEventListener('error', e => {
     setTimeout(() => { if (!video || video.readyState < 1) close(); }, 8000);   // sin datos del video tras 8s: cerrar
 })();
 
-/* =====================================================
-   IMÁGENES ROTAS (compatible con la política de seguridad CSP)
-   La CSP bloquea los atributos inline onerror="...", así que el respaldo se hace aquí:
-   1.er fallo -> imagen de reemplazo; 2.º fallo (o foto de testimonio) -> se quita la imagen.
-===================================================== */
-document.addEventListener('error', (e) => {
-    const img = e.target;
-    if (!img || img.tagName !== 'IMG') return;
-    if (img.dataset.failed || img.closest('.testi-card')) { img.remove(); return; }
-    img.dataset.failed = '1';
-    img.src = 'assets/ima/logo.webp';
-}, true);
 
 
 /* =====================================================
