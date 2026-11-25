@@ -246,7 +246,7 @@
       "robotica",
       "archivos"
     ],
-    "a": "En Recursos hay proyectos web como Copa Pistón u Orquídea Azul, y proyectos de robótica con Arduino: un sistema de riego automatizado, un rover Bluetooth y una grúa robótica. Los proyectos web tienen el botón Probar y los de Arduino el botón Descargar.",
+    "a": "En Recursos hay proyectos web para probar: Copa Pistón, Orquídea Azul, Rosa roja, Pokébola Sorpresa, Flores Amarillas y Certificado VIP Digital; y proyectos de robótica con Arduino: un sistema de riego automatizado, un rover Bluetooth y una grúa robótica. Los proyectos web tienen el botón Probar y los de Arduino el botón Descargar.",
     "link": {
       "t": "Ver recursos",
       "h": "#/plans"
@@ -371,9 +371,17 @@
       "puedes",
       "asistente",
       "bot",
-      "chat"
+      "chat",
+      "dmn_trax",
+      "dmn trax",
+      "quien eres",
+      "como te llamas",
+      "tu nombre",
+      "te llamas",
+      "tu eres",
+      "eres"
     ],
-    "a": "Puedo responder preguntas sobre Codetrax: servicios, portafolio, recursos, el equipo, cómo contactarnos o cómo apoyarnos. Para proyectos específicos, lo mejor es escribirnos en la sección de Contacto."
+    "a": "Soy Dmn_trax, el asistente de Codetrax. Respondo sobre servicios, portafolio, recursos, el equipo, cómo contactarnos y cómo apoyarnos. Para cotizar un proyecto, lo mejor es escribirnos en la sección de Contacto."
   },
   {
     "id": "redes",
@@ -503,7 +511,10 @@
       "spei",
       "banco",
       "aceptan transferencia",
-      "aceptan paypal"
+      "aceptan paypal",
+      "apoyo con paypal",
+      "apoyar con paypal",
+      "los apoyo"
     ],
     "a": "Puedes apoyarnos con PayPal a DamianCruz436 ([paypal.me/DamianCruz436](https://paypal.me/DamianCruz436)) o por transferencia al banco Morse, titular Damian Cruz, CLABE 710969000422711528. Eliges el monto que quieras; los donativos no compran servicios.",
     "link": {
@@ -571,12 +582,296 @@
       "riego",
       "automatico",
       "sensor",
-      "bomba"
+      "bomba",
+      "riego automatico arduino",
+      "sensor de humedad",
+      "rele",
+      "tutoriales de arduino"
     ],
-    "a": "Sí. En el blog está el tutorial “Cómo hacer un sistema de riego automático con Arduino”: sensor de humedad, relé y bomba, con código base para empezar. También hay proyectos de robótica para descargar en Recursos.",
+    "a": "Sí. En el blog está el tutorial “Cómo hacer un sistema de riego automático con Arduino”, publicado el 11 de octubre de 2026: sensor de humedad, relé y bomba, con código base para empezar. También hay proyectos de robótica para descargar en Recursos.",
     "link": {
       "t": "Ir al blog",
       "h": "#/blog"
+    }
+  },
+  {
+    "id": "walli-e",
+    "q": "¿Qué es Walli-e Robot?",
+    "keywords": [
+      "walli",
+      "wall-e",
+      "walli-e",
+      "walli-e robot",
+      "walle",
+      "robot wall"
+    ],
+    "a": "Walli-e Robot es un proyecto de robótica de Damian Cruz inspirado en WALL·E. Incluye el diseño estructural, el modelado y la programación de los movimientos del robot.",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/portafolio"
+    }
+  },
+  {
+    "id": "branding-youtube",
+    "q": "¿Hacen branding para canales de YouTube?",
+    "keywords": [
+      "youtube",
+      "banner youtube",
+      "identidad youtube",
+      "branding youtube",
+      "juanitovt",
+      "juanito",
+      "ej blox",
+      "ejblox",
+      "coolisa",
+      "migueltime",
+      "miguel time",
+      "banner juanito",
+      "miniatura ej",
+      "miniatura",
+      "branding",
+      "dynsg",
+      "branding dynsg"
+    ],
+    "a": "Sí. Para YouTube hemos hecho identidad visual para MiguelTime y para Tecno730, branding para DynsG, un banner para JuanitoVT, una miniatura para EJ Blox y un banner para Coolisa!.",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/portafolio"
+    }
+  },
+  {
+    "id": "futuristical-beats",
+    "q": "¿Qué es Futuristical Beats?",
+    "keywords": [
+      "futuristical beats",
+      "futuristical",
+      "beats"
+    ],
+    "a": "Futuristical Beats es un proyecto de música electrónica experimental de Damian Cruz y Tecno 730, que reúne composición y diseño sonoro. Se puede escuchar en su canal de YouTube.",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/portafolio"
+    }
+  },
+  {
+    "id": "copa-piston",
+    "q": "¿Qué es Copa Pistón?",
+    "keywords": [
+      "copa piston",
+      "copa",
+      "piston",
+      "trofeo",
+      "trofeo digital"
+    ],
+    "a": "Copa Pistón es un trofeo digital interactivo con temática automotriz, pensado para reconocer a participantes o ganadores de un evento. Puedes probarlo en Recursos.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "orquidea-azul",
+    "q": "¿Qué es Orquídea Azul?",
+    "keywords": [
+      "orquidea azul",
+      "orquidea"
+    ],
+    "a": "Orquídea Azul es un sitio web conceptual de Damian Cruz que combina una propuesta visual en tonos azules con animaciones e interacción. Puedes recorrerlo en Recursos.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "rosa-roja",
+    "q": "¿Qué es Rosa roja?",
+    "keywords": [
+      "rosa roja",
+      "rosa"
+    ],
+    "a": "Rosa roja es una experiencia web conceptual dedicada a una rosa roja, con una presentación visual animada. Puedes explorarla en Recursos.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "pokebola",
+    "q": "¿Qué es Pokébola Sorpresa?",
+    "keywords": [
+      "pokebola sorpresa",
+      "pokebola",
+      "pokemon",
+      "poke"
+    ],
+    "a": "Pokébola Sorpresa es una experiencia web interactiva inspirada en Pokémon, pensada como un regalo sorpresa. Puedes visitarla en Recursos.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "flores-amarillas",
+    "q": "¿Qué es Flores Amarillas?",
+    "keywords": [
+      "flores amarillas",
+      "flor amarilla",
+      "flores"
+    ],
+    "a": "Flores Amarillas es un detalle digital de flores amarillas presentado como una experiencia web animada. Puedes recorrerlo en Recursos.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "certificado-vip",
+    "q": "¿Qué es el Certificado VIP Digital?",
+    "keywords": [
+      "certificado vip",
+      "certificado digital",
+      "certificado",
+      "vip"
+    ],
+    "a": "El Certificado VIP Digital es un certificado digital personalizable para celebraciones, eventos o reconocimientos, con un diseño festivo. Puedes verlo en Recursos.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "riego-arduino",
+    "q": "¿Cómo funciona el sistema de riego automatizado?",
+    "keywords": [
+      "sistema de riego",
+      "riego automatizado",
+      "riego",
+      "riego arduino"
+    ],
+    "a": "El Sistema de Riego Automatizado es un proyecto con Arduino que automatiza el riego mediante sensores y una lógica de control. En Recursos puedes descargar su archivo de código .ino, y en el blog está el tutorial paso a paso.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "rover-bluetooth",
+    "q": "¿Qué es el Rover Robótico Bluetooth?",
+    "keywords": [
+      "rover bluetooth",
+      "rover",
+      "carro bluetooth",
+      "carro",
+      "robot bluetooth",
+      "rover robotico",
+      "bluetooth"
+    ],
+    "a": "El Rover Robótico Bluetooth es un robot móvil controlado por Bluetooth, un proyecto práctico para explorar control remoto, motores y comunicación inalámbrica. En Recursos puedes descargar su código .ino.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "grua-robotica",
+    "q": "¿Qué es la Grúa Robótica de Precisión?",
+    "keywords": [
+      "grua robotica",
+      "grua",
+      "grua de precision",
+      "joystick",
+      "robotica",
+      "robot",
+      "precision"
+    ],
+    "a": "La Grúa Robótica de Precisión es una grúa robótica controlada con un joystick analógico, que muestra el uso de servomotores y principios básicos de control. En Recursos puedes descargar su código .ino.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "damian",
+    "q": "¿Quién es Damian Cruz?",
+    "keywords": [
+      "quien es damian",
+      "damian cruz",
+      "damian"
+    ],
+    "a": "Damian Cruz es el fundador y CEO de Codetrax. Es el autor de la plataforma de Electrum CDMX, de Walli-e Robot y de los proyectos web y de robótica de Recursos.",
+    "link": {
+      "t": "Conocer al equipo",
+      "h": "#/servicios"
+    }
+  },
+  {
+    "id": "miguel-pandares",
+    "q": "¿Quién es Miguel Pandares?",
+    "keywords": [
+      "quien es miguel",
+      "miguel pandares",
+      "miguel"
+    ],
+    "a": "Miguel Pandares es desarrollador Full Stack de Codetrax y el autor del sitio web de Axira Studio.",
+    "link": {
+      "t": "Conocer al equipo",
+      "h": "#/servicios"
+    }
+  },
+  {
+    "id": "ricardo-pandares",
+    "q": "¿Quién es Ricardo Pandares?",
+    "keywords": [
+      "quien es ricardo",
+      "ricardo pandares",
+      "ricardo"
+    ],
+    "a": "Ricardo Pandares es desarrollador Full Stack de Codetrax.",
+    "link": {
+      "t": "Conocer al equipo",
+      "h": "#/servicios"
+    }
+  },
+  {
+    "id": "dynsg",
+    "q": "¿Quién es DynsG?",
+    "keywords": [
+      "quien es dynsg",
+      "dynsg"
+    ],
+    "a": "DynsG es diseñadora gráfica de Codetrax. Es la autora del branding de DynsG, del banner de JuanitoVT, de la miniatura de EJ Blox y del banner de Coolisa!.",
+    "link": {
+      "t": "Conocer al equipo",
+      "h": "#/servicios"
+    }
+  },
+  {
+    "id": "naoko-aki",
+    "q": "¿Quién es Naoko Aki?",
+    "keywords": [
+      "quien es naoko",
+      "naoko aki",
+      "naoko"
+    ],
+    "a": "Naoko Aki es diseñadora gráfica de Codetrax.",
+    "link": {
+      "t": "Conocer al equipo",
+      "h": "#/servicios"
+    }
+  },
+  {
+    "id": "tecno730",
+    "q": "¿Quién es Tecno 730?",
+    "keywords": [
+      "quien es tecno",
+      "tecno 730",
+      "tecno730",
+      "tecno"
+    ],
+    "a": "Tecno 730 es diseñador multimedia de Codetrax. Es coautor de Futuristical Beats y de la identidad visual de Tecno730.",
+    "link": {
+      "t": "Conocer al equipo",
+      "h": "#/servicios"
     }
   }
 ]
