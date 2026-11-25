@@ -1442,3 +1442,4 @@ body.modal-open { overflow:hidden; }
 .error-page { justify-content: center; text-align: center; }
 .error-title { font-size: 5rem; }
 .error-msg { margin: 10px 0 24px; }
+.error-avatar { display:block; width:min(480px,90vw); height:auto; margin:0 auto 20px; border-radius:20px; }
