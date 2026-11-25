@@ -1517,7 +1517,7 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
     const root = document.createElement('div');
     root.className = 'chat-root';
     root.innerHTML = `
-        <button type="button" class="chat-toggle" aria-label="Abrir asistente virtual" aria-expanded="false"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i></button>
+        <button type="button" class="chat-toggle" aria-label="Abrir asistente virtual" aria-expanded="false"><img src="assets/ima/avatar-damian.webp" alt="" class="chat-avatar"></button>
         <section class="chat-panel" role="dialog" aria-label="Asistente virtual de Codetrax" hidden>
             <header class="chat-head"><span>Asistente Codetrax</span><button type="button" class="chat-close" aria-label="Cerrar asistente">✕</button></header>
             <div class="chat-msgs" aria-live="polite"></div>

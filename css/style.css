@@ -1076,8 +1076,10 @@ body::before { content:""; position:fixed; inset:0; z-index:-2; background:url('
 /* =====================================================
    ASISTENTE VIRTUAL (chat flotante). Esquina inferior izquierda; WhatsApp va a la derecha.
 ===================================================== */
-.chat-toggle { position:fixed; left:20px; bottom:20px; width:56px; height:56px; border-radius:50%; border:none; cursor:pointer;
-    background:linear-gradient(135deg,var(--gt-blue),var(--gt-red)); color:#fff; font-size:24px; z-index:1000; box-shadow:0 6px 20px rgba(0,0,0,.5); }
+.chat-toggle { position:fixed; left:20px; bottom:20px; width:56px; height:56px; border-radius:50%; border:none; cursor:pointer; padding:0; overflow:hidden;
+    background:linear-gradient(135deg,var(--gt-blue),var(--gt-red)); color:#fff; font-size:24px; z-index:1000; box-shadow:0 6px 20px rgba(0,0,0,.5); transition:transform .25s ease, box-shadow .25s ease; }
+.chat-toggle img.chat-avatar { width:100%; height:100%; object-fit:cover; display:block; border-radius:50%; }
+.chat-toggle:hover, .chat-toggle:focus-visible { transform:scale(1.06); box-shadow:0 6px 24px rgba(91,123,255,.55), 0 0 0 3px rgba(255,255,255,.25); outline:none; }
 .chat-panel { position:fixed; left:20px; bottom:88px; width:min(360px, calc(100vw - 40px)); height:min(480px, calc(100dvh - 120px));
     display:flex; flex-direction:column; background:rgba(18,18,18,.95); border:1px solid rgba(255,255,255,.12);
     border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,.6); z-index:1000; overflow:hidden; animation:viewIn .3s ease both; }
