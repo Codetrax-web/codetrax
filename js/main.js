@@ -229,7 +229,7 @@ function applyI18n() {
     // Los toasts no se reescriben aquí: ya se crean traducidos en cada llamada a showToast()
     // y son mensajes de un solo uso (desaparecen a los 6 s).
     const chatToggle = document.querySelector('.chat-toggle');
-    if (chatToggle) chatToggle.setAttribute('aria-label', lang === 'en' ? 'Open virtual assistant' : 'Abrir asistente virtual');
+    if (chatToggle) chatToggle.setAttribute('aria-label', lang === 'en' ? 'Open Dmn_trax' : 'Abrir Dmn_trax');
     const chatClose = document.querySelector('.chat-close');
     if (chatClose) chatClose.setAttribute('aria-label', lang === 'en' ? 'Close assistant' : 'Cerrar asistente');
     const chatInput = document.querySelector('.chat-form input');
@@ -237,7 +237,7 @@ function applyI18n() {
     const chatSend = document.querySelector('.chat-form button[type="submit"]');
     if (chatSend) chatSend.setAttribute('aria-label', lang === 'en' ? 'Send' : 'Enviar');
     const chatFoot = document.querySelector('.chat-foot');
-    if (chatFoot) chatFoot.textContent = lang === 'en' ? 'Automatic assistant: it can make mistakes. For important matters use Contact.' : 'Asistente automático: puede equivocarse. Para temas importantes usa Contacto.';
+    if (chatFoot) chatFoot.textContent = lang === 'en' ? 'Dmn_trax is automatic: it can make mistakes. For important matters use Contact.' : 'Dmn_trax es automático: puede equivocarse. Para temas importantes usa Contacto.';
     const cmClose = document.querySelector('.cm-close');
     if (cmClose) cmClose.setAttribute('aria-label', lang === 'en' ? 'Close' : 'Cerrar');
 }
@@ -948,7 +948,7 @@ privacidad: `
             <h2>Responsable</h2><p>Codetrax (contacto: codetraxs@gmail.com) es responsable del tratamiento de tus datos personales.</p>
             <h2>Datos que recabamos</h2><p>Nombre, correo y mensaje cuando usas el formulario de contacto o nos escribes. De forma anónima y sin cookies, estadísticas de visita (páginas vistas, país, dispositivo). En tu navegador guardamos localmente tu idioma y los "likes" que das.</p>
             <h2>Finalidad</h2><p>Responder tus solicitudes, enviarte cotizaciones y mejorar el sitio. No vendemos tus datos.</p>
-            <h2>Terceros que intervienen</h2><p>Formspree (envío del formulario), Google (reseñas mostradas con Places API), el servicio de newsletter (suscripciones por correo; puedes darte de baja en cualquier mensaje), Umami (analítica sin cookies), Google Calendar (agenda de reuniones), Google Maps (reseñas), el asistente virtual (si está activo, tus mensajes se procesan mediante Cloudflare y la API de Anthropic; no escribas datos sensibles), WhatsApp y PayPal (donativos). Cada uno tiene su propio aviso de privacidad.</p>
+            <h2>Terceros que intervienen</h2><p>Formspree (envío del formulario), Google (reseñas mostradas con Places API), el servicio de newsletter (suscripciones por correo; puedes darte de baja en cualquier mensaje), Umami (analítica sin cookies), Google Calendar (agenda de reuniones), Google Maps (reseñas), Dmn_trax (si está activo, tus mensajes se procesan mediante Cloudflare y la API de Anthropic; no escribas datos sensibles), WhatsApp y PayPal (donativos). Cada uno tiene su propio aviso de privacidad.</p>
             <h2>Tus derechos</h2><p>Puedes acceder, rectificar, cancelar u oponerte al tratamiento de tus datos (derechos ARCO) escribiéndonos al correo indicado.</p>
             <h2>Cambios</h2><p>Publicaremos aquí cualquier actualización. Última actualización: octubre de 2026.</p>
         </div>
@@ -1450,7 +1450,7 @@ document.addEventListener('click', (e) => {
 
 
 /* =====================================================
-   ASISTENTE VIRTUAL (chat flotante)
+   DMN_TRAX (chat flotante)
    Dos modos automáticos:
    1) Con IA: si pegas la URL de tu Worker en CHAT_API_URL (ver worker/worker.js).
    2) Sin IA: respuestas locales por palabras clave. Funciona sin servidor y sin costo.
@@ -1479,7 +1479,7 @@ const FAQ = [
     [['servicio','ofrec','hacen','desarrollo','pagina','web','app','diseno','branding','logo','video','multimedia','juego','consultor'],
      'Ofrecemos desarrollo (web, apps, sistemas), diseño y branding, multimedia, videojuegos y consultoría. Detalles en [Servicios](#/servicios).'],
     [['hola','buenas','hey','buenos'],
-     '¡Hola! Soy el asistente de Codetrax. Pregúntame por servicios, cotizaciones, portafolio o cómo contactarnos.']
+     '¡Hola! Soy Dmn_trax, el asistente de Codetrax. Pregúntame por servicios, cotizaciones, portafolio o cómo contactarnos.']
 ];
 const FAQ_DEFAULT = 'No estoy seguro de eso. Prueba preguntar por servicios o cotizaciones, o escríbenos en [Contacto](#/contacto) y te atendemos.';
 
@@ -1517,13 +1517,13 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
     const root = document.createElement('div');
     root.className = 'chat-root';
     root.innerHTML = `
-        <button type="button" class="chat-toggle" aria-label="Abrir asistente virtual" aria-expanded="false"><img src="assets/ima/avatar-damian.webp" alt="" class="chat-avatar"></button>
-        <section class="chat-panel" role="dialog" aria-label="Asistente virtual de Codetrax" hidden>
-            <header class="chat-head"><span>Asistente Codetrax</span><button type="button" class="chat-close" aria-label="Cerrar asistente">✕</button></header>
+        <button type="button" class="chat-toggle" aria-label="Abrir Dmn_trax" aria-expanded="false"><img src="assets/ima/avatar-damian.webp" alt="" class="chat-avatar"></button>
+        <section class="chat-panel" role="dialog" aria-label="Dmn_trax, asistente de Codetrax" hidden>
+            <header class="chat-head"><span>Dmn_trax</span><button type="button" class="chat-close" aria-label="Cerrar asistente">✕</button></header>
             <div class="chat-msgs" aria-live="polite"></div>
             <div class="chat-chips"></div>
             <form class="chat-form"><input type="text" maxlength="300" placeholder="Escribe tu pregunta..." aria-label="Tu pregunta" autocomplete="off"><button type="submit" aria-label="Enviar"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i></button></form>
-            <p class="chat-foot">Asistente automático: puede equivocarse. Para temas importantes usa Contacto.</p>
+            <p class="chat-foot">Dmn_trax es automático: puede equivocarse. Para temas importantes usa Contacto.</p>
         </section>`;
     document.body.appendChild(root);
 
@@ -1546,7 +1546,7 @@ const fmt = (t, soloInternos = false) => esc(t).replace(/\[([^\]]+)\]\((#\/[a-z]
         if (v) {
             if (!greeted) {        // saludo y sugerencias solo la primera vez
                 greeted = true;
-                add('bot', '¡Hola! Soy el asistente de Codetrax. ¿En qué te ayudo?');
+                add('bot', '¡Hola! Soy Dmn_trax, el asistente de Codetrax. ¿En qué te ayudo?');
                 ['¿Qué servicios ofrecen?', '¿Cómo cotizo un proyecto?', '¿Cómo los apoyo?'].forEach(q => {
                     const b = document.createElement('button'); b.type = 'button'; b.textContent = q;
                     b.onclick = () => { send(q).then(ok => { if (ok) chips.remove(); }); }; chips.appendChild(b);
