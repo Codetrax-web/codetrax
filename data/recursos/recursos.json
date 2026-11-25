@@ -59,8 +59,7 @@
     "descripcion": "Proyecto con Arduino que automatiza el riego mediante sensores y una lógica de control. La ficha enlaza al archivo de código del sistema.",
     "imagen": "data/recursos/robotica/riego/riego.webp",
     "url": "data/recursos/archivos/Sistema_de_Riego.ino",
-    "categoria": "Robótica",
-    "urlAnterior": "https://www.mediafire.com/file/dgoz0tdo7boirw8/Sistema_de_Riego.ino/file"
+    "categoria": "Robótica"
   },
   {
     "titulo": "Rover Robótico Bluetooth",
@@ -68,8 +67,7 @@
     "descripcion": "Robot móvil controlado por Bluetooth. Es un proyecto práctico para explorar control remoto, motores y comunicación inalámbrica.",
     "imagen": "data/recursos/robotica/car/carro.webp",
     "url": "data/recursos/archivos/Carro_bluetooth.ino",
-    "categoria": "Robótica",
-    "urlAnterior": "https://www.mediafire.com/file/mxcaavqjad5vfrg/Carro_bluetooth.ino/file"
+    "categoria": "Robótica"
   },
   {
     "titulo": "Grúa Robótica de Precisión",
@@ -77,7 +75,6 @@
     "descripcion": "Grúa robótica controlada con un joystick analógico. El proyecto muestra el uso de servomotores y principios básicos de control.",
     "imagen": "data/recursos/robotica/grua/pro.webp",
     "url": "data/recursos/archivos/Grua_A.ino",
-    "categoria": "Robótica",
-    "urlAnterior": "https://www.mediafire.com/file/my1wr2me0tpoegy/Grua_A.ino/file"
+    "categoria": "Robótica"
   }
 ]
