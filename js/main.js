@@ -81,10 +81,10 @@ const SERVICES = [
    con "TU_" aparece como "Próximamente" (así nunca hay enlaces rotos).
 ===================================================== */
 const DONATIONS = {
-    paypalUser:  'TU_USUARIO_PAYPAL',      // Usuario de paypal.me/TU_USUARIO
-    banco:       'TU_BANCO',               // Ej. BBVA
-    titular:     'TU_NOMBRE_TITULAR',      // Nombre del titular de la cuenta
-    clabe:       'TU_CLABE_18_DIGITOS'     // CLABE interbancaria (18 dígitos)
+    paypalUser:  'DamianCruz436',          // Usuario de paypal.me/DamianCruz436
+    banco:       'Morse',                  // Banco de la cuenta para apoyos
+    titular:     'Damian Cruz',            // Nombre del titular de la cuenta
+    clabe:       '710969000422711528'      // CLABE interbancaria (18 dígitos)
 };
 // Atajos OPCIONALES: solo rellenan el campo de monto; la persona puede escribir cualquier cantidad. Pon [] para quitarlos.
 const MONTOS = [];   // vacío = la persona escribe el monto que quiera, sin cantidades sugeridas
