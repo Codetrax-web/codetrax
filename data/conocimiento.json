@@ -180,7 +180,10 @@
       "disenadora",
       "disenador",
       "miembros",
-      "personas"
+      "personas",
+      "quien forma",
+      "forma el equipo",
+      "quien es"
     ],
     "a": "El equipo está formado por:\n• Damian Cruz: fundador y CEO.\n• Ricardo y Miguel Pandares: desarrolladores Full Stack.\n• DynsG y Naoko Aki: diseñadoras gráficas.\n• Tecno 730: diseñador multimedia.",
     "link": {
@@ -205,7 +208,7 @@
       "llamar",
       "formulario"
     ],
-    "a": "Puedes escribirnos a codetraxs@gmail.com, llenar el formulario de Contacto o agendar una consultoría por Google Meet. Nuestras redes sociales también aparecen en esa sección.",
+    "a": "Puedes escribirnos a codetraxs@gmail.com, por [WhatsApp](https://wa.me/5215578526705), llenar el formulario de Contacto o agendar una consultoría por [Google Meet](https://calendar.app.google/7iAyjJockVxnrkot9). Nuestras redes sociales también aparecen en esa sección.",
     "link": {
       "t": "Ir a Contacto",
       "h": "#/contacto"
@@ -283,7 +286,7 @@
       "transferencia",
       "pagar"
     ],
-    "a": "Puedes apoyarnos con un donativo voluntario desde la sección Apoya. Eliges el monto que quieras y los métodos disponibles aparecen ahí. Los donativos no compran servicios.",
+    "a": "Puedes apoyarnos con un donativo voluntario desde la sección Apoya. Eliges el monto que quieras: por PayPal a DamianCruz436 ([paypal.me/DamianCruz436](https://paypal.me/DamianCruz436)) o por transferencia al banco Morse, titular Damian Cruz. Los donativos no compran servicios.",
     "link": {
       "t": "Ir a Apoya",
       "h": "#/donar"
@@ -371,5 +374,209 @@
       "chat"
     ],
     "a": "Puedo responder preguntas sobre Codetrax: servicios, portafolio, recursos, el equipo, cómo contactarnos o cómo apoyarnos. Para proyectos específicos, lo mejor es escribirnos en la sección de Contacto."
+  },
+  {
+    "id": "redes",
+    "q": "¿En qué redes sociales están?",
+    "keywords": [
+      "redes",
+      "sociales",
+      "instagram",
+      "tiktok",
+      "youtube",
+      "threads",
+      "seguir",
+      "siguen"
+    ],
+    "a": "Nos encuentras en Instagram [@codetraxhp](https://www.instagram.com/codetraxhp), Threads [@codetraxhp](https://www.threads.net/@codetraxhp), TikTok [@damian_cdx](https://www.tiktok.com/@damian_cdx), YouTube [@DAMIANCDX](https://www.youtube.com/@DAMIANCDX) y X [@Code_trax](https://x.com/Code_trax).",
+    "link": {
+      "t": "Ver contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "whatsapp",
+    "q": "¿Tienen WhatsApp? ¿Cuál es su número?",
+    "keywords": [
+      "whatsapp",
+      "numero",
+      "telefono",
+      "celular",
+      "llamar",
+      "tienen whatsapp",
+      "tienes whatsapp"
+    ],
+    "a": "Sí. Escríbenos por [WhatsApp](https://wa.me/5215578526705) o al correo codetraxs@gmail.com. También puedes agendar una consultoría por Google Meet o llenar el formulario de Contacto.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "tecnologias",
+    "q": "¿Qué tecnologías usan?",
+    "keywords": [
+      "tecnologia",
+      "tecnologias",
+      "lenguaje",
+      "lenguajes",
+      "stack",
+      "herramientas",
+      "html",
+      "css",
+      "javascript",
+      "python",
+      "git",
+      "github",
+      "trabajan con"
+    ],
+    "a": "Trabajamos con HTML5, CSS3, JavaScript, Python y Arduino, y versionamos con Git y GitHub. Si tu proyecto necesita otra tecnología, cuéntanos y revisamos si podemos ayudarte.",
+    "link": {
+      "t": "Ver servicios",
+      "h": "#/servicios"
+    }
+  },
+  {
+    "id": "entrega",
+    "q": "¿Cuánto tardan en entregar un proyecto?",
+    "keywords": [
+      "entrega",
+      "entregar",
+      "tardan",
+      "tarda",
+      "plazo",
+      "cuanto tardan",
+      "tiempo de entrega",
+      "proyecto"
+    ],
+    "a": "El tiempo depende del alcance de cada proyecto: primero escuchamos tu idea y luego definimos los tiempos en la cotización. Trabajamos en 4 etapas: Discovery, Planificación, Desarrollo, y Entrega con soporte. Si tu idea tiene fecha límite, indícala en tu mensaje.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "pago",
+    "q": "¿Cómo pago un proyecto? ¿Cuáles son las formas de pago?",
+    "keywords": [
+      "pago",
+      "pagar",
+      "anticipo",
+      "formas de pago",
+      "metodos de pago",
+      "metodo de pago",
+      "proyecto"
+    ],
+    "a": "Cada proyecto se cotiza a la medida, así que primero escríbenos en Contacto con tu idea: ahí te enviamos tu cotización y los datos de pago. Los donativos voluntarios son aparte y están en Apoya, no son pagos de proyectos.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "soporte",
+    "q": "¿Dan soporte después de la entrega?",
+    "keywords": [
+      "soporte",
+      "despues",
+      "acompañamiento",
+      "postventa",
+      "post-venta",
+      "despues de la entrega",
+      "ayudan despues",
+      "ayudan"
+    ],
+    "a": "Sí. La última etapa de nuestro trabajo es Entrega y Soporte: desplegamos tu producto y te acompañamos después con soporte constante. Si algo falla o necesitas un cambio, escríbenos en Contacto y te respondemos por correo en un plazo de 24 horas.",
+    "link": {
+      "t": "Ir a Contacto",
+      "h": "#/contacto"
+    }
+  },
+  {
+    "id": "apoyar-metodos",
+    "q": "¿Cómo los apoyo con PayPal o transferencia?",
+    "keywords": [
+      "paypal",
+      "transferencia",
+      "clabe",
+      "morse",
+      "spei",
+      "banco",
+      "aceptan transferencia",
+      "aceptan paypal"
+    ],
+    "a": "Puedes apoyarnos con PayPal a DamianCruz436 ([paypal.me/DamianCruz436](https://paypal.me/DamianCruz436)) o por transferencia al banco Morse, titular Damian Cruz, CLABE 710969000422711528. Eliges el monto que quieras; los donativos no compran servicios.",
+    "link": {
+      "t": "Ir a Apoya",
+      "h": "#/donar"
+    }
+  },
+  {
+    "id": "electrum",
+    "q": "¿Qué hicieron para Electrum CDMX?",
+    "keywords": [
+      "electrum",
+      "cdmx",
+      "electrica",
+      "electricidad"
+    ],
+    "a": "Para Electrum CDMX desarrollamos su plataforma web y apoyamos su identidad digital. El proyecto presenta sus soluciones para infraestructura eléctrica de baja y media tensión. Puedes verlo en [electrumcdmx.com](https://electrumcdmx.com/).",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/portafolio"
+    }
+  },
+  {
+    "id": "axira",
+    "q": "¿Qué es Axira Studio?",
+    "keywords": [
+      "axira",
+      "studio"
+    ],
+    "a": "Axira Studio es un sitio web hecho por Miguel Pandares: una propuesta de servicios digitales enfocada en desarrollo, diseño y creación de soluciones tecnológicas. Puedes verlo en [axiraestudio.github.io](https://axiraestudio.github.io/).",
+    "link": {
+      "t": "Ver portafolio",
+      "h": "#/portafolio"
+    }
+  },
+  {
+    "id": "robotica",
+    "q": "¿Tienen proyectos de robótica o Arduino?",
+    "keywords": [
+      "robotica",
+      "robot",
+      "arduino",
+      "rover",
+      "grua",
+      "riego",
+      "bluetooth",
+      "joystick",
+      "servomotor",
+      "tienen arduino",
+      "con arduino",
+      "de arduino"
+    ],
+    "a": "Sí. En Recursos hay proyectos de robótica con Arduino y código .ino para descargar: un sistema de riego automatizado, un rover Bluetooth y una grúa robótica. También en el portafolio está Walli-e Robot, inspirado en WALL·E.",
+    "link": {
+      "t": "Ver recursos",
+      "h": "#/recursos"
+    }
+  },
+  {
+    "id": "tutoriales",
+    "q": "¿Tienen tutoriales de Arduino?",
+    "keywords": [
+      "tutorial",
+      "tutoriales",
+      "riego",
+      "automatico",
+      "sensor",
+      "bomba"
+    ],
+    "a": "Sí. En el blog está el tutorial “Cómo hacer un sistema de riego automático con Arduino”: sensor de humedad, relé y bomba, con código base para empezar. También hay proyectos de robótica para descargar en Recursos.",
+    "link": {
+      "t": "Ir al blog",
+      "h": "#/blog"
+    }
   }
 ]
