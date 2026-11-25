@@ -82,6 +82,21 @@ body {
     display: block;
 }
 
+/* Enlace del logo al home: el movimiento hover va en el link, no en .logo,
+   porque la animación float (transform en keyframes) pisa cualquier transform
+   declarado en .logo. El brillo sí va en .logo, porque float no toca filter. */
+.logo-link {
+    display: block;
+    border-radius: 15px;
+    transition: transform .3s ease;
+}
+.logo-link:hover, .logo-link:focus-visible {
+    transform: translateY(-6px) scale(1.04);
+}
+.logo-link:hover .logo, .logo-link:focus-visible .logo {
+    filter: drop-shadow(0 0 14px rgba(91,123,255,.65)) drop-shadow(0 0 22px rgba(240,0,0,.35));
+}
+
 .logo-container {
     display: flex;
     align-items: center;
@@ -1004,7 +1019,7 @@ body::before { content:""; position:fixed; inset:0; z-index:-2; background:url('
 @keyframes shimmer { to { background-position: -300% 0; } }
 
 /* Logo con flotación muy suave */
-.logo { animation: float 6s ease-in-out infinite; }
+.logo { animation: float 6s ease-in-out infinite; transition: filter .3s ease; }
 @keyframes float { 50% { transform: translateY(-4px); } }
 
 /* Aparición al hacer scroll. Usa la propiedad "translate" (independiente de "transform")
